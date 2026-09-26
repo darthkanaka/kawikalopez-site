@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% from "partials/card.html" import card with context %}
+{% block main %}
+{% include "partials/crumbs.html" %}
+<section class="wrap page-head">
+  <h1>{{ h1 }}</h1>
+  <p class="lede">{{ lede }}</p>
+  <nav class="chips" aria-label="Filter prints">
+    <a href="{{ url('store/') }}"{% if current == 'store/' %} aria-current="page"{% endif %}>All</a>
+    {% for c in collections %}
+    <a href="{{ url(c.path) }}"{% if current == c.path %} aria-current="page"{% endif %}>{{ c.chip }}</a>
+    {% endfor %}
+  </nav>
+</section>
+<section class="wrap section-tight" aria-label="Prints">
+  <p class="count">{{ items | length }} prints</p>
+  <div class="jgrid">
+    {% for p in items %}{{ card(p) }}{% endfor %}
+  </div>
+</section>
+{% endblock %}

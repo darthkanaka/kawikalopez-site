@@ -1,0 +1,10 @@
+.DS_Store
+tools/node_modules/
+tools/package-lock.json
+tools/reports/
+.venv/
+__pycache__/
+*.pyc
+harvest/json/
+private/
+*.env

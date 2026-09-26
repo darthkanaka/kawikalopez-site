@@ -1,0 +1,72 @@
+# Size and price matrix per orientation, derived from the Squarespace catalog on 2026-09-25.
+# New prints inherit the matrix of their orientation. Prices in whole dollars.
+# Edit here to change prices for every print of an orientation; per-print prices live in products.json.
+vertical:
+- size: 16 x 20
+  w: 16
+  h: 20
+  canvas: 300
+  metal: 300
+- size: 20 x 25
+  w: 20
+  h: 25
+  canvas: 450
+  metal: 570
+- size: 24 x 30
+  w: 24
+  h: 30
+  canvas: 570
+  metal: 700
+horizontal:
+- size: 18 x 12
+  w: 18
+  h: 12
+  canvas: 255
+  metal: 210
+- size: 24 x 16
+  w: 24
+  h: 16
+  canvas: 330
+  metal: 360
+- size: 30 x 20
+  w: 30
+  h: 20
+  canvas: 450
+  metal: 540
+- size: 36 x 24
+  w: 36
+  h: 24
+  canvas: 600
+  metal: 780
+panoramic:
+- size: 30 x 10
+  w: 30
+  h: 10
+  canvas: 360
+  metal: 390
+- size: 48 x 16
+  w: 48
+  h: 16
+  canvas: 600
+  metal: 950
+- size: 72 x 24
+  w: 72
+  h: 24
+  canvas: 1350
+  metal: 1950
+square:
+- size: 16 x 16
+  w: 16
+  h: 16
+  canvas: 260
+  metal: 240
+- size: 24 x 24
+  w: 24
+  h: 24
+  canvas: 420
+  metal: 600
+- size: 40 x 40
+  w: 40
+  h: 40
+  canvas: 1020
+  metal: 1650

@@ -1,0 +1,23 @@
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="{{ url('') }}" aria-label="Kawika Lopez Photography, home">
+      <span class="brand-name">Kawika Lopez</span>
+      <span class="brand-sub">Photography</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <ul class="nav-list">
+        {% for n in nav %}
+        <li><a href="{{ url(n.href) }}"{% if n.href == path %} aria-current="page"{% endif %}>{{ n.label }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+    <details class="menu">
+      <summary><span class="menu-label">Menu</span></summary>
+      <ul class="menu-list">
+        {% for n in nav %}
+        <li><a href="{{ url(n.href) }}"{% if n.href == path %} aria-current="page"{% endif %}>{{ n.label }}</a></li>
+        {% endfor %}
+      </ul>
+    </details>
+  </div>
+</header>

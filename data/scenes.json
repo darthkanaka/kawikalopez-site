@@ -1,0 +1,55 @@
+[
+ {
+  "id": "living-dark",
+  "name": "Living room",
+  "note": "Interim scene: Kawika's own mockup with the Nani Waikīkī print painted out. Replaced by approved AI rooms in the visualizer phase.",
+  "source": "harvest/images/site/home-hero-living-room-panorama.jpg",
+  "clean": {
+   "x": 424,
+   "y": 166,
+   "w": 1102,
+   "h": 390
+  },
+  "image": {
+   "base": "assets/img/scenes/living-dark",
+   "width": 2000,
+   "height": 1124,
+   "widths": [
+    960,
+    1600,
+    2000
+   ],
+   "alt": "A living room with a charcoal wall above a long white sofa, tall windows on the left and an open staircase on the right"
+  },
+  "wall": {
+   "x": 305,
+   "y": 20,
+   "w": 1362,
+   "h": 590
+  },
+  "calibration": {
+   "object": "the 72 x 24 inch print in the original mockup",
+   "inches": 72,
+   "from": [
+    433,
+    354
+   ],
+   "to": [
+    1503,
+    354
+   ]
+  },
+  "ppi": 14.861,
+  "anchor": {
+   "x": 0.4868,
+   "y": 0.566
+  },
+  "wallTone": "dark",
+  "shadow": {
+   "blur": 18,
+   "dx": 6,
+   "dy": 10,
+   "opacity": 0.45
+  }
+ }
+]

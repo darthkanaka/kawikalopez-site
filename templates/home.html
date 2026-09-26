@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% from "partials/card.html" import card with context %}
+{% block main %}
+<section class="hero">
+  <div class="wrap hero-text">
+    <p class="eyebrow">Fine art prints, printed on Oʻahu</p>
+    <h1>Hawaiʻi landscape and aerial prints by Kawika Lopez</h1>
+    <div class="hero-side">
+      <p class="lede">Valleys, ridges and coastline, mostly at sunrise, mostly on Oʻahu. Every print is made to order on canvas or metal by {{ site.printer.name }} in Kapolei.</p>
+      <p class="actions">
+        <a class="btn" href="{{ url('store/') }}">Shop prints</a>
+        {% if teaser %}<a class="btn btn-quiet" href="{{ url(teaser.p.path) }}#room">See one on a wall</a>{% endif %}
+      </p>
+    </div>
+  </div>
+  <figure class="hero-media">
+    {{ pic_site("assets/img/site/hero-living", [480, 960, 1600, 2000], 2000, 1124, "100vw", "Nani Waikīkī, a 72 by 24 inch panoramic print of Waikīkī and Diamond Head, hanging above a white sofa in a living room with a charcoal wall", eager=True) }}
+    {% if hero_print %}
+    <figcaption class="wrap"><a href="{{ url(hero_print.path) }}">{{ hero_print.title }}</a>, 72 x 24 in on metal</figcaption>
+    {% endif %}
+  </figure>
+</section>
+
+<section class="section wrap" aria-labelledby="featured-h">
+  <div class="section-head">
+    <h2 id="featured-h">Featured prints</h2>
+    <a class="more" href="{{ url('store/') }}">All {{ total }} prints</a>
+  </div>
+  <div class="jgrid">
+    {% for p in featured %}{{ card(p) }}{% endfor %}
+  </div>
+</section>
+
+<section class="section wrap" aria-labelledby="coll-h">
+  <h2 id="coll-h">Browse by shape and style</h2>
+  <div class="tiles">
+    {% for t in tiles %}
+    <a class="tile" href="{{ url(t.c.path) }}">
+      {{ picture(t.p, "(min-width: 960px) 30vw, calc(100vw - 32px)", cls="tile-img") }}
+      <span class="tile-label">{{ t.c.chip }}</span>
+      <span class="tile-count">{{ t.count }} prints</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+{% if teaser %}
+<section class="section band" aria-labelledby="wall-h">
+  <div class="wrap split">
+    <div class="split-text">
+      <h2 id="wall-h">See it on your wall before you buy</h2>
+      <p>Every print page shows the print to scale in a real room. Switch sizes and materials and it updates, so you know how 48 inches of Diamond Head will sit over your sofa before it arrives.</p>
+      <p><a class="btn" href="{{ url(teaser.p.path) }}#room">Try it with {{ teaser.p.title }}</a></p>
+    </div>
+    <div class="room is-metal" aria-hidden="true">
+      {{ pic_site(teaser.scene.image.base, teaser.scene.image.widths, teaser.scene.image.width, teaser.scene.image.height, "(min-width: 960px) 55vw, calc(100vw - 32px)", "") }}
+      <div class="room-print" style="left:{{ teaser.rect.left }}%;top:{{ teaser.rect.top }}%;width:{{ teaser.rect.width }}%;height:{{ teaser.rect.height }}%">
+        {{ picture(teaser.p, "(min-width: 960px) 30vw, 50vw", alt="") }}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="section wrap" aria-labelledby="made-h">
+  <h2 id="made-h">Printed on Oʻahu, ready to hang</h2>
+  <div class="cols3">
+    <div>
+      <h3>Canvas</h3>
+      <p>Archival pigment inks on museum-quality canvas, gallery-wrapped so it hangs without a frame. Soft texture, no glare.</p>
+    </div>
+    <div>
+      <h3>Metal</h3>
+      <p>Dye-sublimated onto ChromaLuxe aluminum made in the USA. Deep color, crisp detail and a finish that lasts.</p>
+    </div>
+    <div>
+      <h3>Pickup or shipping</h3>
+      <p>Each print is made to order by {{ site.printer.name }} in Kapolei, usually in {{ site.printer.turnaround }}. Pick it up free on Oʻahu, or have it shipped anywhere in the US.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section wrap about-teaser" aria-labelledby="about-h">
+  <h2 id="about-h">About the photographer</h2>
+  <p>Kawika Lopez grew up on Oʻahu and has spent the last decade photographing it from the ridgelines and from the air. Most of these prints were made at sunrise, after a hike in the dark or a drone flight along the coast, and each one comes with the story of how it was made.</p>
+</section>
+{% endblock %}

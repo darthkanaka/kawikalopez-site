@@ -1,0 +1,58 @@
+# Site-wide facts. The build reads this for the header, footer, schema and canonical URLs.
+
+name: Kawika Lopez Photography
+short_name: Kawika Lopez
+legal_name: Veex Photo LLC
+tagline: Hawaiʻi landscape prints, printed on Oʻahu
+description: >-
+  Fine art landscape and aerial prints of Hawaiʻi by Kawika Lopez, printed on canvas
+  or metal by Pictures Plus in Kapolei, Oʻahu.
+
+base_url:
+  staging: https://darthkanaka.github.io/kawikalopez-site/
+  production: https://kawikalopez.com/
+
+# Contact form: Google Apps Script web app (gas/contact-notify.gs). Empty until deployed;
+# the form falls back to a prefilled email while it is empty.
+contact:
+  email: kawika@elevatemediahi.com
+  endpoint: ""
+
+person:
+  name: Kawika Lopez
+  job_title: Landscape and aerial photographer
+  locality: Honolulu
+  region: HI
+  same_as:
+    - https://www.facebook.com/kawikalopezphotography/
+    - https://fstoppers.com/u/kawika
+
+printer:
+  name: Pictures Plus
+  place: Kapolei, Oʻahu
+  turnaround: about a week
+
+promo:
+  code: NEW20OFF
+  text: 20% off your first print
+
+# Home page order for the featured prints (mixes panoramas with the rest so rows share space).
+featured_order: [naniwaikiki, malie, kaaawasunrise, makapuubeach-v, kaimana, mokulua, puao, kaaawavalley]
+
+# Analytics are emitted on production builds only.
+ga4: ""
+
+# Flags that change links while pages are still being built.
+features:
+  visualizer_page: false      # /see-it-in-your-space exists
+  checkout: false             # Stripe payment links are live
+  blog: false
+  places: false
+
+nav:
+  - {label: Prints, href: store/}
+  - {label: Sizes and pricing, href: prints}
+  - {label: See it on your wall, href: see-it-in-your-space}
+  - {label: Places, href: hawaii-prints/}
+  - {label: About, href: about}
+  - {label: Contact, href: contact}

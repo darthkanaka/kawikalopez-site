@@ -1,0 +1,33 @@
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <img src="{{ root }}assets/img/site/logo-gray.png" width="600" height="{{ 288 }}" alt="Kawika Lopez Photography" loading="lazy" decoding="async" class="footer-logo">
+      <p>Landscape and aerial prints of Hawaiʻi, printed to order by {{ site.printer.name }} in {{ site.printer.place }}.</p>
+    </div>
+    <nav aria-label="Footer" class="footer-nav">
+      <h2 class="footer-h">Shop</h2>
+      <ul>
+        <li><a href="{{ url('store/') }}">All prints</a></li>
+        <li><a href="{{ url('panoramic-prints') }}">Panoramic</a></li>
+        <li><a href="{{ url('horizontal-prints') }}">Horizontal</a></li>
+        <li><a href="{{ url('vertical-prints') }}">Vertical</a></li>
+        <li><a href="{{ url('landscape-1') }}">Landscape</a></li>
+        <li><a href="{{ url('fine-art') }}">Fine art</a></li>
+      </ul>
+    </nav>
+    <div class="footer-nav">
+      <h2 class="footer-h">Kawika Lopez</h2>
+      <ul>
+        {% for n in nav if n.href not in ('store/',) %}
+        <li><a href="{{ url(n.href) }}">{{ n.label }}</a></li>
+        {% endfor %}
+        <li><a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a></li>
+        <li><a href="https://www.facebook.com/kawikalopezphotography/" rel="me noopener">Facebook</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap footer-base">
+    <p>© Kawika Lopez. Every photograph on this site is copyrighted and may not be reproduced without permission.</p>
+    <p>{{ site.name }} is a {{ site.legal_name }} business, Honolulu, Hawaiʻi.</p>
+  </div>
+</footer>

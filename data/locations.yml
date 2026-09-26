@@ -1,0 +1,85 @@
+# Places the prints come from. A print links to its place through `location:` in overrides.yml.
+# A place gets its own page at /hawaii-prints/<slug> once content/locations/<slug>.md exists;
+# until then the product page shows the place name as plain text.
+#
+#   target   the search phrase the place page is written for (checked against its title)
+
+kaaawa-valley:
+  title: Kaʻaʻawa Valley and Kualoa
+  short: Kaʻaʻawa Valley
+  island: Oʻahu
+  region: Windward Oʻahu
+  target: Kaʻaʻawa Valley prints
+  coords: [21.5270, -157.8440]
+
+mokolii:
+  title: Mokoliʻi (Chinaman's Hat)
+  short: Mokoliʻi
+  island: Oʻahu
+  region: Windward Oʻahu
+  target: Mokoliʻi Chinaman's Hat prints
+  coords: [21.5098, -157.8307]
+
+makapuu:
+  title: Makapuʻu
+  short: Makapuʻu
+  island: Oʻahu
+  region: East Oʻahu
+  target: Makapuʻu prints
+  coords: [21.3100, -157.6590]
+
+kaiwi-coast:
+  title: The Kaiwi Coast
+  short: Kaiwi Coast
+  island: Oʻahu
+  region: East Oʻahu
+  target: Kaiwi coast and Hanauma Bay prints
+  coords: [21.2850, -157.6770]
+
+diamond-head:
+  title: Diamond Head and Waikīkī
+  short: Diamond Head
+  island: Oʻahu
+  region: Honolulu
+  target: Diamond Head and Waikīkī prints
+  coords: [21.2620, -157.8060]
+
+north-shore:
+  title: The North Shore
+  short: North Shore
+  island: Oʻahu
+  region: North Shore
+  target: North Shore Oʻahu prints
+  coords: [21.6400, -158.0630]
+
+kailua-waimanalo:
+  title: Kailua, Lanikai and Waimānalo
+  short: Kailua and Waimānalo
+  island: Oʻahu
+  region: Windward Oʻahu
+  target: Lanikai and Waimānalo prints
+  coords: [21.3930, -157.7150]
+
+koolau:
+  title: The Koʻolau Mountains
+  short: Koʻolau Mountains
+  island: Oʻahu
+  region: Windward Oʻahu
+  target: Koʻolau mountain prints
+  coords: [21.4200, -157.8100]
+
+haleakala:
+  title: Haleakalā
+  short: Haleakalā
+  island: Maui
+  region: Upcountry Maui
+  target: Haleakalā sunrise print
+  coords: [20.7097, -156.2533]
+
+south-point:
+  title: South Point (Ka Lae)
+  short: South Point
+  island: Hawaiʻi Island
+  region: Kaʻū
+  target: South Point Hawaiʻi print
+  coords: [18.9136, -155.6806]

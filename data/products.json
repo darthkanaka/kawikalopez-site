@@ -1,0 +1,3699 @@
+[
+ {
+  "urlId": "018",
+  "title": "ʻĀlina",
+  "description": "This image was created while on a hike along the Koʻolau Mountain Range. After hiking for hours with my camera gear and drone, I found a launching point in order to gather the 4-6 images which were eventually stitched together to create this image. Over thousands of years the rain and water have carved this incredibly unique and stunning valley with sheer cliffs and deep river beds. Surrounded by lush forest, this is truly a one of a kind scene. Titled ʻĀhina, which means \"Scar,\" this image reminds us that scars can be beautiful.",
+  "orientation": "vertical",
+  "collections": [
+   "fine-art",
+   "landscape"
+  ],
+  "ratio": 0.8,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 300,
+  "priceTo": 700,
+  "sizes": [
+   {
+    "label": "16 x 20",
+    "w": 16,
+    "h": 20
+   },
+   {
+    "label": "20 x 25",
+    "w": 20,
+    "h": 25
+   },
+   {
+    "label": "24 x 30",
+    "w": 24,
+    "h": 30
+   }
+  ],
+  "variants": [
+   {
+    "id": "018_16x20_canvas",
+    "size": "16 x 20",
+    "w": 16,
+    "h": 20,
+    "material": "canvas",
+    "price": 300,
+    "sku": "SQ6548357"
+   },
+   {
+    "id": "018_16x20_metal",
+    "size": "16 x 20",
+    "w": 16,
+    "h": 20,
+    "material": "metal",
+    "price": 300,
+    "sku": "SQ7722675"
+   },
+   {
+    "id": "018_20x25_canvas",
+    "size": "20 x 25",
+    "w": 20,
+    "h": 25,
+    "material": "canvas",
+    "price": 450,
+    "sku": "SQ1143871"
+   },
+   {
+    "id": "018_20x25_metal",
+    "size": "20 x 25",
+    "w": 20,
+    "h": 25,
+    "material": "metal",
+    "price": 570,
+    "sku": "SQ6532006"
+   },
+   {
+    "id": "018_24x30_canvas",
+    "size": "24 x 30",
+    "w": 24,
+    "h": 30,
+    "material": "canvas",
+    "price": 570,
+    "sku": "SQ0720578"
+   },
+   {
+    "id": "018_24x30_metal",
+    "size": "24 x 30",
+    "w": 24,
+    "h": 30,
+    "material": "metal",
+    "price": 700,
+    "sku": "SQ2610160"
+   }
+  ],
+  "sourceFilename": "ZigZag2b.jpg"
+ },
+ {
+  "urlId": "032",
+  "title": "Kākau",
+  "description": "This image was created using a drone along the Kaiwi Coast on Oʻahu. A kākau, or \"tattoo\" common among native Hawaiians. Native Hawaiian body art often include repeating lines, triangles, and other patterns. As I flew the drone over this particular face of Kokohead Crater, I couldn't help but notice the similarities int he landscape to a traditional Hawaiian kākau.",
+  "orientation": "vertical",
+  "collections": [
+   "fine-art"
+  ],
+  "ratio": 0.8,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 300,
+  "priceTo": 700,
+  "sizes": [
+   {
+    "label": "16 x 20",
+    "w": 16,
+    "h": 20
+   },
+   {
+    "label": "20 x 25",
+    "w": 20,
+    "h": 25
+   },
+   {
+    "label": "24 x 30",
+    "w": 24,
+    "h": 30
+   }
+  ],
+  "variants": [
+   {
+    "id": "032_16x20_canvas",
+    "size": "16 x 20",
+    "w": 16,
+    "h": 20,
+    "material": "canvas",
+    "price": 300,
+    "sku": "SQ5601203"
+   },
+   {
+    "id": "032_16x20_metal",
+    "size": "16 x 20",
+    "w": 16,
+    "h": 20,
+    "material": "metal",
+    "price": 300,
+    "sku": "SQ1877412"
+   },
+   {
+    "id": "032_20x25_canvas",
+    "size": "20 x 25",
+    "w": 20,
+    "h": 25,
+    "material": "canvas",
+    "price": 450,
+    "sku": "SQ3231488"
+   },
+   {
+    "id": "032_20x25_metal",
+    "size": "20 x 25",
+    "w": 20,
+    "h": 25,
+    "material": "metal",
+    "price": 570,
+    "sku": "SQ6662601"
+   },
+   {
+    "id": "032_24x30_canvas",
+    "size": "24 x 30",
+    "w": 24,
+    "h": 30,
+    "material": "canvas",
+    "price": 570,
+    "sku": "SQ5556315"
+   },
+   {
+    "id": "032_24x30_metal",
+    "size": "24 x 30",
+    "w": 24,
+    "h": 30,
+    "material": "metal",
+    "price": 700,
+    "sku": "SQ3282655"
+   }
+  ],
+  "sourceFilename": "DJI_0061.jpg"
+ },
+ {
+  "urlId": "033",
+  "title": "Candlestick",
+  "description": "This image was created during sunrise using a drone. As I flew along the cliffs of Makapuʻu. I noiced the symmetrical nature of the geography as well as the contrast of light and dark, which combined for an interesting combination. Add in a lighthouse and you get an interesting combination of elements. While editing the image to emphasize the contrast in colors and tone while maintaining a symmetrical composition, I wanted to play off of the idea that there are often two very different sides of the same coin. Makapuʻu lighthouse is perched on the eastern tip of Oʻahu.",
+  "orientation": "horizontal",
+  "collections": [
+   "fine-art",
+   "landscape"
+  ],
+  "ratio": 1.5,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 210,
+  "priceTo": 780,
+  "sizes": [
+   {
+    "label": "18 x 12",
+    "w": 18,
+    "h": 12
+   },
+   {
+    "label": "24 x 16",
+    "w": 24,
+    "h": 16
+   },
+   {
+    "label": "30 x 20",
+    "w": 30,
+    "h": 20
+   },
+   {
+    "label": "36 x 24",
+    "w": 36,
+    "h": 24
+   }
+  ],
+  "variants": [
+   {
+    "id": "033_18x12_canvas",
+    "size": "18 x 12",
+    "w": 18,
+    "h": 12,
+    "material": "canvas",
+    "price": 255,
+    "sku": "SQ7314313"
+   },
+   {
+    "id": "033_18x12_metal",
+    "size": "18 x 12",
+    "w": 18,
+    "h": 12,
+    "material": "metal",
+    "price": 210,
+    "sku": "SQ2292711"
+   },
+   {
+    "id": "033_24x16_canvas",
+    "size": "24 x 16",
+    "w": 24,
+    "h": 16,
+    "material": "canvas",
+    "price": 330,
+    "sku": "SQ3085010"
+   },
+   {
+    "id": "033_24x16_metal",
+    "size": "24 x 16",
+    "w": 24,
+    "h": 16,
+    "material": "metal",
+    "price": 360,
+    "sku": "SQ3608857"
+   },
+   {
+    "id": "033_30x20_canvas",
+    "size": "30 x 20",
+    "w": 30,
+    "h": 20,
+    "material": "canvas",
+    "price": 450,
+    "sku": "SQ3425087"
+   },
+   {
+    "id": "033_30x20_metal",
+    "size": "30 x 20",
+    "w": 30,
+    "h": 20,
+    "material": "metal",
+    "price": 540,
+    "sku": "SQ5233462"
+   },
+   {
+    "id": "033_36x24_canvas",
+    "size": "36 x 24",
+    "w": 36,
+    "h": 24,
+    "material": "canvas",
+    "price": 600,
+    "sku": "SQ6821873"
+   },
+   {
+    "id": "033_36x24_metal",
+    "size": "36 x 24",
+    "w": 36,
+    "h": 24,
+    "material": "metal",
+    "price": 780,
+    "sku": "SQ7552461"
+   }
+  ],
+  "sourceFilename": "DJI_0259.jpg"
+ },
+ {
+  "urlId": "034",
+  "title": "Kai Emi",
+  "description": "The significants of this image is such that the location is unimportant. On this particular morning, I was having a difficult time discovering new compositions using the rocks along the beach, which are almost always elements in my seascape photography. After trying out a few shots, I did something that I almost never do. I found a black section of the beach and focused on the texture of the sand itself. I broke away from what I knew and tried some different. I was stunned to find that the patterns and textures created by the waves in the sand were absolute beautiful. My head always told me that there was nothing to be gained from something as uniform and simple as the sand, but if you look close enough, you can always find something interesting.",
+  "orientation": "vertical",
+  "collections": [
+   "fine-art"
+  ],
+  "ratio": 0.8,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 300,
+  "priceTo": 700,
+  "sizes": [
+   {
+    "label": "16 x 20",
+    "w": 16,
+    "h": 20
+   },
+   {
+    "label": "20 x 25",
+    "w": 20,
+    "h": 25
+   },
+   {
+    "label": "24 x 30",
+    "w": 24,
+    "h": 30
+   }
+  ],
+  "variants": [
+   {
+    "id": "034_16x20_canvas",
+    "size": "16 x 20",
+    "w": 16,
+    "h": 20,
+    "material": "canvas",
+    "price": 300,
+    "sku": "SQ5232167"
+   },
+   {
+    "id": "034_16x20_metal",
+    "size": "16 x 20",
+    "w": 16,
+    "h": 20,
+    "material": "metal",
+    "price": 300,
+    "sku": "SQ6065162"
+   },
+   {
+    "id": "034_20x25_canvas",
+    "size": "20 x 25",
+    "w": 20,
+    "h": 25,
+    "material": "canvas",
+    "price": 450,
+    "sku": "SQ0637038"
+   },
+   {
+    "id": "034_20x25_metal",
+    "size": "20 x 25",
+    "w": 20,
+    "h": 25,
+    "material": "metal",
+    "price": 570,
+    "sku": "SQ6554763"
+   },
+   {
+    "id": "034_24x30_canvas",
+    "size": "24 x 30",
+    "w": 24,
+    "h": 30,
+    "material": "canvas",
+    "price": 570,
+    "sku": "SQ8215621"
+   },
+   {
+    "id": "034_24x30_metal",
+    "size": "24 x 30",
+    "w": 24,
+    "h": 30,
+    "material": "metal",
+    "price": 700,
+    "sku": "SQ8005583"
+   }
+  ],
+  "sourceFilename": "_DSC5284.jpg"
+ },
+ {
+  "urlId": "035",
+  "title": "Pakele",
+  "description": "Taken on the east coast of Oʻahu, this image is perfect for the bedroom or family room. Evoking a sense of escape and serenity, it brings warmth and calm to any space.",
+  "orientation": "horizontal",
+  "collections": [
+   "landscape",
+   "fine-art"
+  ],
+  "ratio": 1.5,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 210,
+  "priceTo": 780,
+  "sizes": [
+   {
+    "label": "18 x 12",
+    "w": 18,
+    "h": 12
+   },
+   {
+    "label": "24 x 16",
+    "w": 24,
+    "h": 16
+   },
+   {
+    "label": "30 x 20",
+    "w": 30,
+    "h": 20
+   },
+   {
+    "label": "36 x 24",
+    "w": 36,
+    "h": 24
+   }
+  ],
+  "variants": [
+   {
+    "id": "035_18x12_canvas",
+    "size": "18 x 12",
+    "w": 18,
+    "h": 12,
+    "material": "canvas",
+    "price": 255,
+    "sku": "SQ5042583"
+   },
+   {
+    "id": "035_18x12_metal",
+    "size": "18 x 12",
+    "w": 18,
+    "h": 12,
+    "material": "metal",
+    "price": 210,
+    "sku": "SQ2604360"
+   },
+   {
+    "id": "035_24x16_canvas",
+    "size": "24 x 16",
+    "w": 24,
+    "h": 16,
+    "material": "canvas",
+    "price": 330,
+    "sku": "SQ2658400"
+   },
+   {
+    "id": "035_24x16_metal",
+    "size": "24 x 16",
+    "w": 24,
+    "h": 16,
+    "material": "metal",
+    "price": 360,
+    "sku": "SQ5072460"
+   },
+   {
+    "id": "035_30x20_canvas",
+    "size": "30 x 20",
+    "w": 30,
+    "h": 20,
+    "material": "canvas",
+    "price": 450,
+    "sku": "SQ0618743"
+   },
+   {
+    "id": "035_30x20_metal",
+    "size": "30 x 20",
+    "w": 30,
+    "h": 20,
+    "material": "metal",
+    "price": 540,
+    "sku": "SQ4767403"
+   },
+   {
+    "id": "035_36x24_canvas",
+    "size": "36 x 24",
+    "w": 36,
+    "h": 24,
+    "material": "canvas",
+    "price": 600,
+    "sku": "SQ5725874"
+   },
+   {
+    "id": "035_36x24_metal",
+    "size": "36 x 24",
+    "w": 36,
+    "h": 24,
+    "material": "metal",
+    "price": 780,
+    "sku": "SQ3405486"
+   }
+  ],
+  "sourceFilename": "DJI_0323.jpg"
+ },
+ {
+  "urlId": "036",
+  "title": "036",
+  "description": "",
+  "orientation": "panoramic",
+  "collections": [
+   "fine-art",
+   "landscape"
+  ],
+  "ratio": 3.0,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 360,
+  "priceTo": 1950,
+  "sizes": [
+   {
+    "label": "30 x 10",
+    "w": 30,
+    "h": 10
+   },
+   {
+    "label": "48 x 16",
+    "w": 48,
+    "h": 16
+   },
+   {
+    "label": "72 x 24",
+    "w": 72,
+    "h": 24
+   }
+  ],
+  "variants": [
+   {
+    "id": "036_30x10_canvas",
+    "size": "30 x 10",
+    "w": 30,
+    "h": 10,
+    "material": "canvas",
+    "price": 360,
+    "sku": "SQ8811474"
+   },
+   {
+    "id": "036_30x10_metal",
+    "size": "30 x 10",
+    "w": 30,
+    "h": 10,
+    "material": "metal",
+    "price": 390,
+    "sku": "SQ1647182"
+   },
+   {
+    "id": "036_48x16_canvas",
+    "size": "48 x 16",
+    "w": 48,
+    "h": 16,
+    "material": "canvas",
+    "price": 600,
+    "sku": "SQ2176284"
+   },
+   {
+    "id": "036_48x16_metal",
+    "size": "48 x 16",
+    "w": 48,
+    "h": 16,
+    "material": "metal",
+    "price": 950,
+    "sku": "SQ1207655"
+   },
+   {
+    "id": "036_72x24_canvas",
+    "size": "72 x 24",
+    "w": 72,
+    "h": 24,
+    "material": "canvas",
+    "price": 1350,
+    "sku": "SQ4078849"
+   },
+   {
+    "id": "036_72x24_metal",
+    "size": "72 x 24",
+    "w": 72,
+    "h": 24,
+    "material": "metal",
+    "price": 1950,
+    "sku": "SQ5366572"
+   }
+  ],
+  "sourceFilename": "_DSC1832 copy.jpg"
+ },
+ {
+  "urlId": "037",
+  "title": "037",
+  "description": "",
+  "orientation": "panoramic",
+  "collections": [
+   "landscape"
+  ],
+  "ratio": 3.0,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 360,
+  "priceTo": 1950,
+  "sizes": [
+   {
+    "label": "30 x 10",
+    "w": 30,
+    "h": 10
+   },
+   {
+    "label": "48 x 16",
+    "w": 48,
+    "h": 16
+   },
+   {
+    "label": "72 x 24",
+    "w": 72,
+    "h": 24
+   }
+  ],
+  "variants": [
+   {
+    "id": "037_30x10_canvas",
+    "size": "30 x 10",
+    "w": 30,
+    "h": 10,
+    "material": "canvas",
+    "price": 360,
+    "sku": "SQ8032414"
+   },
+   {
+    "id": "037_30x10_metal",
+    "size": "30 x 10",
+    "w": 30,
+    "h": 10,
+    "material": "metal",
+    "price": 390,
+    "sku": "SQ8432664"
+   },
+   {
+    "id": "037_48x16_canvas",
+    "size": "48 x 16",
+    "w": 48,
+    "h": 16,
+    "material": "canvas",
+    "price": 600,
+    "sku": "SQ5337212"
+   },
+   {
+    "id": "037_48x16_metal",
+    "size": "48 x 16",
+    "w": 48,
+    "h": 16,
+    "material": "metal",
+    "price": 950,
+    "sku": "SQ0658514"
+   },
+   {
+    "id": "037_72x24_canvas",
+    "size": "72 x 24",
+    "w": 72,
+    "h": 24,
+    "material": "canvas",
+    "price": 1350,
+    "sku": "SQ2687892"
+   },
+   {
+    "id": "037_72x24_metal",
+    "size": "72 x 24",
+    "w": 72,
+    "h": 24,
+    "material": "metal",
+    "price": 1950,
+    "sku": "SQ7960006"
+   }
+  ],
+  "sourceFilename": "_DSC5171-Pano.jpg"
+ },
+ {
+  "urlId": "038",
+  "title": "038",
+  "description": "",
+  "orientation": "panoramic",
+  "collections": [
+   "landscape"
+  ],
+  "ratio": 3.0,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 360,
+  "priceTo": 1950,
+  "sizes": [
+   {
+    "label": "30 x 10",
+    "w": 30,
+    "h": 10
+   },
+   {
+    "label": "48 x 16",
+    "w": 48,
+    "h": 16
+   },
+   {
+    "label": "72 x 24",
+    "w": 72,
+    "h": 24
+   }
+  ],
+  "variants": [
+   {
+    "id": "038_30x10_canvas",
+    "size": "30 x 10",
+    "w": 30,
+    "h": 10,
+    "material": "canvas",
+    "price": 360,
+    "sku": "SQ7876415"
+   },
+   {
+    "id": "038_30x10_metal",
+    "size": "30 x 10",
+    "w": 30,
+    "h": 10,
+    "material": "metal",
+    "price": 390,
+    "sku": "SQ8038356"
+   },
+   {
+    "id": "038_48x16_canvas",
+    "size": "48 x 16",
+    "w": 48,
+    "h": 16,
+    "material": "canvas",
+    "price": 600,
+    "sku": "SQ6128271"
+   },
+   {
+    "id": "038_48x16_metal",
+    "size": "48 x 16",
+    "w": 48,
+    "h": 16,
+    "material": "metal",
+    "price": 950,
+    "sku": "SQ8418413"
+   },
+   {
+    "id": "038_72x24_canvas",
+    "size": "72 x 24",
+    "w": 72,
+    "h": 24,
+    "material": "canvas",
+    "price": 1350,
+    "sku": "SQ5122083"
+   },
+   {
+    "id": "038_72x24_metal",
+    "size": "72 x 24",
+    "w": 72,
+    "h": 24,
+    "material": "metal",
+    "price": 1950,
+    "sku": "SQ8933011"
+   }
+  ],
+  "sourceFilename": "Chinaman'sHat.jpg"
+ },
+ {
+  "urlId": "041",
+  "title": "041",
+  "description": "",
+  "orientation": "panoramic",
+  "collections": [
+   "landscape"
+  ],
+  "ratio": 3.0,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 360,
+  "priceTo": 1950,
+  "sizes": [
+   {
+    "label": "30 x 10",
+    "w": 30,
+    "h": 10
+   },
+   {
+    "label": "48 x 16",
+    "w": 48,
+    "h": 16
+   },
+   {
+    "label": "72 x 24",
+    "w": 72,
+    "h": 24
+   }
+  ],
+  "variants": [
+   {
+    "id": "041_30x10_canvas",
+    "size": "30 x 10",
+    "w": 30,
+    "h": 10,
+    "material": "canvas",
+    "price": 360,
+    "sku": "SQ2443738"
+   },
+   {
+    "id": "041_30x10_metal",
+    "size": "30 x 10",
+    "w": 30,
+    "h": 10,
+    "material": "metal",
+    "price": 390,
+    "sku": "SQ6593152"
+   },
+   {
+    "id": "041_48x16_canvas",
+    "size": "48 x 16",
+    "w": 48,
+    "h": 16,
+    "material": "canvas",
+    "price": 600,
+    "sku": "SQ6478405"
+   },
+   {
+    "id": "041_48x16_metal",
+    "size": "48 x 16",
+    "w": 48,
+    "h": 16,
+    "material": "metal",
+    "price": 950,
+    "sku": "SQ9413683"
+   },
+   {
+    "id": "041_72x24_canvas",
+    "size": "72 x 24",
+    "w": 72,
+    "h": 24,
+    "material": "canvas",
+    "price": 1350,
+    "sku": "SQ9357518"
+   },
+   {
+    "id": "041_72x24_metal",
+    "size": "72 x 24",
+    "w": 72,
+    "h": 24,
+    "material": "metal",
+    "price": 1950,
+    "sku": "SQ1389294"
+   }
+  ],
+  "sourceFilename": "DSC06219-Pano.jpg"
+ },
+ {
+  "urlId": "043",
+  "title": "043",
+  "description": "",
+  "orientation": "panoramic",
+  "collections": [],
+  "ratio": 3.0,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 360,
+  "priceTo": 1950,
+  "sizes": [
+   {
+    "label": "30 x 10",
+    "w": 30,
+    "h": 10
+   },
+   {
+    "label": "48 x 16",
+    "w": 48,
+    "h": 16
+   },
+   {
+    "label": "72 x 24",
+    "w": 72,
+    "h": 24
+   }
+  ],
+  "variants": [
+   {
+    "id": "043_30x10_canvas",
+    "size": "30 x 10",
+    "w": 30,
+    "h": 10,
+    "material": "canvas",
+    "price": 360,
+    "sku": "SQ2732061"
+   },
+   {
+    "id": "043_30x10_metal",
+    "size": "30 x 10",
+    "w": 30,
+    "h": 10,
+    "material": "metal",
+    "price": 390,
+    "sku": "SQ7353223"
+   },
+   {
+    "id": "043_48x16_canvas",
+    "size": "48 x 16",
+    "w": 48,
+    "h": 16,
+    "material": "canvas",
+    "price": 600,
+    "sku": "SQ6787174"
+   },
+   {
+    "id": "043_48x16_metal",
+    "size": "48 x 16",
+    "w": 48,
+    "h": 16,
+    "material": "metal",
+    "price": 950,
+    "sku": "SQ2231123"
+   },
+   {
+    "id": "043_72x24_canvas",
+    "size": "72 x 24",
+    "w": 72,
+    "h": 24,
+    "material": "canvas",
+    "price": 1350,
+    "sku": "SQ9170493"
+   },
+   {
+    "id": "043_72x24_metal",
+    "size": "72 x 24",
+    "w": 72,
+    "h": 24,
+    "material": "metal",
+    "price": 1950,
+    "sku": "SQ2477369"
+   }
+  ],
+  "sourceFilename": "Palolo-Pano.jpg"
+ },
+ {
+  "urlId": "anuenue",
+  "title": "Ānuenue",
+  "description": "In a stoke of luck, this image was created in the late morning on the north shore of Oʻahu. As the sun rise behind me, a light drizzle stated to fall in the distance revealing a full rainbow. I quickly found an interesting foreground element and photographed this scene. While the image itself obviously arouses feelings of joy, the circumstances of how this was created remind that we can look up and find reasons to be grateful in every moment.",
+  "orientation": "horizontal",
+  "collections": [
+   "fine-art"
+  ],
+  "ratio": 1.5,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 210,
+  "priceTo": 780,
+  "sizes": [
+   {
+    "label": "18 x 12",
+    "w": 18,
+    "h": 12
+   },
+   {
+    "label": "24 x 16",
+    "w": 24,
+    "h": 16
+   },
+   {
+    "label": "30 x 20",
+    "w": 30,
+    "h": 20
+   },
+   {
+    "label": "36 x 24",
+    "w": 36,
+    "h": 24
+   }
+  ],
+  "variants": [
+   {
+    "id": "anuenue_18x12_canvas",
+    "size": "18 x 12",
+    "w": 18,
+    "h": 12,
+    "material": "canvas",
+    "price": 255,
+    "sku": "SQ2618531"
+   },
+   {
+    "id": "anuenue_18x12_metal",
+    "size": "18 x 12",
+    "w": 18,
+    "h": 12,
+    "material": "metal",
+    "price": 210,
+    "sku": "SQ7577283"
+   },
+   {
+    "id": "anuenue_24x16_canvas",
+    "size": "24 x 16",
+    "w": 24,
+    "h": 16,
+    "material": "canvas",
+    "price": 330,
+    "sku": "SQ2153784"
+   },
+   {
+    "id": "anuenue_24x16_metal",
+    "size": "24 x 16",
+    "w": 24,
+    "h": 16,
+    "material": "metal",
+    "price": 360,
+    "sku": "SQ1508771"
+   },
+   {
+    "id": "anuenue_30x20_canvas",
+    "size": "30 x 20",
+    "w": 30,
+    "h": 20,
+    "material": "canvas",
+    "price": 450,
+    "sku": "SQ5304252"
+   },
+   {
+    "id": "anuenue_30x20_metal",
+    "size": "30 x 20",
+    "w": 30,
+    "h": 20,
+    "material": "metal",
+    "price": 540,
+    "sku": "SQ8717717"
+   },
+   {
+    "id": "anuenue_36x24_canvas",
+    "size": "36 x 24",
+    "w": 36,
+    "h": 24,
+    "material": "canvas",
+    "price": 600,
+    "sku": "SQ1270474"
+   },
+   {
+    "id": "anuenue_36x24_metal",
+    "size": "36 x 24",
+    "w": 36,
+    "h": 24,
+    "material": "metal",
+    "price": 780,
+    "sku": "SQ0327004"
+   }
+  ],
+  "sourceFilename": "_DSC0904-1 copy.jpg"
+ },
+ {
+  "urlId": "eleu",
+  "title": "ʻEleu",
+  "description": "Created at the popular Sandy Beach during sunrise, this image evokes a sense of excitement and fervor for new day to come. Sandy beach on the South Shore of Oʻahu is known for is powerful shore break and stunning sunrises.",
+  "orientation": "horizontal",
+  "collections": [
+   "fine-art"
+  ],
+  "ratio": 1.5,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 210,
+  "priceTo": 780,
+  "sizes": [
+   {
+    "label": "18 x 12",
+    "w": 18,
+    "h": 12
+   },
+   {
+    "label": "24 x 16",
+    "w": 24,
+    "h": 16
+   },
+   {
+    "label": "30 x 20",
+    "w": 30,
+    "h": 20
+   },
+   {
+    "label": "36 x 24",
+    "w": 36,
+    "h": 24
+   }
+  ],
+  "variants": [
+   {
+    "id": "eleu_18x12_canvas",
+    "size": "18 x 12",
+    "w": 18,
+    "h": 12,
+    "material": "canvas",
+    "price": 255,
+    "sku": "SQ7340636"
+   },
+   {
+    "id": "eleu_18x12_metal",
+    "size": "18 x 12",
+    "w": 18,
+    "h": 12,
+    "material": "metal",
+    "price": 210,
+    "sku": "SQ1171617"
+   },
+   {
+    "id": "eleu_24x16_canvas",
+    "size": "24 x 16",
+    "w": 24,
+    "h": 16,
+    "material": "canvas",
+    "price": 330,
+    "sku": "SQ5757742"
+   },
+   {
+    "id": "eleu_24x16_metal",
+    "size": "24 x 16",
+    "w": 24,
+    "h": 16,
+    "material": "metal",
+    "price": 360,
+    "sku": "SQ5828786"
+   },
+   {
+    "id": "eleu_30x20_canvas",
+    "size": "30 x 20",
+    "w": 30,
+    "h": 20,
+    "material": "canvas",
+    "price": 450,
+    "sku": "SQ2784747"
+   },
+   {
+    "id": "eleu_30x20_metal",
+    "size": "30 x 20",
+    "w": 30,
+    "h": 20,
+    "material": "metal",
+    "price": 540,
+    "sku": "SQ5442613"
+   },
+   {
+    "id": "eleu_36x24_canvas",
+    "size": "36 x 24",
+    "w": 36,
+    "h": 24,
+    "material": "canvas",
+    "price": 600,
+    "sku": "SQ7428325"
+   },
+   {
+    "id": "eleu_36x24_metal",
+    "size": "36 x 24",
+    "w": 36,
+    "h": 24,
+    "material": "metal",
+    "price": 780,
+    "sku": "SQ1833002"
+   }
+  ],
+  "sourceFilename": "_DSC0626.jpg"
+ },
+ {
+  "urlId": "frostedtidepool",
+  "title": "Frosted Tidepool",
+  "description": "I created this image on the rock shoreline along the Kaiwi coast. I walked down to the water where I found some tide pools. The slow ripples of the water combined with a very slow shutter created a soft, frosted glass effect on the surface of the tide pool providing a soft and smooth contrast to the rough rocks surrounding the area. Widely regarded as one of most scenic stretches of coastline on Oʻahu, the Kaiwi coast is full of rocky cliffs and dramatic mountainsides.",
+  "orientation": "vertical",
+  "collections": [
+   "fine-art"
+  ],
+  "ratio": 0.8,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 300,
+  "priceTo": 700,
+  "sizes": [
+   {
+    "label": "16 x 20",
+    "w": 16,
+    "h": 20
+   },
+   {
+    "label": "20 x 25",
+    "w": 20,
+    "h": 25
+   },
+   {
+    "label": "24 x 30",
+    "w": 24,
+    "h": 30
+   }
+  ],
+  "variants": [
+   {
+    "id": "frostedtidepool_16x20_canvas",
+    "size": "16 x 20",
+    "w": 16,
+    "h": 20,
+    "material": "canvas",
+    "price": 300,
+    "sku": "SQ3056680"
+   },
+   {
+    "id": "frostedtidepool_16x20_metal",
+    "size": "16 x 20",
+    "w": 16,
+    "h": 20,
+    "material": "metal",
+    "price": 300,
+    "sku": "SQ4157474"
+   },
+   {
+    "id": "frostedtidepool_20x25_canvas",
+    "size": "20 x 25",
+    "w": 20,
+    "h": 25,
+    "material": "canvas",
+    "price": 450,
+    "sku": "SQ8164762"
+   },
+   {
+    "id": "frostedtidepool_20x25_metal",
+    "size": "20 x 25",
+    "w": 20,
+    "h": 25,
+    "material": "metal",
+    "price": 570,
+    "sku": "SQ3438854"
+   },
+   {
+    "id": "frostedtidepool_24x30_canvas",
+    "size": "24 x 30",
+    "w": 24,
+    "h": 30,
+    "material": "canvas",
+    "price": 570,
+    "sku": "SQ5132176"
+   },
+   {
+    "id": "frostedtidepool_24x30_metal",
+    "size": "24 x 30",
+    "w": 24,
+    "h": 30,
+    "material": "metal",
+    "price": 700,
+    "sku": "SQ5815146"
+   }
+  ],
+  "sourceFilename": "DSC01062.jpg"
+ },
+ {
+  "urlId": "hanauma",
+  "title": "Hanauma",
+  "description": "Stitched together from nearly 20 images, this was created during sunrise over one of Oʻahu’s most frequented attractions. Hanauma bay is one of several marine sanctuaries in Hawaii, but is also a dramatic and stunning bay when viewed in the morning light.",
+  "orientation": "square",
+  "collections": [
+   "fine-art",
+   "landscape"
+  ],
+  "ratio": 1.0,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 240,
+  "priceTo": 1650,
+  "sizes": [
+   {
+    "label": "16 x 16",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "label": "24 x 24",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "label": "40 x 40",
+    "w": 40,
+    "h": 40
+   }
+  ],
+  "variants": [
+   {
+    "id": "hanauma_16x16_canvas",
+    "size": "16 x 16",
+    "w": 16,
+    "h": 16,
+    "material": "canvas",
+    "price": 260,
+    "sku": "SQ7888487"
+   },
+   {
+    "id": "hanauma_16x16_metal",
+    "size": "16 x 16",
+    "w": 16,
+    "h": 16,
+    "material": "metal",
+    "price": 240,
+    "sku": "SQ0666620"
+   },
+   {
+    "id": "hanauma_24x24_canvas",
+    "size": "24 x 24",
+    "w": 24,
+    "h": 24,
+    "material": "canvas",
+    "price": 420,
+    "sku": "SQ3987314"
+   },
+   {
+    "id": "hanauma_24x24_metal",
+    "size": "24 x 24",
+    "w": 24,
+    "h": 24,
+    "material": "metal",
+    "price": 600,
+    "sku": "SQ3402832"
+   },
+   {
+    "id": "hanauma_40x40_canvas",
+    "size": "40 x 40",
+    "w": 40,
+    "h": 40,
+    "material": "canvas",
+    "price": 1020,
+    "sku": "SQ4043753"
+   },
+   {
+    "id": "hanauma_40x40_metal",
+    "size": "40 x 40",
+    "w": 40,
+    "h": 40,
+    "material": "metal",
+    "price": 1650,
+    "sku": "SQ5597315"
+   }
+  ],
+  "sourceFilename": "Hanauma2.jpg"
+ },
+ {
+  "urlId": "hanohanohakipuu",
+  "title": "Hanohano Hakipuʻu",
+  "description": "The neighboring valley to Kaʻaʻawa valley is called Hakipuʻu. This panoramic view if Hakipuʻu was created using 10 images stitched together. You are able to see almost the entire North-East coast of Oʻahu in the gorgeous orange light of sunrise. The grandness of the scene is mean to evoke a sense of wonder and awe. This location was also used extensively in many films within the Jurassic Park saga, as well the film Battleships.",
+  "orientation": "horizontal",
+  "collections": [
+   "landscape"
+  ],
+  "ratio": 1.5,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 210,
+  "priceTo": 780,
+  "sizes": [
+   {
+    "label": "18 x 12",
+    "w": 18,
+    "h": 12
+   },
+   {
+    "label": "24 x 16",
+    "w": 24,
+    "h": 16
+   },
+   {
+    "label": "30 x 20",
+    "w": 30,
+    "h": 20
+   },
+   {
+    "label": "36 x 24",
+    "w": 36,
+    "h": 24
+   }
+  ],
+  "variants": [
+   {
+    "id": "hanohanohakipuu_18x12_canvas",
+    "size": "18 x 12",
+    "w": 18,
+    "h": 12,
+    "material": "canvas",
+    "price": 255,
+    "sku": "SQ7840878"
+   },
+   {
+    "id": "hanohanohakipuu_18x12_metal",
+    "size": "18 x 12",
+    "w": 18,
+    "h": 12,
+    "material": "metal",
+    "price": 210,
+    "sku": "SQ2883472"
+   },
+   {
+    "id": "hanohanohakipuu_24x16_canvas",
+    "size": "24 x 16",
+    "w": 24,
+    "h": 16,
+    "material": "canvas",
+    "price": 330,
+    "sku": "SQ7318040"
+   },
+   {
+    "id": "hanohanohakipuu_24x16_metal",
+    "size": "24 x 16",
+    "w": 24,
+    "h": 16,
+    "material": "metal",
+    "price": 360,
+    "sku": "SQ0127361"
+   },
+   {
+    "id": "hanohanohakipuu_30x20_canvas",
+    "size": "30 x 20",
+    "w": 30,
+    "h": 20,
+    "material": "canvas",
+    "price": 450,
+    "sku": "SQ0540842"
+   },
+   {
+    "id": "hanohanohakipuu_30x20_metal",
+    "size": "30 x 20",
+    "w": 30,
+    "h": 20,
+    "material": "metal",
+    "price": 540,
+    "sku": "SQ4752178"
+   },
+   {
+    "id": "hanohanohakipuu_36x24_canvas",
+    "size": "36 x 24",
+    "w": 36,
+    "h": 24,
+    "material": "canvas",
+    "price": 600,
+    "sku": "SQ7710322"
+   },
+   {
+    "id": "hanohanohakipuu_36x24_metal",
+    "size": "36 x 24",
+    "w": 36,
+    "h": 24,
+    "material": "metal",
+    "price": 780,
+    "sku": "SQ8107646"
+   }
+  ],
+  "sourceFilename": "KaneoheBay02 copy.jpg"
+ },
+ {
+  "urlId": "hoihoi",
+  "title": "Hoʻi hou",
+  "description": "Created at the most Southern point of the United States, South Point on Hawaiʻi Island plays host to some of the states most dramatic scenes. Using a slower shutter speed, the ocean waves are caption seemingly in motion as they crash up onto the rocks, the receding back into the Pacific.",
+  "orientation": "horizontal",
+  "collections": [
+   "fine-art"
+  ],
+  "ratio": 1.5,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 210,
+  "priceTo": 780,
+  "sizes": [
+   {
+    "label": "18 x 12",
+    "w": 18,
+    "h": 12
+   },
+   {
+    "label": "24 x 16",
+    "w": 24,
+    "h": 16
+   },
+   {
+    "label": "30 x 20",
+    "w": 30,
+    "h": 20
+   },
+   {
+    "label": "36 x 24",
+    "w": 36,
+    "h": 24
+   }
+  ],
+  "variants": [
+   {
+    "id": "hoihoi_18x12_canvas",
+    "size": "18 x 12",
+    "w": 18,
+    "h": 12,
+    "material": "canvas",
+    "price": 255,
+    "sku": "SQ3185118"
+   },
+   {
+    "id": "hoihoi_18x12_metal",
+    "size": "18 x 12",
+    "w": 18,
+    "h": 12,
+    "material": "metal",
+    "price": 210,
+    "sku": "SQ5571785"
+   },
+   {
+    "id": "hoihoi_24x16_canvas",
+    "size": "24 x 16",
+    "w": 24,
+    "h": 16,
+    "material": "canvas",
+    "price": 330,
+    "sku": "SQ4835216"
+   },
+   {
+    "id": "hoihoi_24x16_metal",
+    "size": "24 x 16",
+    "w": 24,
+    "h": 16,
+    "material": "metal",
+    "price": 360,
+    "sku": "SQ4800542"
+   },
+   {
+    "id": "hoihoi_30x20_canvas",
+    "size": "30 x 20",
+    "w": 30,
+    "h": 20,
+    "material": "canvas",
+    "price": 450,
+    "sku": "SQ1758136"
+   },
+   {
+    "id": "hoihoi_30x20_metal",
+    "size": "30 x 20",
+    "w": 30,
+    "h": 20,
+    "material": "metal",
+    "price": 540,
+    "sku": "SQ8745521"
+   },
+   {
+    "id": "hoihoi_36x24_canvas",
+    "size": "36 x 24",
+    "w": 36,
+    "h": 24,
+    "material": "canvas",
+    "price": 600,
+    "sku": "SQ0533815"
+   },
+   {
+    "id": "hoihoi_36x24_metal",
+    "size": "36 x 24",
+    "w": 36,
+    "h": 24,
+    "material": "metal",
+    "price": 780,
+    "sku": "SQ7445628"
+   }
+  ],
+  "sourceFilename": "_DSC3159.jpg"
+ },
+ {
+  "urlId": "homecoming",
+  "title": "Homecoming",
+  "description": "Haleakala, meaning \"house of the sun,\" is located on the island of Maui. Appropriately named \"Homecoming,\" this image was created at the first sign of direct sunlight from the peak of Haleakala during sunrise. Editing choices for this image included heavy contrast and darkening the shadows, drawing the eye to the center of the frame without getting distracted by other details. This image is meant to accent the theme of focus on the coming of light, without letting the dimmer details of life bog you down.",
+  "orientation": "horizontal",
+  "collections": [
+   "fine-art"
+  ],
+  "ratio": 1.5,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 210,
+  "priceTo": 780,
+  "sizes": [
+   {
+    "label": "18 x 12",
+    "w": 18,
+    "h": 12
+   },
+   {
+    "label": "24 x 16",
+    "w": 24,
+    "h": 16
+   },
+   {
+    "label": "30 x 20",
+    "w": 30,
+    "h": 20
+   },
+   {
+    "label": "36 x 24",
+    "w": 36,
+    "h": 24
+   }
+  ],
+  "variants": [
+   {
+    "id": "homecoming_18x12_canvas",
+    "size": "18 x 12",
+    "w": 18,
+    "h": 12,
+    "material": "canvas",
+    "price": 255,
+    "sku": "SQ3511144"
+   },
+   {
+    "id": "homecoming_18x12_metal",
+    "size": "18 x 12",
+    "w": 18,
+    "h": 12,
+    "material": "metal",
+    "price": 210,
+    "sku": "SQ6202338"
+   },
+   {
+    "id": "homecoming_24x16_canvas",
+    "size": "24 x 16",
+    "w": 24,
+    "h": 16,
+    "material": "canvas",
+    "price": 330,
+    "sku": "SQ8175554"
+   },
+   {
+    "id": "homecoming_24x16_metal",
+    "size": "24 x 16",
+    "w": 24,
+    "h": 16,
+    "material": "metal",
+    "price": 360,
+    "sku": "SQ0844003"
+   },
+   {
+    "id": "homecoming_30x20_canvas",
+    "size": "30 x 20",
+    "w": 30,
+    "h": 20,
+    "material": "canvas",
+    "price": 450,
+    "sku": "SQ6010781"
+   },
+   {
+    "id": "homecoming_30x20_metal",
+    "size": "30 x 20",
+    "w": 30,
+    "h": 20,
+    "material": "metal",
+    "price": 540,
+    "sku": "SQ7117251"
+   },
+   {
+    "id": "homecoming_36x24_canvas",
+    "size": "36 x 24",
+    "w": 36,
+    "h": 24,
+    "material": "canvas",
+    "price": 600,
+    "sku": "SQ5013701"
+   },
+   {
+    "id": "homecoming_36x24_metal",
+    "size": "36 x 24",
+    "w": 36,
+    "h": 24,
+    "material": "metal",
+    "price": 780,
+    "sku": "SQ8825620"
+   }
+  ],
+  "sourceFilename": "HaleakalaSunrise.jpg"
+ },
+ {
+  "urlId": "hookahi",
+  "title": "Hoʻokahi",
+  "description": "Created a few minutes before sunrise, the light illuminated only a small portion of the lowest clouds int he sky, creating a dramatic contrast. The lone offshore islet centered alone in the open ocean to create a sense of quietness and tranquility. This images was made by stitching 3 images together in a vertical panoramic.",
+  "orientation": "vertical",
+  "collections": [
+   "fine-art",
+   "landscape"
+  ],
+  "ratio": 0.8,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 300,
+  "priceTo": 700,
+  "sizes": [
+   {
+    "label": "16 x 20",
+    "w": 16,
+    "h": 20
+   },
+   {
+    "label": "20 x 25",
+    "w": 20,
+    "h": 25
+   },
+   {
+    "label": "24 x 30",
+    "w": 24,
+    "h": 30
+   }
+  ],
+  "variants": [
+   {
+    "id": "hookahi_16x20_canvas",
+    "size": "16 x 20",
+    "w": 16,
+    "h": 20,
+    "material": "canvas",
+    "price": 300,
+    "sku": "SQ5834268"
+   },
+   {
+    "id": "hookahi_16x20_metal",
+    "size": "16 x 20",
+    "w": 16,
+    "h": 20,
+    "material": "metal",
+    "price": 300,
+    "sku": "SQ7788020"
+   },
+   {
+    "id": "hookahi_20x25_canvas",
+    "size": "20 x 25",
+    "w": 20,
+    "h": 25,
+    "material": "canvas",
+    "price": 450,
+    "sku": "SQ3713173"
+   },
+   {
+    "id": "hookahi_20x25_metal",
+    "size": "20 x 25",
+    "w": 20,
+    "h": 25,
+    "material": "metal",
+    "price": 570,
+    "sku": "SQ6003880"
+   },
+   {
+    "id": "hookahi_24x30_canvas",
+    "size": "24 x 30",
+    "w": 24,
+    "h": 30,
+    "material": "canvas",
+    "price": 570,
+    "sku": "SQ0585678"
+   },
+   {
+    "id": "hookahi_24x30_metal",
+    "size": "24 x 30",
+    "w": 24,
+    "h": 30,
+    "material": "metal",
+    "price": 700,
+    "sku": "SQ1416711"
+   }
+  ],
+  "sourceFilename": "M2P_16ND-PL-118.jpg"
+ },
+ {
+  "urlId": "jumanji",
+  "title": "Jumanji",
+  "description": "This is an aerial image of Kaʻaʻawa valley, also referred to as \"Jurassic valley,\" on the Windward coast of Oahu during sunrise. The prominent features are the iconic profile of the mountain ridge and the lush valley below. This location was also used extensively in many films within the Jurassic Park saga, as well as Jumanji, Kong Skull Island, and several Godzilla films.",
+  "orientation": "horizontal",
+  "collections": [
+   "landscape"
+  ],
+  "ratio": 1.5,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 210,
+  "priceTo": 780,
+  "sizes": [
+   {
+    "label": "18 x 12",
+    "w": 18,
+    "h": 12
+   },
+   {
+    "label": "24 x 16",
+    "w": 24,
+    "h": 16
+   },
+   {
+    "label": "30 x 20",
+    "w": 30,
+    "h": 20
+   },
+   {
+    "label": "36 x 24",
+    "w": 36,
+    "h": 24
+   }
+  ],
+  "variants": [
+   {
+    "id": "jumanji_18x12_canvas",
+    "size": "18 x 12",
+    "w": 18,
+    "h": 12,
+    "material": "canvas",
+    "price": 255,
+    "sku": "SQ5557388"
+   },
+   {
+    "id": "jumanji_18x12_metal",
+    "size": "18 x 12",
+    "w": 18,
+    "h": 12,
+    "material": "metal",
+    "price": 210,
+    "sku": "SQ3256514"
+   },
+   {
+    "id": "jumanji_24x16_canvas",
+    "size": "24 x 16",
+    "w": 24,
+    "h": 16,
+    "material": "canvas",
+    "price": 330,
+    "sku": "SQ4510576"
+   },
+   {
+    "id": "jumanji_24x16_metal",
+    "size": "24 x 16",
+    "w": 24,
+    "h": 16,
+    "material": "metal",
+    "price": 360,
+    "sku": "SQ4418401"
+   },
+   {
+    "id": "jumanji_30x20_canvas",
+    "size": "30 x 20",
+    "w": 30,
+    "h": 20,
+    "material": "canvas",
+    "price": 450,
+    "sku": "SQ7074176"
+   },
+   {
+    "id": "jumanji_30x20_metal",
+    "size": "30 x 20",
+    "w": 30,
+    "h": 20,
+    "material": "metal",
+    "price": 540,
+    "sku": "SQ2711762"
+   },
+   {
+    "id": "jumanji_36x24_canvas",
+    "size": "36 x 24",
+    "w": 36,
+    "h": 24,
+    "material": "canvas",
+    "price": 600,
+    "sku": "SQ5253330"
+   },
+   {
+    "id": "jumanji_36x24_metal",
+    "size": "36 x 24",
+    "w": 36,
+    "h": 24,
+    "material": "metal",
+    "price": 780,
+    "sku": "SQ6053863"
+   }
+  ],
+  "sourceFilename": "DJI_0066-Revised-12.5.jpg"
+ },
+ {
+  "urlId": "jurassicdawn",
+  "title": "Jurassic Dawn",
+  "description": "This is an aerial image of Kaʻaʻawa valley, also referred to as \"Jurassic valley,\" on the Windward coast of Oahu during sunrise. The prominent features are the iconic profile of the mountain ridge and the lush valley below. This location was also used extensively in many films within the Jurassic Park saga, as well as Kong Skull Island, and several Godzilla films.",
+  "orientation": "vertical",
+  "collections": [
+   "landscape"
+  ],
+  "ratio": 0.8,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 300,
+  "priceTo": 700,
+  "sizes": [
+   {
+    "label": "16 x 20",
+    "w": 16,
+    "h": 20
+   },
+   {
+    "label": "20 x 25",
+    "w": 20,
+    "h": 25
+   },
+   {
+    "label": "24 x 30",
+    "w": 24,
+    "h": 30
+   }
+  ],
+  "variants": [
+   {
+    "id": "jurassicdawn_16x20_canvas",
+    "size": "16 x 20",
+    "w": 16,
+    "h": 20,
+    "material": "canvas",
+    "price": 300,
+    "sku": "SQ6448161"
+   },
+   {
+    "id": "jurassicdawn_16x20_metal",
+    "size": "16 x 20",
+    "w": 16,
+    "h": 20,
+    "material": "metal",
+    "price": 300,
+    "sku": "SQ2178048"
+   },
+   {
+    "id": "jurassicdawn_20x25_canvas",
+    "size": "20 x 25",
+    "w": 20,
+    "h": 25,
+    "material": "canvas",
+    "price": 450,
+    "sku": "SQ4385032"
+   },
+   {
+    "id": "jurassicdawn_20x25_metal",
+    "size": "20 x 25",
+    "w": 20,
+    "h": 25,
+    "material": "metal",
+    "price": 570,
+    "sku": "SQ2175581"
+   },
+   {
+    "id": "jurassicdawn_24x30_canvas",
+    "size": "24 x 30",
+    "w": 24,
+    "h": 30,
+    "material": "canvas",
+    "price": 570,
+    "sku": "SQ0411260"
+   },
+   {
+    "id": "jurassicdawn_24x30_metal",
+    "size": "24 x 30",
+    "w": 24,
+    "h": 30,
+    "material": "metal",
+    "price": 700,
+    "sku": "SQ3661004"
+   }
+  ],
+  "sourceFilename": "DJI_0115-HDR-Pano.jpg"
+ },
+ {
+  "urlId": "kaaawasunrise",
+  "title": "Kaʻaʻawa Sunrise",
+  "description": "This image was taken during sunrise from Waikane looking north towards the iconic mountain ridge in Kaʻaʻawa. Kaʻaʻawa valley or \"Jurassic Valley\" as it is often referred to by tourists, is one of the primary locations where the blockbuster film Jurassic Park was filmed, along with many others. Evoking a sense of calm in the still, reflective waters while anticipating the thrill of a new adventure with the dramatic mountains.",
+  "orientation": "horizontal",
+  "collections": [
+   "landscape"
+  ],
+  "ratio": 1.5,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 210,
+  "priceTo": 780,
+  "sizes": [
+   {
+    "label": "18 x 12",
+    "w": 18,
+    "h": 12
+   },
+   {
+    "label": "24 x 16",
+    "w": 24,
+    "h": 16
+   },
+   {
+    "label": "30 x 20",
+    "w": 30,
+    "h": 20
+   },
+   {
+    "label": "36 x 24",
+    "w": 36,
+    "h": 24
+   }
+  ],
+  "variants": [
+   {
+    "id": "kaaawasunrise_18x12_canvas",
+    "size": "18 x 12",
+    "w": 18,
+    "h": 12,
+    "material": "canvas",
+    "price": 255,
+    "sku": "SQ2601300"
+   },
+   {
+    "id": "kaaawasunrise_18x12_metal",
+    "size": "18 x 12",
+    "w": 18,
+    "h": 12,
+    "material": "metal",
+    "price": 210,
+    "sku": "SQ4753998"
+   },
+   {
+    "id": "kaaawasunrise_24x16_canvas",
+    "size": "24 x 16",
+    "w": 24,
+    "h": 16,
+    "material": "canvas",
+    "price": 330,
+    "sku": "SQ5103355"
+   },
+   {
+    "id": "kaaawasunrise_24x16_metal",
+    "size": "24 x 16",
+    "w": 24,
+    "h": 16,
+    "material": "metal",
+    "price": 360,
+    "sku": "SQ1931139"
+   },
+   {
+    "id": "kaaawasunrise_30x20_canvas",
+    "size": "30 x 20",
+    "w": 30,
+    "h": 20,
+    "material": "canvas",
+    "price": 450,
+    "sku": "SQ5903626"
+   },
+   {
+    "id": "kaaawasunrise_30x20_metal",
+    "size": "30 x 20",
+    "w": 30,
+    "h": 20,
+    "material": "metal",
+    "price": 540,
+    "sku": "SQ3156190"
+   },
+   {
+    "id": "kaaawasunrise_36x24_canvas",
+    "size": "36 x 24",
+    "w": 36,
+    "h": 24,
+    "material": "canvas",
+    "price": 600,
+    "sku": "SQ1771872"
+   },
+   {
+    "id": "kaaawasunrise_36x24_metal",
+    "size": "36 x 24",
+    "w": 36,
+    "h": 24,
+    "material": "metal",
+    "price": 780,
+    "sku": "SQ9655393"
+   }
+  ],
+  "sourceFilename": "_70A9124-1.jpg"
+ },
+ {
+  "urlId": "kaaawavalley",
+  "title": "Kaʻaʻawa Valley",
+  "description": "After multiple trips out to the east side, I finally caught a fairly clear morning where the clouds were obscuring sections of the mountain ridges. This incredible view of Kaʻaʻawa valley is one of my personal favorites. The stunning shapes, shear cliffs, and dramatic islets make for such a compelling and captivating image to be displayed in a common room such as the living room or large entry way.",
+  "orientation": "panoramic",
+  "collections": [
+   "landscape"
+  ],
+  "ratio": 3.0,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 360,
+  "priceTo": 1950,
+  "sizes": [
+   {
+    "label": "30 x 10",
+    "w": 30,
+    "h": 10
+   },
+   {
+    "label": "48 x 16",
+    "w": 48,
+    "h": 16
+   },
+   {
+    "label": "72 x 24",
+    "w": 72,
+    "h": 24
+   }
+  ],
+  "variants": [
+   {
+    "id": "kaaawavalley_30x10_canvas",
+    "size": "30 x 10",
+    "w": 30,
+    "h": 10,
+    "material": "canvas",
+    "price": 360,
+    "sku": "SQ4535211"
+   },
+   {
+    "id": "kaaawavalley_30x10_metal",
+    "size": "30 x 10",
+    "w": 30,
+    "h": 10,
+    "material": "metal",
+    "price": 390,
+    "sku": "SQ2733143"
+   },
+   {
+    "id": "kaaawavalley_48x16_canvas",
+    "size": "48 x 16",
+    "w": 48,
+    "h": 16,
+    "material": "canvas",
+    "price": 600,
+    "sku": "SQ3106845"
+   },
+   {
+    "id": "kaaawavalley_48x16_metal",
+    "size": "48 x 16",
+    "w": 48,
+    "h": 16,
+    "material": "metal",
+    "price": 950,
+    "sku": "SQ5206353"
+   },
+   {
+    "id": "kaaawavalley_72x24_canvas",
+    "size": "72 x 24",
+    "w": 72,
+    "h": 24,
+    "material": "canvas",
+    "price": 1350,
+    "sku": "SQ1559206"
+   },
+   {
+    "id": "kaaawavalley_72x24_metal",
+    "size": "72 x 24",
+    "w": 72,
+    "h": 24,
+    "material": "metal",
+    "price": 1950,
+    "sku": "SQ0200224"
+   }
+  ],
+  "sourceFilename": "Kualoa01.jpg"
+ },
+ {
+  "urlId": "kahana",
+  "title": "Kahana",
+  "description": "This image was created on the East shore of O'ahu. Waking up in the early hours of the morning, I hiked up this ridge in complete darkness in order to find this vantage point for sunrise. I am particularly fond of this image because of the sweeping nature of the ridge in the foreground blending seamlessly with the beach below, creating an \"S\" shape. This image is meant to emphasize the flowing nature of life and how unexpected circumstances can work together to create something beautiful. The valley in view is called Kahana Valley and is one of the more well preserved ahapua'a on Oʻahu. An \"ahapuaʻa\" is a sociological and geological land division from mauka to makai (mountain to sea), which typically held all of the resources for a native Hawaiian community to thrive on.",
+  "orientation": "vertical",
+  "collections": [
+   "landscape"
+  ],
+  "ratio": 0.8,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 300,
+  "priceTo": 700,
+  "sizes": [
+   {
+    "label": "16 x 20",
+    "w": 16,
+    "h": 20
+   },
+   {
+    "label": "20 x 25",
+    "w": 20,
+    "h": 25
+   },
+   {
+    "label": "24 x 30",
+    "w": 24,
+    "h": 30
+   }
+  ],
+  "variants": [
+   {
+    "id": "kahana_16x20_canvas",
+    "size": "16 x 20",
+    "w": 16,
+    "h": 20,
+    "material": "canvas",
+    "price": 300,
+    "sku": "SQ6860777"
+   },
+   {
+    "id": "kahana_16x20_metal",
+    "size": "16 x 20",
+    "w": 16,
+    "h": 20,
+    "material": "metal",
+    "price": 300,
+    "sku": "SQ1326210"
+   },
+   {
+    "id": "kahana_20x25_canvas",
+    "size": "20 x 25",
+    "w": 20,
+    "h": 25,
+    "material": "canvas",
+    "price": 450,
+    "sku": "SQ4464111"
+   },
+   {
+    "id": "kahana_20x25_metal",
+    "size": "20 x 25",
+    "w": 20,
+    "h": 25,
+    "material": "metal",
+    "price": 570,
+    "sku": "SQ1744716"
+   },
+   {
+    "id": "kahana_24x30_canvas",
+    "size": "24 x 30",
+    "w": 24,
+    "h": 30,
+    "material": "canvas",
+    "price": 570,
+    "sku": "SQ3440746"
+   },
+   {
+    "id": "kahana_24x30_metal",
+    "size": "24 x 30",
+    "w": 24,
+    "h": 30,
+    "material": "metal",
+    "price": 700,
+    "sku": "SQ2830670"
+   }
+  ],
+  "sourceFilename": "_DSC2970.jpg"
+ },
+ {
+  "urlId": "kaimana",
+  "title": "Kaimana",
+  "description": "Literally translated to “Diamond,” this piece was taken during sunrise showing the splendor of Diamond head in golden fashion. This panoramic was stitched together from nearly 12 images in order to achieve its wide field of view.",
+  "orientation": "panoramic",
+  "collections": [
+   "landscape"
+  ],
+  "ratio": 3.0,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 360,
+  "priceTo": 1950,
+  "sizes": [
+   {
+    "label": "30 x 10",
+    "w": 30,
+    "h": 10
+   },
+   {
+    "label": "48 x 16",
+    "w": 48,
+    "h": 16
+   },
+   {
+    "label": "72 x 24",
+    "w": 72,
+    "h": 24
+   }
+  ],
+  "variants": [
+   {
+    "id": "kaimana_30x10_canvas",
+    "size": "30 x 10",
+    "w": 30,
+    "h": 10,
+    "material": "canvas",
+    "price": 360,
+    "sku": "SQ4640200"
+   },
+   {
+    "id": "kaimana_30x10_metal",
+    "size": "30 x 10",
+    "w": 30,
+    "h": 10,
+    "material": "metal",
+    "price": 390,
+    "sku": "SQ2711870"
+   },
+   {
+    "id": "kaimana_48x16_canvas",
+    "size": "48 x 16",
+    "w": 48,
+    "h": 16,
+    "material": "canvas",
+    "price": 600,
+    "sku": "SQ1526824"
+   },
+   {
+    "id": "kaimana_48x16_metal",
+    "size": "48 x 16",
+    "w": 48,
+    "h": 16,
+    "material": "metal",
+    "price": 950,
+    "sku": "SQ3265541"
+   },
+   {
+    "id": "kaimana_72x24_canvas",
+    "size": "72 x 24",
+    "w": 72,
+    "h": 24,
+    "material": "canvas",
+    "price": 1350,
+    "sku": "SQ6687952"
+   },
+   {
+    "id": "kaimana_72x24_metal",
+    "size": "72 x 24",
+    "w": 72,
+    "h": 24,
+    "material": "metal",
+    "price": 1950,
+    "sku": "SQ2491685"
+   }
+  ],
+  "sourceFilename": "DiamnondHeadSunrise12.16.jpg"
+ },
+ {
+  "urlId": "kaiwi",
+  "title": "Kaiwi",
+  "description": "This image was created from sticking several photos shot in a grid. This particular bend on Kalanianaole Highway makes for a great point of interest along the scenic Kaiwi Coast, which is widely regarded as one of the most picturesque coastlines in the state. A true Birds Eye view allows the viewer to truly appreciate the rigged and dynamic shoreline.",
+  "orientation": "vertical",
+  "collections": [
+   "fine-art",
+   "landscape"
+  ],
+  "ratio": 0.8,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 300,
+  "priceTo": 700,
+  "sizes": [
+   {
+    "label": "16 x 20",
+    "w": 16,
+    "h": 20
+   },
+   {
+    "label": "20 x 25",
+    "w": 20,
+    "h": 25
+   },
+   {
+    "label": "24 x 30",
+    "w": 24,
+    "h": 30
+   }
+  ],
+  "variants": [
+   {
+    "id": "kaiwi_16x20_canvas",
+    "size": "16 x 20",
+    "w": 16,
+    "h": 20,
+    "material": "canvas",
+    "price": 300,
+    "sku": "SQ6644323"
+   },
+   {
+    "id": "kaiwi_16x20_metal",
+    "size": "16 x 20",
+    "w": 16,
+    "h": 20,
+    "material": "metal",
+    "price": 300,
+    "sku": "SQ4187541"
+   },
+   {
+    "id": "kaiwi_20x25_canvas",
+    "size": "20 x 25",
+    "w": 20,
+    "h": 25,
+    "material": "canvas",
+    "price": 450,
+    "sku": "SQ0532573"
+   },
+   {
+    "id": "kaiwi_20x25_metal",
+    "size": "20 x 25",
+    "w": 20,
+    "h": 25,
+    "material": "metal",
+    "price": 570,
+    "sku": "SQ1631355"
+   },
+   {
+    "id": "kaiwi_24x30_canvas",
+    "size": "24 x 30",
+    "w": 24,
+    "h": 30,
+    "material": "canvas",
+    "price": 570,
+    "sku": "SQ4274045"
+   },
+   {
+    "id": "kaiwi_24x30_metal",
+    "size": "24 x 30",
+    "w": 24,
+    "h": 30,
+    "material": "metal",
+    "price": 700,
+    "sku": "SQ1633761"
+   }
+  ],
+  "sourceFilename": "Kalanianaole.jpg"
+ },
+ {
+  "urlId": "kuamoo",
+  "title": "Kuamo'o",
+  "description": "This image was created during sunrise on the Windward coast of Oahu. Framed by an ironwood pine along the coast, the branches draw your attention to the dramatic ridge line of Ka'a'awa Valley, a.k.a. \"Jurassic Valley,\" where many of the Jurassic Park films were shot. In ancient Hawaiian storytelling, this particular ridge is said to be the spine of a giant Mo'o, or lizard that laid down along the shore as is final resting place.",
+  "orientation": "horizontal",
+  "collections": [
+   "landscape"
+  ],
+  "ratio": 1.5,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 210,
+  "priceTo": 780,
+  "sizes": [
+   {
+    "label": "18 x 12",
+    "w": 18,
+    "h": 12
+   },
+   {
+    "label": "24 x 16",
+    "w": 24,
+    "h": 16
+   },
+   {
+    "label": "30 x 20",
+    "w": 30,
+    "h": 20
+   },
+   {
+    "label": "36 x 24",
+    "w": 36,
+    "h": 24
+   }
+  ],
+  "variants": [
+   {
+    "id": "kuamoo_18x12_canvas",
+    "size": "18 x 12",
+    "w": 18,
+    "h": 12,
+    "material": "canvas",
+    "price": 255,
+    "sku": "SQ0724032"
+   },
+   {
+    "id": "kuamoo_18x12_metal",
+    "size": "18 x 12",
+    "w": 18,
+    "h": 12,
+    "material": "metal",
+    "price": 210,
+    "sku": "SQ0236831"
+   },
+   {
+    "id": "kuamoo_24x16_canvas",
+    "size": "24 x 16",
+    "w": 24,
+    "h": 16,
+    "material": "canvas",
+    "price": 330,
+    "sku": "SQ4873218"
+   },
+   {
+    "id": "kuamoo_24x16_metal",
+    "size": "24 x 16",
+    "w": 24,
+    "h": 16,
+    "material": "metal",
+    "price": 360,
+    "sku": "SQ7200430"
+   },
+   {
+    "id": "kuamoo_30x20_canvas",
+    "size": "30 x 20",
+    "w": 30,
+    "h": 20,
+    "material": "canvas",
+    "price": 450,
+    "sku": "SQ7822814"
+   },
+   {
+    "id": "kuamoo_30x20_metal",
+    "size": "30 x 20",
+    "w": 30,
+    "h": 20,
+    "material": "metal",
+    "price": 540,
+    "sku": "SQ2107320"
+   },
+   {
+    "id": "kuamoo_36x24_canvas",
+    "size": "36 x 24",
+    "w": 36,
+    "h": 24,
+    "material": "canvas",
+    "price": 600,
+    "sku": "SQ5345380"
+   },
+   {
+    "id": "kuamoo_36x24_metal",
+    "size": "36 x 24",
+    "w": 36,
+    "h": 24,
+    "material": "metal",
+    "price": 780,
+    "sku": "SQ1774080"
+   }
+  ],
+  "sourceFilename": "Spines2.jpg"
+ },
+ {
+  "urlId": "leahikahiko",
+  "title": "Lēʻahi Kahiko",
+  "description": "This is an aerial image created of Lēʻahi, or \"Diamond Head,\" as it has come to be known. The warm morning glow of sunrise paints the ridges in dramatic fashion, highlighting the depth and shape of Lēʻahi crater. Lē'ahi is an imposing geographic feature that reminds us of the power of mother earth even within the dense, bustling confines of Honolulu City.",
+  "orientation": "horizontal",
+  "collections": [
+   "landscape"
+  ],
+  "ratio": 1.5,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 210,
+  "priceTo": 780,
+  "sizes": [
+   {
+    "label": "18 x 12",
+    "w": 18,
+    "h": 12
+   },
+   {
+    "label": "24 x 16",
+    "w": 24,
+    "h": 16
+   },
+   {
+    "label": "30 x 20",
+    "w": 30,
+    "h": 20
+   },
+   {
+    "label": "36 x 24",
+    "w": 36,
+    "h": 24
+   }
+  ],
+  "variants": [
+   {
+    "id": "leahikahiko_18x12_canvas",
+    "size": "18 x 12",
+    "w": 18,
+    "h": 12,
+    "material": "canvas",
+    "price": 255,
+    "sku": "SQ1474414"
+   },
+   {
+    "id": "leahikahiko_18x12_metal",
+    "size": "18 x 12",
+    "w": 18,
+    "h": 12,
+    "material": "metal",
+    "price": 210,
+    "sku": "SQ1665458"
+   },
+   {
+    "id": "leahikahiko_24x16_canvas",
+    "size": "24 x 16",
+    "w": 24,
+    "h": 16,
+    "material": "canvas",
+    "price": 330,
+    "sku": "SQ2175720"
+   },
+   {
+    "id": "leahikahiko_24x16_metal",
+    "size": "24 x 16",
+    "w": 24,
+    "h": 16,
+    "material": "metal",
+    "price": 360,
+    "sku": "SQ3347007"
+   },
+   {
+    "id": "leahikahiko_30x20_canvas",
+    "size": "30 x 20",
+    "w": 30,
+    "h": 20,
+    "material": "canvas",
+    "price": 450,
+    "sku": "SQ7426027"
+   },
+   {
+    "id": "leahikahiko_30x20_metal",
+    "size": "30 x 20",
+    "w": 30,
+    "h": 20,
+    "material": "metal",
+    "price": 540,
+    "sku": "SQ3521052"
+   },
+   {
+    "id": "leahikahiko_36x24_canvas",
+    "size": "36 x 24",
+    "w": 36,
+    "h": 24,
+    "material": "canvas",
+    "price": 600,
+    "sku": "SQ2361841"
+   },
+   {
+    "id": "leahikahiko_36x24_metal",
+    "size": "36 x 24",
+    "w": 36,
+    "h": 24,
+    "material": "metal",
+    "price": 780,
+    "sku": "SQ0007322"
+   }
+  ],
+  "sourceFilename": "DJI_0921-Pano.jpg"
+ },
+ {
+  "urlId": "makapuubeach-h",
+  "title": "Makapuʻu Beach (horizontal)",
+  "description": "Created using a drone, this image shows off the white sands and teal blue waters of Makapuʻu beach. Tropical colors along with a Birds Eye view take the viewer away to tropical paradise, away from the stresses of deadlines and afternoon meetings. A similar vertical version of this image is also available.",
+  "orientation": "horizontal",
+  "collections": [
+   "fine-art",
+   "landscape"
+  ],
+  "ratio": 1.5,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 210,
+  "priceTo": 780,
+  "sizes": [
+   {
+    "label": "18 x 12",
+    "w": 18,
+    "h": 12
+   },
+   {
+    "label": "24 x 16",
+    "w": 24,
+    "h": 16
+   },
+   {
+    "label": "30 x 20",
+    "w": 30,
+    "h": 20
+   },
+   {
+    "label": "36 x 24",
+    "w": 36,
+    "h": 24
+   }
+  ],
+  "variants": [
+   {
+    "id": "makapuubeach-h_18x12_canvas",
+    "size": "18 x 12",
+    "w": 18,
+    "h": 12,
+    "material": "canvas",
+    "price": 255,
+    "sku": "SQ3814147"
+   },
+   {
+    "id": "makapuubeach-h_18x12_metal",
+    "size": "18 x 12",
+    "w": 18,
+    "h": 12,
+    "material": "metal",
+    "price": 210,
+    "sku": "SQ3108430"
+   },
+   {
+    "id": "makapuubeach-h_24x16_canvas",
+    "size": "24 x 16",
+    "w": 24,
+    "h": 16,
+    "material": "canvas",
+    "price": 330,
+    "sku": "SQ1342680"
+   },
+   {
+    "id": "makapuubeach-h_24x16_metal",
+    "size": "24 x 16",
+    "w": 24,
+    "h": 16,
+    "material": "metal",
+    "price": 360,
+    "sku": "SQ7802155"
+   },
+   {
+    "id": "makapuubeach-h_30x20_canvas",
+    "size": "30 x 20",
+    "w": 30,
+    "h": 20,
+    "material": "canvas",
+    "price": 450,
+    "sku": "SQ7136056"
+   },
+   {
+    "id": "makapuubeach-h_30x20_metal",
+    "size": "30 x 20",
+    "w": 30,
+    "h": 20,
+    "material": "metal",
+    "price": 540,
+    "sku": "SQ4304551"
+   },
+   {
+    "id": "makapuubeach-h_36x24_canvas",
+    "size": "36 x 24",
+    "w": 36,
+    "h": 24,
+    "material": "canvas",
+    "price": 600,
+    "sku": "SQ4614021"
+   },
+   {
+    "id": "makapuubeach-h_36x24_metal",
+    "size": "36 x 24",
+    "w": 36,
+    "h": 24,
+    "material": "metal",
+    "price": 780,
+    "sku": "SQ0888727"
+   }
+  ],
+  "sourceFilename": "DJI_0267.jpg"
+ },
+ {
+  "urlId": "makapuubeach-v",
+  "title": "Makapuʻu Beach (vertical)",
+  "description": "Created using a drone, this image shows off the white sands and teal blue waters of Makapuʻu beach. Tropical colors along with a Birds Eye view take the viewer away to tropical paradise, away from the stresses of deadlines and afternoon meetings. A similar horizontal version of this image is also available.",
+  "orientation": "vertical",
+  "collections": [
+   "fine-art",
+   "landscape"
+  ],
+  "ratio": 0.8,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 300,
+  "priceTo": 700,
+  "sizes": [
+   {
+    "label": "16 x 20",
+    "w": 16,
+    "h": 20
+   },
+   {
+    "label": "20 x 25",
+    "w": 20,
+    "h": 25
+   },
+   {
+    "label": "24 x 30",
+    "w": 24,
+    "h": 30
+   }
+  ],
+  "variants": [
+   {
+    "id": "makapuubeach-v_16x20_canvas",
+    "size": "16 x 20",
+    "w": 16,
+    "h": 20,
+    "material": "canvas",
+    "price": 300,
+    "sku": "SQ1341855"
+   },
+   {
+    "id": "makapuubeach-v_16x20_metal",
+    "size": "16 x 20",
+    "w": 16,
+    "h": 20,
+    "material": "metal",
+    "price": 300,
+    "sku": "SQ4585737"
+   },
+   {
+    "id": "makapuubeach-v_20x25_canvas",
+    "size": "20 x 25",
+    "w": 20,
+    "h": 25,
+    "material": "canvas",
+    "price": 450,
+    "sku": "SQ7830326"
+   },
+   {
+    "id": "makapuubeach-v_20x25_metal",
+    "size": "20 x 25",
+    "w": 20,
+    "h": 25,
+    "material": "metal",
+    "price": 570,
+    "sku": "SQ2360774"
+   },
+   {
+    "id": "makapuubeach-v_24x30_canvas",
+    "size": "24 x 30",
+    "w": 24,
+    "h": 30,
+    "material": "canvas",
+    "price": 570,
+    "sku": "SQ2335301"
+   },
+   {
+    "id": "makapuubeach-v_24x30_metal",
+    "size": "24 x 30",
+    "w": 24,
+    "h": 30,
+    "material": "metal",
+    "price": 700,
+    "sku": "SQ1102275"
+   }
+  ],
+  "sourceFilename": "M2P_16ND-PL-130.jpg"
+ },
+ {
+  "urlId": "malie",
+  "title": "Mālie",
+  "description": "This is easily one of my favorite image I've ever created. Papailoa Beach on the North Shore of Oʻahu has some of the most dynamic scenes. During this particular season, large waves had washed away the sand to reveal a buried reef. The ocean waves cascaded over the sharp edges and gently flowed back and forth. This created a wonderful contrast of sharp rocks and silky water. This echos the proverb that something as fluid as water can overcome the sharpest and immovable rocks.",
+  "orientation": "horizontal",
+  "collections": [
+   "fine-art"
+  ],
+  "ratio": 1.5,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 210,
+  "priceTo": 780,
+  "sizes": [
+   {
+    "label": "18 x 12",
+    "w": 18,
+    "h": 12
+   },
+   {
+    "label": "24 x 16",
+    "w": 24,
+    "h": 16
+   },
+   {
+    "label": "30 x 20",
+    "w": 30,
+    "h": 20
+   },
+   {
+    "label": "36 x 24",
+    "w": 36,
+    "h": 24
+   }
+  ],
+  "variants": [
+   {
+    "id": "malie_18x12_canvas",
+    "size": "18 x 12",
+    "w": 18,
+    "h": 12,
+    "material": "canvas",
+    "price": 255,
+    "sku": "SQ1768534"
+   },
+   {
+    "id": "malie_18x12_metal",
+    "size": "18 x 12",
+    "w": 18,
+    "h": 12,
+    "material": "metal",
+    "price": 210,
+    "sku": "SQ0141167"
+   },
+   {
+    "id": "malie_24x16_canvas",
+    "size": "24 x 16",
+    "w": 24,
+    "h": 16,
+    "material": "canvas",
+    "price": 330,
+    "sku": "SQ6603142"
+   },
+   {
+    "id": "malie_24x16_metal",
+    "size": "24 x 16",
+    "w": 24,
+    "h": 16,
+    "material": "metal",
+    "price": 360,
+    "sku": "SQ8663834"
+   },
+   {
+    "id": "malie_30x20_canvas",
+    "size": "30 x 20",
+    "w": 30,
+    "h": 20,
+    "material": "canvas",
+    "price": 450,
+    "sku": "SQ3505154"
+   },
+   {
+    "id": "malie_30x20_metal",
+    "size": "30 x 20",
+    "w": 30,
+    "h": 20,
+    "material": "metal",
+    "price": 540,
+    "sku": "SQ5040681"
+   },
+   {
+    "id": "malie_36x24_canvas",
+    "size": "36 x 24",
+    "w": 36,
+    "h": 24,
+    "material": "canvas",
+    "price": 600,
+    "sku": "SQ1623882"
+   },
+   {
+    "id": "malie_36x24_metal",
+    "size": "36 x 24",
+    "w": 36,
+    "h": 24,
+    "material": "metal",
+    "price": 780,
+    "sku": "SQ5473611"
+   }
+  ],
+  "sourceFilename": "DSC06900.jpg"
+ },
+ {
+  "urlId": "mokoliireflection",
+  "title": "Mokoliʻi Reflection",
+  "description": "The iconic \"Mokoliʻi\" a.k.a. \"Chinaman's Hat\" is well recognized on the Windward cost of Oʻahu. This image was created during an overcast sunrise where the tide was exceptionally low, revealing some of the larger reefs along the coast.",
+  "orientation": "vertical",
+  "collections": [],
+  "ratio": 0.8,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 300,
+  "priceTo": 700,
+  "sizes": [
+   {
+    "label": "16 x 20",
+    "w": 16,
+    "h": 20
+   },
+   {
+    "label": "20 x 25",
+    "w": 20,
+    "h": 25
+   },
+   {
+    "label": "24 x 30",
+    "w": 24,
+    "h": 30
+   }
+  ],
+  "variants": [
+   {
+    "id": "mokoliireflection_16x20_canvas",
+    "size": "16 x 20",
+    "w": 16,
+    "h": 20,
+    "material": "canvas",
+    "price": 300,
+    "sku": "SQ3575321"
+   },
+   {
+    "id": "mokoliireflection_16x20_metal",
+    "size": "16 x 20",
+    "w": 16,
+    "h": 20,
+    "material": "metal",
+    "price": 300,
+    "sku": "SQ8460810"
+   },
+   {
+    "id": "mokoliireflection_20x25_canvas",
+    "size": "20 x 25",
+    "w": 20,
+    "h": 25,
+    "material": "canvas",
+    "price": 450,
+    "sku": "SQ3324731"
+   },
+   {
+    "id": "mokoliireflection_20x25_metal",
+    "size": "20 x 25",
+    "w": 20,
+    "h": 25,
+    "material": "metal",
+    "price": 570,
+    "sku": "SQ2542716"
+   },
+   {
+    "id": "mokoliireflection_24x30_canvas",
+    "size": "24 x 30",
+    "w": 24,
+    "h": 30,
+    "material": "canvas",
+    "price": 570,
+    "sku": "SQ6250412"
+   },
+   {
+    "id": "mokoliireflection_24x30_metal",
+    "size": "24 x 30",
+    "w": 24,
+    "h": 30,
+    "material": "metal",
+    "price": 700,
+    "sku": "SQ5624081"
+   }
+  ],
+  "sourceFilename": "_DSC7227.jpg"
+ },
+ {
+  "urlId": "mokulele",
+  "title": "Mokulele",
+  "description": "Literally translated to \"Island Jump,\" this image entitled Mokulele was taken from the small islet off the Ka'a'awa coast during sunrise. Without being familiar with the geography, you would know that the rocky formation and tiny sand beach in the foreground was part of a tiny islet. The contrasting colors of the sand and rocks lead the eyes up towards the dramatic and iconic ridge line of Ka'a'awa valley, a.k.a. \"Jurassic Valley,\" for its repeated use in the Jurassic Park film saga.",
+  "orientation": "vertical",
+  "collections": [
+   "landscape",
+   "fine-art"
+  ],
+  "ratio": 0.8,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 300,
+  "priceTo": 700,
+  "sizes": [
+   {
+    "label": "16 x 20",
+    "w": 16,
+    "h": 20
+   },
+   {
+    "label": "20 x 25",
+    "w": 20,
+    "h": 25
+   },
+   {
+    "label": "24 x 30",
+    "w": 24,
+    "h": 30
+   }
+  ],
+  "variants": [
+   {
+    "id": "mokulele_16x20_canvas",
+    "size": "16 x 20",
+    "w": 16,
+    "h": 20,
+    "material": "canvas",
+    "price": 300,
+    "sku": "SQ7812002"
+   },
+   {
+    "id": "mokulele_16x20_metal",
+    "size": "16 x 20",
+    "w": 16,
+    "h": 20,
+    "material": "metal",
+    "price": 300,
+    "sku": "SQ2217178"
+   },
+   {
+    "id": "mokulele_20x25_canvas",
+    "size": "20 x 25",
+    "w": 20,
+    "h": 25,
+    "material": "canvas",
+    "price": 450,
+    "sku": "SQ1231263"
+   },
+   {
+    "id": "mokulele_20x25_metal",
+    "size": "20 x 25",
+    "w": 20,
+    "h": 25,
+    "material": "metal",
+    "price": 570,
+    "sku": "SQ3161580"
+   },
+   {
+    "id": "mokulele_24x30_canvas",
+    "size": "24 x 30",
+    "w": 24,
+    "h": 30,
+    "material": "canvas",
+    "price": 570,
+    "sku": "SQ2528337"
+   },
+   {
+    "id": "mokulele_24x30_metal",
+    "size": "24 x 30",
+    "w": 24,
+    "h": 30,
+    "material": "metal",
+    "price": 700,
+    "sku": "SQ4003146"
+   }
+  ],
+  "sourceFilename": "M2P_16ND-PL-120.jpg"
+ },
+ {
+  "urlId": "mokulua",
+  "title": "Mokulua Monochrome",
+  "description": "Literally meaning \"two islands\" the Mokulua of the shore of Kailua are iconic silhouettes along the horizon. This image was taken during an overcast morning with crystal clear waters. The natural current of the ocean has shaped the reef and sea floor in such a way that they create lines of motion leading they eye directly out to the offshore islets. I chose to convert this image to black and white because the light and dark tones were so prominent and telling. By removing the color, youʻre able to have a greater appreciate for the texture and motion created by the reef and sand.",
+  "orientation": "horizontal",
+  "collections": [
+   "landscape"
+  ],
+  "ratio": 1.5,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 210,
+  "priceTo": 780,
+  "sizes": [
+   {
+    "label": "18 x 12",
+    "w": 18,
+    "h": 12
+   },
+   {
+    "label": "24 x 16",
+    "w": 24,
+    "h": 16
+   },
+   {
+    "label": "30 x 20",
+    "w": 30,
+    "h": 20
+   },
+   {
+    "label": "36 x 24",
+    "w": 36,
+    "h": 24
+   }
+  ],
+  "variants": [
+   {
+    "id": "mokulua_18x12_canvas",
+    "size": "18 x 12",
+    "w": 18,
+    "h": 12,
+    "material": "canvas",
+    "price": 255,
+    "sku": "SQ0365872"
+   },
+   {
+    "id": "mokulua_18x12_metal",
+    "size": "18 x 12",
+    "w": 18,
+    "h": 12,
+    "material": "metal",
+    "price": 210,
+    "sku": "SQ8083201"
+   },
+   {
+    "id": "mokulua_24x16_canvas",
+    "size": "24 x 16",
+    "w": 24,
+    "h": 16,
+    "material": "canvas",
+    "price": 330,
+    "sku": "SQ6788382"
+   },
+   {
+    "id": "mokulua_24x16_metal",
+    "size": "24 x 16",
+    "w": 24,
+    "h": 16,
+    "material": "metal",
+    "price": 360,
+    "sku": "SQ3808022"
+   },
+   {
+    "id": "mokulua_30x20_canvas",
+    "size": "30 x 20",
+    "w": 30,
+    "h": 20,
+    "material": "canvas",
+    "price": 450,
+    "sku": "SQ6426501"
+   },
+   {
+    "id": "mokulua_30x20_metal",
+    "size": "30 x 20",
+    "w": 30,
+    "h": 20,
+    "material": "metal",
+    "price": 540,
+    "sku": "SQ3072736"
+   },
+   {
+    "id": "mokulua_36x24_canvas",
+    "size": "36 x 24",
+    "w": 36,
+    "h": 24,
+    "material": "canvas",
+    "price": 600,
+    "sku": "SQ5786300"
+   },
+   {
+    "id": "mokulua_36x24_metal",
+    "size": "36 x 24",
+    "w": 36,
+    "h": 24,
+    "material": "metal",
+    "price": 780,
+    "sku": "SQ4233077"
+   }
+  ],
+  "sourceFilename": "DJI_0263-Pano copy.jpg"
+ },
+ {
+  "urlId": "naniwaikiki",
+  "title": "Nani Waikīkī",
+  "description": "Easily my most popular image, this was taken on a late afternoon on a whim. After a long day, rather than starting on dinner, I decided to get into my element for the last few hours of sunlight. In a magical moment, I saw the beautiful colors blooming in the sky, draping Waikīkī in a pink color cast. I knew that it was a beautiful scene, but didn’t know what the final image would look like since I had to stitch nearly 25 images together in order to get the final panoramic that you see here. It was an amazing realization once it was compiled and I could see the entire panoramic view.",
+  "orientation": "panoramic",
+  "collections": [
+   "landscape"
+  ],
+  "ratio": 3.0,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 360,
+  "priceTo": 1950,
+  "sizes": [
+   {
+    "label": "30 x 10",
+    "w": 30,
+    "h": 10
+   },
+   {
+    "label": "48 x 16",
+    "w": 48,
+    "h": 16
+   },
+   {
+    "label": "72 x 24",
+    "w": 72,
+    "h": 24
+   }
+  ],
+  "variants": [
+   {
+    "id": "naniwaikiki_30x10_canvas",
+    "size": "30 x 10",
+    "w": 30,
+    "h": 10,
+    "material": "canvas",
+    "price": 360,
+    "sku": "SQ5355285"
+   },
+   {
+    "id": "naniwaikiki_30x10_metal",
+    "size": "30 x 10",
+    "w": 30,
+    "h": 10,
+    "material": "metal",
+    "price": 390,
+    "sku": "SQ3217042"
+   },
+   {
+    "id": "naniwaikiki_48x16_canvas",
+    "size": "48 x 16",
+    "w": 48,
+    "h": 16,
+    "material": "canvas",
+    "price": 600,
+    "sku": "SQ6311358"
+   },
+   {
+    "id": "naniwaikiki_48x16_metal",
+    "size": "48 x 16",
+    "w": 48,
+    "h": 16,
+    "material": "metal",
+    "price": 950,
+    "sku": "SQ6208260"
+   },
+   {
+    "id": "naniwaikiki_72x24_canvas",
+    "size": "72 x 24",
+    "w": 72,
+    "h": 24,
+    "material": "canvas",
+    "price": 1350,
+    "sku": "SQ9512085"
+   },
+   {
+    "id": "naniwaikiki_72x24_metal",
+    "size": "72 x 24",
+    "w": 72,
+    "h": 24,
+    "material": "metal",
+    "price": 1950,
+    "sku": "SQ1598611"
+   }
+  ],
+  "sourceFilename": "DiamondHead12.15.17.jpg"
+ },
+ {
+  "urlId": "puao",
+  "title": "Pūʻao",
+  "description": "Using a drone and sticking several exposures together, I created this image a specific section of the Koʻolau Mountain Range on Oʻahu. This specific facade really stood out to me due to its geometrical symmetry combined with the dramatic light from one side. I chose to name this piece Pūʻao, translates to womb. Although typically pointing down, the triangle is often associated as a feminine symbol of strength and fertility. This image of Mother Earth and her fertile body and lush forests show off the miracle that is the female body.",
+  "orientation": "vertical",
+  "collections": [
+   "fine-art"
+  ],
+  "ratio": 0.8,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 300,
+  "priceTo": 700,
+  "sizes": [
+   {
+    "label": "16 x 20",
+    "w": 16,
+    "h": 20
+   },
+   {
+    "label": "20 x 25",
+    "w": 20,
+    "h": 25
+   },
+   {
+    "label": "24 x 30",
+    "w": 24,
+    "h": 30
+   }
+  ],
+  "variants": [
+   {
+    "id": "puao_16x20_canvas",
+    "size": "16 x 20",
+    "w": 16,
+    "h": 20,
+    "material": "canvas",
+    "price": 300,
+    "sku": "SQ5034617"
+   },
+   {
+    "id": "puao_16x20_metal",
+    "size": "16 x 20",
+    "w": 16,
+    "h": 20,
+    "material": "metal",
+    "price": 300,
+    "sku": "SQ4480602"
+   },
+   {
+    "id": "puao_20x25_canvas",
+    "size": "20 x 25",
+    "w": 20,
+    "h": 25,
+    "material": "canvas",
+    "price": 450,
+    "sku": "SQ7006887"
+   },
+   {
+    "id": "puao_20x25_metal",
+    "size": "20 x 25",
+    "w": 20,
+    "h": 25,
+    "material": "metal",
+    "price": 570,
+    "sku": "SQ8126153"
+   },
+   {
+    "id": "puao_24x30_canvas",
+    "size": "24 x 30",
+    "w": 24,
+    "h": 30,
+    "material": "canvas",
+    "price": 570,
+    "sku": "SQ6338218"
+   },
+   {
+    "id": "puao_24x30_metal",
+    "size": "24 x 30",
+    "w": 24,
+    "h": 30,
+    "material": "metal",
+    "price": 700,
+    "sku": "SQ3550822"
+   }
+  ],
+  "sourceFilename": "DJI_0626-HDR-Pano.jpg"
+ },
+ {
+  "urlId": "shorelinecascade",
+  "title": "Shoreline Cascade",
+  "description": "This images was created on the North Shore of Oʻahu. Taken during sunset, this image displays the beauty shoreline which varies from beach to beach. In this case, a reef is exposed during the low tide allowing for ocean water to cascade gently over the rocks and seaweed. This image reminds us that even the smallest details can reveal profound beauties.",
+  "orientation": "vertical",
+  "collections": [
+   "fine-art",
+   "landscape"
+  ],
+  "ratio": 0.8,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 300,
+  "priceTo": 700,
+  "sizes": [
+   {
+    "label": "16 x 20",
+    "w": 16,
+    "h": 20
+   },
+   {
+    "label": "20 x 25",
+    "w": 20,
+    "h": 25
+   },
+   {
+    "label": "24 x 30",
+    "w": 24,
+    "h": 30
+   }
+  ],
+  "variants": [
+   {
+    "id": "shorelinecascade_16x20_canvas",
+    "size": "16 x 20",
+    "w": 16,
+    "h": 20,
+    "material": "canvas",
+    "price": 300,
+    "sku": "SQ0762814"
+   },
+   {
+    "id": "shorelinecascade_16x20_metal",
+    "size": "16 x 20",
+    "w": 16,
+    "h": 20,
+    "material": "metal",
+    "price": 300,
+    "sku": "SQ2404004"
+   },
+   {
+    "id": "shorelinecascade_20x25_canvas",
+    "size": "20 x 25",
+    "w": 20,
+    "h": 25,
+    "material": "canvas",
+    "price": 450,
+    "sku": "SQ3188305"
+   },
+   {
+    "id": "shorelinecascade_20x25_metal",
+    "size": "20 x 25",
+    "w": 20,
+    "h": 25,
+    "material": "metal",
+    "price": 570,
+    "sku": "SQ4375210"
+   },
+   {
+    "id": "shorelinecascade_24x30_canvas",
+    "size": "24 x 30",
+    "w": 24,
+    "h": 30,
+    "material": "canvas",
+    "price": 570,
+    "sku": "SQ2207745"
+   },
+   {
+    "id": "shorelinecascade_24x30_metal",
+    "size": "24 x 30",
+    "w": 24,
+    "h": 30,
+    "material": "metal",
+    "price": 700,
+    "sku": "SQ7363383"
+   }
+  ],
+  "sourceFilename": "_DSC4893.jpg"
+ },
+ {
+  "urlId": "timespan",
+  "title": "Timespan",
+  "description": "I created this image in my early days as a photographer. Hiking along the ridge above Makapuʻu beach during sunrise, I found a stunning vantage point to photography the coastline leading out the lighthouse. The sun was coming up just over the cliffs in the distance and the clouds were being blown left to right. This was the perfect opportunity for a long exposure. Totaling 120 seconds, the extended exposure smoothed out the ocean and stretched the clouds to create a time warp effect while maintaining sharpness in the landscape itself.",
+  "orientation": "horizontal",
+  "collections": [
+   "landscape",
+   "fine-art"
+  ],
+  "ratio": 1.5,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 210,
+  "priceTo": 780,
+  "sizes": [
+   {
+    "label": "18 x 12",
+    "w": 18,
+    "h": 12
+   },
+   {
+    "label": "24 x 16",
+    "w": 24,
+    "h": 16
+   },
+   {
+    "label": "30 x 20",
+    "w": 30,
+    "h": 20
+   },
+   {
+    "label": "36 x 24",
+    "w": 36,
+    "h": 24
+   }
+  ],
+  "variants": [
+   {
+    "id": "timespan_18x12_canvas",
+    "size": "18 x 12",
+    "w": 18,
+    "h": 12,
+    "material": "canvas",
+    "price": 255,
+    "sku": "SQ8701371"
+   },
+   {
+    "id": "timespan_18x12_metal",
+    "size": "18 x 12",
+    "w": 18,
+    "h": 12,
+    "material": "metal",
+    "price": 210,
+    "sku": "SQ3336546"
+   },
+   {
+    "id": "timespan_24x16_canvas",
+    "size": "24 x 16",
+    "w": 24,
+    "h": 16,
+    "material": "canvas",
+    "price": 330,
+    "sku": "SQ7874875"
+   },
+   {
+    "id": "timespan_24x16_metal",
+    "size": "24 x 16",
+    "w": 24,
+    "h": 16,
+    "material": "metal",
+    "price": 360,
+    "sku": "SQ7131831"
+   },
+   {
+    "id": "timespan_30x20_canvas",
+    "size": "30 x 20",
+    "w": 30,
+    "h": 20,
+    "material": "canvas",
+    "price": 450,
+    "sku": "SQ6621684"
+   },
+   {
+    "id": "timespan_30x20_metal",
+    "size": "30 x 20",
+    "w": 30,
+    "h": 20,
+    "material": "metal",
+    "price": 540,
+    "sku": "SQ0415032"
+   },
+   {
+    "id": "timespan_36x24_canvas",
+    "size": "36 x 24",
+    "w": 36,
+    "h": 24,
+    "material": "canvas",
+    "price": 600,
+    "sku": "SQ4683520"
+   },
+   {
+    "id": "timespan_36x24_metal",
+    "size": "36 x 24",
+    "w": 36,
+    "h": 24,
+    "material": "metal",
+    "price": 780,
+    "sku": "SQ8758473"
+   }
+  ],
+  "sourceFilename": "DSC00621.jpg"
+ },
+ {
+  "urlId": "waimanalo",
+  "title": "Waimanalo",
+  "description": "This aerial landscape image was created by sticking 4 images together from a drone. Not his morning. the over night waves had created a beautifully organic pattern on the shoreline, with repeating indentations going all the way down the beach. Only from the air could this pattern be full appreciated. Pair that with a dramatic cliffside in the distance and it makes for a stunning image. Waimanalo is known for is long sandy beaches, picturesque offshore islets and clear blue waters.",
+  "orientation": "vertical",
+  "collections": [
+   "landscape"
+  ],
+  "ratio": 0.8,
+  "addedOn": "2020-05-22",
+  "updatedOn": "2025-03-25",
+  "priceFrom": 300,
+  "priceTo": 700,
+  "sizes": [
+   {
+    "label": "16 x 20",
+    "w": 16,
+    "h": 20
+   },
+   {
+    "label": "20 x 25",
+    "w": 20,
+    "h": 25
+   },
+   {
+    "label": "24 x 30",
+    "w": 24,
+    "h": 30
+   }
+  ],
+  "variants": [
+   {
+    "id": "waimanalo_16x20_canvas",
+    "size": "16 x 20",
+    "w": 16,
+    "h": 20,
+    "material": "canvas",
+    "price": 300,
+    "sku": "SQ0706117"
+   },
+   {
+    "id": "waimanalo_16x20_metal",
+    "size": "16 x 20",
+    "w": 16,
+    "h": 20,
+    "material": "metal",
+    "price": 300,
+    "sku": "SQ4236347"
+   },
+   {
+    "id": "waimanalo_20x25_canvas",
+    "size": "20 x 25",
+    "w": 20,
+    "h": 25,
+    "material": "canvas",
+    "price": 450,
+    "sku": "SQ8765400"
+   },
+   {
+    "id": "waimanalo_20x25_metal",
+    "size": "20 x 25",
+    "w": 20,
+    "h": 25,
+    "material": "metal",
+    "price": 570,
+    "sku": "SQ2215367"
+   },
+   {
+    "id": "waimanalo_24x30_canvas",
+    "size": "24 x 30",
+    "w": 24,
+    "h": 30,
+    "material": "canvas",
+    "price": 570,
+    "sku": "SQ7353662"
+   },
+   {
+    "id": "waimanalo_24x30_metal",
+    "size": "24 x 30",
+    "w": 24,
+    "h": 30,
+    "material": "metal",
+    "price": 700,
+    "sku": "SQ2475883"
+   }
+  ],
+  "sourceFilename": "DJI_0281-Pano.jpg"
+ }
+]

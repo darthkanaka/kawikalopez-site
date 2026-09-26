@@ -1,0 +1,10 @@
+{% macro card(p, rowh=300) -%}
+<a class="card" href="{{ url(p.path) }}" style="--r:{{ '%.4f' % (p.image.w / p.image.h) }}">
+  {{ picture(p, "(min-width: 1100px) " ~ ([(p.image.w / p.image.h * rowh) | round | int, 1280] | min) ~ "px, (min-width: 640px) 50vw, calc(100vw - 32px)") }}
+  <span class="card-text">
+    <span class="card-title">{{ p.title }}</span>
+    {% if p.subtitle %}<span class="card-sub">{{ p.subtitle }}</span>{% endif %}
+    <span class="card-price">From {{ money(p.priceFrom) }}</span>
+  </span>
+</a>
+{%- endmacro %}

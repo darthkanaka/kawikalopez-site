@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% from "partials/card.html" import card with context %}
+{% block main %}
+<section class="wrap page-head">
+  <h1>That page isn't here</h1>
+  <p class="lede">It may have moved when the site was rebuilt. Every print is still in the store.</p>
+  <p class="actions"><a class="btn" href="{{ url('store/') }}">Browse all prints</a> <a class="btn btn-quiet" href="{{ url('') }}">Home</a></p>
+</section>
+<section class="wrap section-tight" aria-label="Featured prints">
+  <div class="jgrid">
+    {% for p in picks %}{{ card(p) }}{% endfor %}
+  </div>
+</section>
+{% endblock %}

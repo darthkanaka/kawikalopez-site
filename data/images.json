@@ -1,0 +1,533 @@
+{
+ "018": {
+  "avg": "#4a5216",
+  "h": 2000,
+  "mtime": 1790376612.2026572,
+  "source": "originals",
+  "src": "harvest/images/originals/018.jpg",
+  "w": 1600,
+  "widths": [
+   240,
+   480,
+   960,
+   1600
+  ]
+ },
+ "032": {
+  "avg": "#65582b",
+  "h": 2000,
+  "mtime": 1790376613.0337844,
+  "source": "originals",
+  "src": "harvest/images/originals/032.jpg",
+  "w": 1600,
+  "widths": [
+   240,
+   480,
+   960,
+   1600
+  ]
+ },
+ "033": {
+  "avg": "#455349",
+  "h": 1332,
+  "mtime": 1790376613.4693606,
+  "source": "originals",
+  "src": "harvest/images/originals/033.jpg",
+  "w": 2000,
+  "widths": [
+   240,
+   480,
+   960,
+   1600,
+   2000
+  ]
+ },
+ "034": {
+  "avg": "#ba9e8e",
+  "h": 2000,
+  "mtime": 1790376613.6934297,
+  "source": "originals",
+  "src": "harvest/images/originals/034.jpg",
+  "w": 1600,
+  "widths": [
+   240,
+   480,
+   960,
+   1600
+  ]
+ },
+ "035": {
+  "avg": "#918f6e",
+  "h": 1333,
+  "mtime": 1790376613.8988652,
+  "source": "originals",
+  "src": "harvest/images/originals/035.jpg",
+  "w": 2000,
+  "widths": [
+   240,
+   480,
+   960,
+   1600,
+   2000
+  ]
+ },
+ "036": {
+  "avg": "#acc4d6",
+  "h": 500,
+  "mtime": 1790362773.3276284,
+  "source": "products-web",
+  "src": "harvest/images/products-web/036.jpg",
+  "w": 1500,
+  "widths": [
+   240,
+   480,
+   960,
+   1500
+  ]
+ },
+ "037": {
+  "avg": "#939291",
+  "h": 666,
+  "mtime": 1790376616.814051,
+  "source": "originals",
+  "src": "harvest/images/originals/037.jpg",
+  "w": 2000,
+  "widths": [
+   240,
+   480,
+   960,
+   1600,
+   2000
+  ]
+ },
+ "038": {
+  "avg": "#869391",
+  "h": 500,
+  "mtime": 1790362696.5797992,
+  "source": "override",
+  "src": "harvest/images/site/Chinaman_27sHat.jpg",
+  "w": 1500,
+  "widths": [
+   240,
+   480,
+   960,
+   1500
+  ]
+ },
+ "043": {
+  "avg": "#738389",
+  "h": 500,
+  "mtime": 1790362773.3897727,
+  "source": "products-web",
+  "src": "harvest/images/products-web/043.jpg",
+  "w": 1500,
+  "widths": [
+   240,
+   480,
+   960,
+   1500
+  ]
+ },
+ "anuenue": {
+  "avg": "#b2bcb7",
+  "h": 1334,
+  "mtime": 1790376660.7209382,
+  "source": "originals",
+  "src": "harvest/images/originals/anuenue.jpg",
+  "w": 2000,
+  "widths": [
+   240,
+   480,
+   960,
+   1600,
+   2000
+  ]
+ },
+ "eleu": {
+  "avg": "#cbc0b0",
+  "h": 1334,
+  "mtime": 1790376611.344161,
+  "source": "originals",
+  "src": "harvest/images/originals/eleu.jpg",
+  "w": 2000,
+  "widths": [
+   240,
+   480,
+   960,
+   1600,
+   2000
+  ]
+ },
+ "frostedtidepool": {
+  "avg": "#5b5c5c",
+  "h": 1000,
+  "mtime": 1790362773.0920594,
+  "source": "products-web",
+  "src": "harvest/images/products-web/frostedtidepool.jpg",
+  "w": 800,
+  "widths": [
+   240,
+   480,
+   800
+  ]
+ },
+ "hanauma": {
+  "avg": "#3a504b",
+  "h": 2000,
+  "mtime": 1790376614.496032,
+  "source": "originals",
+  "src": "harvest/images/originals/hanauma.jpg",
+  "w": 1999,
+  "widths": [
+   240,
+   480,
+   960,
+   1600,
+   1999
+  ]
+ },
+ "hanohanohakipuu": {
+  "avg": "#807669",
+  "h": 1333,
+  "mtime": 1790376607.1091373,
+  "source": "originals",
+  "src": "harvest/images/originals/hanohanohakipuu.jpg",
+  "w": 2000,
+  "widths": [
+   240,
+   480,
+   960,
+   1600,
+   2000
+  ]
+ },
+ "hoihoi": {
+  "avg": "#958b80",
+  "h": 1333,
+  "mtime": 1790376610.395488,
+  "source": "originals",
+  "src": "harvest/images/originals/hoihoi.jpg",
+  "w": 2000,
+  "widths": [
+   240,
+   480,
+   960,
+   1600,
+   2000
+  ]
+ },
+ "homecoming": {
+  "avg": "#323a43",
+  "h": 667,
+  "mtime": 1790362773.189071,
+  "source": "products-web",
+  "src": "harvest/images/products-web/homecoming.jpg",
+  "w": 1000,
+  "widths": [
+   240,
+   480,
+   960
+  ]
+ },
+ "hookahi": {
+  "avg": "#6d6a63",
+  "h": 2000,
+  "mtime": 1790376610.6955593,
+  "source": "originals",
+  "src": "harvest/images/originals/hookahi.jpg",
+  "w": 1600,
+  "widths": [
+   240,
+   480,
+   960,
+   1600
+  ]
+ },
+ "jumanji": {
+  "avg": "#777d76",
+  "h": 1333,
+  "mtime": 1790376609.8545105,
+  "source": "originals",
+  "src": "harvest/images/originals/jumanji.jpg",
+  "w": 2000,
+  "widths": [
+   240,
+   480,
+   960,
+   1600,
+   2000
+  ]
+ },
+ "jurassicdawn": {
+  "avg": "#78786e",
+  "h": 2000,
+  "mtime": 1790376607.3387368,
+  "source": "originals",
+  "src": "harvest/images/originals/jurassicdawn.jpg",
+  "w": 1600,
+  "widths": [
+   240,
+   480,
+   960,
+   1600
+  ]
+ },
+ "kaaawasunrise": {
+  "avg": "#c2b5ce",
+  "h": 1333,
+  "mtime": 1790376606.3071113,
+  "source": "originals",
+  "src": "harvest/images/originals/kaaawasunrise.jpg",
+  "w": 2000,
+  "widths": [
+   240,
+   480,
+   960,
+   1600,
+   2000
+  ]
+ },
+ "kaaawavalley": {
+  "avg": "#8e9697",
+  "h": 666,
+  "mtime": 1790376615.7839792,
+  "source": "originals",
+  "src": "harvest/images/originals/kaaawavalley.jpg",
+  "w": 2000,
+  "widths": [
+   240,
+   480,
+   960,
+   1600,
+   2000
+  ]
+ },
+ "kahana": {
+  "avg": "#76765c",
+  "h": 2000,
+  "mtime": 1790376608.8235753,
+  "source": "originals",
+  "src": "harvest/images/originals/kahana.jpg",
+  "w": 1600,
+  "widths": [
+   240,
+   480,
+   960,
+   1600
+  ]
+ },
+ "kaimana": {
+  "avg": "#949fab",
+  "h": 666,
+  "mtime": 1790376616.559588,
+  "source": "originals",
+  "src": "harvest/images/originals/kaimana.jpg",
+  "w": 2000,
+  "widths": [
+   240,
+   480,
+   960,
+   1600,
+   2000
+  ]
+ },
+ "kaiwi": {
+  "avg": "#4f5b56",
+  "h": 2000,
+  "mtime": 1790376611.7530699,
+  "source": "originals",
+  "src": "harvest/images/originals/kaiwi.jpg",
+  "w": 1600,
+  "widths": [
+   240,
+   480,
+   960,
+   1600
+  ]
+ },
+ "kuamoo": {
+  "avg": "#8e8e80",
+  "h": 1333,
+  "mtime": 1790376608.1170974,
+  "source": "originals",
+  "src": "harvest/images/originals/kuamoo.jpg",
+  "w": 2000,
+  "widths": [
+   240,
+   480,
+   960,
+   1600,
+   2000
+  ]
+ },
+ "leahikahiko": {
+  "avg": "#867b6b",
+  "h": 1333,
+  "mtime": 1790376607.5773656,
+  "source": "originals",
+  "src": "harvest/images/originals/leahikahiko.jpg",
+  "w": 2000,
+  "widths": [
+   240,
+   480,
+   960,
+   1600,
+   2000
+  ]
+ },
+ "makapuubeach-h": {
+  "avg": "#a1b695",
+  "h": 1333,
+  "mtime": 1790376612.6809838,
+  "source": "originals",
+  "src": "harvest/images/originals/makapuubeach-h.jpg",
+  "w": 2000,
+  "widths": [
+   240,
+   480,
+   960,
+   1600,
+   2000
+  ]
+ },
+ "makapuubeach-v": {
+  "avg": "#8c9e5e",
+  "h": 2000,
+  "mtime": 1790376613.2334628,
+  "source": "originals",
+  "src": "harvest/images/originals/makapuubeach-v.jpg",
+  "w": 1600,
+  "widths": [
+   240,
+   480,
+   960,
+   1600
+  ]
+ },
+ "malie": {
+  "avg": "#717a81",
+  "h": 667,
+  "mtime": 1790362772.9805667,
+  "source": "products-web",
+  "src": "harvest/images/products-web/malie.jpg",
+  "w": 1000,
+  "widths": [
+   240,
+   480,
+   960
+  ]
+ },
+ "mokoliireflection": {
+  "avg": "#baa89b",
+  "h": 2000,
+  "mtime": 1790376606.7892897,
+  "source": "originals",
+  "src": "harvest/images/originals/mokoliireflection.jpg",
+  "w": 1599,
+  "widths": [
+   240,
+   480,
+   960,
+   1599
+  ]
+ },
+ "mokulele": {
+  "avg": "#81745d",
+  "h": 2000,
+  "mtime": 1790376607.8052962,
+  "source": "originals",
+  "src": "harvest/images/originals/mokulele.jpg",
+  "w": 1600,
+  "widths": [
+   240,
+   480,
+   960,
+   1600
+  ]
+ },
+ "mokulua": {
+  "avg": "#aba59b",
+  "h": 667,
+  "mtime": 1790362773.0783293,
+  "source": "products-web",
+  "src": "harvest/images/products-web/mokulua.jpg",
+  "w": 1000,
+  "widths": [
+   240,
+   480,
+   960
+  ]
+ },
+ "naniwaikiki": {
+  "avg": "#8d9793",
+  "h": 666,
+  "mtime": 1790376615.1586275,
+  "source": "originals",
+  "src": "harvest/images/originals/naniwaikiki.jpg",
+  "w": 2000,
+  "widths": [
+   240,
+   480,
+   960,
+   1600,
+   2000
+  ]
+ },
+ "puao": {
+  "avg": "#3f3a16",
+  "h": 2000,
+  "mtime": 1790376612.516545,
+  "source": "originals",
+  "src": "harvest/images/originals/puao.jpg",
+  "w": 1600,
+  "widths": [
+   240,
+   480,
+   960,
+   1600
+  ]
+ },
+ "shorelinecascade": {
+  "avg": "#837868",
+  "h": 2000,
+  "mtime": 1790376606.5734594,
+  "source": "originals",
+  "src": "harvest/images/originals/shorelinecascade.jpg",
+  "w": 1600,
+  "widths": [
+   240,
+   480,
+   960,
+   1600
+  ]
+ },
+ "timespan": {
+  "avg": "#948e7f",
+  "h": 1333,
+  "mtime": 1790376609.2129216,
+  "source": "originals",
+  "src": "harvest/images/originals/timespan.jpg",
+  "w": 2000,
+  "widths": [
+   240,
+   480,
+   960,
+   1600,
+   2000
+  ]
+ },
+ "waimanalo": {
+  "avg": "#99988e",
+  "h": 2000,
+  "mtime": 1790376609.4797826,
+  "source": "originals",
+  "src": "harvest/images/originals/waimanalo.jpg",
+  "w": 1600,
+  "widths": [
+   240,
+   480,
+   960,
+   1600
+  ]
+ }
+}

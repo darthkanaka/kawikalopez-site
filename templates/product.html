@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% from "partials/card.html" import card with context %}
+{% block main %}
+{% include "partials/crumbs.html" %}
+<article class="product product--{{ p.orientation }}">
+  <div class="wrap product-grid">
+    <figure class="product-media">
+      {{ picture(p, preload[2], eager=True, cls="product-img") }}
+    </figure>
+
+    <div class="product-info">
+      <div class="info-head">
+        <p class="eyebrow">{{ p.orientation_label }} print{% if p.location %} · {{ p.location.short }}{% elif p.island %} · {{ p.island }}{% endif %}</p>
+        <h1>{{ p.title }}</h1>
+        {% if p.subtitle %}<p class="subtitle">{{ p.subtitle }}</p>{% endif %}
+        <p class="from">From {{ money(p.priceFrom) }}, canvas or metal</p>
+        <ul class="facts">
+          <li>Printed to order by {{ site.printer.name }} in Kapolei, usually in {{ site.printer.turnaround }}</li>
+          <li>Free pickup on Oʻahu, or shipped anywhere in the US</li>
+          {% if room %}<li><a href="#room">See it to scale on a wall</a></li>{% endif %}
+        </ul>
+      </div>
+
+      <form class="picker" data-picker="{{ picker | json }}" onsubmit="return false">
+        <fieldset class="opt">
+          <legend>Size, in inches</legend>
+          <div class="opt-row">
+            {% for s in p.sizes %}
+            <label class="pill"><input type="radio" name="size" value="{{ s.label }}"{% if s.label == default_variant.size %} checked{% endif %}><span>{{ s.label }}</span></label>
+            {% endfor %}
+          </div>
+        </fieldset>
+        <fieldset class="opt">
+          <legend>Material</legend>
+          <div class="opt-row">
+            {% for m in ["metal", "canvas"] %}
+            <label class="pill"><input type="radio" name="material" value="{{ m }}"{% if m == default_variant.material %} checked{% endif %}><span>{{ m | capitalize }}</span></label>
+            {% endfor %}
+          </div>
+        </fieldset>
+        <p class="price"><span data-price>{{ money(default_variant.price) }}</span> <span class="price-note" data-ship-note>{% if not default_variant.ships %}Pickup on Oʻahu only{% endif %}</span></p>
+        {% if default_variant.link %}
+        <a class="btn btn-buy" data-buy href="{{ default_variant.link }}">Buy this print</a>
+        {% else %}
+        <a class="btn btn-buy" data-buy href="mailto:{{ site.contact.email }}?subject={{ ('Print order: ' ~ p.title ~ ', ' ~ default_variant.size ~ ' in ' ~ default_variant.material) | urlencode }}">Order this print</a>
+        <p class="fine">Online checkout is coming soon. Until then, this opens an email with your print, size and material filled in, and Kawika will reply to confirm the order.</p>
+        {% endif %}
+      </form>
+    </div>
+  </div>
+
+  {% if room %}
+  <section id="room" class="section wrap room-section" aria-labelledby="room-h">
+    <div class="section-head">
+      <h2 id="room-h">See it on a wall</h2>
+      <p class="room-caption" data-room-caption>{{ p.title }} at {{ room.size.label }} in, shown to scale above a sofa.</p>
+    </div>
+    <div class="room is-{{ default_variant.material }}" data-room="{{ room.data | json }}">
+      {{ pic_site(room.scene.image.base, room.scene.image.widths, room.scene.image.width, room.scene.image.height, "(min-width: 1328px) 1280px, calc(100vw - 32px)", room.scene.image.alt) }}
+      <div class="room-print" data-room-print style="left:{{ room.rect.left }}%;top:{{ room.rect.top }}%;width:{{ room.rect.width }}%;height:{{ room.rect.height }}%">
+        {{ picture(p, "(min-width: 1328px) 700px, 60vw", alt="") }}
+      </div>
+    </div>
+    <p class="fine">Pick a size or material above and the room updates. The wall is measured from a 72 inch print, so the sizes are true to each other.</p>
+  </section>
+  {% endif %}
+
+  <section class="section wrap prose-grid" aria-labelledby="story-h">
+    <h2 id="story-h">About this photograph</h2>
+    <div class="prose">
+      {% for para in p.paragraphs %}<p>{{ para }}</p>{% endfor %}
+      {% if not p.paragraphs %}<p>{{ p.alt }}.</p>{% endif %}
+      {% if p.location %}<p class="place">Photographed at {{ p.location.title }}, {{ p.location.island }}.</p>{% endif %}
+    </div>
+  </section>
+
+  <section class="section wrap" aria-labelledby="sizes-h">
+    <h2 id="sizes-h">Sizes and prices</h2>
+    <div class="table-wrap">
+      <table class="sizes">
+        <thead><tr><th scope="col">Size (inches)</th><th scope="col">Canvas</th><th scope="col">Metal</th></tr></thead>
+        <tbody>
+          {% for row in table %}
+          <tr>
+            <th scope="row">{{ row.size.label }}{% if not (row.metal or row.canvas).ships %} <span class="tag">Pickup only</span>{% endif %}</th>
+            {% for m in ["canvas", "metal"] %}
+            <td>{% if row[m] %}{% if row[m].link %}<a href="{{ row[m].link }}">{{ money(row[m].price) }}</a>{% else %}{{ money(row[m].price) }}{% endif %}{% endif %}</td>
+            {% endfor %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="cols2 materials">
+      <div>
+        <h3>Canvas</h3>
+        <p>Printed with archival pigment inks on museum-quality canvas, then gallery-wrapped so it hangs clean without a frame. A soft texture and no glare, good for bright rooms.</p>
+      </div>
+      <div>
+        <h3>Metal</h3>
+        <p>Dye-sublimated onto ChromaLuxe aluminum made in the USA. Colors run deep and detail stays sharp, and the surface holds up for years.</p>
+      </div>
+    </div>
+    <p class="fine">Pictures Plus ships prints up to 60 inches on the long side. Larger sizes are pickup on Oʻahu only; get in touch and we'll quote freight.</p>
+  </section>
+
+  {% if related %}
+  <section class="section wrap" aria-labelledby="rel-h">
+    <div class="section-head">
+      <h2 id="rel-h">{% if p.location and related[0].location and related[0].location.slug == p.location.slug %}More from {{ p.location.short }}{% else %}More prints{% endif %}</h2>
+      <a class="more" href="{{ url('store/') }}">All prints</a>
+    </div>
+    <div class="jgrid jgrid-small">
+      {% for q in related %}{{ card(q, 220) }}{% endfor %}
+    </div>
+  </section>
+  {% endif %}
+</article>
+{% endblock %}

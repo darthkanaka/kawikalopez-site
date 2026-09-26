@@ -1,0 +1,14 @@
+{% if crumbs %}
+<nav class="crumbs wrap" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="{{ url('') }}">Home</a></li>
+    {% for name, cpath in crumbs %}
+    {% if loop.last %}
+    <li><span aria-current="page">{{ name }}</span></li>
+    {% else %}
+    <li><a href="{{ url(cpath) }}">{{ name }}</a></li>
+    {% endif %}
+    {% endfor %}
+  </ol>
+</nav>
+{% endif %}

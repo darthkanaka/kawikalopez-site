@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title }}</title>
+<meta name="description" content="{{ description }}">
+<link rel="canonical" href="{{ canonical }}">
+{% if noindex %}
+<!-- TODO-LAUNCH: remove this line at cutover --> <meta name="robots" content="noindex, nofollow">
+{% endif %}
+<meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:type" content="{{ 'product' if page_type == 'product' else 'website' }}">
+<meta property="og:title" content="{{ og_title | default(title) }}">
+<meta property="og:description" content="{{ description }}">
+<meta property="og:url" content="{{ canonical }}">
+<meta property="og:image" content="{{ og_image | default(base ~ 'assets/img/og/naniwaikiki.jpg') }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f4f2ed">
+<link rel="icon" href="{{ root }}assets/img/site/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="{{ root }}assets/img/site/favicon-180.png">
+<link rel="preload" href="{{ root }}assets/fonts/instrument-serif-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ root }}assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+{% if preload %}{{ preload_img(preload) }}
+{% endif %}
+<link rel="stylesheet" href="{{ asset('assets/css/site.css') }}">
+<script>document.documentElement.className += " js";</script>
+<script type="application/ld+json">{{ jsonld }}</script>
+{% if production and site.ga4 %}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.ga4 }}"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","{{ site.ga4 }}");</script>
+{% endif %}
+</head>
+<body class="t-{{ page_type }}">
+<a class="skip" href="#main">Skip to content</a>
+{% include "partials/header.html" %}
+<main id="main">
+{% block main %}{% endblock %}
+</main>
+{% include "partials/footer.html" %}
+<script src="{{ asset('assets/js/site.js') }}" defer></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

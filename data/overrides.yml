@@ -1,0 +1,358 @@
+# Hand edits on top of data/products.json, keyed by urlId. Every key is optional.
+#
+#   title          display name (h1, cards, schema)
+#   subtitle       short searchable phrase shown under the title and used in the <title> tag
+#   alt            describes the photograph: place, light, what is in the frame
+#   location       slug in data/locations.yml; links the print to its place page
+#   island         shown in specs and schema
+#   seo_title      replaces the generated <title> (keep it near 60 characters)
+#   seo_description replaces the generated meta description (keep it under 155)
+#   story          extra markdown shown after the description
+#   fixes          [[wrong, right], ...] spelling fixes applied to the Squarespace description.
+#                  Kawika's words are kept; only typos are corrected. The build warns if a
+#                  "wrong" string is no longer found, so fixes never silently rot.
+#   sort           lower comes first in grids (default 100)
+#   featured       true shows the print on the home page
+#   status         removed (dropped everywhere) or pending (kept out until its image exists)
+#   draft          true renders the page with noindex and keeps it out of grids and the sitemap
+#   image          source image path, relative to the repo, when it is not harvest/images/originals/<urlId>.jpg
+#   orientation    only for prints that did not come from Squarespace
+#
+# Names for 036, 037, 038, 043, the removal of 041 and the new Olomana: Kawika, 2026-09-25.
+
+"018":
+  subtitle: Koʻolau Valley Aerial
+  alt: Aerial view down a deep green valley in the Koʻolau Mountains, its sheer walls carved by rain into folds and ridges
+  location: koolau
+  island: Oʻahu
+  fixes:
+    - ["Titled ʻĀhina", "Titled ʻĀlina"]
+
+"032":
+  subtitle: Koko Head Crater Aerial
+  alt: Aerial view of the ridged slope of Koko Head crater in low gold light, eroded lines running across it like a tattoo
+  location: kaiwi-coast
+  island: Oʻahu
+  fixes:
+    - ["int he landscape", "in the landscape"]
+    - ["Kokohead Crater", "Koko Head Crater"]
+
+"033":
+  subtitle: Makapuʻu Lighthouse Sunrise
+  alt: Aerial sunrise view of the Makapuʻu cliffs and lighthouse, one side lit gold and the other in shadow above deep blue water
+  location: makapuu
+  island: Oʻahu
+  fixes:
+    - ["cliffs of Makapuʻu. I noiced", "cliffs of Makapuʻu, I noticed"]
+
+"034":
+  subtitle: Black Sand Wave Patterns
+  alt: Black sand beach at sunset, fine lines drawn in the wet sand by a receding wave under a pastel sky
+  fixes:
+    - ["The significants of this image is such that", "The significance of this image is"]
+    - ["absolute beautiful", "absolutely beautiful"]
+    - ["tried some different", "tried something different"]
+
+"035":
+  subtitle: Palm Trees on an Oʻahu Beach
+  alt: Aerial view of three coconut palms casting long shadows across a sandy beach beside turquoise water on the east side of Oʻahu
+  island: Oʻahu
+
+"036":
+  title: Maluna nā ao
+  subtitle: A Ridge Above the Clouds
+  alt: A forested ridge rising out of a sea of cloud under a clear blue sky
+
+"037":
+  title: Wanaka
+  subtitle: Roys Peak, New Zealand
+  alt: Roys Peak at sunrise above Lake Wānaka, New Zealand, with snowcapped mountains and islands in the lake beyond
+  island: ""
+
+"038":
+  title: Mokoliʻi Pano
+  subtitle: Mokoliʻi Aerial Panorama
+  alt: Aerial panorama of Mokoliʻi islet at sunrise with the Kualoa ridge and Kāneʻohe Bay behind it
+  location: mokolii
+  island: Oʻahu
+  image: harvest/images/site/Chinaman_27sHat.jpg
+
+"041":
+  status: removed
+
+"043":
+  title: Mauka i Makai
+  subtitle: Pālolo to Waikīkī Panorama
+  alt: View from a ridge above Pālolo Valley across Honolulu to Diamond Head and the Waikīkī skyline at golden hour
+  location: diamond-head
+  island: Oʻahu
+
+anuenue:
+  subtitle: North Shore Rainbow
+  alt: A full rainbow arching over the North Shore surf, a moss-covered rock on the sand in front
+  location: north-shore
+  island: Oʻahu
+  fixes:
+    - ["In a stoke of luck", "In a stroke of luck"]
+    - ["As the sun rise behind me", "As the sun rose behind me"]
+    - ["stated to fall", "started to fall"]
+    - ["remind that we", "remind us that we"]
+
+eleu:
+  subtitle: Sandy Beach Sunrise
+  alt: A breaking wave backlit by the rising sun at Sandy Beach, Oʻahu
+  location: kaiwi-coast
+  island: Oʻahu
+  fixes:
+    - ["fervor for new day", "fervor for the new day"]
+    - ["Sandy beach on the South Shore", "Sandy Beach on the South Shore"]
+    - ["is known for is powerful", "is known for its powerful"]
+
+frostedtidepool:
+  subtitle: Kaiwi Coast Tide Pool
+  alt: Long exposure of a tide pool on the Kaiwi coast, smooth frosted water between dark lava rocks at sunrise
+  location: kaiwi-coast
+  island: Oʻahu
+  fixes:
+    - ["one of most scenic", "one of the most scenic"]
+
+hanauma:
+  subtitle: Hanauma Bay Aerial
+  alt: Aerial view straight down into Hanauma Bay at sunrise, the reef showing through clear blue water inside the crater
+  location: kaiwi-coast
+  island: Oʻahu
+  fixes:
+    - ["Hanauma bay is", "Hanauma Bay is"]
+
+hanohanohakipuu:
+  subtitle: Kāneʻohe Bay Sunrise
+  alt: Sunrise over Kāneʻohe Bay from the ridge above Hakipuʻu, with Mokoliʻi islet and the fishpond below
+  location: kaaawa-valley
+  island: Oʻahu
+  sort: 20
+  fixes:
+    - ["panoramic view if Hakipuʻu", "panoramic view of Hakipuʻu"]
+    - ["is mean to evoke", "is meant to evoke"]
+    - ["the film Battleships", "the film Battleship"]
+
+hoihoi:
+  subtitle: South Point, Hawaiʻi Island
+  alt: Long exposure of waves washing over lava rock at South Point on Hawaiʻi Island, the sun low over the ocean
+  location: south-point
+  island: Hawaiʻi Island
+  fixes:
+    - ["the states most dramatic", "the state's most dramatic"]
+    - ["waves are caption seemingly", "waves are captured seemingly"]
+    - ["the receding back", "then receding back"]
+
+homecoming:
+  subtitle: Haleakalā Sunrise, Maui
+  alt: The first light of sunrise breaking over a sea of clouds from the summit of Haleakalā, Maui
+  location: haleakala
+  island: Maui
+
+hookahi:
+  subtitle: Lone Islet at Sunrise
+  alt: A lone islet in a calm sea under dramatic orange sunrise clouds
+  island: Oʻahu
+  fixes:
+    - ["clouds int he sky", "clouds in the sky"]
+    - ["This images was made", "This image was made"]
+
+jumanji:
+  subtitle: Kaʻaʻawa Valley Aerial
+  alt: Aerial view of the Kaʻaʻawa Valley ridge at sunrise, green cliffs dropping toward the coastal highway and turquoise water
+  location: kaaawa-valley
+  island: Oʻahu
+  sort: 30
+
+jurassicdawn:
+  subtitle: Kaʻaʻawa Valley at Dawn
+  alt: Aerial view along the Kaʻaʻawa coastline toward the ridge of Kaʻaʻawa Valley at dawn
+  location: kaaawa-valley
+  island: Oʻahu
+  sort: 30
+
+kaaawasunrise:
+  subtitle: Kaʻaʻawa Ridge Reflection
+  alt: The Kaʻaʻawa ridge glowing pink at sunrise, mirrored in calm water seen from Waikāne
+  location: kaaawa-valley
+  island: Oʻahu
+  featured: true
+  sort: 10
+  fixes:
+    - ["from Waikane looking", "from Waikāne looking"]
+    - ["Kaʻaʻawa valley or", "Kaʻaʻawa Valley or"]
+
+kaaawavalley:
+  subtitle: Kaʻaʻawa Valley Panorama
+  alt: Aerial panorama of Kaʻaʻawa Valley and the Kualoa ridges, with Mokoliʻi offshore and clouds over the mountains
+  location: kaaawa-valley
+  island: Oʻahu
+  featured: true
+  sort: 3
+  fixes:
+    - ["shear cliffs", "sheer cliffs"]
+
+kahana:
+  subtitle: Kahana Bay from the Ridge
+  alt: View from a ridge above Kahana Bay at sunrise, the valley and beach curving below
+  location: koolau
+  island: Oʻahu
+  fixes:
+    - ["the East shore of O'ahu", "the East shore of Oʻahu"]
+    - ["ahapua'a", "ahupuaʻa"]
+
+kaimana:
+  subtitle: Diamond Head Sunrise Panorama
+  alt: Aerial panorama of Diamond Head and Waikīkī at sunrise, gold light on the crater and turquoise reef below
+  location: diamond-head
+  island: Oʻahu
+  featured: true
+  sort: 2
+  fixes:
+    - ["splendor of Diamond head", "splendor of Diamond Head"]
+
+kaiwi:
+  subtitle: Kaiwi Coast Highway Aerial
+  alt: Straight-down aerial of Kalanianaʻole Highway winding along the rugged Kaiwi coast beside deep blue ocean
+  location: kaiwi-coast
+  island: Oʻahu
+  fixes:
+    - ["created from sticking several", "created from stitching several"]
+    - ["A true Birds Eye view", "A true bird's-eye view"]
+    - ["rigged and dynamic", "rugged and dynamic"]
+
+kuamoo:
+  title: Kuamoʻo
+  subtitle: Kualoa Ridge at Sunrise
+  alt: The Kaʻaʻawa ridge at sunrise, framed by ironwood branches along the shore
+  location: kaaawa-valley
+  island: Oʻahu
+  fixes:
+    - ["ridge line of Ka'a'awa Valley", "ridge line of Kaʻaʻawa Valley"]
+    - ["giant Mo'o", "giant moʻo"]
+    - ["as is final resting place", "as its final resting place"]
+
+leahikahiko:
+  subtitle: Diamond Head Crater Aerial
+  alt: Aerial view of Diamond Head crater at sunrise with Waikīkī and Honolulu beyond
+  location: diamond-head
+  island: Oʻahu
+  fixes:
+    - ["Lē'ahi is an imposing", "Lēʻahi is an imposing"]
+
+makapuubeach-h:
+  title: Makapuʻu Beach
+  subtitle: Wide Aerial
+  alt: Straight-down aerial of Makapuʻu Beach, white sand and green dune plants between turquoise surf
+  location: makapuu
+  island: Oʻahu
+  fixes:
+    - ["along with a Birds Eye view", "along with a bird's-eye view"]
+
+makapuubeach-v:
+  title: Makapuʻu Beach
+  subtitle: Tall Aerial
+  alt: Straight-down aerial of Makapuʻu Beach, turquoise water above white sand and green naupaka
+  location: makapuu
+  island: Oʻahu
+  featured: true
+  sort: 12
+  fixes:
+    - ["along with a Birds Eye view", "along with a bird's-eye view"]
+
+malie:
+  subtitle: Papailoa Beach, North Shore
+  alt: Silky water flowing over dark reef at Papailoa Beach on the North Shore at sunset
+  location: north-shore
+  island: Oʻahu
+  featured: true
+  sort: 5
+  fixes:
+    - ["one of my favorite image", "one of my favorite images"]
+
+mokoliireflection:
+  subtitle: Chinaman's Hat at Low Tide
+  alt: Mokoliʻi islet at sunrise, reflected in still water over the low tide reef
+  location: mokolii
+  island: Oʻahu
+  fixes:
+    - ["on the Windward cost", "on the Windward coast"]
+
+mokulele:
+  subtitle: Kualoa Ridge from Mokoliʻi
+  alt: The Kualoa ridge at sunrise seen from the rocks of Mokoliʻi, a narrow channel of clear water in front
+  location: mokolii
+  island: Oʻahu
+  fixes:
+    - ["off the Ka'a'awa coast", "off the Kaʻaʻawa coast"]
+    - ["you would know that the rocky", "you wouldn't know that the rocky"]
+    - ["ridge line of Ka'a'awa valley", "ridge line of Kaʻaʻawa Valley"]
+
+mokulua:
+  subtitle: Lanikai in Black and White
+  alt: Black and white aerial of the two Mokulua islets off Lanikai, reef lines in the sand leading out to them
+  location: kailua-waimanalo
+  island: Oʻahu
+  featured: true
+  sort: 14
+  fixes:
+    - ["the Mokulua of the shore of Kailua", "the Mokulua off the shore of Kailua"]
+    - ["leading they eye", "leading the eye"]
+    - ["youʻre able to have a greater appreciate", "you're able to have a greater appreciation"]
+
+naniwaikiki:
+  subtitle: Waikīkī Sunset Panorama
+  alt: Aerial panorama of Waikīkī and Diamond Head at sunset, pink clouds over the city and turquoise reef below
+  location: diamond-head
+  island: Oʻahu
+  featured: true
+  sort: 1
+
+puao:
+  subtitle: Koʻolau Mountains Aerial
+  alt: Aerial view of a triangular face of the Koʻolau Mountains, lush ridges lit from one side
+  location: koolau
+  island: Oʻahu
+  featured: true
+  sort: 16
+  fixes:
+    - ["Using a drone and sticking several", "Using a drone and stitching several"]
+    - ["I created this image a specific section", "I created this image of a specific section"]
+
+shorelinecascade:
+  subtitle: North Shore Reef at Sunset
+  alt: Water pouring off a moss-covered reef at low tide on the North Shore at sunset
+  location: north-shore
+  island: Oʻahu
+  fixes:
+    - ["This images was created", "This image was created"]
+    - ["displays the beauty shoreline", "displays the beautiful shoreline"]
+
+timespan:
+  subtitle: Makapuʻu Long Exposure
+  alt: Two minute exposure of Makapuʻu Beach and the lighthouse point at sunrise, clouds streaked across the sky
+  location: makapuu
+  island: Oʻahu
+  fixes:
+    - ["vantage point to photography the coastline", "vantage point to photograph the coastline"]
+    - ["leading out the lighthouse", "leading out to the lighthouse"]
+
+waimanalo:
+  title: Waimānalo
+  subtitle: Waimānalo Beach Aerial
+  alt: Aerial view down Waimānalo Beach toward the Koʻolau cliffs, scalloped patterns in the sand
+  location: kailua-waimanalo
+  island: Oʻahu
+  fixes:
+    - ["created by sticking 4 images", "created by stitching 4 images"]
+    - ["Not his morning. the over night waves", "On this morning, the overnight waves"]
+    - ["could this pattern be full appreciated", "could this pattern be fully appreciated"]
+    - ["Waimanalo is known for is long", "Waimānalo is known for its long"]
+
+olomana:
+  title: Olomana
+  status: pending
+  location: kailua-waimanalo
+  island: Oʻahu

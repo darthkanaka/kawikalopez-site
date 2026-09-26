@@ -1,0 +1,19 @@
+# Old Squarespace paths that get a small redirect page (meta refresh plus canonical, noindex).
+# GitHub Pages cannot send a 301, so this is the static equivalent. A target that is a path
+# on this site is only rendered once that page exists; the build skips and reports the rest.
+# The five old camera gear posts and the 40 tag pages are not listed: they fall to the 404 page.
+
+- {from: home, to: ""}
+- {from: images, to: store/}
+- {from: portfolio, to: store/}
+- {from: portfolio-old, to: store/}
+- {from: adventure, to: store/}
+- {from: july4landing, to: store/}
+- {from: july-4th-25-off, to: store/}
+- {from: wallpaper-promo, to: store/}
+- {from: wallpaper-tcs, to: store/}
+- {from: 5tips, to: blog/5-tips-for-choosing-wall-art}
+- {from: enter5tips, to: blog/5-tips-for-choosing-wall-art}
+- {from: blog, to: blog/}
+- {from: architectureandrealestate, to: "https://www.elevatemediahi.com/"}
+- {from: engagementsandweddings, to: "https://www.elevatemediahi.com/"}
