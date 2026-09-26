@@ -46,7 +46,7 @@ ga4: ""
 # Flags that change links while pages are still being built.
 features:
   visualizer_page: false      # /see-it-in-your-space exists
-  checkout: false             # Stripe payment links are live
+  checkout: true              # payment links in data/payment-links.json (test mode on staging)
   blog: false
   places: false
 

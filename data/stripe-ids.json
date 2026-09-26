@@ -1,0 +1,1379 @@
+{
+ "test": {
+  "links": {
+   "018_16x20_canvas": {
+    "id": "plink_1UK1HdISveyotPUly3z5UPMr",
+    "sig": "price_1UK1HcISveyotPUlBCxrpGSi|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "018_16x20_metal": {
+    "id": "plink_1UK1HeISveyotPUlOVZRGdZy",
+    "sig": "price_1UK1HdISveyotPUluctYh4yb|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "018_20x25_canvas": {
+    "id": "plink_1UK1HfISveyotPUlczmAmA5q",
+    "sig": "price_1UK1HeISveyotPUldj8vKEL6|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "018_20x25_metal": {
+    "id": "plink_1UK1HfISveyotPUlRNICEHA7",
+    "sig": "price_1UK1HfISveyotPUlEgULrdJF|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "018_24x30_canvas": {
+    "id": "plink_1UK1HgISveyotPUl1sM2tiDW",
+    "sig": "price_1UK1HgISveyotPUlKlkIlaEH|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "018_24x30_metal": {
+    "id": "plink_1UK1HhISveyotPUlN70wT3q6",
+    "sig": "price_1UK1HhISveyotPUlsLglT9eM|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "032_16x20_canvas": {
+    "id": "plink_1UK1FqISveyotPUl5bMafIJb",
+    "sig": "price_1UK1FpISveyotPUl0ROi5Jnp|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "032_16x20_metal": {
+    "id": "plink_1UK1FrISveyotPUlpjufLPwH",
+    "sig": "price_1UK1FqISveyotPUlLaTGsGzf|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "032_20x25_canvas": {
+    "id": "plink_1UK1FsISveyotPUlr0w6prg7",
+    "sig": "price_1UK1FrISveyotPUlwHtVjnkf|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "032_20x25_metal": {
+    "id": "plink_1UK1FtISveyotPUlMArvgDJ4",
+    "sig": "price_1UK1FsISveyotPUlanGwOFNQ|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "032_24x30_canvas": {
+    "id": "plink_1UK1FtISveyotPUly1cEgR5Y",
+    "sig": "price_1UK1FtISveyotPUlYA0qbR3h|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "032_24x30_metal": {
+    "id": "plink_1UK1FuISveyotPUl0EU6EWle",
+    "sig": "price_1UK1FuISveyotPUl0xikME9g|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "033_18x12_canvas": {
+    "id": "plink_1UK1EnISveyotPUljNIsen0b",
+    "sig": "price_1UK1EmISveyotPUlwqcANDAw|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "033_18x12_metal": {
+    "id": "plink_1UK1EoISveyotPUlbDeLNHCB",
+    "sig": "price_1UK1EnISveyotPUlHWG72nuz|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "033_24x16_canvas": {
+    "id": "plink_1UK1EpISveyotPUlJ1QrurIT",
+    "sig": "price_1UK1EoISveyotPUlF3HcNCih|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "033_24x16_metal": {
+    "id": "plink_1UK1EqISveyotPUliG95iIeL",
+    "sig": "price_1UK1EpISveyotPUlhuoaAuuY|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "033_30x20_canvas": {
+    "id": "plink_1UK1ErISveyotPUlzkODww8Y",
+    "sig": "price_1UK1EqISveyotPUlCY3bAx5s|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "033_30x20_metal": {
+    "id": "plink_1UK1ErISveyotPUlhCBArF0k",
+    "sig": "price_1UK1ErISveyotPUlL5oxnJj7|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "033_36x24_canvas": {
+    "id": "plink_1UK1EsISveyotPUlIq03M9P9",
+    "sig": "price_1UK1EsISveyotPUlYQjVr854|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "033_36x24_metal": {
+    "id": "plink_1UK1EtISveyotPUltKHYAYA5",
+    "sig": "price_1UK1EtISveyotPUlAzKNFMVq|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "034_16x20_canvas": {
+    "id": "plink_1UK1FXISveyotPUl2bfyn56r",
+    "sig": "price_1UK1FWISveyotPUlVmQfJCvr|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "034_16x20_metal": {
+    "id": "plink_1UK1FYISveyotPUlDEVbLQE1",
+    "sig": "price_1UK1FXISveyotPUlAclPegIt|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "034_20x25_canvas": {
+    "id": "plink_1UK1FZISveyotPUlPxRwgqRo",
+    "sig": "price_1UK1FYISveyotPUlYCxTKQCj|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "034_20x25_metal": {
+    "id": "plink_1UK1FaISveyotPUlVhNakkxn",
+    "sig": "price_1UK1FZISveyotPUlzlX0Xuqi|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "034_24x30_canvas": {
+    "id": "plink_1UK1FaISveyotPUlsRUel4ot",
+    "sig": "price_1UK1FaISveyotPUlvbm8LQaN|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "034_24x30_metal": {
+    "id": "plink_1UK1FbISveyotPUlkEo24W1r",
+    "sig": "price_1UK1FbISveyotPUl1GNG7W8H|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "035_18x12_canvas": {
+    "id": "plink_1UK1GrISveyotPUlV3kWw0Lv",
+    "sig": "price_1UK1GrISveyotPUlNysJchwX|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "035_18x12_metal": {
+    "id": "plink_1UK1GsISveyotPUlLUA971xt",
+    "sig": "price_1UK1GsISveyotPUl8S6SRzXc|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "035_24x16_canvas": {
+    "id": "plink_1UK1GtISveyotPUll7kEbmWp",
+    "sig": "price_1UK1GsISveyotPUlm72J2jcx|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "035_24x16_metal": {
+    "id": "plink_1UK1GuISveyotPUlz3s3nbzU",
+    "sig": "price_1UK1GtISveyotPUlsSkvi9vN|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "035_30x20_canvas": {
+    "id": "plink_1UK1GvISveyotPUlAMylrX5B",
+    "sig": "price_1UK1GuISveyotPUlQNp55FEl|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "035_30x20_metal": {
+    "id": "plink_1UK1GwISveyotPUl74nkiHCC",
+    "sig": "price_1UK1GvISveyotPUlR6QK6Qkf|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "035_36x24_canvas": {
+    "id": "plink_1UK1GxISveyotPUlGMxACszb",
+    "sig": "price_1UK1GwISveyotPUlHpbSmmu3|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "035_36x24_metal": {
+    "id": "plink_1UK1GyISveyotPUlZAKFojsm",
+    "sig": "price_1UK1GxISveyotPUlxVinQLSe|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "036_30x10_canvas": {
+    "id": "plink_1UK1GBISveyotPUlSS7C9U44",
+    "sig": "price_1UK1GAISveyotPUlDnnvRbBU|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "036_30x10_metal": {
+    "id": "plink_1UK1GCISveyotPUlzi48VHQL",
+    "sig": "price_1UK1GBISveyotPUljxOkY7lq|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "036_48x16_canvas": {
+    "id": "plink_1UK1GDISveyotPUlVTtlpSY4",
+    "sig": "price_1UK1GCISveyotPUlBJOc2FLm|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DRISveyotPUlpUmvJiTQ,shr_1UK1DSISveyotPUlmSKXVFAX,shr_1UK1DSISveyotPUlJq5ahVJx,shr_1UK1DSISveyotPUlbwQdEdQU|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "036_48x16_metal": {
+    "id": "plink_1UK1GDISveyotPUlqirdZXd5",
+    "sig": "price_1UK1GDISveyotPUl0YgWIGzu|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DRISveyotPUlpUmvJiTQ,shr_1UK1DSISveyotPUlmSKXVFAX,shr_1UK1DSISveyotPUlJq5ahVJx,shr_1UK1DSISveyotPUlbwQdEdQU|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "036_72x24_canvas": {
+    "id": "plink_1UK1GEISveyotPUlPr1yr710",
+    "sig": "price_1UK1GEISveyotPUl7ikHrSlZ|shr_1UK1DPISveyotPUlodhUwx9E|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "036_72x24_metal": {
+    "id": "plink_1UK1GFISveyotPUlaXnd5gcl",
+    "sig": "price_1UK1GFISveyotPUlbAmRUfbI|shr_1UK1DPISveyotPUlodhUwx9E|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "037_30x10_canvas": {
+    "id": "plink_1UK1HIISveyotPUlbqVBim0L",
+    "sig": "price_1UK1HHISveyotPUll1jkZWwY|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "037_30x10_metal": {
+    "id": "plink_1UK1HJISveyotPUlbeZYYbJ4",
+    "sig": "price_1UK1HIISveyotPUlgQtDax1X|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "037_48x16_canvas": {
+    "id": "plink_1UK1HKISveyotPUlSAVJygRr",
+    "sig": "price_1UK1HJISveyotPUlMMKNx18z|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DRISveyotPUlpUmvJiTQ,shr_1UK1DSISveyotPUlmSKXVFAX,shr_1UK1DSISveyotPUlJq5ahVJx,shr_1UK1DSISveyotPUlbwQdEdQU|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "037_48x16_metal": {
+    "id": "plink_1UK1HKISveyotPUlTglLNmxd",
+    "sig": "price_1UK1HKISveyotPUlZohnj3HC|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DRISveyotPUlpUmvJiTQ,shr_1UK1DSISveyotPUlmSKXVFAX,shr_1UK1DSISveyotPUlJq5ahVJx,shr_1UK1DSISveyotPUlbwQdEdQU|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "037_72x24_canvas": {
+    "id": "plink_1UK1HLISveyotPUlWVbIN5PN",
+    "sig": "price_1UK1HLISveyotPUlA1iFSS4N|shr_1UK1DPISveyotPUlodhUwx9E|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "037_72x24_metal": {
+    "id": "plink_1UK1HMISveyotPUll5J2iDO8",
+    "sig": "price_1UK1HMISveyotPUlZNRFSmXC|shr_1UK1DPISveyotPUlodhUwx9E|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "038_30x10_canvas": {
+    "id": "plink_1UK1GMISveyotPUlyoXXdpeR",
+    "sig": "price_1UK1GMISveyotPUlQbozkIEM|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "038_30x10_metal": {
+    "id": "plink_1UK1GNISveyotPUl2fCZL7GW",
+    "sig": "price_1UK1GNISveyotPUlO0cdD2gR|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "038_48x16_canvas": {
+    "id": "plink_1UK1GOISveyotPUlIUYTZPh9",
+    "sig": "price_1UK1GNISveyotPUlUdbLMpJU|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DRISveyotPUlpUmvJiTQ,shr_1UK1DSISveyotPUlmSKXVFAX,shr_1UK1DSISveyotPUlJq5ahVJx,shr_1UK1DSISveyotPUlbwQdEdQU|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "038_48x16_metal": {
+    "id": "plink_1UK1GPISveyotPUl6G5Dy4pU",
+    "sig": "price_1UK1GOISveyotPUlRG0Tukyz|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DRISveyotPUlpUmvJiTQ,shr_1UK1DSISveyotPUlmSKXVFAX,shr_1UK1DSISveyotPUlJq5ahVJx,shr_1UK1DSISveyotPUlbwQdEdQU|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "038_72x24_canvas": {
+    "id": "plink_1UK1GQISveyotPUlDI1WuYei",
+    "sig": "price_1UK1GPISveyotPUlFFOVqzdx|shr_1UK1DPISveyotPUlodhUwx9E|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "038_72x24_metal": {
+    "id": "plink_1UK1GRISveyotPUlgs8agtnM",
+    "sig": "price_1UK1GQISveyotPUl20Ic5nTN|shr_1UK1DPISveyotPUlodhUwx9E|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "043_30x10_canvas": {
+    "id": "plink_1UK1GGISveyotPUlbAWLkxS9",
+    "sig": "price_1UK1GGISveyotPUlJpjKHYtx|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "043_30x10_metal": {
+    "id": "plink_1UK1GHISveyotPUl3ZLJs0Hy",
+    "sig": "price_1UK1GHISveyotPUluih3p5Tc|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "043_48x16_canvas": {
+    "id": "plink_1UK1GIISveyotPUlErKUa6lc",
+    "sig": "price_1UK1GIISveyotPUlq0GlBQg3|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DRISveyotPUlpUmvJiTQ,shr_1UK1DSISveyotPUlmSKXVFAX,shr_1UK1DSISveyotPUlJq5ahVJx,shr_1UK1DSISveyotPUlbwQdEdQU|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "043_48x16_metal": {
+    "id": "plink_1UK1GJISveyotPUlJuw5riYi",
+    "sig": "price_1UK1GJISveyotPUllTIEfpuD|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DRISveyotPUlpUmvJiTQ,shr_1UK1DSISveyotPUlmSKXVFAX,shr_1UK1DSISveyotPUlJq5ahVJx,shr_1UK1DSISveyotPUlbwQdEdQU|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "043_72x24_canvas": {
+    "id": "plink_1UK1GKISveyotPUlYIVxX4ga",
+    "sig": "price_1UK1GJISveyotPUlKN2iFCjd|shr_1UK1DPISveyotPUlodhUwx9E|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "043_72x24_metal": {
+    "id": "plink_1UK1GLISveyotPUl8rLZUVBr",
+    "sig": "price_1UK1GKISveyotPUlbWHlkEPO|shr_1UK1DPISveyotPUlodhUwx9E|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "anuenue_18x12_canvas": {
+    "id": "plink_1UK1HNISveyotPUlZAThYypw",
+    "sig": "price_1UK1HNISveyotPUl1MdxjH1K|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "anuenue_18x12_metal": {
+    "id": "plink_1UK1HOISveyotPUlFuoH9aon",
+    "sig": "price_1UK1HOISveyotPUlNdOYjw7l|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "anuenue_24x16_canvas": {
+    "id": "plink_1UK1HPISveyotPUlQfCycluM",
+    "sig": "price_1UK1HPISveyotPUlZgciZUJb|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "anuenue_24x16_metal": {
+    "id": "plink_1UK1HQISveyotPUlhyKRTySI",
+    "sig": "price_1UK1HQISveyotPUlZ8QEbooR|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "anuenue_30x20_canvas": {
+    "id": "plink_1UK1HRISveyotPUl3NLsrX84",
+    "sig": "price_1UK1HRISveyotPUl5KYpKjBw|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "anuenue_30x20_metal": {
+    "id": "plink_1UK1HSISveyotPUlvJMGshth",
+    "sig": "price_1UK1HRISveyotPUlEyS1FQaJ|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "anuenue_36x24_canvas": {
+    "id": "plink_1UK1HTISveyotPUlTXENTcky",
+    "sig": "price_1UK1HSISveyotPUlM1TYahuz|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "anuenue_36x24_metal": {
+    "id": "plink_1UK1HUISveyotPUlculp6INa",
+    "sig": "price_1UK1HTISveyotPUl23lPEdWU|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "eleu_18x12_canvas": {
+    "id": "plink_1UK1HVISveyotPUl3FyJu9gv",
+    "sig": "price_1UK1HVISveyotPUlAp6lSFPQ|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "eleu_18x12_metal": {
+    "id": "plink_1UK1HWISveyotPUln8g0Tp7a",
+    "sig": "price_1UK1HVISveyotPUle289ddTE|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "eleu_24x16_canvas": {
+    "id": "plink_1UK1HXISveyotPUlDPGTFqvp",
+    "sig": "price_1UK1HWISveyotPUl9mYqfqQR|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "eleu_24x16_metal": {
+    "id": "plink_1UK1HYISveyotPUlMHdlkvqp",
+    "sig": "price_1UK1HXISveyotPUl4xsCchYQ|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "eleu_30x20_canvas": {
+    "id": "plink_1UK1HZISveyotPUlQApsQldn",
+    "sig": "price_1UK1HYISveyotPUl7i91yepM|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "eleu_30x20_metal": {
+    "id": "plink_1UK1HaISveyotPUlUOncDe4D",
+    "sig": "price_1UK1HZISveyotPUlhb0Mlgzs|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "eleu_36x24_canvas": {
+    "id": "plink_1UK1HbISveyotPUlUv3GfwGU",
+    "sig": "price_1UK1HaISveyotPUlVx8s0YbZ|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "eleu_36x24_metal": {
+    "id": "plink_1UK1HbISveyotPUlqTMfjEY1",
+    "sig": "price_1UK1HbISveyotPUlRdJ9axQ0|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "frostedtidepool_16x20_canvas": {
+    "id": "plink_1UK1EvISveyotPUlLh7Zrxm3",
+    "sig": "price_1UK1EuISveyotPUltBjbyBMC|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "frostedtidepool_16x20_metal": {
+    "id": "plink_1UK1EvISveyotPUlPNaFPH4J",
+    "sig": "price_1UK1EvISveyotPUlRWT8np5V|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "frostedtidepool_20x25_canvas": {
+    "id": "plink_1UK1EwISveyotPUlP6Mrw6z9",
+    "sig": "price_1UK1EwISveyotPUlQ1U3B7Ur|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "frostedtidepool_20x25_metal": {
+    "id": "plink_1UK1ExISveyotPUlOnKnAEK4",
+    "sig": "price_1UK1ExISveyotPUlp53nhvtU|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "frostedtidepool_24x30_canvas": {
+    "id": "plink_1UK1EyISveyotPUleYJajGVd",
+    "sig": "price_1UK1EyISveyotPUlI5dh2toX|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "frostedtidepool_24x30_metal": {
+    "id": "plink_1UK1EzISveyotPUl3PagOULA",
+    "sig": "price_1UK1EzISveyotPUlu93f5dwv|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "hanauma_16x16_canvas": {
+    "id": "plink_1UK1F0ISveyotPUlOFwjqU93",
+    "sig": "price_1UK1F0ISveyotPUlsm3r7ogx|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "hanauma_16x16_metal": {
+    "id": "plink_1UK1F1ISveyotPUlrJ0KugG0",
+    "sig": "price_1UK1F1ISveyotPUlOk2VHTNP|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "hanauma_24x24_canvas": {
+    "id": "plink_1UK1F2ISveyotPUlYW8HMtSD",
+    "sig": "price_1UK1F2ISveyotPUl0KCnevy5|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "hanauma_24x24_metal": {
+    "id": "plink_1UK1F3ISveyotPUl1CnmsjDk",
+    "sig": "price_1UK1F3ISveyotPUli2wn2nvj|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "hanauma_40x40_canvas": {
+    "id": "plink_1UK1F4ISveyotPUlz8Z5psxa",
+    "sig": "price_1UK1F3ISveyotPUlA4F1Ve5R|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DRISveyotPUlpUmvJiTQ,shr_1UK1DSISveyotPUlmSKXVFAX,shr_1UK1DSISveyotPUlJq5ahVJx,shr_1UK1DSISveyotPUlbwQdEdQU|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "hanauma_40x40_metal": {
+    "id": "plink_1UK1F5ISveyotPUlSR36YOYA",
+    "sig": "price_1UK1F4ISveyotPUlzV6Hzo1Z|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DRISveyotPUlpUmvJiTQ,shr_1UK1DSISveyotPUlmSKXVFAX,shr_1UK1DSISveyotPUlJq5ahVJx,shr_1UK1DSISveyotPUlbwQdEdQU|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "hanohanohakipuu_18x12_canvas": {
+    "id": "plink_1UK1ESISveyotPUlVVvhrbtb",
+    "sig": "price_1UK1ERISveyotPUlU06e9mBB|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "hanohanohakipuu_18x12_metal": {
+    "id": "plink_1UK1ETISveyotPUlxhNnki7A",
+    "sig": "price_1UK1ESISveyotPUlfBYgncV6|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "hanohanohakipuu_24x16_canvas": {
+    "id": "plink_1UK1EUISveyotPUloFZz6AuR",
+    "sig": "price_1UK1ETISveyotPUlIs2gIAQA|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "hanohanohakipuu_24x16_metal": {
+    "id": "plink_1UK1EUISveyotPUlTiTau0Ie",
+    "sig": "price_1UK1EUISveyotPUlVbwntQcu|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "hanohanohakipuu_30x20_canvas": {
+    "id": "plink_1UK1EVISveyotPUlKpn0Lk5x",
+    "sig": "price_1UK1EVISveyotPUloDjGdyJX|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "hanohanohakipuu_30x20_metal": {
+    "id": "plink_1UK1EWISveyotPUlySHfJZq1",
+    "sig": "price_1UK1EWISveyotPUlHsoJmTsi|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "hanohanohakipuu_36x24_canvas": {
+    "id": "plink_1UK1EXISveyotPUlfuV77KNa",
+    "sig": "price_1UK1EXISveyotPUlGmiHDCS4|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "hanohanohakipuu_36x24_metal": {
+    "id": "plink_1UK1EYISveyotPUlgmd0MJay",
+    "sig": "price_1UK1EYISveyotPUleyPMe2Ly|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "hoihoi_18x12_canvas": {
+    "id": "plink_1UK1FEISveyotPUlwhBUfdjp",
+    "sig": "price_1UK1FDISveyotPUlCDVFcSA2|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "hoihoi_18x12_metal": {
+    "id": "plink_1UK1FFISveyotPUlDeVqEcgL",
+    "sig": "price_1UK1FEISveyotPUlH6utfTi4|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "hoihoi_24x16_canvas": {
+    "id": "plink_1UK1FGISveyotPUlLrhiXksX",
+    "sig": "price_1UK1FFISveyotPUlWwqdgrMC|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "hoihoi_24x16_metal": {
+    "id": "plink_1UK1FGISveyotPUlT3BKVoar",
+    "sig": "price_1UK1FGISveyotPUlJLjVHm0L|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "hoihoi_30x20_canvas": {
+    "id": "plink_1UK1FHISveyotPUlr0n9vyGo",
+    "sig": "price_1UK1FHISveyotPUl1Qx3Yptm|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "hoihoi_30x20_metal": {
+    "id": "plink_1UK1FIISveyotPUlCxqsVASW",
+    "sig": "price_1UK1FIISveyotPUldgUPHtwf|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "hoihoi_36x24_canvas": {
+    "id": "plink_1UK1FJISveyotPUln9NrecWj",
+    "sig": "price_1UK1FJISveyotPUldvx7z72B|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "hoihoi_36x24_metal": {
+    "id": "plink_1UK1FKISveyotPUlweKecM6A",
+    "sig": "price_1UK1FJISveyotPUlsRia3GWo|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "homecoming_18x12_canvas": {
+    "id": "plink_1UK1F6ISveyotPUlzMVuKtS4",
+    "sig": "price_1UK1F5ISveyotPUl2HszmQ27|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "homecoming_18x12_metal": {
+    "id": "plink_1UK1F7ISveyotPUlmieA1UIE",
+    "sig": "price_1UK1F6ISveyotPUl20vXavyA|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "homecoming_24x16_canvas": {
+    "id": "plink_1UK1F8ISveyotPUlztNQwahV",
+    "sig": "price_1UK1F7ISveyotPUlCsWIABn4|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "homecoming_24x16_metal": {
+    "id": "plink_1UK1F9ISveyotPUlL7jUlY4n",
+    "sig": "price_1UK1F8ISveyotPUlv0UxntGm|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "homecoming_30x20_canvas": {
+    "id": "plink_1UK1FAISveyotPUlqO9cmqN8",
+    "sig": "price_1UK1F9ISveyotPUlC5fZ0nHg|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "homecoming_30x20_metal": {
+    "id": "plink_1UK1FBISveyotPUlZSBlpbVj",
+    "sig": "price_1UK1FAISveyotPUljFo6bhPb|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "homecoming_36x24_canvas": {
+    "id": "plink_1UK1FCISveyotPUlRn3I0Jo5",
+    "sig": "price_1UK1FBISveyotPUlWfXDutJL|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "homecoming_36x24_metal": {
+    "id": "plink_1UK1FCISveyotPUlHPV1t5py",
+    "sig": "price_1UK1FCISveyotPUlZmRJoN1h|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "hookahi_16x20_canvas": {
+    "id": "plink_1UK1FLISveyotPUlWVksUF8B",
+    "sig": "price_1UK1FLISveyotPUlb6CRmix4|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "hookahi_16x20_metal": {
+    "id": "plink_1UK1FMISveyotPUl6WdbYfiI",
+    "sig": "price_1UK1FMISveyotPUlGi7sr3SU|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "hookahi_20x25_canvas": {
+    "id": "plink_1UK1FNISveyotPUlO0cJnGmL",
+    "sig": "price_1UK1FNISveyotPUljLe5c1QF|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "hookahi_20x25_metal": {
+    "id": "plink_1UK1FOISveyotPUlXnomVSjX",
+    "sig": "price_1UK1FNISveyotPUlsyNcymxh|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "hookahi_24x30_canvas": {
+    "id": "plink_1UK1FPISveyotPUlzmaLMZFy",
+    "sig": "price_1UK1FOISveyotPUlfbQneBQL|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "hookahi_24x30_metal": {
+    "id": "plink_1UK1FQISveyotPUlQTMYnQpd",
+    "sig": "price_1UK1FPISveyotPUlS8cvrAbv|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "jumanji_18x12_canvas": {
+    "id": "plink_1UK1EaISveyotPUl7kKcSszr",
+    "sig": "price_1UK1EZISveyotPUl4KHvssqO|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "jumanji_18x12_metal": {
+    "id": "plink_1UK1EbISveyotPUljw6FlYZA",
+    "sig": "price_1UK1EaISveyotPUlOijDiaZr|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "jumanji_24x16_canvas": {
+    "id": "plink_1UK1EcISveyotPUlUisfNAzJ",
+    "sig": "price_1UK1EbISveyotPUlCLM2fObN|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "jumanji_24x16_metal": {
+    "id": "plink_1UK1EcISveyotPUlcXznnc7b",
+    "sig": "price_1UK1EcISveyotPUlrGSqDLRv|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "jumanji_30x20_canvas": {
+    "id": "plink_1UK1EdISveyotPUl3RwRaLzK",
+    "sig": "price_1UK1EdISveyotPUliHaZMd5b|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "jumanji_30x20_metal": {
+    "id": "plink_1UK1EeISveyotPUlCiQdPTBG",
+    "sig": "price_1UK1EeISveyotPUlY2qnKFiU|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "jumanji_36x24_canvas": {
+    "id": "plink_1UK1EfISveyotPUlqbwMQPJV",
+    "sig": "price_1UK1EfISveyotPUlcNCrTPp4|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "jumanji_36x24_metal": {
+    "id": "plink_1UK1EgISveyotPUlhqtdkpvg",
+    "sig": "price_1UK1EfISveyotPUlk9WocueM|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "jurassicdawn_16x20_canvas": {
+    "id": "plink_1UK1EhISveyotPUlvx5X6QLI",
+    "sig": "price_1UK1EhISveyotPUl1e4Ra1BJ|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "jurassicdawn_16x20_metal": {
+    "id": "plink_1UK1EiISveyotPUlLtSVg8E8",
+    "sig": "price_1UK1EiISveyotPUlDb7qn97K|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "jurassicdawn_20x25_canvas": {
+    "id": "plink_1UK1EjISveyotPUlSFRNZPWl",
+    "sig": "price_1UK1EjISveyotPUlR0JIzYz3|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "jurassicdawn_20x25_metal": {
+    "id": "plink_1UK1EkISveyotPUllXT7tIrJ",
+    "sig": "price_1UK1EkISveyotPUl7t6LBP3l|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "jurassicdawn_24x30_canvas": {
+    "id": "plink_1UK1ElISveyotPUlxI9p5duT",
+    "sig": "price_1UK1EkISveyotPUlFt8bCR5i|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "jurassicdawn_24x30_metal": {
+    "id": "plink_1UK1EmISveyotPUlwtLD1yH7",
+    "sig": "price_1UK1ElISveyotPUlQGuV50m5|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kaaawasunrise_18x12_canvas": {
+    "id": "plink_1UK1E1ISveyotPUl4Q78hmYI",
+    "sig": "price_1UK1E0ISveyotPUlLMe4oDw5|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kaaawasunrise_18x12_metal": {
+    "id": "plink_1UK1E2ISveyotPUl3rtELpbR",
+    "sig": "price_1UK1E1ISveyotPUlXTbpBm49|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kaaawasunrise_24x16_canvas": {
+    "id": "plink_1UK1E3ISveyotPUl36JXwjQM",
+    "sig": "price_1UK1E2ISveyotPUlumHRfUrt|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kaaawasunrise_24x16_metal": {
+    "id": "plink_1UK1E3ISveyotPUlnvCuwslq",
+    "sig": "price_1UK1E3ISveyotPUl1ZBpF3Ix|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kaaawasunrise_30x20_canvas": {
+    "id": "plink_1UK1E4ISveyotPUl96zYC2JZ",
+    "sig": "price_1UK1E4ISveyotPUlddPvY0qA|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kaaawasunrise_30x20_metal": {
+    "id": "plink_1UK1E5ISveyotPUl3jvQNvua",
+    "sig": "price_1UK1E5ISveyotPUlYeYha82s|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kaaawasunrise_36x24_canvas": {
+    "id": "plink_1UK1E6ISveyotPUlLowFDTxm",
+    "sig": "price_1UK1E6ISveyotPUlimudIDgo|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kaaawasunrise_36x24_metal": {
+    "id": "plink_1UK1E7ISveyotPUlH01APTaw",
+    "sig": "price_1UK1E7ISveyotPUlzlilnDyg|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kaaawavalley_30x10_canvas": {
+    "id": "plink_1UK1DnISveyotPUlQgJ89PtN",
+    "sig": "price_1UK1DmISveyotPUlcp8dM08C|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kaaawavalley_30x10_metal": {
+    "id": "plink_1UK1DoISveyotPUlhJFiOsEt",
+    "sig": "price_1UK1DnISveyotPUligMuTIuf|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kaaawavalley_48x16_canvas": {
+    "id": "plink_1UK1DpISveyotPUlnmAlz7sa",
+    "sig": "price_1UK1DoISveyotPUlnZJZZTFp|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DRISveyotPUlpUmvJiTQ,shr_1UK1DSISveyotPUlmSKXVFAX,shr_1UK1DSISveyotPUlJq5ahVJx,shr_1UK1DSISveyotPUlbwQdEdQU|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kaaawavalley_48x16_metal": {
+    "id": "plink_1UK1DqISveyotPUlZhtXvGAH",
+    "sig": "price_1UK1DpISveyotPUl17hkQEMt|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DRISveyotPUlpUmvJiTQ,shr_1UK1DSISveyotPUlmSKXVFAX,shr_1UK1DSISveyotPUlJq5ahVJx,shr_1UK1DSISveyotPUlbwQdEdQU|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kaaawavalley_72x24_canvas": {
+    "id": "plink_1UK1DrISveyotPUlj7jMKu7W",
+    "sig": "price_1UK1DqISveyotPUlVKEE3oS3|shr_1UK1DPISveyotPUlodhUwx9E|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kaaawavalley_72x24_metal": {
+    "id": "plink_1UK1DsISveyotPUl15qIuDsX",
+    "sig": "price_1UK1DrISveyotPUl6fjrbPr9|shr_1UK1DPISveyotPUlodhUwx9E|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kahana_16x20_canvas": {
+    "id": "plink_1UK1FRISveyotPUlE88qddgh",
+    "sig": "price_1UK1FQISveyotPUlvjmvzjb8|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kahana_16x20_metal": {
+    "id": "plink_1UK1FSISveyotPUlceh3TFD9",
+    "sig": "price_1UK1FRISveyotPUlBVbhAf5v|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kahana_20x25_canvas": {
+    "id": "plink_1UK1FTISveyotPUlSQKihlJ1",
+    "sig": "price_1UK1FSISveyotPUl3V0nLxrk|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kahana_20x25_metal": {
+    "id": "plink_1UK1FUISveyotPUl9jYuU6uh",
+    "sig": "price_1UK1FTISveyotPUlWDuC5Ypd|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kahana_24x30_canvas": {
+    "id": "plink_1UK1FUISveyotPUlktqXta29",
+    "sig": "price_1UK1FUISveyotPUlFOWsrw0q|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kahana_24x30_metal": {
+    "id": "plink_1UK1FVISveyotPUlGMqY7r1H",
+    "sig": "price_1UK1FVISveyotPUl5W7JXwez|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kaimana_30x10_canvas": {
+    "id": "plink_1UK1DVISveyotPUl1YhAoZbo",
+    "sig": "price_1UK1DVISveyotPUlVumELRxu|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kaimana_30x10_metal": {
+    "id": "plink_1UK1DWISveyotPUlT00kOFmm",
+    "sig": "price_1UK1DWISveyotPUlbUTVrvaQ|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kaimana_48x16_canvas": {
+    "id": "plink_1UK1DXISveyotPUlvi5pJrp9",
+    "sig": "price_1UK1DXISveyotPUl2AwgUfyd|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DRISveyotPUlpUmvJiTQ,shr_1UK1DSISveyotPUlmSKXVFAX,shr_1UK1DSISveyotPUlJq5ahVJx,shr_1UK1DSISveyotPUlbwQdEdQU|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kaimana_48x16_metal": {
+    "id": "plink_1UK1DYISveyotPUlX5VOJCo2",
+    "sig": "price_1UK1DYISveyotPUlIcXylJXc|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DRISveyotPUlpUmvJiTQ,shr_1UK1DSISveyotPUlmSKXVFAX,shr_1UK1DSISveyotPUlJq5ahVJx,shr_1UK1DSISveyotPUlbwQdEdQU|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kaimana_72x24_canvas": {
+    "id": "plink_1UK1DZISveyotPUlu76L2Xm6",
+    "sig": "price_1UK1DZISveyotPUlsBVsvTI6|shr_1UK1DPISveyotPUlodhUwx9E|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kaimana_72x24_metal": {
+    "id": "plink_1UK1DaISveyotPUlJ79B2HSJ",
+    "sig": "price_1UK1DZISveyotPUlmfzAlz79|shr_1UK1DPISveyotPUlodhUwx9E|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kaiwi_16x20_canvas": {
+    "id": "plink_1UK1FdISveyotPUl1LUrDtNR",
+    "sig": "price_1UK1FcISveyotPUlROHa6P39|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kaiwi_16x20_metal": {
+    "id": "plink_1UK1FdISveyotPUlW72vFirG",
+    "sig": "price_1UK1FdISveyotPUlnhkBKaJI|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kaiwi_20x25_canvas": {
+    "id": "plink_1UK1FeISveyotPUlDn8aXEZ1",
+    "sig": "price_1UK1FeISveyotPUl0yJfNrey|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kaiwi_20x25_metal": {
+    "id": "plink_1UK1FfISveyotPUl0tGMch8A",
+    "sig": "price_1UK1FfISveyotPUlgeEu5Yth|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kaiwi_24x30_canvas": {
+    "id": "plink_1UK1FgISveyotPUlfxbS087p",
+    "sig": "price_1UK1FgISveyotPUl6VeIkF7e|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kaiwi_24x30_metal": {
+    "id": "plink_1UK1FhISveyotPUl1ommwXku",
+    "sig": "price_1UK1FhISveyotPUlg1OpmSKt|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kuamoo_18x12_canvas": {
+    "id": "plink_1UK1FiISveyotPUlsO5Sfsxo",
+    "sig": "price_1UK1FiISveyotPUldAZ78G6O|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kuamoo_18x12_metal": {
+    "id": "plink_1UK1FjISveyotPUlpBVfOclE",
+    "sig": "price_1UK1FjISveyotPUl6KwBOhfD|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kuamoo_24x16_canvas": {
+    "id": "plink_1UK1FkISveyotPUlywUCSw4y",
+    "sig": "price_1UK1FkISveyotPUlGW0LZIKZ|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kuamoo_24x16_metal": {
+    "id": "plink_1UK1FlISveyotPUlMUvSwF44",
+    "sig": "price_1UK1FlISveyotPUlOlJ47QK5|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kuamoo_30x20_canvas": {
+    "id": "plink_1UK1FmISveyotPUlE6nEnBtL",
+    "sig": "price_1UK1FlISveyotPUlVbTDs4IO|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kuamoo_30x20_metal": {
+    "id": "plink_1UK1FnISveyotPUlqpQMlbKB",
+    "sig": "price_1UK1FmISveyotPUlGQpJcqQv|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kuamoo_36x24_canvas": {
+    "id": "plink_1UK1FoISveyotPUlUI8T9p2G",
+    "sig": "price_1UK1FnISveyotPUlbgdIwPU2|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "kuamoo_36x24_metal": {
+    "id": "plink_1UK1FpISveyotPUlTIHoTfBX",
+    "sig": "price_1UK1FoISveyotPUlYsoFxOEm|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "leahikahiko_18x12_canvas": {
+    "id": "plink_1UK1FwISveyotPUlZvyVxBBX",
+    "sig": "price_1UK1FvISveyotPUlQRTa62mf|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "leahikahiko_18x12_metal": {
+    "id": "plink_1UK1FxISveyotPUlUgzrDPPZ",
+    "sig": "price_1UK1FwISveyotPUlULDXrKlg|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "leahikahiko_24x16_canvas": {
+    "id": "plink_1UK1FxISveyotPUleDLVX3X0",
+    "sig": "price_1UK1FxISveyotPUlN41Tlhvu|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "leahikahiko_24x16_metal": {
+    "id": "plink_1UK1FyISveyotPUlOCa9tZGH",
+    "sig": "price_1UK1FyISveyotPUlX8XGtzZ1|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "leahikahiko_30x20_canvas": {
+    "id": "plink_1UK1FzISveyotPUlayPYgjpF",
+    "sig": "price_1UK1FzISveyotPUlZyNeqduY|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "leahikahiko_30x20_metal": {
+    "id": "plink_1UK1G0ISveyotPUlEUGOL1f8",
+    "sig": "price_1UK1G0ISveyotPUlmVKIdfWe|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "leahikahiko_36x24_canvas": {
+    "id": "plink_1UK1G1ISveyotPUloqjqJjNF",
+    "sig": "price_1UK1G1ISveyotPUlsrw4geJA|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "leahikahiko_36x24_metal": {
+    "id": "plink_1UK1G2ISveyotPUlGKn8XVn2",
+    "sig": "price_1UK1G1ISveyotPUlCmU3HKQt|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "makapuubeach-h_18x12_canvas": {
+    "id": "plink_1UK1G3ISveyotPUlVZqhyLjB",
+    "sig": "price_1UK1G3ISveyotPUlcjRJBIN1|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "makapuubeach-h_18x12_metal": {
+    "id": "plink_1UK1G4ISveyotPUlt4uzb8Ik",
+    "sig": "price_1UK1G4ISveyotPUlmhTJ3fEz|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "makapuubeach-h_24x16_canvas": {
+    "id": "plink_1UK1G5ISveyotPUle1UwpKJl",
+    "sig": "price_1UK1G4ISveyotPUlCpKDkqYr|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "makapuubeach-h_24x16_metal": {
+    "id": "plink_1UK1G6ISveyotPUlLY5RO4gF",
+    "sig": "price_1UK1G5ISveyotPUlJLch0iSz|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "makapuubeach-h_30x20_canvas": {
+    "id": "plink_1UK1G7ISveyotPUlYQSeJMMG",
+    "sig": "price_1UK1G6ISveyotPUlqY3Yee4e|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "makapuubeach-h_30x20_metal": {
+    "id": "plink_1UK1G8ISveyotPUlE4mtq7Qk",
+    "sig": "price_1UK1G7ISveyotPUlmE6U6E2P|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "makapuubeach-h_36x24_canvas": {
+    "id": "plink_1UK1G8ISveyotPUlH7OrLdgS",
+    "sig": "price_1UK1G8ISveyotPUlnYSEO1C9|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "makapuubeach-h_36x24_metal": {
+    "id": "plink_1UK1G9ISveyotPUl9EEO6vJ8",
+    "sig": "price_1UK1G9ISveyotPUlAiGBVzUt|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "makapuubeach-v_16x20_canvas": {
+    "id": "plink_1UK1E8ISveyotPUleOhQ9wvC",
+    "sig": "price_1UK1E8ISveyotPUluj9LFiRg|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "makapuubeach-v_16x20_metal": {
+    "id": "plink_1UK1E9ISveyotPUlocAX2VDU",
+    "sig": "price_1UK1E9ISveyotPUlaN2QXqi5|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "makapuubeach-v_20x25_canvas": {
+    "id": "plink_1UK1EAISveyotPUlUbp7g2wr",
+    "sig": "price_1UK1EAISveyotPUlbzBM03y1|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "makapuubeach-v_20x25_metal": {
+    "id": "plink_1UK1EBISveyotPUlcd6KgAiF",
+    "sig": "price_1UK1EAISveyotPUlB8N1cLOs|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "makapuubeach-v_24x30_canvas": {
+    "id": "plink_1UK1ECISveyotPUlqghzqOqS",
+    "sig": "price_1UK1EBISveyotPUlXuwckGY7|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "makapuubeach-v_24x30_metal": {
+    "id": "plink_1UK1EDISveyotPUlFmoT2gqD",
+    "sig": "price_1UK1ECISveyotPUlidRxcasn|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "malie_18x12_canvas": {
+    "id": "plink_1UK1DtISveyotPUl64vdKyNx",
+    "sig": "price_1UK1DsISveyotPUlNCo357Z5|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "malie_18x12_metal": {
+    "id": "plink_1UK1DuISveyotPUlFeun5jpA",
+    "sig": "price_1UK1DtISveyotPUlxNxgMkms|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "malie_24x16_canvas": {
+    "id": "plink_1UK1DvISveyotPUlKAymiVsj",
+    "sig": "price_1UK1DuISveyotPUl2vZazcbP|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "malie_24x16_metal": {
+    "id": "plink_1UK1DwISveyotPUlwasxuuqb",
+    "sig": "price_1UK1DvISveyotPUlw6rnZOst|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "malie_30x20_canvas": {
+    "id": "plink_1UK1DxISveyotPUlvmfLudYJ",
+    "sig": "price_1UK1DwISveyotPUlZpSjJYO3|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "malie_30x20_metal": {
+    "id": "plink_1UK1DyISveyotPUlD8Uf6WDX",
+    "sig": "price_1UK1DxISveyotPUl6SSkJ0JQ|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "malie_36x24_canvas": {
+    "id": "plink_1UK1DzISveyotPUlvNAHq1L3",
+    "sig": "price_1UK1DyISveyotPUlbjtSB7AD|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "malie_36x24_metal": {
+    "id": "plink_1UK1DzISveyotPUlgNcNBsuI",
+    "sig": "price_1UK1DzISveyotPUlRwxTaWQ4|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "mokoliireflection_16x20_canvas": {
+    "id": "plink_1UK1GSISveyotPUlt5yMNYA1",
+    "sig": "price_1UK1GRISveyotPUlhRnunROV|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "mokoliireflection_16x20_metal": {
+    "id": "plink_1UK1GTISveyotPUl6i8gis8p",
+    "sig": "price_1UK1GSISveyotPUlk5yHDpHI|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "mokoliireflection_20x25_canvas": {
+    "id": "plink_1UK1GUISveyotPUlC4ZAqPxF",
+    "sig": "price_1UK1GTISveyotPUlS1CEbDOv|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "mokoliireflection_20x25_metal": {
+    "id": "plink_1UK1GVISveyotPUlar5TGiSY",
+    "sig": "price_1UK1GUISveyotPUlRruB1zPf|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "mokoliireflection_24x30_canvas": {
+    "id": "plink_1UK1GWISveyotPUlT0LAxjiS",
+    "sig": "price_1UK1GVISveyotPUleH8q9cG1|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "mokoliireflection_24x30_metal": {
+    "id": "plink_1UK1GXISveyotPUl0aM7twbQ",
+    "sig": "price_1UK1GWISveyotPUlamoXof5C|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "mokulele_16x20_canvas": {
+    "id": "plink_1UK1GYISveyotPUlFVY27b4w",
+    "sig": "price_1UK1GXISveyotPUlur4NUtg0|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "mokulele_16x20_metal": {
+    "id": "plink_1UK1GZISveyotPUlQLrrk50y",
+    "sig": "price_1UK1GYISveyotPUlE8yoLbii|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "mokulele_20x25_canvas": {
+    "id": "plink_1UK1GaISveyotPUlBej8hGJw",
+    "sig": "price_1UK1GZISveyotPUl61eG7LEe|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "mokulele_20x25_metal": {
+    "id": "plink_1UK1GbISveyotPUlBmDygBE1",
+    "sig": "price_1UK1GaISveyotPUl74UmL88T|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "mokulele_24x30_canvas": {
+    "id": "plink_1UK1GcISveyotPUlCoMdsXm7",
+    "sig": "price_1UK1GbISveyotPUl5GRl5RD1|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "mokulele_24x30_metal": {
+    "id": "plink_1UK1GcISveyotPUlg2esnFox",
+    "sig": "price_1UK1GcISveyotPUlONyy2agJ|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "mokulua-islands_18x12_canvas": {
+    "id": "plink_1UK1GeISveyotPUlT3qdaasK",
+    "sig": "price_1UK1GdISveyotPUl3Cf81DfJ|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "mokulua-islands_18x12_metal": {
+    "id": "plink_1UK1GfISveyotPUleiKcgNfL",
+    "sig": "price_1UK1GeISveyotPUlGOaQpYq1|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "mokulua-islands_24x16_canvas": {
+    "id": "plink_1UK1GfISveyotPUlSsDvlv5j",
+    "sig": "price_1UK1GfISveyotPUlQnTeUoks|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "mokulua-islands_24x16_metal": {
+    "id": "plink_1UK1GgISveyotPUlsonS5lnY",
+    "sig": "price_1UK1GgISveyotPUl6mKA2dtW|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "mokulua-islands_30x20_canvas": {
+    "id": "plink_1UK1GhISveyotPUl6ZdOT29n",
+    "sig": "price_1UK1GhISveyotPUlgaaorjPd|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "mokulua-islands_30x20_metal": {
+    "id": "plink_1UK1GiISveyotPUl4BYuwI6T",
+    "sig": "price_1UK1GiISveyotPUlJqjZ5HrX|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "mokulua-islands_36x24_canvas": {
+    "id": "plink_1UK1GjISveyotPUlBSapOXvj",
+    "sig": "price_1UK1GjISveyotPUlKfIDkRcr|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "mokulua-islands_36x24_metal": {
+    "id": "plink_1UK1GkISveyotPUlLFCOX9d2",
+    "sig": "price_1UK1GkISveyotPUl9ZtLpcSk|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "mokulua_18x12_canvas": {
+    "id": "plink_1UK1EEISveyotPUlcq2Hjky3",
+    "sig": "price_1UK1EEISveyotPUlCpe1K5sA|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "mokulua_18x12_metal": {
+    "id": "plink_1UK1EFISveyotPUlTazluzn9",
+    "sig": "price_1UK1EFISveyotPUl53X4JojZ|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "mokulua_24x16_canvas": {
+    "id": "plink_1UK1EGISveyotPUlyt2EZiTr",
+    "sig": "price_1UK1EGISveyotPUleV6LhlcJ|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "mokulua_24x16_metal": {
+    "id": "plink_1UK1EHISveyotPUlRbY1kInt",
+    "sig": "price_1UK1EHISveyotPUlXriCXggR|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "mokulua_30x20_canvas": {
+    "id": "plink_1UK1EIISveyotPUlIaRJJzDU",
+    "sig": "price_1UK1EHISveyotPUl3sJ9WZ1k|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "mokulua_30x20_metal": {
+    "id": "plink_1UK1EJISveyotPUlPH9QcO8b",
+    "sig": "price_1UK1EIISveyotPUlzAsHbdKM|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "mokulua_36x24_canvas": {
+    "id": "plink_1UK1EKISveyotPUlhPMlJmHS",
+    "sig": "price_1UK1EJISveyotPUl838ksEED|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "mokulua_36x24_metal": {
+    "id": "plink_1UK1ELISveyotPUlQRy39Hce",
+    "sig": "price_1UK1EKISveyotPUl4Dpom26p|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "naniwaikiki_30x10_canvas": {
+    "id": "plink_1UK1DhISveyotPUlxIXPfTmn",
+    "sig": "price_1UK1DgISveyotPUl7gtGtTdM|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "naniwaikiki_30x10_metal": {
+    "id": "plink_1UK1DiISveyotPUlFFsDEH2A",
+    "sig": "price_1UK1DhISveyotPUliOl25Hgs|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "naniwaikiki_48x16_canvas": {
+    "id": "plink_1UK1DjISveyotPUlU4PH3YKL",
+    "sig": "price_1UK1DiISveyotPUlgszuUMLP|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DRISveyotPUlpUmvJiTQ,shr_1UK1DSISveyotPUlmSKXVFAX,shr_1UK1DSISveyotPUlJq5ahVJx,shr_1UK1DSISveyotPUlbwQdEdQU|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "naniwaikiki_48x16_metal": {
+    "id": "plink_1UK1DkISveyotPUlIEIvgx6B",
+    "sig": "price_1UK1DjISveyotPUlP7tWcivM|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DRISveyotPUlpUmvJiTQ,shr_1UK1DSISveyotPUlmSKXVFAX,shr_1UK1DSISveyotPUlJq5ahVJx,shr_1UK1DSISveyotPUlbwQdEdQU|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "naniwaikiki_72x24_canvas": {
+    "id": "plink_1UK1DlISveyotPUlNu0GnWTH",
+    "sig": "price_1UK1DkISveyotPUlalxNuiFJ|shr_1UK1DPISveyotPUlodhUwx9E|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "naniwaikiki_72x24_metal": {
+    "id": "plink_1UK1DmISveyotPUlsAMIvbyr",
+    "sig": "price_1UK1DlISveyotPUl9UOeYMFp|shr_1UK1DPISveyotPUlodhUwx9E|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "olomana_16x20_canvas": {
+    "id": "plink_1UK1GlISveyotPUlVTOpNLyx",
+    "sig": "price_1UK1GlISveyotPUl5XfPEOyA|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "olomana_16x20_metal": {
+    "id": "plink_1UK1GmISveyotPUlUyNRGyeO",
+    "sig": "price_1UK1GmISveyotPUl3OudPXC2|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "olomana_20x25_canvas": {
+    "id": "plink_1UK1GnISveyotPUlvrt7xOCP",
+    "sig": "price_1UK1GnISveyotPUlkuKMf75K|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "olomana_20x25_metal": {
+    "id": "plink_1UK1GoISveyotPUlQMR7Tfwu",
+    "sig": "price_1UK1GoISveyotPUlEmSYhtKX|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "olomana_24x30_canvas": {
+    "id": "plink_1UK1GpISveyotPUltRITMCi6",
+    "sig": "price_1UK1GoISveyotPUl9PDzTefK|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "olomana_24x30_metal": {
+    "id": "plink_1UK1GqISveyotPUlQxAImOXo",
+    "sig": "price_1UK1GpISveyotPUlUmLBMcye|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "puao_16x20_canvas": {
+    "id": "plink_1UK1EMISveyotPUlTPaNj1pT",
+    "sig": "price_1UK1ELISveyotPUlzwnQbPJa|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "puao_16x20_metal": {
+    "id": "plink_1UK1ENISveyotPUlyCDrvdOU",
+    "sig": "price_1UK1EMISveyotPUlk7WossGr|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "puao_20x25_canvas": {
+    "id": "plink_1UK1EOISveyotPUlaCQ1uPhH",
+    "sig": "price_1UK1ENISveyotPUlGd4PJdFR|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "puao_20x25_metal": {
+    "id": "plink_1UK1EPISveyotPUlEE1Vfr3S",
+    "sig": "price_1UK1EOISveyotPUl5DIVg6Fb|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "puao_24x30_canvas": {
+    "id": "plink_1UK1EQISveyotPUljim1fSOK",
+    "sig": "price_1UK1EPISveyotPUlYKWTJz3L|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "puao_24x30_metal": {
+    "id": "plink_1UK1ERISveyotPUlpJ4Y2zXm",
+    "sig": "price_1UK1EQISveyotPUlMVZDpFuu|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "shorelinecascade_16x20_canvas": {
+    "id": "plink_1UK1GzISveyotPUlJHo4i9Hf",
+    "sig": "price_1UK1GyISveyotPUlPq0W8nrQ|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "shorelinecascade_16x20_metal": {
+    "id": "plink_1UK1H0ISveyotPUlR8hybVbS",
+    "sig": "price_1UK1GzISveyotPUlMufNkIh0|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "shorelinecascade_20x25_canvas": {
+    "id": "plink_1UK1H1ISveyotPUlVTK0zyBn",
+    "sig": "price_1UK1H0ISveyotPUlwGMYkjIZ|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "shorelinecascade_20x25_metal": {
+    "id": "plink_1UK1H1ISveyotPUl0ckRkwgB",
+    "sig": "price_1UK1H1ISveyotPUlLy8JtOrZ|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "shorelinecascade_24x30_canvas": {
+    "id": "plink_1UK1H2ISveyotPUlabEpQV3R",
+    "sig": "price_1UK1H2ISveyotPUl0gjzLQ7I|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "shorelinecascade_24x30_metal": {
+    "id": "plink_1UK1H3ISveyotPUl5ZA8693S",
+    "sig": "price_1UK1H3ISveyotPUlcmybsMS5|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "timespan_18x12_canvas": {
+    "id": "plink_1UK1H5ISveyotPUlUCvmMTlV",
+    "sig": "price_1UK1H4ISveyotPUlUMz3Flnu|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "timespan_18x12_metal": {
+    "id": "plink_1UK1H5ISveyotPUlrKMG1FFX",
+    "sig": "price_1UK1H5ISveyotPUlsp9dF3Xy|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "timespan_24x16_canvas": {
+    "id": "plink_1UK1H6ISveyotPUlnZElptur",
+    "sig": "price_1UK1H6ISveyotPUl5aUiRTF1|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "timespan_24x16_metal": {
+    "id": "plink_1UK1H7ISveyotPUlDXUeOKbh",
+    "sig": "price_1UK1H7ISveyotPUlkA4OhLCG|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "timespan_30x20_canvas": {
+    "id": "plink_1UK1H8ISveyotPUlCAvGQqgM",
+    "sig": "price_1UK1H8ISveyotPUl47EQI3oT|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "timespan_30x20_metal": {
+    "id": "plink_1UK1H9ISveyotPUlteMNaKRR",
+    "sig": "price_1UK1H8ISveyotPUl6vjZlsgb|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "timespan_36x24_canvas": {
+    "id": "plink_1UK1HAISveyotPUlcKdUdbJr",
+    "sig": "price_1UK1H9ISveyotPUle6odFT22|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "timespan_36x24_metal": {
+    "id": "plink_1UK1HBISveyotPUl4fhCxJfx",
+    "sig": "price_1UK1HAISveyotPUlivyFmDnO|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "waimanalo_16x20_canvas": {
+    "id": "plink_1UK1HCISveyotPUlQS36gEUh",
+    "sig": "price_1UK1HCISveyotPUlkqZOneTw|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "waimanalo_16x20_metal": {
+    "id": "plink_1UK1HDISveyotPUlI1E6X5ZY",
+    "sig": "price_1UK1HDISveyotPUlnmxRyDIS|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DPISveyotPUli2DUIQXs,shr_1UK1DPISveyotPUlXx1dSCyR,shr_1UK1DQISveyotPUlKt65LCaP,shr_1UK1DQISveyotPUlgyJaq5kY|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "waimanalo_20x25_canvas": {
+    "id": "plink_1UK1HEISveyotPUlXxG7knn4",
+    "sig": "price_1UK1HDISveyotPUliZloYOR7|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "waimanalo_20x25_metal": {
+    "id": "plink_1UK1HFISveyotPUll8jSadPX",
+    "sig": "price_1UK1HEISveyotPUlUNU47Rk4|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "waimanalo_24x30_canvas": {
+    "id": "plink_1UK1HGISveyotPUlJIAiibFp",
+    "sig": "price_1UK1HFISveyotPUlYxnomugJ|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   },
+   "waimanalo_24x30_metal": {
+    "id": "plink_1UK1HHISveyotPUlZmiGzkuG",
+    "sig": "price_1UK1HGISveyotPUlNUbHFJon|shr_1UK1DPISveyotPUlodhUwx9E,shr_1UK1DQISveyotPUllk1Itz5y,shr_1UK1DQISveyotPUltxrSeysT,shr_1UK1DRISveyotPUleon3uRpB,shr_1UK1DRISveyotPUlBmia5X5O|https://darthkanaka.github.io/kawikalopez-site/"
+   }
+  },
+  "prices": {
+   "018_16x20_canvas": "price_1UK1HcISveyotPUlBCxrpGSi",
+   "018_16x20_metal": "price_1UK1HdISveyotPUluctYh4yb",
+   "018_20x25_canvas": "price_1UK1HeISveyotPUldj8vKEL6",
+   "018_20x25_metal": "price_1UK1HfISveyotPUlEgULrdJF",
+   "018_24x30_canvas": "price_1UK1HgISveyotPUlKlkIlaEH",
+   "018_24x30_metal": "price_1UK1HhISveyotPUlsLglT9eM",
+   "032_16x20_canvas": "price_1UK1FpISveyotPUl0ROi5Jnp",
+   "032_16x20_metal": "price_1UK1FqISveyotPUlLaTGsGzf",
+   "032_20x25_canvas": "price_1UK1FrISveyotPUlwHtVjnkf",
+   "032_20x25_metal": "price_1UK1FsISveyotPUlanGwOFNQ",
+   "032_24x30_canvas": "price_1UK1FtISveyotPUlYA0qbR3h",
+   "032_24x30_metal": "price_1UK1FuISveyotPUl0xikME9g",
+   "033_18x12_canvas": "price_1UK1EmISveyotPUlwqcANDAw",
+   "033_18x12_metal": "price_1UK1EnISveyotPUlHWG72nuz",
+   "033_24x16_canvas": "price_1UK1EoISveyotPUlF3HcNCih",
+   "033_24x16_metal": "price_1UK1EpISveyotPUlhuoaAuuY",
+   "033_30x20_canvas": "price_1UK1EqISveyotPUlCY3bAx5s",
+   "033_30x20_metal": "price_1UK1ErISveyotPUlL5oxnJj7",
+   "033_36x24_canvas": "price_1UK1EsISveyotPUlYQjVr854",
+   "033_36x24_metal": "price_1UK1EtISveyotPUlAzKNFMVq",
+   "034_16x20_canvas": "price_1UK1FWISveyotPUlVmQfJCvr",
+   "034_16x20_metal": "price_1UK1FXISveyotPUlAclPegIt",
+   "034_20x25_canvas": "price_1UK1FYISveyotPUlYCxTKQCj",
+   "034_20x25_metal": "price_1UK1FZISveyotPUlzlX0Xuqi",
+   "034_24x30_canvas": "price_1UK1FaISveyotPUlvbm8LQaN",
+   "034_24x30_metal": "price_1UK1FbISveyotPUl1GNG7W8H",
+   "035_18x12_canvas": "price_1UK1GrISveyotPUlNysJchwX",
+   "035_18x12_metal": "price_1UK1GsISveyotPUl8S6SRzXc",
+   "035_24x16_canvas": "price_1UK1GsISveyotPUlm72J2jcx",
+   "035_24x16_metal": "price_1UK1GtISveyotPUlsSkvi9vN",
+   "035_30x20_canvas": "price_1UK1GuISveyotPUlQNp55FEl",
+   "035_30x20_metal": "price_1UK1GvISveyotPUlR6QK6Qkf",
+   "035_36x24_canvas": "price_1UK1GwISveyotPUlHpbSmmu3",
+   "035_36x24_metal": "price_1UK1GxISveyotPUlxVinQLSe",
+   "036_30x10_canvas": "price_1UK1GAISveyotPUlDnnvRbBU",
+   "036_30x10_metal": "price_1UK1GBISveyotPUljxOkY7lq",
+   "036_48x16_canvas": "price_1UK1GCISveyotPUlBJOc2FLm",
+   "036_48x16_metal": "price_1UK1GDISveyotPUl0YgWIGzu",
+   "036_72x24_canvas": "price_1UK1GEISveyotPUl7ikHrSlZ",
+   "036_72x24_metal": "price_1UK1GFISveyotPUlbAmRUfbI",
+   "037_30x10_canvas": "price_1UK1HHISveyotPUll1jkZWwY",
+   "037_30x10_metal": "price_1UK1HIISveyotPUlgQtDax1X",
+   "037_48x16_canvas": "price_1UK1HJISveyotPUlMMKNx18z",
+   "037_48x16_metal": "price_1UK1HKISveyotPUlZohnj3HC",
+   "037_72x24_canvas": "price_1UK1HLISveyotPUlA1iFSS4N",
+   "037_72x24_metal": "price_1UK1HMISveyotPUlZNRFSmXC",
+   "038_30x10_canvas": "price_1UK1GMISveyotPUlQbozkIEM",
+   "038_30x10_metal": "price_1UK1GNISveyotPUlO0cdD2gR",
+   "038_48x16_canvas": "price_1UK1GNISveyotPUlUdbLMpJU",
+   "038_48x16_metal": "price_1UK1GOISveyotPUlRG0Tukyz",
+   "038_72x24_canvas": "price_1UK1GPISveyotPUlFFOVqzdx",
+   "038_72x24_metal": "price_1UK1GQISveyotPUl20Ic5nTN",
+   "043_30x10_canvas": "price_1UK1GGISveyotPUlJpjKHYtx",
+   "043_30x10_metal": "price_1UK1GHISveyotPUluih3p5Tc",
+   "043_48x16_canvas": "price_1UK1GIISveyotPUlq0GlBQg3",
+   "043_48x16_metal": "price_1UK1GJISveyotPUllTIEfpuD",
+   "043_72x24_canvas": "price_1UK1GJISveyotPUlKN2iFCjd",
+   "043_72x24_metal": "price_1UK1GKISveyotPUlbWHlkEPO",
+   "anuenue_18x12_canvas": "price_1UK1HNISveyotPUl1MdxjH1K",
+   "anuenue_18x12_metal": "price_1UK1HOISveyotPUlNdOYjw7l",
+   "anuenue_24x16_canvas": "price_1UK1HPISveyotPUlZgciZUJb",
+   "anuenue_24x16_metal": "price_1UK1HQISveyotPUlZ8QEbooR",
+   "anuenue_30x20_canvas": "price_1UK1HRISveyotPUl5KYpKjBw",
+   "anuenue_30x20_metal": "price_1UK1HRISveyotPUlEyS1FQaJ",
+   "anuenue_36x24_canvas": "price_1UK1HSISveyotPUlM1TYahuz",
+   "anuenue_36x24_metal": "price_1UK1HTISveyotPUl23lPEdWU",
+   "eleu_18x12_canvas": "price_1UK1HVISveyotPUlAp6lSFPQ",
+   "eleu_18x12_metal": "price_1UK1HVISveyotPUle289ddTE",
+   "eleu_24x16_canvas": "price_1UK1HWISveyotPUl9mYqfqQR",
+   "eleu_24x16_metal": "price_1UK1HXISveyotPUl4xsCchYQ",
+   "eleu_30x20_canvas": "price_1UK1HYISveyotPUl7i91yepM",
+   "eleu_30x20_metal": "price_1UK1HZISveyotPUlhb0Mlgzs",
+   "eleu_36x24_canvas": "price_1UK1HaISveyotPUlVx8s0YbZ",
+   "eleu_36x24_metal": "price_1UK1HbISveyotPUlRdJ9axQ0",
+   "frostedtidepool_16x20_canvas": "price_1UK1EuISveyotPUltBjbyBMC",
+   "frostedtidepool_16x20_metal": "price_1UK1EvISveyotPUlRWT8np5V",
+   "frostedtidepool_20x25_canvas": "price_1UK1EwISveyotPUlQ1U3B7Ur",
+   "frostedtidepool_20x25_metal": "price_1UK1ExISveyotPUlp53nhvtU",
+   "frostedtidepool_24x30_canvas": "price_1UK1EyISveyotPUlI5dh2toX",
+   "frostedtidepool_24x30_metal": "price_1UK1EzISveyotPUlu93f5dwv",
+   "hanauma_16x16_canvas": "price_1UK1F0ISveyotPUlsm3r7ogx",
+   "hanauma_16x16_metal": "price_1UK1F1ISveyotPUlOk2VHTNP",
+   "hanauma_24x24_canvas": "price_1UK1F2ISveyotPUl0KCnevy5",
+   "hanauma_24x24_metal": "price_1UK1F3ISveyotPUli2wn2nvj",
+   "hanauma_40x40_canvas": "price_1UK1F3ISveyotPUlA4F1Ve5R",
+   "hanauma_40x40_metal": "price_1UK1F4ISveyotPUlzV6Hzo1Z",
+   "hanohanohakipuu_18x12_canvas": "price_1UK1ERISveyotPUlU06e9mBB",
+   "hanohanohakipuu_18x12_metal": "price_1UK1ESISveyotPUlfBYgncV6",
+   "hanohanohakipuu_24x16_canvas": "price_1UK1ETISveyotPUlIs2gIAQA",
+   "hanohanohakipuu_24x16_metal": "price_1UK1EUISveyotPUlVbwntQcu",
+   "hanohanohakipuu_30x20_canvas": "price_1UK1EVISveyotPUloDjGdyJX",
+   "hanohanohakipuu_30x20_metal": "price_1UK1EWISveyotPUlHsoJmTsi",
+   "hanohanohakipuu_36x24_canvas": "price_1UK1EXISveyotPUlGmiHDCS4",
+   "hanohanohakipuu_36x24_metal": "price_1UK1EYISveyotPUleyPMe2Ly",
+   "hoihoi_18x12_canvas": "price_1UK1FDISveyotPUlCDVFcSA2",
+   "hoihoi_18x12_metal": "price_1UK1FEISveyotPUlH6utfTi4",
+   "hoihoi_24x16_canvas": "price_1UK1FFISveyotPUlWwqdgrMC",
+   "hoihoi_24x16_metal": "price_1UK1FGISveyotPUlJLjVHm0L",
+   "hoihoi_30x20_canvas": "price_1UK1FHISveyotPUl1Qx3Yptm",
+   "hoihoi_30x20_metal": "price_1UK1FIISveyotPUldgUPHtwf",
+   "hoihoi_36x24_canvas": "price_1UK1FJISveyotPUldvx7z72B",
+   "hoihoi_36x24_metal": "price_1UK1FJISveyotPUlsRia3GWo",
+   "homecoming_18x12_canvas": "price_1UK1F5ISveyotPUl2HszmQ27",
+   "homecoming_18x12_metal": "price_1UK1F6ISveyotPUl20vXavyA",
+   "homecoming_24x16_canvas": "price_1UK1F7ISveyotPUlCsWIABn4",
+   "homecoming_24x16_metal": "price_1UK1F8ISveyotPUlv0UxntGm",
+   "homecoming_30x20_canvas": "price_1UK1F9ISveyotPUlC5fZ0nHg",
+   "homecoming_30x20_metal": "price_1UK1FAISveyotPUljFo6bhPb",
+   "homecoming_36x24_canvas": "price_1UK1FBISveyotPUlWfXDutJL",
+   "homecoming_36x24_metal": "price_1UK1FCISveyotPUlZmRJoN1h",
+   "hookahi_16x20_canvas": "price_1UK1FLISveyotPUlb6CRmix4",
+   "hookahi_16x20_metal": "price_1UK1FMISveyotPUlGi7sr3SU",
+   "hookahi_20x25_canvas": "price_1UK1FNISveyotPUljLe5c1QF",
+   "hookahi_20x25_metal": "price_1UK1FNISveyotPUlsyNcymxh",
+   "hookahi_24x30_canvas": "price_1UK1FOISveyotPUlfbQneBQL",
+   "hookahi_24x30_metal": "price_1UK1FPISveyotPUlS8cvrAbv",
+   "jumanji_18x12_canvas": "price_1UK1EZISveyotPUl4KHvssqO",
+   "jumanji_18x12_metal": "price_1UK1EaISveyotPUlOijDiaZr",
+   "jumanji_24x16_canvas": "price_1UK1EbISveyotPUlCLM2fObN",
+   "jumanji_24x16_metal": "price_1UK1EcISveyotPUlrGSqDLRv",
+   "jumanji_30x20_canvas": "price_1UK1EdISveyotPUliHaZMd5b",
+   "jumanji_30x20_metal": "price_1UK1EeISveyotPUlY2qnKFiU",
+   "jumanji_36x24_canvas": "price_1UK1EfISveyotPUlcNCrTPp4",
+   "jumanji_36x24_metal": "price_1UK1EfISveyotPUlk9WocueM",
+   "jurassicdawn_16x20_canvas": "price_1UK1EhISveyotPUl1e4Ra1BJ",
+   "jurassicdawn_16x20_metal": "price_1UK1EiISveyotPUlDb7qn97K",
+   "jurassicdawn_20x25_canvas": "price_1UK1EjISveyotPUlR0JIzYz3",
+   "jurassicdawn_20x25_metal": "price_1UK1EkISveyotPUl7t6LBP3l",
+   "jurassicdawn_24x30_canvas": "price_1UK1EkISveyotPUlFt8bCR5i",
+   "jurassicdawn_24x30_metal": "price_1UK1ElISveyotPUlQGuV50m5",
+   "kaaawasunrise_18x12_canvas": "price_1UK1E0ISveyotPUlLMe4oDw5",
+   "kaaawasunrise_18x12_metal": "price_1UK1E1ISveyotPUlXTbpBm49",
+   "kaaawasunrise_24x16_canvas": "price_1UK1E2ISveyotPUlumHRfUrt",
+   "kaaawasunrise_24x16_metal": "price_1UK1E3ISveyotPUl1ZBpF3Ix",
+   "kaaawasunrise_30x20_canvas": "price_1UK1E4ISveyotPUlddPvY0qA",
+   "kaaawasunrise_30x20_metal": "price_1UK1E5ISveyotPUlYeYha82s",
+   "kaaawasunrise_36x24_canvas": "price_1UK1E6ISveyotPUlimudIDgo",
+   "kaaawasunrise_36x24_metal": "price_1UK1E7ISveyotPUlzlilnDyg",
+   "kaaawavalley_30x10_canvas": "price_1UK1DmISveyotPUlcp8dM08C",
+   "kaaawavalley_30x10_metal": "price_1UK1DnISveyotPUligMuTIuf",
+   "kaaawavalley_48x16_canvas": "price_1UK1DoISveyotPUlnZJZZTFp",
+   "kaaawavalley_48x16_metal": "price_1UK1DpISveyotPUl17hkQEMt",
+   "kaaawavalley_72x24_canvas": "price_1UK1DqISveyotPUlVKEE3oS3",
+   "kaaawavalley_72x24_metal": "price_1UK1DrISveyotPUl6fjrbPr9",
+   "kahana_16x20_canvas": "price_1UK1FQISveyotPUlvjmvzjb8",
+   "kahana_16x20_metal": "price_1UK1FRISveyotPUlBVbhAf5v",
+   "kahana_20x25_canvas": "price_1UK1FSISveyotPUl3V0nLxrk",
+   "kahana_20x25_metal": "price_1UK1FTISveyotPUlWDuC5Ypd",
+   "kahana_24x30_canvas": "price_1UK1FUISveyotPUlFOWsrw0q",
+   "kahana_24x30_metal": "price_1UK1FVISveyotPUl5W7JXwez",
+   "kaimana_30x10_canvas": "price_1UK1DVISveyotPUlVumELRxu",
+   "kaimana_30x10_metal": "price_1UK1DWISveyotPUlbUTVrvaQ",
+   "kaimana_48x16_canvas": "price_1UK1DXISveyotPUl2AwgUfyd",
+   "kaimana_48x16_metal": "price_1UK1DYISveyotPUlIcXylJXc",
+   "kaimana_72x24_canvas": "price_1UK1DZISveyotPUlsBVsvTI6",
+   "kaimana_72x24_metal": "price_1UK1DZISveyotPUlmfzAlz79",
+   "kaiwi_16x20_canvas": "price_1UK1FcISveyotPUlROHa6P39",
+   "kaiwi_16x20_metal": "price_1UK1FdISveyotPUlnhkBKaJI",
+   "kaiwi_20x25_canvas": "price_1UK1FeISveyotPUl0yJfNrey",
+   "kaiwi_20x25_metal": "price_1UK1FfISveyotPUlgeEu5Yth",
+   "kaiwi_24x30_canvas": "price_1UK1FgISveyotPUl6VeIkF7e",
+   "kaiwi_24x30_metal": "price_1UK1FhISveyotPUlg1OpmSKt",
+   "kuamoo_18x12_canvas": "price_1UK1FiISveyotPUldAZ78G6O",
+   "kuamoo_18x12_metal": "price_1UK1FjISveyotPUl6KwBOhfD",
+   "kuamoo_24x16_canvas": "price_1UK1FkISveyotPUlGW0LZIKZ",
+   "kuamoo_24x16_metal": "price_1UK1FlISveyotPUlOlJ47QK5",
+   "kuamoo_30x20_canvas": "price_1UK1FlISveyotPUlVbTDs4IO",
+   "kuamoo_30x20_metal": "price_1UK1FmISveyotPUlGQpJcqQv",
+   "kuamoo_36x24_canvas": "price_1UK1FnISveyotPUlbgdIwPU2",
+   "kuamoo_36x24_metal": "price_1UK1FoISveyotPUlYsoFxOEm",
+   "leahikahiko_18x12_canvas": "price_1UK1FvISveyotPUlQRTa62mf",
+   "leahikahiko_18x12_metal": "price_1UK1FwISveyotPUlULDXrKlg",
+   "leahikahiko_24x16_canvas": "price_1UK1FxISveyotPUlN41Tlhvu",
+   "leahikahiko_24x16_metal": "price_1UK1FyISveyotPUlX8XGtzZ1",
+   "leahikahiko_30x20_canvas": "price_1UK1FzISveyotPUlZyNeqduY",
+   "leahikahiko_30x20_metal": "price_1UK1G0ISveyotPUlmVKIdfWe",
+   "leahikahiko_36x24_canvas": "price_1UK1G1ISveyotPUlsrw4geJA",
+   "leahikahiko_36x24_metal": "price_1UK1G1ISveyotPUlCmU3HKQt",
+   "makapuubeach-h_18x12_canvas": "price_1UK1G3ISveyotPUlcjRJBIN1",
+   "makapuubeach-h_18x12_metal": "price_1UK1G4ISveyotPUlmhTJ3fEz",
+   "makapuubeach-h_24x16_canvas": "price_1UK1G4ISveyotPUlCpKDkqYr",
+   "makapuubeach-h_24x16_metal": "price_1UK1G5ISveyotPUlJLch0iSz",
+   "makapuubeach-h_30x20_canvas": "price_1UK1G6ISveyotPUlqY3Yee4e",
+   "makapuubeach-h_30x20_metal": "price_1UK1G7ISveyotPUlmE6U6E2P",
+   "makapuubeach-h_36x24_canvas": "price_1UK1G8ISveyotPUlnYSEO1C9",
+   "makapuubeach-h_36x24_metal": "price_1UK1G9ISveyotPUlAiGBVzUt",
+   "makapuubeach-v_16x20_canvas": "price_1UK1E8ISveyotPUluj9LFiRg",
+   "makapuubeach-v_16x20_metal": "price_1UK1E9ISveyotPUlaN2QXqi5",
+   "makapuubeach-v_20x25_canvas": "price_1UK1EAISveyotPUlbzBM03y1",
+   "makapuubeach-v_20x25_metal": "price_1UK1EAISveyotPUlB8N1cLOs",
+   "makapuubeach-v_24x30_canvas": "price_1UK1EBISveyotPUlXuwckGY7",
+   "makapuubeach-v_24x30_metal": "price_1UK1ECISveyotPUlidRxcasn",
+   "malie_18x12_canvas": "price_1UK1DsISveyotPUlNCo357Z5",
+   "malie_18x12_metal": "price_1UK1DtISveyotPUlxNxgMkms",
+   "malie_24x16_canvas": "price_1UK1DuISveyotPUl2vZazcbP",
+   "malie_24x16_metal": "price_1UK1DvISveyotPUlw6rnZOst",
+   "malie_30x20_canvas": "price_1UK1DwISveyotPUlZpSjJYO3",
+   "malie_30x20_metal": "price_1UK1DxISveyotPUl6SSkJ0JQ",
+   "malie_36x24_canvas": "price_1UK1DyISveyotPUlbjtSB7AD",
+   "malie_36x24_metal": "price_1UK1DzISveyotPUlRwxTaWQ4",
+   "mokoliireflection_16x20_canvas": "price_1UK1GRISveyotPUlhRnunROV",
+   "mokoliireflection_16x20_metal": "price_1UK1GSISveyotPUlk5yHDpHI",
+   "mokoliireflection_20x25_canvas": "price_1UK1GTISveyotPUlS1CEbDOv",
+   "mokoliireflection_20x25_metal": "price_1UK1GUISveyotPUlRruB1zPf",
+   "mokoliireflection_24x30_canvas": "price_1UK1GVISveyotPUleH8q9cG1",
+   "mokoliireflection_24x30_metal": "price_1UK1GWISveyotPUlamoXof5C",
+   "mokulele_16x20_canvas": "price_1UK1GXISveyotPUlur4NUtg0",
+   "mokulele_16x20_metal": "price_1UK1GYISveyotPUlE8yoLbii",
+   "mokulele_20x25_canvas": "price_1UK1GZISveyotPUl61eG7LEe",
+   "mokulele_20x25_metal": "price_1UK1GaISveyotPUl74UmL88T",
+   "mokulele_24x30_canvas": "price_1UK1GbISveyotPUl5GRl5RD1",
+   "mokulele_24x30_metal": "price_1UK1GcISveyotPUlONyy2agJ",
+   "mokulua-islands_18x12_canvas": "price_1UK1GdISveyotPUl3Cf81DfJ",
+   "mokulua-islands_18x12_metal": "price_1UK1GeISveyotPUlGOaQpYq1",
+   "mokulua-islands_24x16_canvas": "price_1UK1GfISveyotPUlQnTeUoks",
+   "mokulua-islands_24x16_metal": "price_1UK1GgISveyotPUl6mKA2dtW",
+   "mokulua-islands_30x20_canvas": "price_1UK1GhISveyotPUlgaaorjPd",
+   "mokulua-islands_30x20_metal": "price_1UK1GiISveyotPUlJqjZ5HrX",
+   "mokulua-islands_36x24_canvas": "price_1UK1GjISveyotPUlKfIDkRcr",
+   "mokulua-islands_36x24_metal": "price_1UK1GkISveyotPUl9ZtLpcSk",
+   "mokulua_18x12_canvas": "price_1UK1EEISveyotPUlCpe1K5sA",
+   "mokulua_18x12_metal": "price_1UK1EFISveyotPUl53X4JojZ",
+   "mokulua_24x16_canvas": "price_1UK1EGISveyotPUleV6LhlcJ",
+   "mokulua_24x16_metal": "price_1UK1EHISveyotPUlXriCXggR",
+   "mokulua_30x20_canvas": "price_1UK1EHISveyotPUl3sJ9WZ1k",
+   "mokulua_30x20_metal": "price_1UK1EIISveyotPUlzAsHbdKM",
+   "mokulua_36x24_canvas": "price_1UK1EJISveyotPUl838ksEED",
+   "mokulua_36x24_metal": "price_1UK1EKISveyotPUl4Dpom26p",
+   "naniwaikiki_30x10_canvas": "price_1UK1DgISveyotPUl7gtGtTdM",
+   "naniwaikiki_30x10_metal": "price_1UK1DhISveyotPUliOl25Hgs",
+   "naniwaikiki_48x16_canvas": "price_1UK1DiISveyotPUlgszuUMLP",
+   "naniwaikiki_48x16_metal": "price_1UK1DjISveyotPUlP7tWcivM",
+   "naniwaikiki_72x24_canvas": "price_1UK1DkISveyotPUlalxNuiFJ",
+   "naniwaikiki_72x24_metal": "price_1UK1DlISveyotPUl9UOeYMFp",
+   "olomana_16x20_canvas": "price_1UK1GlISveyotPUl5XfPEOyA",
+   "olomana_16x20_metal": "price_1UK1GmISveyotPUl3OudPXC2",
+   "olomana_20x25_canvas": "price_1UK1GnISveyotPUlkuKMf75K",
+   "olomana_20x25_metal": "price_1UK1GoISveyotPUlEmSYhtKX",
+   "olomana_24x30_canvas": "price_1UK1GoISveyotPUl9PDzTefK",
+   "olomana_24x30_metal": "price_1UK1GpISveyotPUlUmLBMcye",
+   "puao_16x20_canvas": "price_1UK1ELISveyotPUlzwnQbPJa",
+   "puao_16x20_metal": "price_1UK1EMISveyotPUlk7WossGr",
+   "puao_20x25_canvas": "price_1UK1ENISveyotPUlGd4PJdFR",
+   "puao_20x25_metal": "price_1UK1EOISveyotPUl5DIVg6Fb",
+   "puao_24x30_canvas": "price_1UK1EPISveyotPUlYKWTJz3L",
+   "puao_24x30_metal": "price_1UK1EQISveyotPUlMVZDpFuu",
+   "shorelinecascade_16x20_canvas": "price_1UK1GyISveyotPUlPq0W8nrQ",
+   "shorelinecascade_16x20_metal": "price_1UK1GzISveyotPUlMufNkIh0",
+   "shorelinecascade_20x25_canvas": "price_1UK1H0ISveyotPUlwGMYkjIZ",
+   "shorelinecascade_20x25_metal": "price_1UK1H1ISveyotPUlLy8JtOrZ",
+   "shorelinecascade_24x30_canvas": "price_1UK1H2ISveyotPUl0gjzLQ7I",
+   "shorelinecascade_24x30_metal": "price_1UK1H3ISveyotPUlcmybsMS5",
+   "timespan_18x12_canvas": "price_1UK1H4ISveyotPUlUMz3Flnu",
+   "timespan_18x12_metal": "price_1UK1H5ISveyotPUlsp9dF3Xy",
+   "timespan_24x16_canvas": "price_1UK1H6ISveyotPUl5aUiRTF1",
+   "timespan_24x16_metal": "price_1UK1H7ISveyotPUlkA4OhLCG",
+   "timespan_30x20_canvas": "price_1UK1H8ISveyotPUl47EQI3oT",
+   "timespan_30x20_metal": "price_1UK1H8ISveyotPUl6vjZlsgb",
+   "timespan_36x24_canvas": "price_1UK1H9ISveyotPUle6odFT22",
+   "timespan_36x24_metal": "price_1UK1HAISveyotPUlivyFmDnO",
+   "waimanalo_16x20_canvas": "price_1UK1HCISveyotPUlkqZOneTw",
+   "waimanalo_16x20_metal": "price_1UK1HDISveyotPUlnmxRyDIS",
+   "waimanalo_20x25_canvas": "price_1UK1HDISveyotPUliZloYOR7",
+   "waimanalo_20x25_metal": "price_1UK1HEISveyotPUlUNU47Rk4",
+   "waimanalo_24x30_canvas": "price_1UK1HFISveyotPUlYxnomugJ",
+   "waimanalo_24x30_metal": "price_1UK1HGISveyotPUlNUbHFJon"
+  },
+  "products": {
+   "018": "prod_VKgeQjHsnuFPrK",
+   "032": "prod_VKgdSnEhdE7goY",
+   "033": "prod_VKgc7nJYtMQWoN",
+   "034": "prod_VKgcd9CGT7f505",
+   "035": "prod_VKgeY2A44uTS9G",
+   "036": "prod_VKgdgkILDZYxwz",
+   "037": "prod_VKgekeT2xGoY1k",
+   "038": "prod_VKgdvszRrQ28dP",
+   "043": "prod_VKgdBPWXwvdF6J",
+   "anuenue": "prod_VKgeQCi5BRM5FB",
+   "eleu": "prod_VKgeukyDGvHomw",
+   "frostedtidepool": "prod_VKgcsBgGN0J0iz",
+   "hanauma": "prod_VKgcVeejc4OqfU",
+   "hanohanohakipuu": "prod_VKgbGFecxsXMNV",
+   "hoihoi": "prod_VKgctuaNr6Rn0s",
+   "homecoming": "prod_VKgc4BIniBf6X8",
+   "hookahi": "prod_VKgcKw07J5JIuf",
+   "jumanji": "prod_VKgb8vIczOrGXQ",
+   "jurassicdawn": "prod_VKgbRXv6mr3qQM",
+   "kaaawasunrise": "prod_VKgb8VIvK3Ajzn",
+   "kaaawavalley": "prod_VKgaKUfUMcE6J8",
+   "kahana": "prod_VKgcyUwvHnuz2J",
+   "kaimana": "prod_VKgaMypeXgrUVY",
+   "kaiwi": "prod_VKgcLiYRIJa67b",
+   "kuamoo": "prod_VKgcO7ziixNmQh",
+   "leahikahiko": "prod_VKgdDlLu38Q35H",
+   "makapuubeach-h": "prod_VKgdZ3f9FVuLZY",
+   "makapuubeach-v": "prod_VKgbKoXw8jGofN",
+   "malie": "prod_VKgbD0R82X5DS8",
+   "mokoliireflection": "prod_VKgdofK7seZhVN",
+   "mokulele": "prod_VKgdBq3NPzBigQ",
+   "mokulua": "prod_VKgbqasq0G7IMv",
+   "mokulua-islands": "prod_VKgdhYa0BrHGA9",
+   "naniwaikiki": "prod_VKgaB9fxeT8xnu",
+   "olomana": "prod_VKgenqCbiSh4Zw",
+   "puao": "prod_VKgbwbqQs0iYFX",
+   "shorelinecascade": "prod_VKgeqkDUnZp39q",
+   "timespan": "prod_VKgerVH5H2vc1B",
+   "waimanalo": "prod_VKgeX7eGwWZ7F3"
+  }
+ }
+}

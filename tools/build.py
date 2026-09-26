@@ -341,7 +341,11 @@ class Builder:
         self.check = check
         self.site = load_yaml("site.yml", {})
         self.base = self.site["base_url"]["production" if production else "staging"]
-        self.links = (load_json("payment-links.json", {}) or {}).get("links") if self.site["features"].get("checkout") else None
+        pl = load_json("payment-links.json", {}) or {}
+        self.links_mode = pl.get("mode") if self.site["features"].get("checkout") else None
+        if production and self.links_mode and self.links_mode != "live":
+            raise SystemExit("production build with test payment links: run tools/stripe_catalog.py --mode live first")
+        self.links = pl.get("links") if self.links_mode else None
         self.locations = load_yaml("locations.yml", {})
         self.products = load_products(self.site, self.links)
         self.by_id = {p["urlId"]: p for p in self.products}
@@ -354,7 +358,7 @@ class Builder:
         self.env = Environment(loader=FileSystemLoader(str(ROOT / "templates")),
                                autoescape=select_autoescape(["html", "xml"]),
                                trim_blocks=True, lstrip_blocks=True, undefined=StrictUndefined)
-        self.env.globals.update(picture=picture, pic_site=pic_site, url=url, asset=asset, preload_img=preload_img,
+        self.env.globals.update(links_mode=self.links_mode, picture=picture, pic_site=pic_site, url=url, asset=asset, preload_img=preload_img,
                                 money=lambda n: f"${n:,}", site=self.site, production=production)
         self.env.filters["longdate"] = lambda d: (dt.date.fromisoformat(str(d)[:10]).strftime("%B %-d, %Y") if d else "")
         self.env.filters["json"] = lambda o: Markup(html.escape(json.dumps(o, ensure_ascii=False, separators=(",", ":")), quote=True))
