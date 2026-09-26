@@ -21,7 +21,8 @@
 #   image          source image path, relative to the repo, when it is not harvest/images/originals/<urlId>.jpg
 #   orientation    only for prints that did not come from Squarespace
 #
-# Names for 036, 037, 038, 043, the removal of 041 and the new Olomana: Kawika, 2026-09-25.
+# Names for 036, 037, 038, 043, the removal of 041 and the new Olomana and Mokulua (the color
+# aerial, a different photograph from Mokulua Monochrome): Kawika, 2026-09-25.
 
 "018":
   subtitle: Koʻolau Valley Aerial
@@ -393,7 +394,20 @@ waimanalo:
 
 olomana:
   title: Olomana
-  tags: [mountains]
-  status: pending
+  orientation: vertical
+  collections: [landscape]
+  subtitle: Olomana Above the Mist
+  tags: [aerial, mountains, clouds]
+  alt: Aerial view of the sharp peak of Olomana rising over a misty rainforest in Maunawili, with the Koʻolau cliffs behind it
+  location: kailua-waimanalo
+  island: Oʻahu
+
+mokulua-islands:
+  title: Mokulua
+  orientation: horizontal
+  collections: [landscape]
+  subtitle: Mokulua Islands Aerial
+  tags: [aerial, islet, coast]
+  alt: Aerial view of the two Mokulua islets off Lanikai in warm low light, turquoise water and the Kailua coast behind them
   location: kailua-waimanalo
   island: Oʻahu

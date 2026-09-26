@@ -458,6 +458,21 @@
    960
   ]
  },
+ "mokulua-islands": {
+  "avg": "#4b7077",
+  "h": 1333,
+  "mtime": 1790382823.2473748,
+  "source": "originals",
+  "src": "harvest/images/originals/mokulua-islands.jpg",
+  "w": 2000,
+  "widths": [
+   240,
+   480,
+   960,
+   1600,
+   2000
+  ]
+ },
  "naniwaikiki": {
   "avg": "#8d9793",
   "h": 666,
@@ -471,6 +486,20 @@
    960,
    1600,
    2000
+  ]
+ },
+ "olomana": {
+  "avg": "#5f6257",
+  "h": 2000,
+  "mtime": 1790382823.102091,
+  "source": "originals",
+  "src": "harvest/images/originals/olomana.jpg",
+  "w": 1600,
+  "widths": [
+   240,
+   480,
+   960,
+   1600
   ]
  },
  "puao": {

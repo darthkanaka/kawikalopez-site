@@ -280,7 +280,7 @@ def site_graph(site, base):
                           "addressRegion": site["person"]["region"], "addressCountry": "US"},
               "sameAs": site["person"]["same_as"]}
     org = {"@type": "Organization", "@id": base + "#org", "name": site["name"], "legalName": site["legal_name"],
-           "url": base, "logo": base + "assets/img/site/logo-gray.png", "founder": {"@id": base + "#kawika"},
+           "url": base, "logo": base + "assets/img/site/logo-512.png", "founder": {"@id": base + "#kawika"},
            "sameAs": site["person"]["same_as"]}
     web = {"@type": "WebSite", "@id": base + "#site", "name": site["name"], "url": base,
            "publisher": {"@id": base + "#org"}, "inLanguage": "en-US"}

@@ -203,6 +203,20 @@
   "indexable": true
  },
  {
+  "path": "store/mokulua-islands",
+  "file": "store/mokulua-islands.html",
+  "type": "product",
+  "title": "Mokulua: Mokulua Islands Aerial Print | Kawika Lopez",
+  "indexable": true
+ },
+ {
+  "path": "store/olomana",
+  "file": "store/olomana.html",
+  "type": "product",
+  "title": "Olomana: Olomana Above the Mist Print | Kawika Lopez",
+  "indexable": true
+ },
+ {
   "path": "store/035",
   "file": "store/035.html",
   "type": "product",

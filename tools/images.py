@@ -179,14 +179,48 @@ def write_print(url_id, ov, record, force=False):
     return rec
 
 
-def write_og(im, path, size=(1200, 630), margin=48):
+_LOGO = {}
+
+
+def logo(kind="ink", height=40):
+    """The horizontal logo lockup (tools/logo.py) as RGBA at a given height, or None."""
+    key = (kind, height)
+    if key not in _LOGO:
+        name = "logo-horizontal.png" if kind == "ink" else "logo-horizontal-white.png"
+        p = OUT_SITE / name
+        if not p.exists():
+            _LOGO[key] = None
+        else:
+            im = Image.open(p).convert("RGBA")
+            _LOGO[key] = im.resize((round(im.width * height / im.height), height), Image.LANCZOS)
+    return _LOGO[key]
+
+
+def write_og(im, path, size=(1200, 630), margin=48, band=92):
+    """Share image: the print on the paper color with the logo centered in a band below it."""
     canvas = Image.new("RGB", size, PAPER)
-    box = (size[0] - 2 * margin, size[1] - 2 * margin)
+    box = (size[0] - 2 * margin, size[1] - margin - band)
     pic = im.convert("RGB").copy()
     pic.thumbnail(box, Image.LANCZOS)
     x = (size[0] - pic.width) // 2
-    y = (size[1] - pic.height) // 2
+    y = margin + (box[1] - pic.height) // 2
     canvas.paste(pic, (x, y))
+    mark = logo("ink", 40)
+    if mark:
+        canvas.paste(mark, ((size[0] - mark.width) // 2, size[1] - band + (band - mark.height) // 2 - 4), mark)
+    save_jpg(canvas, path, q=84)
+
+
+def write_og_default(src, path, size=(1200, 630), band=92):
+    """Share image for pages that are not a single print: the living room mockup across the
+    top, the logo on a paper band below it, matching the print share images."""
+    im = to_srgb(Image.open(src)).convert("RGB")
+    photo = ImageOps.fit(im, (size[0], size[1] - band), Image.LANCZOS, centering=(0.5, 0.40))
+    canvas = Image.new("RGB", size, PAPER)
+    canvas.paste(photo, (0, 0))
+    mark = logo("ink", 40)
+    if mark:
+        canvas.paste(mark, ((size[0] - mark.width) // 2, size[1] - band + (band - mark.height) // 2), mark)
     save_jpg(canvas, path, q=84)
 
 
@@ -237,6 +271,27 @@ def site_images(force=False):
                 save_webp(r, OUT_SITE / f"{stem}-{w}.webp")
                 save_jpg(r, OUT_SITE / f"{stem}-{w}.jpg")
             done.append(stem)
+
+    # Square logo on paper for schema.org (Google wants at least 112 x 112).
+    src = s / "Logo_2BText_28gray_29.png"
+    target = OUT_SITE / "logo-512.png"
+    if src.exists() and (force or not fresh([target], src.stat().st_mtime)):
+        im = Image.open(src).convert("RGBA")
+        im = im.crop(im.getbbox())
+        im.thumbnail((440, 440), Image.LANCZOS)
+        tile = Image.new("RGBA", (512, 512), PAPER + (255,))
+        tile.alpha_composite(im, ((512 - im.width) // 2, (512 - im.height) // 2))
+        tile.convert("RGB").save(target, optimize=True)
+        done.append(target.name)
+
+    # Default share image.
+    src = s / "home-hero-living-room-panorama.jpg"
+    target = OUT_OG / "default.jpg"
+    logo_png = OUT_SITE / "logo-horizontal-white.png"
+    newest = max(src.stat().st_mtime, logo_png.stat().st_mtime if logo_png.exists() else 0) if src.exists() else 0
+    if src.exists() and (force or not fresh([target], newest)):
+        write_og_default(src, target)
+        done.append("og/default.jpg")
 
     # Home hero: the living room mockup with Nani Waikīkī on the wall.
     src = s / "home-hero-living-room-panorama.jpg"
