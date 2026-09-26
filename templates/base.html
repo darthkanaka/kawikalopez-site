@@ -37,6 +37,9 @@
 <a class="skip" href="#main">Skip to content</a>
 {% include "partials/header.html" %}
 <main id="main">
+{% if draft %}
+<p class="draft-note">Draft. This page only shows on the staging site until it's approved in Obsidian.</p>
+{% endif %}
 {% block main %}{% endblock %}
 </main>
 {% include "partials/footer.html" %}

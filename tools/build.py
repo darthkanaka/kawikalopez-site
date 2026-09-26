@@ -48,6 +48,8 @@ import yaml
 from jinja2 import Environment, FileSystemLoader, StrictUndefined, pass_context, select_autoescape
 from markupsafe import Markup
 
+import content as md
+
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 TODAY = dt.date.today().isoformat()
@@ -220,7 +222,7 @@ def load_products(site, links, warn=WARN):
             if loc_key not in locations:
                 warn.add(f"{url_id}: location '{loc_key}' is not in data/locations.yml")
             else:
-                p["location"] = dict(locations[loc_key], slug=loc_key)
+                p["location"] = dict(locations[loc_key], slug=loc_key, page=None)
         # variants: shipping tier, link
         vs = []
         for v in p["variants"]:
@@ -340,12 +342,12 @@ class Builder:
         self.site = load_yaml("site.yml", {})
         self.base = self.site["base_url"]["production" if production else "staging"]
         self.links = (load_json("payment-links.json", {}) or {}).get("links") if self.site["features"].get("checkout") else None
+        self.locations = load_yaml("locations.yml", {})
         self.products = load_products(self.site, self.links)
         self.by_id = {p["urlId"]: p for p in self.products}
         self.scenes = load_json("scenes.json", [])
         self.scene = self.scenes[0] if self.scenes else None
         self.shipping = load_yaml("shipping.yml", {})
-        self.locations = load_yaml("locations.yml", {})
         self.lastmod = load_json("lastmod.json", {}) or {}
         self.pages = []            # every page rendered: {path, file, type, title, indexable}
         self.changed = []
@@ -354,10 +356,39 @@ class Builder:
                                trim_blocks=True, lstrip_blocks=True, undefined=StrictUndefined)
         self.env.globals.update(picture=picture, pic_site=pic_site, url=url, asset=asset, preload_img=preload_img,
                                 money=lambda n: f"${n:,}", site=self.site, production=production)
+        self.env.filters["longdate"] = lambda d: (dt.date.fromisoformat(str(d)[:10]).strftime("%B %-d, %Y") if d else "")
         self.env.filters["json"] = lambda o: Markup(html.escape(json.dumps(o, ensure_ascii=False, separators=(",", ":")), quote=True))
+        # Place pages and posts from content/ (synced from the vault). Drafts render on staging
+        # only, with a draft label, so Kawika can read them in place before they go live.
+        self.show_drafts = not production
+        keep = lambda d: d["status"] == "published" or (self.show_drafts and d["status"] == "draft")
+        self.place_docs = {}
+        for d in md.load_docs(ROOT / "content" / "places", WARN):
+            key = d.get("place") or d["slug"]
+            if key not in self.locations:
+                WARN.add(f"place page {d['slug']}: '{key}' is not in data/locations.yml, skipped")
+                continue
+            if keep(d):
+                d["key"] = key
+                d["path"] = f"hawaii-prints/{key}"
+                self.place_docs[key] = d
+        self.posts = [d for d in md.load_docs(ROOT / "content" / "posts", WARN) if keep(d)]
+        for d in self.posts:
+            d["path"] = f"blog/{d['slug']}"
+        self.posts.sort(key=lambda d: d.get("date") or "", reverse=True)
+        for p in self.products:
+            if p.get("location") and p["location"]["slug"] in self.place_docs:
+                p["location"]["page"] = self.place_docs[p["location"]["slug"]]["path"]
+
         # Pages that exist in this build. Nav and links only point at these.
         self.available = ({"", "store/", "prints", "about", "contact", "privacy", "thank-you"}
-                          | {c["path"] for c in COLLECTIONS})
+                          | {c["path"] for c in COLLECTIONS}
+                          | {d["path"] for d in self.place_docs.values()}
+                          | {d["path"] for d in self.posts})
+        if self.place_docs:
+            self.available.add("hawaii-prints/")
+        if self.posts:
+            self.available.add("blog/")
 
     # -- output
     def write(self, rel, text):
@@ -384,6 +415,9 @@ class Builder:
             full_graph.append(breadcrumbs_ld(self.base, crumbs))
         full_graph += graph or []
         ctx.setdefault("preload", None)
+        ctx.setdefault("draft", False)
+        if ctx.get("og_image") is None:
+            ctx.pop("og_image", None)
         text = self.env.get_template(template).render(
             root=root, path=path, rel=rel, canonical=canonical, title=title, description=description,
             page_type=page_type, noindex=(not self.production) or not indexable, crumbs=crumbs or [],
@@ -514,7 +548,8 @@ class Builder:
         desc = ("Hawaiʻi landscape and aerial photography prints by Kawika Lopez. Panoramas of Waikīkī, Diamond Head "
                 "and Kaʻaʻawa Valley on canvas or metal, printed on Oʻahu.")
         self.emit("home.html", "index.html", "", "home", "Kawika Lopez | Hawaiʻi Landscape and Aerial Prints", desc,
-                  featured=featured, total=len([p for p in self.products if not p.get("draft")]), tiles=tiles, teaser=teaser, hero_print=self.by_id.get("naniwaikiki"),
+                  featured=featured, total=len([p for p in self.products if not p.get("draft")]),
+                  places=list(self.place_docs.values()), tiles=tiles, teaser=teaser, hero_print=self.by_id.get("naniwaikiki"),
                   preload=("assets/img/site/hero-living", [480, 960, 1600, 2000], "100vw"))
 
     def prints_page(self):
@@ -583,6 +618,130 @@ class Builder:
         self.emit("thank-you.html", "thank-you.html", "thank-you", "page", "Thank you | Kawika Lopez Photography",
                   "Your order is in. What happens next.", indexable=False)
 
+    # -- places and posts
+    def md_html(self, body, rel):
+        root = "../" * rel.count("/")
+
+        def link_for(kind, key):
+            if kind == "print":
+                if key in self.by_id:
+                    return root + self.by_id[key]["path"]
+                WARN.add(f"{rel}: link to unknown print '{key}'")
+            elif kind == "place":
+                if key in self.place_docs:
+                    return root + self.place_docs[key]["path"]
+                WARN.add(f"{rel}: link to a place without a page '{key}'")
+            elif kind == "page":
+                if key in self.available:
+                    return root + key if key else (root or "./")
+                WARN.add(f"{rel}: link to a page that is not built '{key}'")
+            return None
+
+        def card_for(ids):
+            items = [self.by_id[i] for i in ids if i in self.by_id]
+            for i in ids:
+                if i not in self.by_id:
+                    WARN.add(f"{rel}: print card for unknown print '{i}'")
+            if not items:
+                return ""
+            one = len(items) == 1
+            figs = []
+            for p in items:
+                sizes = "(min-width: 900px) 760px, calc(100vw - 32px)" if one else "(min-width: 900px) 360px, 50vw"
+                figs.append(
+                    f'<a class="inline-print" href="{root}{p["path"]}" style="--r:{p["image"]["w"] / p["image"]["h"]:.4f}">'
+                    f'{print_picture(p, root, sizes)}'
+                    f'<span class="inline-cap"><span class="card-title">{html.escape(p["title"])}</span> '
+                    f'<span class="card-sub">{html.escape(p.get("subtitle") or "")}, from ${p["priceFrom"]:,}</span></span></a>')
+            cls = "inline-prints" + (" is-one" if one else "")
+            return f'<div class="{cls}">' + "".join(figs) + "</div>"
+
+        return Markup(md.render(body, link_for, card_for))
+
+    def place_pages(self):
+        for key, d in self.place_docs.items():
+            loc = dict(self.locations[key], slug=key)
+            items = [p for p in self.products if (p.get("location") or {}).get("slug") == key and not p.get("draft")]
+            hero = self.by_id.get(d.get("hero")) or (items[0] if items else None)
+            if not items or not hero:
+                WARN.add(f"place page {key}: no prints, skipped")
+                continue
+            rel = f"{d['path']}.html"
+            body = self.md_html(d["body"], rel)
+            others = [self.place_docs[k] for k in self.place_docs if k != key]
+            posts = [q for q in self.posts if key in (q.get("places") or [])]
+            place_ld = {"@type": "Place", "name": loc["title"],
+                        "containedInPlace": {"@type": "Place", "name": loc.get("island", "")}}
+            if loc.get("coords"):
+                place_ld["geo"] = {"@type": "GeoCoordinates", "latitude": loc["coords"][0], "longitude": loc["coords"][1]}
+            coll = collection_ld(self.base, d["path"], d["title"], d.get("description", ""), items)
+            coll["about"] = place_ld
+            title = d.get("seo_title") or f"{d['title']} | Kawika Lopez"
+            if d.get("target") and d["target"].lower() not in d["title"].lower():
+                WARN.add(f"place page {key}: title does not contain its target phrase '{d['target']}'")
+            self.emit("place.html", rel, d["path"], "place", title, d.get("description", ""),
+                      crumbs=[("Places", "hawaii-prints/"), (loc["short"], d["path"])], graph=[coll],
+                      indexable=d["status"] == "published", draft=d["status"] != "published",
+                      doc=d, loc=loc, body=body, items=items, hero=hero, others=others, posts=posts,
+                      og_image=f"{self.base}assets/img/og/{hero['urlId']}.jpg",
+                      preload=(f"assets/img/prints/{hero['urlId']}", hero["image"]["widths"], "100vw"))
+
+    def places_index(self):
+        if not self.place_docs:
+            return
+        cards = []
+        for key, d in self.place_docs.items():
+            items = [p for p in self.products if (p.get("location") or {}).get("slug") == key and not p.get("draft")]
+            hero = self.by_id.get(d.get("hero")) or (items[0] if items else None)
+            if hero:
+                cards.append({"doc": d, "loc": self.locations[key], "hero": hero, "count": len(items)})
+        desc = ("Hawaiʻi prints by place: Kaʻaʻawa Valley, Mokoliʻi, Makapuʻu, the Kaiwi coast, Diamond Head, "
+                "the North Shore, Lanikai and the Koʻolau.")
+        coll = {"@type": "CollectionPage", "@id": self.base + "hawaii-prints/", "url": self.base + "hawaii-prints/",
+                "name": "Hawaiʻi prints by place", "isPartOf": {"@id": self.base + "#site"}}
+        self.emit("places.html", "hawaii-prints/index.html", "hawaii-prints/", "places", "Hawaiʻi Prints by Place | Kawika Lopez",
+                  desc, crumbs=[("Places", "hawaii-prints/")], graph=[coll], cards=cards,
+                  indexable=any(c["doc"]["status"] == "published" for c in cards))
+
+    def post_pages(self):
+        for d in self.posts:
+            rel = f"{d['path']}.html"
+            body = self.md_html(d["body"], rel)
+            hero = self.by_id.get(d.get("hero"))
+            prints = [self.by_id[i] for i in (d.get("prints") or []) if i in self.by_id]
+            if not prints:
+                WARN.add(f"post {d['slug']}: lists no prints (every post should link at least one)")
+            url_ = self.base + d["path"]
+            post_ld = {"@type": "BlogPosting", "@id": url_ + "#post", "headline": d["title"],
+                       "description": d.get("description", ""), "url": url_, "mainEntityOfPage": url_,
+                       "datePublished": d.get("date"), "dateModified": d.get("updated") or d.get("date"),
+                       "author": {"@id": self.base + "#kawika"}, "publisher": {"@id": self.base + "#org"},
+                       "inLanguage": "en-US"}
+            if hero:
+                post_ld["image"] = f"{self.base}assets/img/og/{hero['urlId']}.jpg"
+            title = d.get("seo_title") or f"{d['title']} | Kawika Lopez"
+            places = [self.place_docs[k] for k in (d.get("places") or []) if k in self.place_docs]
+            self.emit("post.html", rel, d["path"], "post", title, d.get("description", ""),
+                      crumbs=[("Blog", "blog/"), (d["title"], d["path"])], graph=[post_ld],
+                      indexable=d["status"] == "published", draft=d["status"] != "published",
+                      doc=d, body=body, hero=hero, prints=prints, places=places,
+                      minutes=md.reading_minutes(d["body"]),
+                      og_image=f"{self.base}assets/img/og/{hero['urlId']}.jpg" if hero else None,
+                      preload=(f"assets/img/prints/{hero['urlId']}", hero["image"]["widths"], "(min-width: 1100px) 1040px, 100vw") if hero else None)
+
+    def blog_index(self):
+        if not self.posts:
+            return
+        items = []
+        for d in self.posts:
+            items.append({"doc": d, "hero": self.by_id.get(d.get("hero"))})
+        desc = "Stories behind the prints and plain advice on choosing, sizing and hanging wall art, from Kawika Lopez."
+        coll = {"@type": "Blog", "@id": self.base + "blog/", "url": self.base + "blog/", "name": "Kawika Lopez blog",
+                "publisher": {"@id": self.base + "#org"}}
+        self.emit("blog.html", "blog/index.html", "blog/", "blog", "Blog | Kawika Lopez Photography", desc,
+                  crumbs=[("Blog", "blog/")], graph=[coll], items=items,
+                  indexable=any(d["status"] == "published" for d in self.posts))
+
     def not_found(self):
         self.emit("404.html", "404.html", "404", "404", "Page not found | Kawika Lopez",
                   "That page isn't here. Browse Hawaiʻi prints by Kawika Lopez instead.", indexable=False,
@@ -633,6 +792,10 @@ class Builder:
         self.contact_page()
         self.privacy_page()
         self.thankyou_page()
+        self.place_pages()
+        self.places_index()
+        self.post_pages()
+        self.blog_index()
         self.not_found()
         self.redirects()
         self.sitemap_and_robots()
@@ -666,6 +829,22 @@ def sizes_for_product(p):
     if p["orientation"] == "vertical":
         return "(min-width: 960px) 44vw, calc(100vw - 32px)"
     return "(min-width: 960px) 58vw, calc(100vw - 32px)"
+
+
+def print_picture(p, root, sizes, eager=False, cls="", alt=None):
+    img = p["image"]
+    base = f"assets/img/prints/{p['urlId']}"
+    webp = _srcset(root, base, img["widths"], "webp")
+    jws = [w for w in img["widths"] if w >= 480] or img["widths"]
+    jpg = _srcset(root, base, jws, "jpg")
+    src_w = max([w for w in jws if w <= 960] or jws[:1])
+    alt_text = alt if alt is not None else p["alt"]
+    loading = 'loading="eager" fetchpriority="high"' if eager else 'loading="lazy"'
+    cls_attr = f' class="{cls}"' if cls else ""
+    return (f'<picture><source type="image/webp" srcset="{webp}" sizes="{sizes}">'
+            f'<img src="{root}{base}-{src_w}.jpg" srcset="{jpg}" sizes="{sizes}" width="{img["w"]}" height="{img["h"]}" '
+            f'alt="{html.escape(alt_text, quote=True)}" {loading} decoding="async"{cls_attr} '
+            f'style="background-color:{img["avg"]}"></picture>')
 
 
 @pass_context

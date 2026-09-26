@@ -46,9 +46,16 @@ The form on /contact posts to a Google Apps Script web app whose source is `gas/
 
 `tools/logo.py` traces Kawika's logo from the old site's PNG into `assets/img/site/logo.svg` (the stacked original, used in the footer and as a sign-off) and `logo-horizontal.svg` (signature beside the wordmark, used in the header), plus PNGs of the lockup for share images. Rerun it with `uv run tools/logo.py` only if the source art changes, then `python3 tools/images.py --force` to redo the share images.
 
+## Place pages and posts
+
+The writing lives in the Obsidian vault at `~/Documents/Obsidian/kawikalopez/` (`places/` and `posts/`, with a README for Kawika). `python3 tools/sync_content.py` copies it into `content/`, which is what the build reads and what gets committed. Notes marked `status: draft` render on staging with a draft label and stay out of production builds and the sitemap; `status: published` is the approval. Shorthand links (`print:`, `place:`, `page:`) and print cards (`[print:id]`, `[prints: a, b]`) are explained in `tools/content.py` and in the vault README.
+
+Place pages live at `/hawaii-prints/<place>` (the key in `data/locations.yml`), posts at `/blog/<slug>`. Print pages link to their place page once it exists.
+
 ## Local preview
 
 ```
+python3 tools/sync_content.py    # copy place pages and posts from the vault
 python3 tools/images.py          # only when a source image changed; skips what is current
 python3 tools/scenes.py          # only when a scene changed
 python3 tools/build.py           # staging build

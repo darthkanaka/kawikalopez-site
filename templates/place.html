@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% from "partials/card.html" import card with context %}
+{% block main %}
+{% include "partials/crumbs.html" %}
+<article class="place">
+  <header class="wrap page-head">
+    <p class="eyebrow">{{ loc.region }}{% if loc.island %} · {{ loc.island }}{% endif %}</p>
+    <h1>{{ doc.title }}</h1>
+    {% if doc.description %}<p class="lede">{{ doc.description }}</p>{% endif %}
+  </header>
+  <figure class="place-hero wrap">
+    {{ picture(hero, "(min-width: 1328px) 1280px, calc(100vw - 32px)", eager=True) }}
+    <figcaption><a href="{{ url(hero.path) }}">{{ hero.title }}</a>{% if hero.subtitle %}, {{ hero.subtitle }}{% endif %}</figcaption>
+  </figure>
+  <div class="wrap section-tight">
+    <div class="prose place-body">{{ body }}</div>
+  </div>
+  <section class="section wrap" aria-labelledby="place-prints-h">
+    <div class="section-head">
+      <h2 id="place-prints-h">Prints from {{ loc.short }}</h2>
+      <a class="more" href="{{ url('store/') }}">All prints</a>
+    </div>
+    <div class="jgrid">
+      {% for p in items %}{{ card(p) }}{% endfor %}
+    </div>
+  </section>
+  {% if posts %}
+  <section class="section wrap" aria-labelledby="place-posts-h">
+    <h2 id="place-posts-h">From the blog</h2>
+    <ul class="link-list">
+      {% for q in posts %}<li><a href="{{ url(q.path) }}">{{ q.title }}</a></li>{% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+  {% if others %}
+  <section class="section wrap" aria-labelledby="place-more-h">
+    <h2 id="place-more-h">More places</h2>
+    <ul class="chips chips-lg">
+      {% for o in others %}<li><a href="{{ url(o.path) }}">{{ o.title | replace(" prints", "") }}</a></li>{% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+</article>
+{% endblock %}

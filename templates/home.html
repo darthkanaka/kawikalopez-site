@@ -44,6 +44,18 @@
   </div>
 </section>
 
+{% if places %}
+<section class="section wrap" aria-labelledby="places-h">
+  <div class="section-head">
+    <h2 id="places-h">Prints by place</h2>
+    <a class="more" href="{{ url('hawaii-prints/') }}">All places</a>
+  </div>
+  <ul class="chips chips-lg">
+    {% for d in places %}<li><a href="{{ url(d.path) }}">{{ d.title | replace(" prints", "") }}</a></li>{% endfor %}
+  </ul>
+</section>
+{% endif %}
+
 {% if teaser %}
 <section class="section band" aria-labelledby="wall-h">
   <div class="wrap split">

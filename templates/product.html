@@ -71,7 +71,7 @@
     <div class="prose">
       {% for para in p.paragraphs %}<p>{{ para }}</p>{% endfor %}
       {% if not p.paragraphs %}<p>{{ p.alt }}.</p>{% endif %}
-      {% if p.location %}<p class="place">Photographed at {{ p.location.title }}, {{ p.location.island }}.</p>{% endif %}
+      {% if p.location %}<p class="place">Photographed at {% if p.location.page %}<a href="{{ url(p.location.page) }}">{{ p.location.title }}</a>{% else %}{{ p.location.title }}{% endif %}, {{ p.location.island }}.</p>{% endif %}
     </div>
   </section>
 
@@ -114,6 +114,7 @@
     <div class="jgrid jgrid-small">
       {% for q in related %}{{ card(q, 220) }}{% endfor %}
     </div>
+    {% if p.location and p.location.page %}<p class="more-place"><a href="{{ url(p.location.page) }}">All prints from {{ p.location.short }}</a></p>{% endif %}
   </section>
   {% endif %}
 </article>

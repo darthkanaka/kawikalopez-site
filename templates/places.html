@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block main %}
+{% include "partials/crumbs.html" %}
+<section class="wrap page-head">
+  <h1>Hawaiʻi prints by place</h1>
+  <p class="lede">Every print comes from somewhere Kawika went to at first light, usually on foot, sometimes with a drone. Here they are by place, with a little about each one.</p>
+</section>
+<section class="wrap section-tight" aria-label="Places">
+  <div class="tiles tiles-places">
+    {% for c in cards %}
+    <a class="tile" href="{{ url(c.doc.path) }}">
+      {{ picture(c.hero, "(min-width: 960px) 30vw, (min-width: 640px) 45vw, calc(100vw - 32px)", cls="tile-img", alt="") }}
+      <span class="tile-label">{{ c.loc.short }}</span>
+      <span class="tile-count">{{ c.count }} print{{ 's' if c.count != 1 }}{% if c.doc.status != 'published' %} · draft{% endif %}</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

@@ -19,6 +19,7 @@
    16 Reduced motion
    17 Sizes page
    18 About, contact, thanks
+   19 Places and posts
 */
 
 /* 01 Tokens ---------------------------------------------------------------- */
@@ -163,7 +164,7 @@ p { margin: 0 0 1em; }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
 .more { font-size: 0.9375rem; white-space: nowrap; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
-.chips a { text-decoration: none; font-size: 0.875rem; padding: 7px 14px; border: 1px solid var(--rule); border-radius: 999px; background: transparent; }
+.chips a { display: inline-block; text-decoration: none; font-size: 0.875rem; padding: 7px 14px; border: 1px solid var(--rule); border-radius: 999px; background: transparent; }
 .chips a:hover { border-color: var(--ink); color: var(--ink); }
 .chips a[aria-current="page"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 .tag { display: inline-block; font-family: var(--sans); font-size: 0.6875rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); border: 1px solid var(--rule); padding: 1px 7px; border-radius: 999px; margin-left: 8px; vertical-align: 2px; }
@@ -360,4 +361,39 @@ p { margin: 0 0 1em; }
 .contact-aside p { color: var(--ink-2); }
 .contact-aside .footer-h { margin-top: 8px; }
 .ask { display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 0.9375rem; margin: 14px 0 0; }
+
+/* 19 Places and posts ------------------------------------------------------ */
+.draft-note { margin: 0; padding: 10px var(--gutter); background: #f3e2b3; color: #4a3a0c; font-size: var(--step--1); text-align: center; }
+.place-hero, .post-hero { margin-top: 0; margin-bottom: 0; }
+.place-hero img, .post-hero img { width: 100%; }
+.place-hero figcaption, .post-hero figcaption { font-size: var(--step--1); color: var(--ink-2); padding-top: 10px; }
+.post-hero { max-width: calc(1040px + 2 * var(--gutter)); }
+.post-head { max-width: calc(820px + 2 * var(--gutter)); }
+.place-body, .post-body { margin-inline: auto; padding-top: 16px; }
+.post-body h2, .place-body h2 { font-size: var(--step-2); margin-top: 1.6em; }
+.post-body h3 { font-size: 1.75rem; margin-top: 1.2em; }
+.post-body ul, .post-body ol, .place-body ul { padding-left: 1.2em; }
+.post-body li + li { margin-top: 0.4em; }
+.inline-prints { display: flex; flex-wrap: wrap; gap: 16px; margin: 28px 0; }
+.inline-print { flex: var(--r) 1 calc(var(--r) * 200px); min-width: 0; text-decoration: none; display: flex; flex-direction: column; }
+.inline-prints.is-one .inline-print { flex-basis: 100%; }
+.inline-print img { width: 100%; height: auto; aspect-ratio: var(--r); object-fit: cover; }
+.inline-cap { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; padding-top: 8px; font-size: 0.9375rem; line-height: 1.4; }
+.inline-cap .card-title { font-size: 1.25rem; }
+.inline-print:hover .card-title { text-decoration: underline; text-decoration-thickness: 1px; }
+.chips-lg { list-style: none; padding: 0; margin: 0; }
+.chips-lg a { font-size: 0.9375rem; padding: 9px 16px; }
+.link-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; font-size: 1.0625rem; }
+.more-place { margin-top: 20px; font-size: 0.9375rem; }
+.tiles-places { gap: 20px; }
+@media (min-width: 640px) and (max-width: 799px) { .tiles-places { grid-template-columns: 1fr 1fr; } }
+.post-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 36px; }
+.post-item { display: grid; gap: 16px 32px; text-decoration: none; align-items: center; }
+@media (min-width: 800px) { .post-item { grid-template-columns: 360px minmax(0, 1fr); } }
+.post-item img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+.post-item-text { display: grid; gap: 6px; }
+.post-item-text .eyebrow { margin: 0; }
+.post-item-title { font-family: var(--serif); font-size: var(--step-2); line-height: 1.1; }
+.post-item-desc { color: var(--ink-2); }
+.post-item:hover .post-item-title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.15em; }
 

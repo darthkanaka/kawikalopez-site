@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% from "partials/card.html" import card with context %}
+{% block main %}
+{% include "partials/crumbs.html" %}
+<article class="post">
+  <header class="wrap page-head post-head">
+    <p class="eyebrow"><time datetime="{{ doc.date }}">{{ doc.date | longdate }}</time> · {{ minutes }} min read</p>
+    <h1>{{ doc.title }}</h1>
+    {% if doc.description %}<p class="lede">{{ doc.description }}</p>{% endif %}
+  </header>
+  {% if hero %}
+  <figure class="post-hero wrap">
+    {{ picture(hero, "(min-width: 1100px) 1040px, calc(100vw - 32px)", eager=True) }}
+    <figcaption><a href="{{ url(hero.path) }}">{{ hero.title }}</a>{% if hero.subtitle %}, {{ hero.subtitle }}{% endif %}</figcaption>
+  </figure>
+  {% endif %}
+  <div class="wrap section-tight">
+    <div class="prose post-body">{{ body }}</div>
+  </div>
+  {% if prints %}
+  <section class="section wrap" aria-labelledby="post-prints-h">
+    <div class="section-head">
+      <h2 id="post-prints-h">Prints in this post</h2>
+      <a class="more" href="{{ url('store/') }}">All prints</a>
+    </div>
+    <div class="jgrid jgrid-small">
+      {% for p in prints %}{{ card(p, 220) }}{% endfor %}
+    </div>
+  </section>
+  {% endif %}
+  {% if places %}
+  <section class="section wrap" aria-labelledby="post-places-h">
+    <h2 id="post-places-h">Places in this post</h2>
+    <ul class="chips chips-lg">
+      {% for o in places %}<li><a href="{{ url(o.path) }}">{{ o.title | replace(" prints", "") }}</a></li>{% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+</article>
+{% endblock %}

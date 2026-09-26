@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block main %}
+{% include "partials/crumbs.html" %}
+<section class="wrap page-head">
+  <h1>Blog</h1>
+  <p class="lede">The stories behind the prints, and plain advice on choosing, sizing and hanging wall art.</p>
+</section>
+<section class="wrap section-tight" aria-label="Posts">
+  <ul class="post-list">
+    {% for it in items %}
+    <li>
+      <a class="post-item" href="{{ url(it.doc.path) }}">
+        {% if it.hero %}{{ picture(it.hero, "(min-width: 800px) 360px, calc(100vw - 32px)", alt="") }}{% endif %}
+        <span class="post-item-text">
+          <span class="eyebrow">{{ it.doc.date | longdate }}{% if it.doc.status != 'published' %} · draft{% endif %}</span>
+          <span class="post-item-title">{{ it.doc.title }}</span>
+          {% if it.doc.description %}<span class="post-item-desc">{{ it.doc.description }}</span>{% endif %}
+        </span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}
