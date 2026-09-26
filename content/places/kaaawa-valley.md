@@ -5,7 +5,7 @@ place: kaaawa-valley
 target: Kaʻaʻawa Valley prints
 description: Prints of Kaʻaʻawa Valley and the Kualoa ridges on Oʻahu's windward coast, the Jurassic Valley, made at sunrise from the shore, the ridges and the air.
 hero: kaaawavalley
-status: draft
+status: published
 date: 2026-09-25
 tags: [kawikalopez-site, place-page]
 project: kawikalopez-site

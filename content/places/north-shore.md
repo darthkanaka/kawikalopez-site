@@ -5,7 +5,7 @@ place: north-shore
 target: North Shore Oʻahu prints
 description: Prints from Oʻahu's North Shore on the quiet days, with reef uncovered at low tide, water sliding over lava rock at Papailoa, and a rainbow after a shower.
 hero: anuenue
-status: draft
+status: published
 date: 2026-09-25
 tags: [kawikalopez-site, place-page]
 project: kawikalopez-site

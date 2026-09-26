@@ -6,7 +6,7 @@ description: Color, size, light, where you're starting from, and your gut. Five 
 hero: kaaawasunrise
 prints: [kaaawasunrise, mokulua, kaimana, makapuubeach-h]
 places: [kaaawa-valley, makapuu]
-status: draft
+status: published
 date: 2026-09-25
 updated: 2026-09-25
 tags: [kawikalopez-site, post]

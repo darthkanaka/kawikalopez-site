@@ -5,7 +5,7 @@ place: diamond-head
 target: Diamond Head and Waikīkī prints
 description: Prints of Lēʻahi (Diamond Head) and Waikīkī, including aerial panoramas at sunrise and sunset, the crater from above, and the view down from the ridges over Pālolo.
 hero: naniwaikiki
-status: draft
+status: published
 date: 2026-09-25
 tags: [kawikalopez-site, place-page]
 project: kawikalopez-site

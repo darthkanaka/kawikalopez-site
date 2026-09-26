@@ -7,7 +7,7 @@ description: Aim for two thirds of the sofa's width and hang it 8 to 10 inches a
 hero: naniwaikiki
 prints: [naniwaikiki, kaimana, kaaawavalley, kaaawasunrise, puao]
 places: [diamond-head, kaaawa-valley]
-status: draft
+status: published
 date: 2026-09-25
 updated: 2026-09-25
 tags: [kawikalopez-site, post]

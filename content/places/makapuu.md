@@ -5,7 +5,7 @@ place: makapuu
 target: Makapuʻu prints
 description: Prints of Makapuʻu on Oʻahu's eastern tip, including the lighthouse at sunrise, the beach from straight above, and a two minute exposure from the ridge.
 hero: timespan
-status: draft
+status: published
 date: 2026-09-25
 tags: [kawikalopez-site, place-page]
 project: kawikalopez-site

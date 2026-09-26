@@ -5,7 +5,7 @@ place: kaiwi-coast
 target: Kaiwi coast
 description: Prints of Oʻahu's Kaiwi coast, from Hanauma Bay at sunrise to the tide pools, the Sandy Beach shorebreak and the highway winding along the cliffs.
 hero: hanauma
-status: draft
+status: published
 date: 2026-09-25
 tags: [kawikalopez-site, place-page]
 project: kawikalopez-site

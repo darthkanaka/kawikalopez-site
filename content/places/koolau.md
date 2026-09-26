@@ -5,7 +5,7 @@ place: koolau
 target: Koʻolau mountain prints
 description: Prints of the Koʻolau range on windward Oʻahu, including fluted cliffs and hidden valleys from the air, and the ridge above Kahana Bay after a climb in the dark.
 hero: kahana
-status: draft
+status: published
 date: 2026-09-25
 tags: [kawikalopez-site, place-page]
 project: kawikalopez-site

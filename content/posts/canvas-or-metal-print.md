@@ -7,7 +7,7 @@ description: How canvas and metal prints differ in look, light, durability and p
 hero: kaimana
 prints: [kaimana, hanauma, eleu, frostedtidepool, malie]
 places: []
-status: draft
+status: published
 date: 2026-09-25
 updated: 2026-09-25
 tags: [kawikalopez-site, post]

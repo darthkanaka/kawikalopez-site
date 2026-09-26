@@ -361,91 +361,91 @@
   "file": "hawaii-prints/diamond-head.html",
   "type": "place",
   "title": "Diamond Head and Waikīkī Prints | Kawika Lopez",
-  "indexable": false
+  "indexable": true
  },
  {
   "path": "hawaii-prints/kaaawa-valley",
   "file": "hawaii-prints/kaaawa-valley.html",
   "type": "place",
   "title": "Kaʻaʻawa Valley and Kualoa Prints | Kawika Lopez",
-  "indexable": false
+  "indexable": true
  },
  {
   "path": "hawaii-prints/kailua-waimanalo",
   "file": "hawaii-prints/kailua-waimanalo.html",
   "type": "place",
   "title": "Lanikai, Kailua and Waimānalo Prints | Kawika Lopez",
-  "indexable": false
+  "indexable": true
  },
  {
   "path": "hawaii-prints/kaiwi-coast",
   "file": "hawaii-prints/kaiwi-coast.html",
   "type": "place",
   "title": "Kaiwi Coast and Hanauma Bay Prints | Kawika Lopez",
-  "indexable": false
+  "indexable": true
  },
  {
   "path": "hawaii-prints/koolau",
   "file": "hawaii-prints/koolau.html",
   "type": "place",
   "title": "Koʻolau Mountain Prints | Kawika Lopez",
-  "indexable": false
+  "indexable": true
  },
  {
   "path": "hawaii-prints/makapuu",
   "file": "hawaii-prints/makapuu.html",
   "type": "place",
   "title": "Makapuʻu Lighthouse and Beach Prints | Kawika Lopez",
-  "indexable": false
+  "indexable": true
  },
  {
   "path": "hawaii-prints/mokolii",
   "file": "hawaii-prints/mokolii.html",
   "type": "place",
   "title": "Mokoliʻi (Chinaman's Hat) Prints | Kawika Lopez",
-  "indexable": false
+  "indexable": true
  },
  {
   "path": "hawaii-prints/north-shore",
   "file": "hawaii-prints/north-shore.html",
   "type": "place",
   "title": "North Shore Oʻahu Prints | Kawika Lopez",
-  "indexable": false
+  "indexable": true
  },
  {
   "path": "hawaii-prints/",
   "file": "hawaii-prints/index.html",
   "type": "places",
   "title": "Hawaiʻi Prints by Place | Kawika Lopez",
-  "indexable": false
+  "indexable": true
  },
  {
   "path": "blog/5-tips-for-choosing-wall-art",
   "file": "blog/5-tips-for-choosing-wall-art.html",
   "type": "post",
   "title": "5 expert tips for choosing the perfect wall art | Kawika Lopez",
-  "indexable": false
+  "indexable": true
  },
  {
   "path": "blog/canvas-or-metal-print",
   "file": "blog/canvas-or-metal-print.html",
   "type": "post",
   "title": "Canvas or Metal Print? How to Choose | Kawika Lopez",
-  "indexable": false
+  "indexable": true
  },
  {
   "path": "blog/what-size-print-above-a-sofa",
   "file": "blog/what-size-print-above-a-sofa.html",
   "type": "post",
   "title": "What Size Print Goes Above a Sofa? | Kawika Lopez",
-  "indexable": false
+  "indexable": true
  },
  {
   "path": "blog/",
   "file": "blog/index.html",
   "type": "blog",
   "title": "Blog | Kawika Lopez Photography",
-  "indexable": false
+  "indexable": true
  },
  {
   "path": "404",

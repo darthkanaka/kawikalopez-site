@@ -5,7 +5,7 @@ place: kailua-waimanalo
 target: Lanikai
 description: Prints of Oʻahu's windward side, including the Mokulua islets off Lanikai in color and in black and white, Waimānalo Beach from the air, and Olomana.
 hero: mokulua-islands
-status: draft
+status: published
 date: 2026-09-25
 tags: [kawikalopez-site, place-page]
 project: kawikalopez-site

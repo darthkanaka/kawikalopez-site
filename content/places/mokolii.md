@@ -5,7 +5,7 @@ place: mokolii
 target: Mokoliʻi prints
 description: Prints of Mokoliʻi, the islet off Kualoa known as Chinaman's Hat, from a very low tide at sunrise, from its own rocks, and from the air.
 hero: mokoliireflection
-status: draft
+status: published
 date: 2026-09-25
 tags: [kawikalopez-site, place-page]
 project: kawikalopez-site
