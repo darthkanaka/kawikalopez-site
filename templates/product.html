@@ -19,6 +19,7 @@
           <li>Free pickup on Oʻahu, or shipped anywhere in the US</li>
           {% if room %}<li><a href="#room">See it to scale on a wall</a></li>{% endif %}
         </ul>
+        <p class="ask"><a href="{{ url('contact') }}?print={{ p.title | urlencode }}">Questions about this print?</a> <a href="{{ url('prints') }}">Sizes and pricing</a></p>
       </div>
 
       <form class="picker" data-picker="{{ picker | json }}" onsubmit="return false">

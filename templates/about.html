@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block main %}
+{% include "partials/crumbs.html" %}
+<article class="wrap about">
+  <header class="page-head">
+    <h1>About Kawika Lopez</h1>
+    <p class="lede">Kawika Lopez is a landscape and aerial photographer based on Oʻahu, sharing the beauty of the islands and the lessons in them.</p>
+  </header>
+  <div class="about-grid">
+    <figure class="about-media">
+      {{ picture(feature, "(min-width: 960px) 40vw, calc(100vw - 32px)") }}
+      <figcaption><a href="{{ url(feature.path) }}">{{ feature.title }}</a>, one of the prints made after a hike in the dark.</figcaption>
+    </figure>
+    <div class="prose">
+      <p>He found photography and video in high school, went on to study creative media, and has made his living behind a camera ever since, as a photographer and a filmmaker.</p>
+      <p>Most of the photographs here start in the dark. He hikes ridgelines before sunrise to be in place when the first light reaches the Koʻolau, or flies a drone along the coast to find what you can only see from above: the reef lines off Lanikai, the curves of the Kaiwi coast highway, the folds in a valley wall.</p>
+      <p>Every print has a name, many of them in Hawaiian, and a short story about how it was made and what it means. <a href="{{ url('store/malie') }}">Mālie</a> is about water wearing down stone. <a href="{{ url('store/anuenue') }}">Ānuenue</a> is about finding something to be grateful for. <a href="{{ url('store/018') }}">ʻĀlina</a> is a reminder that scars can be beautiful.</p>
+      <p>The prints are made by {{ site.printer.name }} in Kapolei, a local lab Kawika has worked with for years, on gallery-wrapped canvas or ChromaLuxe metal. Pick yours up on Oʻahu or have it shipped anywhere in the US.</p>
+      <img class="signoff" src="{{ asset('assets/img/site/logo.svg') }}" width="2455" height="1183" alt="Kawika Lopez Photography" loading="lazy" decoding="async">
+      <p class="actions"><a class="btn" href="{{ url('store/') }}">Shop prints</a> <a class="btn btn-quiet" href="{{ url('contact') }}">Get in touch</a></p>
+    </div>
+  </div>
+</article>
+{% endblock %}

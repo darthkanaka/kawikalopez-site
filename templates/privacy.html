@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block main %}
+{% include "partials/crumbs.html" %}
+<article class="wrap">
+  <header class="page-head">
+    <h1>Privacy</h1>
+    <p class="lede">What this site collects, why, and what happens to it. Last updated {{ updated }}.</p>
+  </header>
+  <div class="prose">
+    <h2>Messages</h2>
+    {% if site.contact.endpoint %}
+    <p>When you use the contact form, we get your name, your email, the print you ask about and your message. It goes to Kawika's inbox and to a private spreadsheet so nothing gets lost. We use it only to answer you.</p>
+    {% else %}
+    <p>The contact form opens your own email app with your message filled in, so it reaches Kawika the same way any email would. We use what you send only to answer you.</p>
+    {% endif %}
+
+    <h2>Orders</h2>
+    {% if site.features.checkout %}
+    <p>Checkout is handled by Stripe. Your card details go to Stripe and never reach us. We receive your name, email, phone number and shipping address so we can make and deliver your print, and we share them with our print lab, {{ site.printer.name }}, only when they need them to fill your order.</p>
+    {% else %}
+    <p>Orders are placed by email for now. We use your details only to make and deliver your print, and share them with our print lab, {{ site.printer.name }}, only when they need them to fill your order.</p>
+    {% endif %}
+
+    <h2>Analytics and cookies</h2>
+    {% if site.ga4 %}
+    <p>We use Google Analytics to count visits and see which pages people find useful. It sets cookies and receives your IP address. You can block it with any content blocker and the site works the same.</p>
+    {% else %}
+    <p>This site doesn't use analytics, advertising or tracking cookies.</p>
+    {% endif %}
+    <p>The site is hosted on GitHub Pages, which records visitors' IP addresses for security, as most hosts do. Fonts and images are served from this site, not from third parties.</p>
+
+    <h2>What we don't do</h2>
+    <p>We don't sell or rent your information, and we don't send marketing email unless you ask for it.</p>
+
+    <h2>Your information</h2>
+    <p>Want to see what we have or have it deleted? Email <a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a> and we'll take care of it.</p>
+    <p>{{ site.name }} is a business of {{ site.legal_name }}, Honolulu, Hawaiʻi.</p>
+  </div>
+</article>
+{% endblock %}

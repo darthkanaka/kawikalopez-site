@@ -17,6 +17,8 @@
    14 Footer
    15 Small screens
    16 Reduced motion
+   17 Sizes page
+   18 About, contact, thanks
 */
 
 /* 01 Tokens ---------------------------------------------------------------- */
@@ -90,6 +92,7 @@ a:hover { color: var(--accent); }
 }
 .skip:focus { top: 8px; color: var(--paper); }
 ::selection { background: var(--accent); color: var(--on-accent); }
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
 
 /* 04 Layout ---------------------------------------------------------------- */
 .wrap { width: 100%; max-width: calc(var(--max) + 2 * var(--gutter)); margin-inline: auto; padding-inline: var(--gutter); }
@@ -206,7 +209,7 @@ p { margin: 0 0 1em; }
 .tile-label { bottom: 38px; font-family: var(--serif); font-size: 2.25rem; line-height: 1; }
 .tile-count { bottom: 16px; font-size: 0.875rem; letter-spacing: 0.04em; }
 .tile:hover { color: #fff; }
-.about-teaser p { font-family: var(--serif); font-size: var(--step-2); line-height: 1.3; max-width: 30em; }
+.about-teaser p:not(.more-link) { font-family: var(--serif); font-size: var(--step-2); line-height: 1.3; max-width: 30em; }
 
 /* 10 Store and collections ------------------------------------------------- */
 .page-head { padding-top: clamp(24px, 4vw, 48px); padding-bottom: 32px; }
@@ -314,3 +317,42 @@ p { margin: 0 0 1em; }
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
   .card:hover img, .tile:hover img { transform: none; }
 }
+
+/* 17 Sizes page ------------------------------------------------------------ */
+.h-note { font-family: var(--sans); font-size: var(--step--1); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2); vertical-align: middle; margin-left: 10px; }
+.size-grid { display: grid; gap: 28px; align-items: start; }
+@media (min-width: 960px) { .size-grid { grid-template-columns: minmax(0, 1.55fr) minmax(280px, 1fr); gap: 48px; } }
+.size-group .sizes { max-width: none; }
+.room-ghost { position: absolute; border: 1.5px solid rgba(255, 255, 255, .78); background: rgba(255, 255, 255, .04); }
+.room-ghost.is-largest { border-style: solid; background: rgba(255, 255, 255, .07); }
+.room-ghost span { position: absolute; left: 0; top: 0; transform: translateY(-100%); font-size: clamp(0.625rem, 1.1cqw, 0.8125rem); line-height: 1.6; letter-spacing: 0.04em; color: #fff; white-space: nowrap; padding: 0 4px; font-variant-numeric: tabular-nums; }
+
+/* 18 About, contact, thanks ------------------------------------------------- */
+.about-grid, .contact-grid { display: grid; gap: 40px; align-items: start; }
+@media (min-width: 960px) {
+  .about-grid { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 64px; }
+  .contact-grid { grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.8fr); gap: 72px; }
+}
+.about-media { margin: 0; }
+.about-media figcaption { font-size: var(--step--1); color: var(--ink-2); padding-top: 10px; }
+.signoff { width: 180px; height: auto; margin: 28px 0 8px; }
+.thanks { max-width: 760px; }
+.thanks .signoff { width: 150px; margin: 0 0 24px; }
+.form { display: grid; gap: 20px; max-width: 640px; }
+.field { display: grid; gap: 6px; }
+.field label { font-size: 0.9375rem; font-weight: 500; }
+.optional { font-weight: 400; color: var(--ink-2); font-size: var(--step--1); margin-left: 6px; }
+.field input, .field textarea {
+  font: inherit; color: var(--ink); background: #fbfaf7;
+  border: 1px solid var(--rule); border-radius: var(--radius); padding: 12px 14px; min-height: 48px; width: 100%;
+}
+.field textarea { resize: vertical; min-height: 160px; }
+.field input:focus-visible, .field textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+.form .btn { justify-self: start; min-width: 160px; }
+.form-status { min-height: 1.6em; margin: 0; font-size: 0.9375rem; }
+.form-status.is-error { color: #8a1c1c; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.contact-aside p { color: var(--ink-2); }
+.contact-aside .footer-h { margin-top: 8px; }
+.ask { display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 0.9375rem; margin: 14px 0 0; }
+

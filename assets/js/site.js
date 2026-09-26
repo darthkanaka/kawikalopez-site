@@ -6,6 +6,7 @@
    01 Shared
    02 Size and material picker
    03 Room preview (to scale)
+   04 Contact form
 */
 
 /* 01 Shared ---------------------------------------------------------------- */
@@ -93,3 +94,56 @@ var KL = (function () {
     }
   });
 })();
+
+/* 04 Contact form ------------------------------------------------------------ */
+/* Posts to the Apps Script in gas/contact-notify.gs when data-endpoint is set. Without an
+   endpoint, or if the post fails, it opens the visitor's email app with the message filled
+   in, so a message is never lost. A hidden field and a 3 second minimum catch most bots. */
+(function () {
+  "use strict";
+  var form = document.querySelector("[data-contact]");
+  if (!form) return;
+  var status = form.querySelector("[data-status]");
+  var endpoint = form.getAttribute("data-endpoint");
+  var to = form.getAttribute("data-email");
+  var opened = Date.now();
+
+  var params = new URLSearchParams(location.search);
+  if (params.get("print")) form.elements.print.value = params.get("print");
+
+  function say(text, isError) {
+    status.textContent = text;
+    status.classList.toggle("is-error", !!isError);
+  }
+
+  function mailto(d) {
+    var subject = d.print ? "Print question: " + d.print : "Message from " + d.name;
+    var body = d.message + "\n\n" + d.name + (d.print ? "\nPrint: " + d.print : "");
+    location.href = "mailto:" + to + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    say("Your email app should open with your message ready to send. If it didn't, write to " + to + ".");
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var d = {
+      name: form.elements.name.value.trim(),
+      email: form.elements.email.value.trim(),
+      print: form.elements.print.value.trim(),
+      message: form.elements.message.value.trim(),
+      website: form.elements.website.value
+    };
+    if (!d.name || !d.message || d.email.indexOf("@") < 1) {
+      say("Please add your name, a working email and a message.", true);
+      (!d.name ? form.elements.name : d.email.indexOf("@") < 1 ? form.elements.email : form.elements.message).focus();
+      return;
+    }
+    if (d.website || Date.now() - opened < 3000) { say("Thanks, your message is on its way."); return; }
+    if (!endpoint) { mailto(d); return; }
+    var body = new URLSearchParams({ name: d.name, email: d.email, print: d.print, message: d.message, page: location.pathname });
+    say("Sending...");
+    fetch(endpoint, { method: "POST", mode: "no-cors", body: body })
+      .then(function () { form.reset(); say("Thanks, your message is on its way. Kawika will reply by email."); })
+      .catch(function () { mailto(d); });
+  });
+})();
+

@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block main %}
+{% include "partials/crumbs.html" %}
+<section class="wrap page-head">
+  <h1>Print sizes and prices</h1>
+  <p class="lede">Every print is made to order on canvas or metal by {{ site.printer.name }} in Kapolei. The sizes follow the shape of each photograph, so nothing gets cropped. Below, each size is drawn to scale on the same living room wall.</p>
+  <nav class="chips" aria-label="Jump to a shape">
+    {% for g in groups %}<a href="#{{ g.orientation }}">{{ g.label }}</a>{% endfor %}
+    <a href="#materials">Canvas or metal</a>
+    <a href="#how-big">How big to go</a>
+    <a href="#delivery">Pickup and shipping</a>
+  </nav>
+</section>
+
+{% for g in groups %}
+<section id="{{ g.orientation }}" class="section wrap size-group" aria-labelledby="{{ g.orientation }}-h">
+  <div class="section-head">
+    <h2 id="{{ g.orientation }}-h">{{ g.label }} <span class="h-note">{{ g.shape }}</span></h2>
+    <a class="more" href="{{ url(g.browse) }}">{{ g.count }} {{ g.label | lower }} print{{ 's' if g.count != 1 }}</a>
+  </div>
+  <div class="size-grid">
+    <figure class="room room-guide" aria-hidden="true">
+      {{ pic_site(scene.image.base, scene.image.widths, scene.image.width, scene.image.height, "(min-width: 960px) 60vw, calc(100vw - 32px)", "") }}
+      {% for gh in g.ghosts %}
+      <div class="room-ghost{% if loop.last %} is-largest{% endif %}" style="left:{{ gh.rect.left }}%;top:{{ gh.rect.top }}%;width:{{ gh.rect.width }}%;height:{{ gh.rect.height }}%"><span>{{ gh.label }}</span></div>
+      {% endfor %}
+    </figure>
+    <div class="table-wrap">
+      <table class="sizes">
+        <caption class="visually-hidden">{{ g.label }} print sizes and prices</caption>
+        <thead><tr><th scope="col">Inches</th><th scope="col">Canvas</th><th scope="col">Metal</th></tr></thead>
+        <tbody>
+          {% for r in g.rows %}
+          <tr>
+            <th scope="row">{{ r.size }}{% if not r.ships %} <span class="tag">Pickup only</span>{% endif %}</th>
+            <td>{{ money(r.canvas) if r.canvas else "" }}</td>
+            <td>{{ money(r.metal) if r.metal else "" }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <p class="fine">For example, <a href="{{ url(g.example.path) }}">{{ g.example.title }}</a>. Every {{ g.label | lower }} print comes in these sizes.</p>
+    </div>
+  </div>
+</section>
+{% endfor %}
+
+<section id="materials" class="section wrap" aria-labelledby="materials-h">
+  <h2 id="materials-h">Canvas or metal</h2>
+  <div class="cols2 materials">
+    <div>
+      <h3>Canvas</h3>
+      <p>Printed with archival pigment inks on museum-quality canvas, then gallery-wrapped so it hangs clean without a frame. The texture is soft and there's no glare, so it's easy to live with in a bright room.</p>
+    </div>
+    <div>
+      <h3>Metal</h3>
+      <p>Dye-sublimated onto ChromaLuxe aluminum made in the USA. Colors run deep, detail stays sharp and the surface holds up for years. It suits the ocean and sky shots especially well.</p>
+    </div>
+  </div>
+</section>
+
+<section id="how-big" class="section wrap" aria-labelledby="big-h">
+  <h2 id="big-h">How big should you go?</h2>
+  <div class="prose">
+    <p>Above a sofa, a bed or a console, aim for a print about two thirds the width of the furniture. Over an 84 inch sofa that's about 56 inches, so a 48 x 16 panorama or a 36 x 24 print sits well. On an open wall with nothing under it, go bigger than feels safe. Most people end up wishing they had.</p>
+    <p>Hang it so the middle of the print is about 57 to 60 inches from the floor, or leave 8 to 10 inches between the bottom of the print and the top of the furniture.</p>
+    <p>Still not sure? Every print page shows that print to scale on a wall, and you can switch sizes to compare.</p>
+  </div>
+</section>
+
+<section id="delivery" class="section wrap" aria-labelledby="delivery-h">
+  <h2 id="delivery-h">Pickup and shipping</h2>
+  <div class="prose">
+    <p>Prints are made to order and are usually ready in {{ site.printer.turnaround }}. Pick yours up free on Oʻahu, or have it shipped anywhere in the US. Shipping is priced by size and where it's going.</p>
+    <p>{{ site.printer.name }} ships prints up to 60 inches on the long side. The 72 x 24 panoramas and the 40 x 40 square are pickup only. <a href="{{ url('contact') }}">Get in touch</a> if you need one of those shipped and we'll quote freight.</p>
+  </div>
+  <p class="actions"><a class="btn" href="{{ url('store/') }}">Browse all prints</a></p>
+</section>
+{% endblock %}

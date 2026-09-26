@@ -6,7 +6,7 @@ Written 2026-09-25. Nothing needs downloading from Squarespace: the site never h
 
 **Update 2026-09-25, later the same day: 30 of 38 are done without Kawika.** The finished files were found on the backup drive at `/Volumes/Live Media/Mac Studio Backup/Pictures/Photo Gallery/` and resized to 2000 px on the long edge, sRGB, JPEG quality 90, into `images/originals/<urlId>.jpg`. One note: `eleu` on the old site was a tighter crop (1.36 to 1) of the full frame (1.50 to 1); the full frame is what is in the folder now.
 
-**Kawika still needs to export these 7, plus the ʻEleu crop and the new Olomana**, 2000 px on the long edge, sRGB JPEG, into `images/originals/`, named as shown. None of them exist on the Mac or the backup drive under their Squarespace filenames.
+**Kawika still needs to export these 7.** Olomana and a new color Mokulua arrived on 2026-09-25 and are in the catalog. The ʻEleu file on the Desktop is the same full frame already in use, so ʻEleu needs nothing more, 2000 px on the long edge, sRGB JPEG, into `images/originals/`, named as shown. None of them exist on the Mac or the backup drive under their Squarespace filenames.
 
 | Save as | Print | Squarespace source filename |
 |---|---|---|
@@ -17,8 +17,6 @@ Written 2026-09-25. Nothing needs downloading from Squarespace: the site never h
 | `036.jpg` | Maluna nā ao | `_DSC1832 copy.jpg` |
 | `038.jpg` | Mokoliʻi Pano | `Chinaman'sHat.jpg` (not `MokoliiPano.png`, which is a different composition). A 1500 x 500 copy exists at `images/site/Chinaman_27sHat.jpg` as a fallback |
 | `043.jpg` | Mauka i Makai | `Palolo-Pano.jpg` |
-| `eleu.jpg` | ʻEleu (Kawika's crop, replaces the full frame already in the folder) | from the Desktop |
-| `olomana.jpg` | Olomana (new print) | from the Desktop |
 
 - Optional, only if they exist: any room or wall mockups showing prints hung, and the logo as a vector (SVG, AI or PDF). The site only has a 2451 x 1177 PNG of it, gray and white versions.
 

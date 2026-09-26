@@ -355,7 +355,8 @@ class Builder:
                                 money=lambda n: f"${n:,}", site=self.site, production=production)
         self.env.filters["json"] = lambda o: Markup(html.escape(json.dumps(o, ensure_ascii=False, separators=(",", ":")), quote=True))
         # Pages that exist in this build. Nav and links only point at these.
-        self.available = {"", "store/"} | {c["path"] for c in COLLECTIONS}
+        self.available = ({"", "store/", "prints", "about", "contact", "privacy", "thank-you"}
+                          | {c["path"] for c in COLLECTIONS})
 
     # -- output
     def write(self, rel, text):
@@ -515,6 +516,64 @@ class Builder:
                   featured=featured, total=len([p for p in self.products if not p.get("draft")]), tiles=tiles, teaser=teaser, hero_print=self.by_id.get("naniwaikiki"),
                   preload=("assets/img/site/hero-living", [480, 960, 1600, 2000], "100vw"))
 
+    def prints_page(self):
+        pricing = load_yaml("pricing.yml", {})
+        ship = self.shipping
+        labels = {"panoramic": ("Panoramic", "3 to 1"), "horizontal": ("Horizontal", "3 to 2"),
+                  "vertical": ("Vertical", "4 to 5"), "square": ("Square", "1 to 1")}
+        examples = {"panoramic": "kaimana", "horizontal": "kaaawasunrise", "vertical": "olomana", "square": "hanauma"}
+        groups = []
+        for o in ("panoramic", "horizontal", "vertical", "square"):
+            rows = pricing.get(o) or []
+            if not rows:
+                continue
+            items = [p for p in self.products if p["orientation"] == o and not p.get("draft")]
+            if not items:
+                continue
+            ex = self.by_id.get(examples[o]) or items[0]
+            ghosts = [{"label": f"{r['size']}", "rect": viz_rect(self.scene, r["w"], r["h"])} for r in rows] if self.scene else []
+            browse = f"{o}-prints" if f"{o}-prints" in self.available else "store/"
+            groups.append({
+                "orientation": o, "label": labels[o][0], "shape": labels[o][1], "count": len(items),
+                "example": ex, "ghosts": ghosts, "browse": browse,
+                "rows": [{"size": r["size"], "canvas": r.get("canvas"), "metal": r.get("metal"),
+                          "ships": max(r["w"], r["h"]) <= ship.get("max_ship_long_edge_in", 60)} for r in rows],
+            })
+        lows = [r.get(m) for g in groups for r in g["rows"] for m in ("canvas", "metal") if r.get(m)]
+        desc = (f"Sizes and prices for Kawika Lopez's Hawaiʻi prints, from ${min(lows):,}: panoramas up to 72 inches, "
+                "canvas or metal, each size drawn to scale on a real wall.")
+        page = {"@type": "WebPage", "@id": self.base + "prints", "url": self.base + "prints",
+                "name": "Print sizes and prices", "isPartOf": {"@id": self.base + "#site"}}
+        self.emit("prints.html", "prints.html", "prints", "page", "Print Sizes and Prices | Kawika Lopez", desc,
+                  crumbs=[("Sizes and pricing", "prints")], graph=[page], groups=groups, scene=self.scene)
+
+    def about_page(self):
+        feature = self.by_id.get("kahana") or self.products[0]
+        desc = ("Kawika Lopez is a landscape and aerial photographer on Oʻahu. How the prints are made, "
+                "from pre-dawn hikes to drone flights along the coast.")
+        page = {"@type": "AboutPage", "@id": self.base + "about", "url": self.base + "about",
+                "name": "About Kawika Lopez", "mainEntity": {"@id": self.base + "#kawika"},
+                "isPartOf": {"@id": self.base + "#site"}}
+        self.emit("about.html", "about.html", "about", "page", "About Kawika Lopez | Hawaiʻi Landscape Photographer",
+                  desc, crumbs=[("About", "about")], graph=[page], feature=feature)
+
+    def contact_page(self):
+        desc = "Questions about a Kawika Lopez print, sizing for your wall, or shipping a large piece? Send a message."
+        page = {"@type": "ContactPage", "@id": self.base + "contact", "url": self.base + "contact",
+                "name": "Contact Kawika Lopez", "isPartOf": {"@id": self.base + "#site"}}
+        self.emit("contact.html", "contact.html", "contact", "page", "Contact | Kawika Lopez Photography", desc,
+                  crumbs=[("Contact", "contact")], graph=[page],
+                  prints=[p for p in self.products if not p.get("draft")])
+
+    def privacy_page(self):
+        desc = "What kawikalopez.com collects, why, and what happens to it: messages, orders and analytics."
+        self.emit("privacy.html", "privacy.html", "privacy", "page", "Privacy | Kawika Lopez Photography", desc,
+                  crumbs=[("Privacy", "privacy")], updated="September 25, 2026")
+
+    def thankyou_page(self):
+        self.emit("thank-you.html", "thank-you.html", "thank-you", "page", "Thank you | Kawika Lopez Photography",
+                  "Your order is in. What happens next.", indexable=False)
+
     def not_found(self):
         self.emit("404.html", "404.html", "404", "404", "Page not found | Kawika Lopez",
                   "That page isn't here. Browse Hawaiʻi prints by Kawika Lopez instead.", indexable=False,
@@ -560,6 +619,11 @@ class Builder:
         self.store_page()
         self.collection_pages()
         self.home()
+        self.prints_page()
+        self.about_page()
+        self.contact_page()
+        self.privacy_page()
+        self.thankyou_page()
         self.not_found()
         self.redirects()
         self.sitemap_and_robots()

@@ -13,7 +13,8 @@ Static HTML on GitHub Pages. The pages are rendered by a small Python build and 
 
 | Path | What it is |
 |---|---|
-| `index.html`, `store/`, `*-prints.html`, `fine-art.html`, `landscape-1.html`, `404.html` | Rendered pages. Never edit by hand; edit the template or the data and rebuild |
+| `index.html`, `store/`, `*-prints.html`, `fine-art.html`, `landscape-1.html`, `prints.html`, `about.html`, `contact.html`, `privacy.html`, `thank-you.html`, `404.html` | Rendered pages. Never edit by hand; edit the template or the data and rebuild |
+| `gas/contact-notify.gs` | The contact form's Apps Script |
 | `home.html`, `images.html`, `portfolio.html` and friends | Redirect pages for old Squarespace paths (`data/redirects.yml`) |
 | `templates/` | Jinja2 page structure. `base.html` holds the head, header and footer |
 | `assets/css/site.css` | The one stylesheet, sectioned and numbered |
@@ -36,6 +37,14 @@ Static HTML on GitHub Pages. The pages are rendered by a small Python build and 
 | `data/shipping.yml` | Hand (Kawika's numbers) | Pickup, zones, size tiers, the pickup-only rule over 60 inches |
 | `data/scenes.json` | `tools/scenes.py` and hand | Rooms for the to-scale wall preview: wall rectangle, pixels per inch, anchor |
 | `data/images.json`, `data/pages.json`, `data/lastmod.json` | Tools only | What was generated, what was rendered, when each page last changed |
+
+## Contact form
+
+The form on /contact posts to a Google Apps Script web app whose source is `gas/contact-notify.gs`. It logs every message to a Google Sheet, then emails kawika@elevatemediahi.com with Reply-To set to the sender. Until the script is deployed and its `/exec` URL is in `data/site.yml` as `contact.endpoint`, the form opens the visitor's email app with the message filled in, so nothing is lost. Deploy steps are at the top of the script. To change it later: Manage deployments, New version, never New deployment.
+
+## Logo
+
+`tools/logo.py` traces Kawika's logo from the old site's PNG into `assets/img/site/logo.svg` (the stacked original, used in the footer and as a sign-off) and `logo-horizontal.svg` (signature beside the wordmark, used in the header), plus PNGs of the lockup for share images. Rerun it with `uv run tools/logo.py` only if the source art changes, then `python3 tools/images.py --force` to redo the share images.
 
 ## Local preview
 

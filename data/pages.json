@@ -322,6 +322,41 @@
   "indexable": true
  },
  {
+  "path": "prints",
+  "file": "prints.html",
+  "type": "page",
+  "title": "Print Sizes and Prices | Kawika Lopez",
+  "indexable": true
+ },
+ {
+  "path": "about",
+  "file": "about.html",
+  "type": "page",
+  "title": "About Kawika Lopez | Hawaiʻi Landscape Photographer",
+  "indexable": true
+ },
+ {
+  "path": "contact",
+  "file": "contact.html",
+  "type": "page",
+  "title": "Contact | Kawika Lopez Photography",
+  "indexable": true
+ },
+ {
+  "path": "privacy",
+  "file": "privacy.html",
+  "type": "page",
+  "title": "Privacy | Kawika Lopez Photography",
+  "indexable": true
+ },
+ {
+  "path": "thank-you",
+  "file": "thank-you.html",
+  "type": "page",
+  "title": "Thank you | Kawika Lopez Photography",
+  "indexable": false
+ },
+ {
   "path": "404",
   "file": "404.html",
   "type": "404",
