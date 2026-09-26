@@ -58,3 +58,7 @@ nav:
   - {label: Blog, href: blog/}
   - {label: About, href: about}
   - {label: Contact, href: contact}
+
+# Search Console domain property, owner kaveex@gmail.com (2026-09-26). Keep this TXT record on the
+# domain forever; removing it unverifies the property.
+search_console_txt: google-site-verification=qWJsSiClJlOdTks14Cr2P_wwDq2w_wt-1fXyMkRkpNo
