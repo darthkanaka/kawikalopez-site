@@ -2,6 +2,9 @@
 #
 #   title          display name (h1, cards, schema)
 #   subtitle       short searchable phrase shown under the title and used in the <title> tag
+#   tags           subjects, used to pick related photos: aerial, mountains, coast, beach, reef,
+#                  islet, crater, city, clouds, abstract, sunrise, sunset, long-exposure,
+#                  black-and-white. Shared tags count most, then place, style and shape.
 #   alt            describes the photograph: place, light, what is in the frame
 #   location       slug in data/locations.yml; links the print to its place page
 #   island         shown in specs and schema
@@ -22,6 +25,7 @@
 
 "018":
   subtitle: Koʻolau Valley Aerial
+  tags: [aerial, mountains, abstract]
   alt: Aerial view down a deep green valley in the Koʻolau Mountains, its sheer walls carved by rain into folds and ridges
   location: koolau
   island: Oʻahu
@@ -30,6 +34,7 @@
 
 "032":
   subtitle: Koko Head Crater Aerial
+  tags: [aerial, crater, abstract]
   alt: Aerial view of the ridged slope of Koko Head crater in low gold light, eroded lines running across it like a tattoo
   location: kaiwi-coast
   island: Oʻahu
@@ -39,6 +44,7 @@
 
 "033":
   subtitle: Makapuʻu Lighthouse Sunrise
+  tags: [aerial, coast, sunrise]
   alt: Aerial sunrise view of the Makapuʻu cliffs and lighthouse, one side lit gold and the other in shadow above deep blue water
   location: makapuu
   island: Oʻahu
@@ -47,6 +53,7 @@
 
 "034":
   subtitle: Black Sand Wave Patterns
+  tags: [beach, sunset, abstract]
   alt: Black sand beach at sunset, fine lines drawn in the wet sand by a receding wave under a pastel sky
   fixes:
     - ["The significants of this image is such that", "The significance of this image is"]
@@ -55,23 +62,27 @@
 
 "035":
   subtitle: Palm Trees on an Oʻahu Beach
+  tags: [aerial, beach]
   alt: Aerial view of three coconut palms casting long shadows across a sandy beach beside turquoise water on the east side of Oʻahu
   island: Oʻahu
 
 "036":
   title: Maluna nā ao
   subtitle: A Ridge Above the Clouds
+  tags: [mountains, clouds]
   alt: A forested ridge rising out of a sea of cloud under a clear blue sky
 
 "037":
   title: Wanaka
   subtitle: Roys Peak, New Zealand
+  tags: [mountains, sunrise]
   alt: Roys Peak at sunrise above Lake Wānaka, New Zealand, with snowcapped mountains and islands in the lake beyond
   island: ""
 
 "038":
   title: Mokoliʻi Pano
   subtitle: Mokoliʻi Aerial Panorama
+  tags: [aerial, islet, sunrise]
   alt: Aerial panorama of Mokoliʻi islet at sunrise with the Kualoa ridge and Kāneʻohe Bay behind it
   location: mokolii
   island: Oʻahu
@@ -83,12 +94,14 @@
 "043":
   title: Mauka i Makai
   subtitle: Pālolo to Waikīkī Panorama
+  tags: [mountains, city]
   alt: View from a ridge above Pālolo Valley across Honolulu to Diamond Head and the Waikīkī skyline at golden hour
   location: diamond-head
   island: Oʻahu
 
 anuenue:
   subtitle: North Shore Rainbow
+  tags: [beach, reef]
   alt: A full rainbow arching over the North Shore surf, a moss-covered rock on the sand in front
   location: north-shore
   island: Oʻahu
@@ -100,6 +113,7 @@ anuenue:
 
 eleu:
   subtitle: Sandy Beach Sunrise
+  tags: [beach, sunrise]
   alt: A breaking wave backlit by the rising sun at Sandy Beach, Oʻahu
   location: kaiwi-coast
   island: Oʻahu
@@ -110,6 +124,7 @@ eleu:
 
 frostedtidepool:
   subtitle: Kaiwi Coast Tide Pool
+  tags: [long-exposure, reef, coast, sunrise]
   alt: Long exposure of a tide pool on the Kaiwi coast, smooth frosted water between dark lava rocks at sunrise
   location: kaiwi-coast
   island: Oʻahu
@@ -118,6 +133,7 @@ frostedtidepool:
 
 hanauma:
   subtitle: Hanauma Bay Aerial
+  tags: [aerial, crater, reef, sunrise]
   alt: Aerial view straight down into Hanauma Bay at sunrise, the reef showing through clear blue water inside the crater
   location: kaiwi-coast
   island: Oʻahu
@@ -126,6 +142,7 @@ hanauma:
 
 hanohanohakipuu:
   subtitle: Kāneʻohe Bay Sunrise
+  tags: [mountains, islet, sunrise]
   alt: Sunrise over Kāneʻohe Bay from the ridge above Hakipuʻu, with Mokoliʻi islet and the fishpond below
   location: kaaawa-valley
   island: Oʻahu
@@ -137,6 +154,7 @@ hanohanohakipuu:
 
 hoihoi:
   subtitle: South Point, Hawaiʻi Island
+  tags: [long-exposure, coast]
   alt: Long exposure of waves washing over lava rock at South Point on Hawaiʻi Island, the sun low over the ocean
   location: south-point
   island: Hawaiʻi Island
@@ -147,12 +165,14 @@ hoihoi:
 
 homecoming:
   subtitle: Haleakalā Sunrise, Maui
+  tags: [mountains, clouds, sunrise]
   alt: The first light of sunrise breaking over a sea of clouds from the summit of Haleakalā, Maui
   location: haleakala
   island: Maui
 
 hookahi:
   subtitle: Lone Islet at Sunrise
+  tags: [aerial, islet, clouds, sunrise]
   alt: A lone islet in a calm sea under dramatic orange sunrise clouds
   island: Oʻahu
   fixes:
@@ -161,6 +181,7 @@ hookahi:
 
 jumanji:
   subtitle: Kaʻaʻawa Valley Aerial
+  tags: [aerial, mountains, coast, sunrise]
   alt: Aerial view of the Kaʻaʻawa Valley ridge at sunrise, green cliffs dropping toward the coastal highway and turquoise water
   location: kaaawa-valley
   island: Oʻahu
@@ -168,6 +189,7 @@ jumanji:
 
 jurassicdawn:
   subtitle: Kaʻaʻawa Valley at Dawn
+  tags: [aerial, mountains, coast, sunrise]
   alt: Aerial view along the Kaʻaʻawa coastline toward the ridge of Kaʻaʻawa Valley at dawn
   location: kaaawa-valley
   island: Oʻahu
@@ -175,6 +197,7 @@ jurassicdawn:
 
 kaaawasunrise:
   subtitle: Kaʻaʻawa Ridge Reflection
+  tags: [mountains, sunrise]
   alt: The Kaʻaʻawa ridge glowing pink at sunrise, mirrored in calm water seen from Waikāne
   location: kaaawa-valley
   island: Oʻahu
@@ -186,6 +209,7 @@ kaaawasunrise:
 
 kaaawavalley:
   subtitle: Kaʻaʻawa Valley Panorama
+  tags: [aerial, mountains, coast]
   alt: Aerial panorama of Kaʻaʻawa Valley and the Kualoa ridges, with Mokoliʻi offshore and clouds over the mountains
   location: kaaawa-valley
   island: Oʻahu
@@ -196,6 +220,7 @@ kaaawavalley:
 
 kahana:
   subtitle: Kahana Bay from the Ridge
+  tags: [mountains, beach, sunrise]
   alt: View from a ridge above Kahana Bay at sunrise, the valley and beach curving below
   location: koolau
   island: Oʻahu
@@ -205,6 +230,7 @@ kahana:
 
 kaimana:
   subtitle: Diamond Head Sunrise Panorama
+  tags: [aerial, crater, city, sunrise]
   alt: Aerial panorama of Diamond Head and Waikīkī at sunrise, gold light on the crater and turquoise reef below
   location: diamond-head
   island: Oʻahu
@@ -215,6 +241,7 @@ kaimana:
 
 kaiwi:
   subtitle: Kaiwi Coast Highway Aerial
+  tags: [aerial, coast, abstract]
   alt: Straight-down aerial of Kalanianaʻole Highway winding along the rugged Kaiwi coast beside deep blue ocean
   location: kaiwi-coast
   island: Oʻahu
@@ -226,6 +253,7 @@ kaiwi:
 kuamoo:
   title: Kuamoʻo
   subtitle: Kualoa Ridge at Sunrise
+  tags: [mountains, sunrise]
   alt: The Kaʻaʻawa ridge at sunrise, framed by ironwood branches along the shore
   location: kaaawa-valley
   island: Oʻahu
@@ -236,6 +264,7 @@ kuamoo:
 
 leahikahiko:
   subtitle: Diamond Head Crater Aerial
+  tags: [aerial, crater, city, sunrise]
   alt: Aerial view of Diamond Head crater at sunrise with Waikīkī and Honolulu beyond
   location: diamond-head
   island: Oʻahu
@@ -245,6 +274,7 @@ leahikahiko:
 makapuubeach-h:
   title: Makapuʻu Beach
   subtitle: Wide Aerial
+  tags: [aerial, beach, abstract]
   alt: Straight-down aerial of Makapuʻu Beach, white sand and green dune plants between turquoise surf
   location: makapuu
   island: Oʻahu
@@ -254,6 +284,7 @@ makapuubeach-h:
 makapuubeach-v:
   title: Makapuʻu Beach
   subtitle: Tall Aerial
+  tags: [aerial, beach, abstract]
   alt: Straight-down aerial of Makapuʻu Beach, turquoise water above white sand and green naupaka
   location: makapuu
   island: Oʻahu
@@ -264,6 +295,7 @@ makapuubeach-v:
 
 malie:
   subtitle: Papailoa Beach, North Shore
+  tags: [long-exposure, reef, sunset]
   alt: Silky water flowing over dark reef at Papailoa Beach on the North Shore at sunset
   location: north-shore
   island: Oʻahu
@@ -274,6 +306,7 @@ malie:
 
 mokoliireflection:
   subtitle: Chinaman's Hat at Low Tide
+  tags: [islet, reef, sunrise]
   alt: Mokoliʻi islet at sunrise, reflected in still water over the low tide reef
   location: mokolii
   island: Oʻahu
@@ -282,6 +315,7 @@ mokoliireflection:
 
 mokulele:
   subtitle: Kualoa Ridge from Mokoliʻi
+  tags: [islet, mountains, sunrise]
   alt: The Kualoa ridge at sunrise seen from the rocks of Mokoliʻi, a narrow channel of clear water in front
   location: mokolii
   island: Oʻahu
@@ -292,6 +326,7 @@ mokulele:
 
 mokulua:
   subtitle: Lanikai in Black and White
+  tags: [aerial, islet, reef, black-and-white]
   alt: Black and white aerial of the two Mokulua islets off Lanikai, reef lines in the sand leading out to them
   location: kailua-waimanalo
   island: Oʻahu
@@ -304,6 +339,7 @@ mokulua:
 
 naniwaikiki:
   subtitle: Waikīkī Sunset Panorama
+  tags: [aerial, city, sunset]
   alt: Aerial panorama of Waikīkī and Diamond Head at sunset, pink clouds over the city and turquoise reef below
   location: diamond-head
   island: Oʻahu
@@ -312,6 +348,7 @@ naniwaikiki:
 
 puao:
   subtitle: Koʻolau Mountains Aerial
+  tags: [aerial, mountains, abstract]
   alt: Aerial view of a triangular face of the Koʻolau Mountains, lush ridges lit from one side
   location: koolau
   island: Oʻahu
@@ -323,6 +360,7 @@ puao:
 
 shorelinecascade:
   subtitle: North Shore Reef at Sunset
+  tags: [long-exposure, reef, sunset]
   alt: Water pouring off a moss-covered reef at low tide on the North Shore at sunset
   location: north-shore
   island: Oʻahu
@@ -332,6 +370,7 @@ shorelinecascade:
 
 timespan:
   subtitle: Makapuʻu Long Exposure
+  tags: [long-exposure, coast, beach, sunrise]
   alt: Two minute exposure of Makapuʻu Beach and the lighthouse point at sunrise, clouds streaked across the sky
   location: makapuu
   island: Oʻahu
@@ -342,6 +381,7 @@ timespan:
 waimanalo:
   title: Waimānalo
   subtitle: Waimānalo Beach Aerial
+  tags: [aerial, beach, mountains]
   alt: Aerial view down Waimānalo Beach toward the Koʻolau cliffs, scalloped patterns in the sand
   location: kailua-waimanalo
   island: Oʻahu
@@ -353,6 +393,7 @@ waimanalo:
 
 olomana:
   title: Olomana
+  tags: [mountains]
   status: pending
   location: kailua-waimanalo
   island: Oʻahu

@@ -203,6 +203,7 @@ def load_products(site, links, warn=WARN):
         p = dict(p)
         p.update({"subtitle": None, "alt": None, "island": "", "seo_title": None, "seo_description": None,
                   "story": None, "draft": False, "featured": False, "location": None})
+        p["tags"] = ov.get("tags") or []
         for k in ("title", "subtitle", "alt", "island", "seo_title", "seo_description", "story", "draft", "featured"):
             if k in ov:
                 p[k] = ov[k]
@@ -400,13 +401,39 @@ class Builder:
         return [n for n in self.site["nav"] if n["href"] in self.available]
 
     # -- pages
-    def related(self, p, n=4):
-        pool = [q for q in self.products if q["urlId"] != p["urlId"] and not q.get("draft")]
+    def related(self, p, n=4, max_same_place=2):
+        """Photos that look and feel like this one, not only ones from the same place.
+        Shared subject tags count most, then place, island, style and shape. At most
+        `max_same_place` come from any one place, so the row always has some range."""
+        tags = set(p.get("tags") or [])
         slug = (p.get("location") or {}).get("slug")
-        same_loc = [q for q in pool if slug and (q.get("location") or {}).get("slug") == slug]
-        same_or = [q for q in pool if q["orientation"] == p["orientation"] and q not in same_loc]
-        rest = [q for q in pool if q not in same_loc and q not in same_or]
-        return (same_loc + same_or + rest)[:n]
+        colls = set(p.get("collections") or [])
+
+        def score(q):
+            s = 3 * len(tags & set(q.get("tags") or []))
+            q_slug = (q.get("location") or {}).get("slug")
+            if slug and q_slug == slug:
+                s += 3
+            elif p.get("island") and q.get("island") == p.get("island"):
+                s += 1
+            s += len(colls & set(q.get("collections") or []))
+            if q["orientation"] == p["orientation"]:
+                s += 1
+            return s
+
+        pool = [q for q in self.products if q["urlId"] != p["urlId"] and not q.get("draft")]
+        pool.sort(key=lambda q: (-score(q), q["sort"], q["title"].lower()))
+        picked, per_place = [], {}
+        for q in pool:
+            q_slug = (q.get("location") or {}).get("slug")
+            if q_slug:
+                if per_place.get(q_slug, 0) >= max_same_place:
+                    continue
+                per_place[q_slug] = per_place.get(q_slug, 0) + 1
+            picked.append(q)
+            if len(picked) == n:
+                break
+        return picked
 
     def room_for(self, p):
         if not self.scene:
