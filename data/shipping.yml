@@ -13,6 +13,7 @@ rates_confirmed: false
 currency: usd
 allowed_countries: [US]
 max_ship_long_edge_in: 60
+max_ship_short_edge_in: 30       # the lab ships nothing larger than 60 x 30
 
 pickup:
   label: Free pickup on Oʻahu

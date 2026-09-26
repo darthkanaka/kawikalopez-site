@@ -508,14 +508,14 @@
   "hanauma_40x40_canvas": {
    "amount": 102000,
    "price_id": "price_1UK1F3ISveyotPUlA4F1Ve5R",
-   "ships": true,
-   "url": "https://buy.stripe.com/test_4gMeVe6tA46p6fWeksdnW1w"
+   "ships": false,
+   "url": "https://buy.stripe.com/test_bJe14o8BIdGZ1ZGcckdnX0a"
   },
   "hanauma_40x40_metal": {
    "amount": 165000,
    "price_id": "price_1UK1F4ISveyotPUlzV6Hzo1Z",
-   "ships": true,
-   "url": "https://buy.stripe.com/test_bJebJ22dk46pbAgeksdnW1x"
+   "ships": false,
+   "url": "https://buy.stripe.com/test_00w6oIcRY7iBawc6S0dnX0b"
   },
   "hanohanohakipuu_18x12_canvas": {
    "amount": 25500,

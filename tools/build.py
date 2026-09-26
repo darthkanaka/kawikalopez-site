@@ -129,8 +129,8 @@ def variants_from_pricing(url_id, orientation, pricing):
 
 
 def shipping_tier(v, ship):
-    long_edge = max(v["w"], v["h"])
-    if long_edge > ship.get("max_ship_long_edge_in", 60):
+    long_edge, short_edge = max(v["w"], v["h"]), min(v["w"], v["h"])
+    if long_edge > ship.get("max_ship_long_edge_in", 60) or short_edge > ship.get("max_ship_short_edge_in", 30):
         return "oversize"
     for t in ship.get("tiers", []):
         if long_edge <= t["max_long_edge_in"]:
@@ -577,7 +577,7 @@ class Builder:
                 "orientation": o, "label": labels[o][0], "shape": labels[o][1], "count": len(items),
                 "example": ex, "ghosts": ghosts, "browse": browse,
                 "rows": [{"size": r["size"], "canvas": r.get("canvas"), "metal": r.get("metal"),
-                          "ships": max(r["w"], r["h"]) <= ship.get("max_ship_long_edge_in", 60)} for r in rows],
+                          "ships": shipping_tier(r, ship) != "oversize"} for r in rows],
             })
         lows = [r.get(m) for g in groups for r in g["rows"] for m in ("canvas", "metal") if r.get(m)]
         desc = (f"Sizes and prices for Kawika Lopez's Hawaiʻi prints, from ${min(lows):,}: panoramas up to 72 inches, "
