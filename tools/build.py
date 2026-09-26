@@ -275,7 +275,8 @@ def abs_url(base, path):
 
 def site_graph(site, base):
     person = {"@type": "Person", "@id": base + "#kawika", "name": site["person"]["name"],
-              "jobTitle": site["person"]["job_title"],
+              "jobTitle": site["person"]["job_title"], "image": base + "assets/img/site/portrait-960.jpg",
+              "url": base + "about",
               "address": {"@type": "PostalAddress", "addressLocality": site["person"]["locality"],
                           "addressRegion": site["person"]["region"], "addressCountry": "US"},
               "sameAs": site["person"]["same_as"]}
@@ -549,13 +550,21 @@ class Builder:
 
     def about_page(self):
         feature = self.by_id.get("kahana") or self.products[0]
+        src = ROOT / "harvest" / "images" / "site" / "portrait-kawika.jpg"
+        pw, ph = (1400, 1750)
+        if src.exists():
+            from PIL import Image as _Image
+            with _Image.open(src) as im:
+                pw, ph = im.size
+        portrait = {"w": pw, "h": ph, "widths": [w for w in (480, 960, 1400) if w <= pw] or [pw]}
         desc = ("Kawika Lopez is a landscape and aerial photographer on Oʻahu. How the prints are made, "
                 "from pre-dawn hikes to drone flights along the coast.")
         page = {"@type": "AboutPage", "@id": self.base + "about", "url": self.base + "about",
                 "name": "About Kawika Lopez", "mainEntity": {"@id": self.base + "#kawika"},
                 "isPartOf": {"@id": self.base + "#site"}}
         self.emit("about.html", "about.html", "about", "page", "About Kawika Lopez | Hawaiʻi Landscape Photographer",
-                  desc, crumbs=[("About", "about")], graph=[page], feature=feature)
+                  desc, crumbs=[("About", "about")], graph=[page], feature=feature, portrait=portrait,
+                  og_image=self.base + f"assets/img/site/portrait-{portrait['widths'][-1]}.jpg")
 
     def contact_page(self):
         desc = "Questions about a Kawika Lopez print, sizing for your wall, or shipping a large piece? Send a message."

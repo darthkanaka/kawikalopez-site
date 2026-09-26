@@ -293,6 +293,20 @@ def site_images(force=False):
         write_og_default(src, target)
         done.append("og/default.jpg")
 
+    # Kawika's portrait, the same one the Elevate Media site uses.
+    src = s / "portrait-kawika.jpg"
+    if src.exists():
+        pim = Image.open(src)
+        pw = [w for w in (480, 960, 1400) if w <= pim.width] or [pim.width]
+        outs = [OUT_SITE / f"portrait-{w}.{ext}" for w in pw for ext in ("webp", "jpg")]
+        if force or not fresh(outs, src.stat().st_mtime):
+            im = to_srgb(pim)
+            for w in pw:
+                r = resized(im, w)
+                save_webp(r, OUT_SITE / f"portrait-{w}.webp")
+                save_jpg(r, OUT_SITE / f"portrait-{w}.jpg")
+            done.append("portrait")
+
     # Home hero: the living room mockup with Nani Waikīkī on the wall.
     src = s / "home-hero-living-room-panorama.jpg"
     if src.exists():

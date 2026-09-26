@@ -23,6 +23,7 @@ Read `README.md` first (layout, data files, commands). The project hub with deci
 7. Nothing larger than 2000 px on the long edge is ever published.
 8. No em dashes anywhere. Customer copy is spoken and plain: contractions on, no corporate verbs.
 9. Staging pages carry the `TODO-LAUNCH` noindex line. Only `--production` removes it, and only at cutover.
+10. Never name the print lab on the site. Say the prints are made locally on Oʻahu (Kawika, 2026-09-25). The lab is on record in `data/site.yml` as `printer.lab`, which no template uses.
 
 ## Swap points
 

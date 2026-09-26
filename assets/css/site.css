@@ -328,10 +328,15 @@ p { margin: 0 0 1em; }
 .room-ghost span { position: absolute; left: 0; top: 0; transform: translateY(-100%); font-size: clamp(0.625rem, 1.1cqw, 0.8125rem); line-height: 1.6; letter-spacing: 0.04em; color: #fff; white-space: nowrap; padding: 0 4px; font-variant-numeric: tabular-nums; }
 
 /* 18 About, contact, thanks ------------------------------------------------- */
-.about-grid, .contact-grid { display: grid; gap: 40px; align-items: start; }
+.about-row, .contact-grid { display: grid; gap: 32px; align-items: center; }
+.about-row + .about-row { margin-top: clamp(40px, 7vw, 88px); }
 @media (min-width: 960px) {
-  .about-grid { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 64px; }
-  .contact-grid { grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.8fr); gap: 72px; }
+  .about-row { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 72px; }
+  .about-row--flip { grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); }
+  .contact-grid { grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.8fr); gap: 72px; align-items: start; }
+}
+@media (max-width: 959px) {
+  .about-row--flip .about-media { order: -1; }
 }
 .about-media { margin: 0; }
 .about-media figcaption { font-size: var(--step--1); color: var(--ink-2); padding-top: 10px; }
