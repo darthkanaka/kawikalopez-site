@@ -3,7 +3,7 @@ title: Koʻolau mountain prints
 seo_title: Koʻolau Mountain Prints | Kawika Lopez
 place: koolau
 target: Koʻolau mountain prints
-description: Prints of the Koʻolau range on windward Oʻahu: fluted cliffs and hidden valleys from the air, and the ridge above Kahana Bay after a climb in the dark.
+description: "Prints of the Koʻolau range on windward Oʻahu: fluted cliffs and hidden valleys from the air, and the ridge above Kahana Bay after a climb in the dark."
 hero: kahana
 status: published
 date: 2026-09-25

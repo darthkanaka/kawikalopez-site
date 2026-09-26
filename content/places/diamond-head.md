@@ -3,7 +3,7 @@ title: Diamond Head and Waikīkī prints
 seo_title: Diamond Head and Waikīkī Prints | Kawika Lopez
 place: diamond-head
 target: Diamond Head and Waikīkī prints
-description: Prints of Lēʻahi (Diamond Head) and Waikīkī: aerial panoramas at sunrise and sunset, the crater from above, and the view from the ridges over Pālolo.
+description: "Prints of Lēʻahi (Diamond Head) and Waikīkī: aerial panoramas at sunrise and sunset, the crater from above, and the view from the ridges over Pālolo."
 hero: naniwaikiki
 status: published
 date: 2026-09-25

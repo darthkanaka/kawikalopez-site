@@ -32,11 +32,25 @@ FM = re.compile(r"\A---\s*\n(.*?)\n---\s*\n?(.*)\Z", re.S)
 CARD_LINE = re.compile(r"^\[(print|prints):\s*([a-z0-9,\s\-]+)\]\s*$", re.M)
 
 
+def _quote_loose(block):
+    """Quote plain values that contain ': ' (easy to type in Obsidian, invalid YAML)."""
+    out = []
+    for line in block.splitlines():
+        m = re.match(r"^([A-Za-z_]+):\s+(.*)$", line)
+        if m and ": " in m.group(2) and not m.group(2).startswith(("'", '"', "[", "{")):
+            line = f'{m.group(1)}: "' + m.group(2).replace('"', '\\"') + '"'
+        out.append(line)
+    return "\n".join(out)
+
+
 def parse_frontmatter(text):
     m = FM.match(text)
     if not m:
         return {}, text
-    meta = yaml.safe_load(m.group(1)) or {}
+    try:
+        meta = yaml.safe_load(m.group(1)) or {}
+    except yaml.YAMLError:
+        meta = yaml.safe_load(_quote_loose(m.group(1))) or {}
     return meta, m.group(2)
 
 
