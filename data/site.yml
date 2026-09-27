@@ -16,7 +16,7 @@ base_url:
 # the form falls back to a prefilled email while it is empty.
 contact:
   email: kawika@elevatemediahi.com
-  endpoint: ""
+  endpoint: "https://script.google.com/macros/s/AKfycbxqGaf_-ZVOGrHI6ry3LgjSXf9Usi8MQX1GJffL5haLvgl7TrL53iZCY3gm3oDSpZOo/exec"
 
 # Cart checkout: Google Apps Script web app (gas/checkout.gs). Empty until deployed; while it
 # is empty there is no cart and each print sells through its own payment link.
