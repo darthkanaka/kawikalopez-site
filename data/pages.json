@@ -346,7 +346,14 @@
   "path": "privacy",
   "file": "privacy.html",
   "type": "page",
-  "title": "Privacy | Kawika Lopez Photography",
+  "title": "Privacy Policy | Kawika Lopez Photography",
+  "indexable": true
+ },
+ {
+  "path": "terms",
+  "file": "terms.html",
+  "type": "page",
+  "title": "Terms of Sale | Kawika Lopez Photography",
   "indexable": true
  },
  {
