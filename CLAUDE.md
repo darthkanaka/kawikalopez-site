@@ -29,7 +29,7 @@ Read `README.md` first (layout, data files, commands). The project hub with deci
 
 | What | Where |
 |---|---|
-| Checkout on | `data/payment-links.json` from `tools/stripe_catalog.py`, then `features.checkout: true` in `data/site.yml` |
+| Checkout on | `data/payment-links-test.json` (staging) and `data/payment-links-live.json` (production) from `tools/stripe_catalog.py`, then `features.checkout: true` in `data/site.yml` |
 | Contact form endpoint | `contact.endpoint` in `data/site.yml` |
 | Shipping amounts | `data/shipping.yml` (`rates_confirmed: true` once Kawika supplies them) |
 | Room scenes | `data/scenes.json`, images through `tools/scenes.py` |

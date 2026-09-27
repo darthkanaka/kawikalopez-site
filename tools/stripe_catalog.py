@@ -23,7 +23,8 @@ What it makes, found again on later runs by metadata, so running it twice change
     field, and a redirect to /thank-you. Recreated when its price or shipping options change.
 
 Writes
-  data/payment-links.json   {mode, generated, links: {variant id: {url, price_id, amount, ships}}}
+  data/payment-links-<mode>.json   {mode, generated, links: {variant id: {url, price_id, amount, ships}}}
+                                   staging builds read the test file, production builds the live one
   data/stripe-ids.json      the Stripe ids per mode, so later runs can find and compare things
 
 The site never names the print lab. Checkout text says the prints are made on Oʻahu.
@@ -49,7 +50,6 @@ API = "https://api.stripe.com/v1/"
 VERSION = "2024-06-20"
 CREDS = Path.home() / ".claude" / "credentials" / "kawikalopez-stripe.env"
 IDS = ROOT / "data" / "stripe-ids.json"
-LINKS = ROOT / "data" / "payment-links.json"
 
 
 class Stripe:
@@ -215,6 +215,7 @@ def main(argv=None):
 
     ids_all = json.loads(IDS.read_text()) if IDS.exists() else {}
     ids = ids_all.setdefault(a.mode, {"products": {}, "prices": {}, "links": {}})
+    links_file = ROOT / "data" / f"payment-links-{a.mode}.json"
 
     print(f"{a.mode} catalog: {len(products)} prints, {sum(len(p['variants']) for p in products)} variants")
     rates = ensure_shipping_rates(s, ship)
@@ -222,8 +223,7 @@ def main(argv=None):
 
     by_urlid = {p["metadata"].get("urlId"): p for p in s.all("products") if p["metadata"].get("urlId")}
     prices = {pr["lookup_key"]: pr for pr in s.all("prices", {"active": "true"}) if pr.get("lookup_key")}
-    links_out = (json.loads(LINKS.read_text()).get("links", {}) if LINKS.exists() and
-                 json.loads(LINKS.read_text()).get("mode") == a.mode else {})
+    links_out = json.loads(links_file.read_text()).get("links", {}) if links_file.exists() else {}
     made = {"products": 0, "prices": 0, "links": 0}
 
     for p in products:
@@ -284,7 +284,7 @@ def main(argv=None):
 
     if not a.dry_run:
         IDS.write_text(json.dumps(ids_all, indent=1, sort_keys=True) + "\n")
-        LINKS.write_text(json.dumps({"mode": a.mode, "generated": dt.date.today().isoformat(), "links": links_out},
+        links_file.write_text(json.dumps({"mode": a.mode, "generated": dt.date.today().isoformat(), "links": links_out},
                                     indent=1, sort_keys=True) + "\n")
     print(f"made {made['products']} products, {made['prices']} prices, {made['links']} links "
           f"({s.calls} API calls); {len(links_out)} links on file")

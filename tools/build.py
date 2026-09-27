@@ -19,7 +19,8 @@ Reads
   data/images.json      what tools/images.py wrote for each print
   data/scenes.json      rooms for the to-scale wall preview (tools/scenes.py)
   data/shipping.yml     rates by size and material, and the pickup-only rule
-  data/payment-links.json  Stripe links per variant (tools/stripe_catalog.py), when checkout is live
+  data/payment-links-test.json, data/payment-links-live.json
+                        Stripe links per variant (tools/stripe_catalog.py); staging uses test, production live
   data/redirects.yml    old Squarespace paths that get a redirect page
 
 Writes
@@ -351,9 +352,9 @@ class Builder:
         self.check = check
         self.site = load_yaml("site.yml", {})
         self.base = self.site["base_url"]["production" if production else "staging"]
-        pl = load_json("payment-links.json", {}) or {}
+        pl = load_json(f"payment-links-{'live' if production else 'test'}.json", {}) or {}
         self.links_mode = pl.get("mode") if self.site["features"].get("checkout") else None
-        if production and self.links_mode and self.links_mode != "live":
+        if production and self.site["features"].get("checkout") and self.links_mode != "live":
             raise SystemExit("production build with test payment links: run tools/stripe_catalog.py --mode live first")
         self.links = pl.get("links") if self.links_mode else None
         self.locations = load_yaml("locations.yml", {})
