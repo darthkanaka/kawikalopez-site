@@ -431,23 +431,42 @@ var Cart = (function () {
       form.mount(mountEl);
       wrap.scrollIntoView({ behavior: "smooth", block: "start" });
 
-      var priced = false;
+      // Price shipping as soon as the address has a state and ZIP (the form only calls the
+      // address "complete" once the phone is in too, which is too late). Re-price when the
+      // state changes; one request at a time, catching up to the latest address after.
+      var priced = null, wanted = null, busy = false;
+      var shipNote = document.querySelector("[data-ship-status]");
+      function price() {
+        if (busy || !wanted || wanted.key === priced) return;
+        busy = true;
+        var want = wanted;
+        shipNote.classList.remove("is-error");
+        shipNote.textContent = "Finding shipping for " + want.addr.state + "...";
+        sdk.loadActions().then(function (r) {
+          if (r.type !== "success") throw new Error("actions");
+          var a = r.actions;
+          return a.runServerUpdate(function () {
+            return post({ action: "shipping", session_id: a.getSession().id, address: want.addr })
+              .then(function (out) { if (out.type === "error") throw new Error(out.message); return out; });
+          });
+        }).then(function () {
+          priced = want.key;
+          shipNote.textContent = "";
+        }).catch(function (e) {
+          shipNote.classList.add("is-error");
+          shipNote.textContent = (e && e.message && e.message !== "actions" ? e.message : "Shipping didn't load.") +
+            " Check the address, or choose free pickup.";
+        }).then(function () {
+          busy = false;
+          if (wanted.key !== priced && wanted !== want) price();
+        });
+      }
       form.on("change", function (ev) {
-        var done = ev.status && ev.status.shippingAddress && ev.status.shippingAddress.complete;
-        if (done && !priced) {
-          priced = true;
-          sdk.loadActions().then(function (r) {
-            if (r.type !== "success") { priced = false; return; }
-            var a = r.actions;
-            var addr = (ev.value.shippingAddress && ev.value.shippingAddress.address) || ev.value.shippingAddress || {};
-            return a.runServerUpdate(function () {
-              return post({ action: "shipping", session_id: a.getSession().id, address: addr })
-                .then(function (out) { if (out.type === "error") throw new Error(out.message); return out; });
-            });
-          }).catch(function () { priced = false; });
-        } else if (!done && priced) {
-          priced = false;
-        }
+        var sa = ev.value && ev.value.shippingAddress;
+        var addr = sa && sa.address;
+        if (!addr || !addr.country || !addr.state || !/^\d{5}/.test(addr.postal_code || "")) return;
+        wanted = { key: addr.country + "|" + addr.state, addr: addr };
+        price();
       });
       sdk.loadActions().then(function (r) {
         if (r.type !== "success") return;
