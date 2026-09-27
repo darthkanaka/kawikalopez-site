@@ -357,6 +357,13 @@
   "indexable": false
  },
  {
+  "path": "cart",
+  "file": "cart.html",
+  "type": "page",
+  "title": "Your cart | Kawika Lopez Photography",
+  "indexable": false
+ },
+ {
   "path": "hawaii-prints/diamond-head",
   "file": "hawaii-prints/diamond-head.html",
   "type": "place",

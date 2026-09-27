@@ -43,6 +43,7 @@
         <li><a href="../contact">Contact</a></li>
       </ul>
     </nav>
+    <a class="cart-link" href="../cart">Cart <span data-cart-count></span></a>
     <details class="menu">
       <summary><span class="menu-label">Menu</span></summary>
       <ul class="menu-list">
@@ -99,8 +100,9 @@
           </div>
         </fieldset>
         <p class="price"><span data-price>$700</span> <span class="price-note" data-ship-note></span></p>
-        <a class="btn btn-buy" data-buy href="https://buy.stripe.com/test_cNi8wQ05cdGZdIob8gdnY1x">Buy this print</a>
-        <p class="fine">Secure checkout by Stripe. Free pickup on Oʻahu, or shipping priced by size to Hawaiʻi or the US mainland. <strong>Staging test checkout:</strong> use card 4242 4242 4242 4242, any future date and any CVC.</p>
+        <button type="button" class="btn btn-buy js-only" data-add data-id="frostedtidepool_24x30_metal" data-cart-url="../cart">Add to cart</button>
+        <p class="added" data-added role="status" aria-live="polite"></p>
+        <p class="fine">Free pickup on Oʻahu, or one shipping charge for the whole order to Hawaiʻi or the US mainland. <a data-buy href="https://buy.stripe.com/test_cNi8wQ05cdGZdIob8gdnY1x">Or buy just this print now</a>. <strong>Staging test checkout:</strong> use card 4242 4242 4242 4242, any future date and any CVC.</p>
       </form>
     </div>
   </div>

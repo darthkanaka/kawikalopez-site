@@ -21,7 +21,7 @@ contact:
 # Cart checkout: Google Apps Script web app (gas/checkout.gs). Empty until deployed; while it
 # is empty there is no cart and each print sells through its own payment link.
 checkout:
-  endpoint: ""
+  endpoint: "https://script.google.com/macros/s/AKfycbw4arRA_I0_ip7RWt1Z2gxWNIVM3bFf9J5lgzMrnfqJQzk5hgyhdAVNrna41dx8FewM/exec"
 
 person:
   name: Kawika Lopez
