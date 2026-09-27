@@ -28,21 +28,21 @@
    "h": 590
   },
   "calibration": {
-   "object": "the 72 x 24 inch print in the original mockup",
-   "inches": 72,
+   "object": "the back of the sofa, 9 feet (108 inches) per Kawika 2026-09-26, measured along the back cushions at the wall",
+   "inches": 108,
    "from": [
-    433,
-    354
+    370,
+    740
    ],
    "to": [
-    1503,
-    354
+    1560,
+    740
    ]
   },
-  "ppi": 14.861,
+  "ppi": 11.019,
   "anchor": {
    "x": 0.4868,
-   "y": 0.566
+   "y": 0.712
   },
   "wallTone": "dark",
   "shadow": {
