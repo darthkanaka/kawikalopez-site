@@ -402,6 +402,7 @@ p { margin: 0 0 1em; }
 
 /* 20 Cart ------------------------------------------------------------------ */
 html:not(.js) .js-only { display: none; }
+.btn[hidden] { display: none; }
 .added { margin: 10px 0 0; font-size: 0.9375rem; min-height: 1.4em; }
 .cart { padding-top: 8px; }
 .cart-grid { display: grid; gap: 40px; align-items: start; }
@@ -431,3 +432,5 @@ html:not(.js) .js-only { display: none; }
   .cart-thumb { width: 72px; height: 72px; }
   .cart-line { grid-column: 2; }
 }
+.checkout-wrap { margin-top: 48px; max-width: 760px; scroll-margin-top: 24px; }
+.checkout-form { margin-top: 20px; min-height: 200px; }

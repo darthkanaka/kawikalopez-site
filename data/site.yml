@@ -21,6 +21,10 @@ contact:
 # Cart checkout: Google Apps Script web app (gas/checkout.gs). Empty until deployed; while it
 # is empty there is no cart and each print sells through its own payment link.
 checkout:
+  # Stripe publishable keys (public by design) for the embedded checkout form on the cart page.
+  publishable_key:
+    test: "pk_test_51UK15AISveyotPUlPXVzUMGD5bUZ9D3K8FgVVzbPWSulzxJxMHnUfBO3NTx1i2Z9nlWMyJTXwaL19agb5GKSSCdo00fXeI4aFM"
+    live: "pk_live_51UK13aI80HaheYEoxxLBjgrL5eurxPcVnI5RksLgOJqTObmzSthWdp2uu44ZJDQO1HDBCk037gpaj2jutvQMnehn00z5vCartN"
   endpoint: "https://script.google.com/macros/s/AKfycbw4arRA_I0_ip7RWt1Z2gxWNIVM3bFf9J5lgzMrnfqJQzk5hgyhdAVNrna41dx8FewM/exec"
 
 person:

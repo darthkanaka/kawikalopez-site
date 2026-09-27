@@ -1,18 +1,24 @@
 /**
  * kawikalopez.com: cart checkout.
  *
- * A Google Apps Script web app. The cart page posts the prints in the cart here; this prices
- * them from Stripe, prices shipping for the whole order the way the print lab does (by total
- * square inches, see shipQuote below), creates a Stripe Checkout Session and returns its URL.
- * The browser then goes to Stripe to pay.
+ * A Google Apps Script web app with two jobs, both called from the cart page:
+ *   1. create: price the prints in the cart from Stripe and create a Checkout Session for
+ *      Stripe's embedded form (ui_mode "form"), which the cart page shows in place.
+ *   2. shipping: when the buyer finishes their address in that form, price shipping for the
+ *      whole order the way the print lab does (total square inches, see shipQuote below) and
+ *      offer only the option that matches the address: Hawaiʻi addresses get Ship to Hawaiʻi,
+ *      every other state gets Ship to US mainland. Free pickup on Oʻahu is always offered.
  *
  * Nothing here trusts the browser for money: print prices come from Stripe by lookup key,
  * print sizes from the Stripe price metadata, and the shipping model from the site's own
  * assets/data/cart.json (built from data/shipping.yml).
  *
- * Request (POST, body JSON, sent as text/plain so the browser skips the CORS preflight):
- *   {"mode": "test" | "live", "items": [{"id": "033_36x24_metal", "qty": 1}, ...]}
- * Response: {"url": "https://checkout.stripe.com/..."} or {"error": "..."}
+ * Requests (POST, body JSON, sent as text/plain so the browser skips the CORS preflight):
+ *   {"action": "create", "mode": "test" | "live", "items": [{"id": "033_36x24_metal", "qty": 1}, ...]}
+ *     -> {"client_secret": "..."} or {"error": "..."}
+ *   {"action": "shipping", "mode": ..., "session_id": "cs_...", "address": {"state": "HI", "country": "US"}}
+ *     -> {"type": "object", "value": {"succeeded": true}} or {"type": "error", "message": "..."}
+ * The embedded form needs Stripe API version 2026-03-25.dahlia or later.
  *
  * DEPLOY (one time)
  *   1. script.google.com, signed in as kawika@elevatemediahi.com, New project.
@@ -38,7 +44,7 @@
  * services stubbed, against the Stripe sandbox.
  */
 
-var STRIPE_VERSION = "2024-06-20";
+var STRIPE_VERSION = "2026-03-25.dahlia";
 var BASE = { test: "https://darthkanaka.github.io/kawikalopez-site/", live: "https://kawikalopez.com/" };
 
 function doGet() {
@@ -46,25 +52,52 @@ function doGet() {
 }
 
 function doPost(e) {
+  var req = {};
   try {
-    var req = JSON.parse((e && e.postData && e.postData.contents) || "{}");
-    return json_({ url: createSession_(req) });
+    req = JSON.parse((e && e.postData && e.postData.contents) || "{}");
+    if (req.action === "shipping") {
+      updateShipping_(req);
+      return json_({ type: "object", value: { succeeded: true } });
+    }
+    return json_({ client_secret: createSession_(req) });
   } catch (err) {
     var msg = String(err && err.message || err);
     console.error(msg);
-    return json_({ error: msg.indexOf("CUSTOMER:") === 0 ? msg.slice(9) : "Checkout could not start. Please try again." });
+    var say = msg.indexOf("CUSTOMER:") === 0 ? msg.slice(9)
+      : req.action === "shipping" ? "We couldn't price shipping for that address. Please check it and try again."
+      : "Checkout could not start. Please try again.";
+    return json_(req.action === "shipping" ? { type: "error", message: say } : { error: say });
   }
 }
 
-function createSession_(req) {
+/* Key, site address and shipping model for a mode. */
+function env_(req) {
   var mode = req.mode === "live" ? "live" : req.mode === "test" ? "test" : null;
   if (!mode) throw new Error("bad mode");
   var props = PropertiesService.getScriptProperties();
   var key = props.getProperty(mode === "live" ? "STRIPE_LIVE_KEY" : "STRIPE_TEST_KEY");
   if (!key) throw new Error("no " + mode + " key in Script Properties");
   var base = props.getProperty(mode === "live" ? "BASE_LIVE" : "BASE_TEST") || BASE[mode];
-  var cfg = siteConfig_(base);
-  var model = cfg.model;
+  return { key: key, base: base, model: siteConfig_(base).model };
+}
+
+/* Pickup, plus the one shipping rate that matches the address (zone "hi" or "mainland").
+   With no zone yet (address not entered), pickup only. */
+function shippingOptions_(model, s, zone) {
+  var days = function (r) {
+    return { minimum: { unit: "business_day", value: r[0] }, maximum: { unit: "business_day", value: r[1] } };
+  };
+  var rate = function (label, amount, r) {
+    return { shipping_rate_data: { display_name: label, type: "fixed_amount",
+      fixed_amount: { amount: amount, currency: "usd" }, delivery_estimate: days(r) } };
+  };
+  var options = [rate(model.pickup.label, 0, model.pickup.days)];
+  if (s.ships && zone) options.push(rate("Ship to " + model.zones[zone].label, s[zone], model.zones[zone].days));
+  return options;
+}
+
+function createSession_(req) {
+  var env = env_(req), key = env.key, base = env.base, model = env.model;
 
   // Cart lines: known ids, whole quantities, merged.
   var want = {}, order = [];
@@ -99,18 +132,6 @@ function createSession_(req) {
   });
 
   var s = shipQuote(model, items);
-  var days = function (r) {
-    return { minimum: { unit: "business_day", value: r[0] }, maximum: { unit: "business_day", value: r[1] } };
-  };
-  var rate = function (label, amount, r) {
-    return { shipping_rate_data: { display_name: label, type: "fixed_amount",
-      fixed_amount: { amount: amount, currency: "usd" }, delivery_estimate: days(r) } };
-  };
-  var options = [rate(model.pickup.label, 0, model.pickup.days)];
-  if (s.ships) {
-    options.push(rate("Ship to " + model.zones.hi.label, s.hi, model.zones.hi.days));
-    options.push(rate("Ship to " + model.zones.mainland.label, s.mainland, model.zones.mainland.days));
-  }
 
   // For Kawika: how to place the order with the lab if it ships to the mainland.
   var labPlan = "";
@@ -123,26 +144,42 @@ function createSession_(req) {
   var description = ("Cart: " + names.join("; ") + (labPlan ? ". " + labPlan : "")).slice(0, 1000);
 
   var session = stripe_(key, "post", "checkout/sessions", {
+    ui_mode: "form",
     mode: "payment",
     line_items: lines,
     shipping_address_collection: { allowed_countries: ["US"] },
-    shipping_options: options,
+    shipping_options: shippingOptions_(model, s, null),
     allow_promotion_codes: true,
     phone_number_collection: { enabled: true },
     customer_creation: "always",
-    custom_text: {
-      shipping_address: { message: s.ships
-        ? "Choose free pickup on Oʻahu, or shipping to Hawaiʻi or the US mainland. Shipping covers every print in this order."
-        : "Pickup only on Oʻahu for this order: it includes a print too large to ship. We'll email you to set a time." },
-      submit: { message: "Printed to order on Oʻahu, usually in about a week." }
-    },
     custom_fields: [{ key: "note", label: { type: "custom", custom: "Anything we should know?" }, type: "text", optional: true }],
-    success_url: base + "thank-you?session_id={CHECKOUT_SESSION_ID}",
-    cancel_url: base + "cart",
+    return_url: base + "thank-you?session_id={CHECKOUT_SESSION_ID}",
     payment_intent_data: { description: description },
-    metadata: { source: "cart", lab_orders_mainland: labPlan.slice(0, 500) }
+    metadata: { source: "cart", ships: s.ships ? "yes" : "pickup only", lab_orders_mainland: labPlan.slice(0, 500) }
   });
-  return session.url;
+  return session.client_secret;
+}
+
+/* The buyer finished their address: offer pickup plus the rate for that address only. Prints
+   and sizes are read back from the session itself, so the browser only supplies the address. */
+function updateShipping_(req) {
+  var env = env_(req), key = env.key, model = env.model;
+  var id = String(req.session_id || "");
+  if (!/^cs_(test|live)_[A-Za-z0-9]+$/.test(id)) throw new Error("bad session id");
+  var session = stripe_(key, "get", "checkout/sessions/" + id + "?expand[]=line_items.data.price");
+  if (session.ui_mode !== "form" || session.status !== "open" || session.metadata.source !== "cart") {
+    throw new Error("session " + id + " is not an open cart checkout");
+  }
+  var items = session.line_items.data.map(function (li) {
+    var m = /(\d+)\s*x\s*(\d+)/.exec(li.price.metadata.size || "");
+    if (!m) throw new Error("price " + li.price.id + " has no size metadata");
+    return { w: Number(m[1]), h: Number(m[2]), qty: li.quantity, material: li.price.metadata.material };
+  });
+  var a = req.address || {};
+  var country = String(a.country || "US").toUpperCase(), state = String(a.state || "").toUpperCase();
+  if (country !== "US") throw new Error("CUSTOMER:We ship within the US only. Choose pickup on Oʻahu, or get in touch.");
+  var zone = state === "HI" ? "hi" : "mainland";
+  stripe_(key, "post", "checkout/sessions/" + id, { shipping_options: shippingOptions_(model, shipQuote(model, items), zone) });
 }
 
 /* The site's cart.json (shipping model), cached for ten minutes. */

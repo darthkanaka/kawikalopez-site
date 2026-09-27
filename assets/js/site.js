@@ -354,28 +354,110 @@ var Cart = (function () {
       : "One shipping charge covers every print in the order. You choose pickup or shipping at checkout.";
   }
 
+  // Checkout runs in Stripe's embedded form, shown on this page. The checkout service creates
+  // the session (prints priced from Stripe); when the buyer finishes their address, the service
+  // offers the one shipping rate that matches it (Hawaiʻi or mainland), plus free pickup.
+  var wrap = document.querySelector("[data-checkout-wrap]");
+  var mountEl = document.querySelector("[data-checkout-form]");
+  var form = null, started = false;
+
+  function post(body) {
+    return fetch(cfg.endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(Object.assign({ mode: cfg.mode }, body))
+    }).then(function (r) { return r.json(); });
+  }
+
+  function stripeJs() {
+    if (window.Stripe) return Promise.resolve(window.Stripe);
+    return new Promise(function (ok, fail) {
+      var sc = document.createElement("script");
+      sc.src = "https://js.stripe.com/dahlia/stripe.js";
+      sc.onload = function () { ok(window.Stripe); };
+      sc.onerror = fail;
+      document.head.appendChild(sc);
+    });
+  }
+
+  function fail(e) {
+    started = false;
+    go.disabled = false;
+    go.hidden = false;
+    wrap.hidden = true;
+    status.classList.add("is-error");
+    status.textContent = (e && e.user ? e.user + " " : "Checkout didn't open. ") +
+      "Please try again, or buy a print on its own from its page.";
+  }
+
+  function stop() {
+    // The cart changed while checkout was open: that session no longer matches the cart.
+    if (!started) return;
+    if (form && form.unmount) { try { form.unmount(); } catch (e) { /* already gone */ } }
+    form = null;
+    started = false;
+    mountEl.innerHTML = "";
+    wrap.hidden = true;
+    go.hidden = false;
+    go.disabled = false;
+    status.textContent = "Your cart changed. Check out again when you're ready.";
+  }
+
   function checkout() {
     var ls = lines();
-    if (!ls.length) return;
+    if (!ls.length || started) return;
+    started = true;
     go.disabled = true;
     status.textContent = "Opening secure checkout...";
     status.classList.remove("is-error");
-    fetch(cfg.endpoint, {
-      method: "POST",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify({ mode: cfg.mode, items: ls.map(function (x) { return { id: x.id, qty: x.qty }; }) })
-    })
-      .then(function (r) { return r.json(); })
-      .then(function (d) {
-        if (d && d.url) { location.href = d.url; return; }
-        throw { user: d && d.error };
-      })
-      .catch(function (e) {
-        go.disabled = false;
-        status.classList.add("is-error");
-        status.textContent = (e && e.user ? e.user + " " : "Checkout didn't open. ") +
-          "Please try again, or buy a print on its own from its page.";
+    Promise.all([
+      post({ action: "create", items: ls.map(function (x) { return { id: x.id, qty: x.qty }; }) }),
+      stripeJs()
+    ]).then(function (res) {
+      var d = res[0];
+      if (!d || !d.client_secret) throw { user: d && d.error };
+      var stripe = res[1](cfg.pk);
+      var sdk = stripe.initCheckoutFormSdk({
+        clientSecret: d.client_secret,
+        appearance: { theme: "stripe", variables: { colorPrimary: "#0e5566", borderRadius: "2px" } }
       });
+      form = sdk.createForm({
+        layout: "expanded",
+        expressCheckout: { paymentMethods: { applePay: "never", googlePay: "never", amazonPay: "never", paypal: "never", link: "never" } }
+      });
+      wrap.hidden = false;
+      go.hidden = true;
+      status.textContent = "";
+      form.mount(mountEl);
+      wrap.scrollIntoView({ behavior: "smooth", block: "start" });
+
+      var priced = false;
+      form.on("change", function (ev) {
+        var done = ev.status && ev.status.shippingAddress && ev.status.shippingAddress.complete;
+        if (done && !priced) {
+          priced = true;
+          sdk.loadActions().then(function (r) {
+            if (r.type !== "success") { priced = false; return; }
+            var a = r.actions;
+            var addr = (ev.value.shippingAddress && ev.value.shippingAddress.address) || ev.value.shippingAddress || {};
+            return a.runServerUpdate(function () {
+              return post({ action: "shipping", session_id: a.getSession().id, address: addr })
+                .then(function (out) { if (out.type === "error") throw new Error(out.message); return out; });
+            });
+          }).catch(function () { priced = false; });
+        } else if (!done && priced) {
+          priced = false;
+        }
+      });
+      sdk.loadActions().then(function (r) {
+        if (r.type !== "success") return;
+        form.on("confirm", function (ev) {
+          r.actions.confirm({ formConfirmEvent: ev }).then(function (res) {
+            if (res && res.type === "error") console.warn("checkout:", res.error && res.error.message);
+          }).catch(function (e) { console.warn("checkout:", e && e.message); });
+        });
+      });
+    }).catch(fail);
   }
 
   fetch(root.getAttribute("data-src"))
@@ -383,7 +465,7 @@ var Cart = (function () {
     .then(function (d) {
       cfg = d;
       render();
-      document.addEventListener("cart:change", render);
+      document.addEventListener("cart:change", function () { stop(); render(); });
       go.addEventListener("click", checkout);
     })
     .catch(function () {

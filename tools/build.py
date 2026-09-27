@@ -655,7 +655,10 @@ class Builder:
                      max_short_edge_in=ship["max_ship_short_edge_in"],
                      pickup={"label": ship["pickup"]["label"], "days": ship["pickup"]["days"]},
                      zones={z["id"]: {"label": z["label"], "days": z["days"]} for z in ship["zones"]})
-        data = {"mode": self.cart["mode"], "endpoint": self.cart["endpoint"], "model": model, "variants": variants}
+        pk = ((self.site.get("checkout") or {}).get("publishable_key") or {}).get(self.cart["mode"]) or ""
+        if not pk.startswith("pk_" + self.cart["mode"] + "_"):
+            WARN.add(f"cart: no {self.cart['mode']} publishable key in data/site.yml (checkout.publishable_key)")
+        data = {"mode": self.cart["mode"], "endpoint": self.cart["endpoint"], "pk": pk, "model": model, "variants": variants}
         self.write("assets/data/cart.json", json.dumps(data, ensure_ascii=False, separators=(",", ":"), sort_keys=True) + "\n")
         self.emit("cart.html", "cart.html", "cart", "page", "Your cart | Kawika Lopez Photography",
                   "The prints in your cart, shipping to Hawaiʻi or the US mainland, and checkout.", indexable=False)
