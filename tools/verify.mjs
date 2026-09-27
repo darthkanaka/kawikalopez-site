@@ -21,6 +21,8 @@ const checked = new Map();
 
 async function open(ctxOpts = {}) {
   const ctx = await b.newContext({ viewport: { width: 1440, height: 900 }, ...ctxOpts });
+  // Never send test visits to Google Analytics: the tag is stubbed, events still land in dataLayer.
+  await ctx.route(/googletagmanager\.com|google-analytics\.com/, r => r.fulfill({ status: 204, body: "" }));
   const p = await ctx.newPage();
   p.on("pageerror", e => problems.push("JS ERROR: " + e.message));
   p.on("console", m => { if (m.type() === "error") problems.push("CONSOLE: " + m.text()); });

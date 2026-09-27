@@ -10,6 +10,7 @@
    05 Cart: storage and header count
    06 Cart: add from a print page
    07 Cart page and checkout
+   08 Analytics events (GA4, production only)
 */
 
 /* 01 Shared ---------------------------------------------------------------- */
@@ -28,7 +29,25 @@ var KL = (function () {
     var top = hpx <= wall.h ? Math.min(Math.max(cy - hpx / 2, wall.y), wall.y + wall.h - hpx) : cy - hpx / 2;
     return { left: left / W * 100, top: top / H * 100, width: wpx / W * 100, height: hpx / H * 100 };
   };
-  return { money: money, parse: parse, rect: rect };
+  /* GA4 events. gtag exists only on production builds with site.ga4 set; everywhere else this
+     does nothing. Never pass names, emails or addresses: prints and totals only. */
+  var track = function (name, params) {
+    if (typeof window.gtag === "function") window.gtag("event", name, params);
+  };
+  var item = function (id, title, size, material, price, qty) {
+    return { item_id: id, item_name: title, item_variant: size + " " + material, price: price, quantity: qty || 1 };
+  };
+  var store = function (key, val) {
+    try { if (val === undefined) return JSON.parse(localStorage.getItem(key) || "null"); localStorage.setItem(key, JSON.stringify(val)); }
+    catch (e) { return null; }
+  };
+  /* Remember what is being bought, so the thank-you page can report the purchase. */
+  var beginCheckout = function (items) {
+    var value = items.reduce(function (n, x) { return n + x.price * x.quantity; }, 0);
+    track("begin_checkout", { currency: "USD", value: value, items: items });
+    store("kl_pending", { items: items, value: value });
+  };
+  return { money: money, parse: parse, rect: rect, track: track, item: item, store: store, beginCheckout: beginCheckout };
 })();
 
 /* 02 Size and material picker ---------------------------------------------- */
@@ -71,6 +90,14 @@ var KL = (function () {
 
   form.addEventListener("change", update);
   update();
+  KL.product = { title: data.title, current: current };
+
+  var v0 = current();
+  if (v0) KL.track("view_item", { currency: "USD", value: v0.price, items: [KL.item(v0.id, data.title, v0.size, v0.material, v0.price)] });
+  if (buy) buy.addEventListener("click", function () {
+    var v = current();
+    if (v && v.link) KL.beginCheckout([KL.item(v.id, data.title, v.size, v.material, v.price)]);
+  });
 })();
 
 /* 03 Room preview (to scale) ------------------------------------------------ */
@@ -259,6 +286,8 @@ var Cart = (function () {
     var id = btn.getAttribute("data-id");
     if (!id) return;
     Cart.add(id, 5);
+    var v = KL.product && KL.product.current();
+    if (v) KL.track("add_to_cart", { currency: "USD", value: v.price, items: [KL.item(v.id, KL.product.title, v.size, v.material, v.price)] });
     msg.innerHTML = "";
     msg.appendChild(document.createTextNode("Added to your cart. "));
     var a = document.createElement("a");
@@ -410,6 +439,7 @@ var Cart = (function () {
     if (!ls.length || started || !ready()) return;
     started = true;
     go.disabled = true;
+    KL.beginCheckout(ls.map(function (x) { return KL.item(x.id, x.v.title, x.v.size, x.v.material, x.v.price, x.qty); }));
     status.textContent = "Opening secure checkout...";
     status.classList.remove("is-error");
     Promise.all([
@@ -499,4 +529,24 @@ var Cart = (function () {
       empty.hidden = false;
       empty.textContent = "The cart couldn't load. Please refresh the page.";
     });
+})();
+
+/* 08 Analytics events ---------------------------------------------------------- */
+/* view_item, add_to_cart and begin_checkout fire in blocks 02, 06 and 07. The purchase fires here,
+   on the thank-you page Stripe returns to, from what begin_checkout remembered. Each Stripe
+   session is reported once, even if the page is reloaded. */
+(function () {
+  "use strict";
+  if (!document.querySelector("[data-cart-clear]")) return;
+  var m = /[?&]session_id=(cs_[A-Za-z0-9_]+)/.exec(location.search);
+  if (!m) return;
+  var done = KL.store("kl_purchased") || [];
+  if (done.indexOf(m[1]) >= 0) return;
+  var pending = KL.store("kl_pending");
+  if (pending && pending.items) {
+    KL.track("purchase", { transaction_id: m[1], currency: "USD", value: pending.value, items: pending.items });
+  }
+  done.push(m[1]);
+  KL.store("kl_purchased", done.slice(-20));
+  try { localStorage.removeItem("kl_pending"); } catch (e) { /* nothing to clear */ }
 })();

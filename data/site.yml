@@ -57,7 +57,7 @@ promo:
 featured_order: [naniwaikiki, malie, kaaawasunrise, makapuubeach-v, kaimana, mokulua, puao, kaaawavalley]
 
 # Analytics are emitted on production builds only.
-ga4: ""
+ga4: "G-SLYRYDKNHR"
 
 # Flags that change links while pages are still being built.
 features:
