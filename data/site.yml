@@ -15,7 +15,7 @@ base_url:
 # Contact form: Google Apps Script web app (gas/contact-notify.gs). Empty until deployed;
 # the form falls back to a prefilled email while it is empty.
 contact:
-  email: kawika@elevatemediahi.com
+  email: info@kawikalopez.com       # forwards to kawika@elevatemediahi.com (Squarespace email forwarding)
   endpoint: "https://script.google.com/macros/s/AKfycbxqGaf_-ZVOGrHI6ry3LgjSXf9Usi8MQX1GJffL5haLvgl7TrL53iZCY3gm3oDSpZOo/exec"
 
 # Cart checkout: Google Apps Script web app (gas/checkout.gs). Empty until deployed; while it
