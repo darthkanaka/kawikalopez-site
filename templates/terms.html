@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block main %}
+{% include "partials/crumbs.html" %}
+<article class="wrap">
+  <header class="page-head">
+    <h1>Terms of sale and use</h1>
+    <p class="lede">How orders, shipping, pickup, cancellations and damage work, and the rules for using this site. Effective {{ updated }}.</p>
+  </header>
+  <div class="prose">
+    <p>kawikalopez.com is run by {{ site.name }}, a business of {{ site.legal_name }} in Honolulu, Hawaiʻi. When you order a print, these terms are the agreement between you and us. Questions before you order? Email <a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a> or call {{ site.contact.phone }}.</p>
+
+    <h2>Every print is made to order</h2>
+    <p>Nothing sits in a warehouse. Your print is made after you order it, locally on Oʻahu, and Kawika checks every print in person before it's delivered or shipped.</p>
+    <p>Screens show color differently, so a print can look slightly different from the photo on your screen. Canvas has a soft texture and a matte finish; metal is brighter with deeper color. These differences are part of the material, not a defect.</p>
+
+    <h2>Prices and payment</h2>
+    <p>Prices are in US dollars and shown on each print's page. Shipping is added at checkout and shown before you pay. We don't add sales tax at checkout. Payment is taken by Stripe when you order; your card details go to Stripe and never reach us. The charge shows on your statement as {{ site.statement_descriptor }}.</p>
+    <p>Promo codes are one per order, can't be combined, and have no cash value. The first-order code works once per customer.</p>
+
+    <h2>When your print ships</h2>
+    <p>Most prints are made and checked in about a week. We commit to shipping your order, or having it ready for pickup, within <strong>{{ site.ship_within_days }} business days</strong> of your order.</p>
+    <p>If something will delay that, we'll email you a new date before the {{ site.ship_within_days }} days are up. You can then wait for the new date or cancel for a full refund. If we can't give you a date, or the new date slips again, we'll cancel and refund you unless you tell us you'd like to keep waiting.</p>
+    <p>Once your print ships, delivery takes the carrier's usual transit time. The delivery dates shown at checkout are estimates; carriers can run late, especially before holidays.</p>
+
+    <h2>Shipping</h2>
+    <p>We ship within the United States only. Shipping is one flat rate for the whole order, set by the size and material of the prints: one rate for addresses in Hawaiʻi and one for the mainland. Your address decides which rate applies.</p>
+    <p>Please double check your address. If a print comes back because the address was wrong, we'll ship it again for the cost of shipping.</p>
+    <p>Prints larger than 60 x 30 inches are pickup on Oʻahu only. If you need one shipped, get in touch and we'll quote freight.</p>
+
+    <h2>Free pickup on Oʻahu</h2>
+    <p>Choose free pickup at checkout and we'll email you when your print is ready to set a time. Visiting? Order a week or two before you fly home and pick it up while you're here.</p>
+
+    <h2>Cancelling an order</h2>
+    <p>Changed your mind? Email us within 24 hours of ordering and we'll cancel and refund you in full. After that your print is usually in production, and we can't take it back.</p>
+
+    <h2>All sales final, except damage or defects</h2>
+    <p>Every print is made to order for you, so all sales are final. We don't accept returns or exchanges for a change of mind.</p>
+    <p>That never applies to damage or defects. If your print arrives damaged, or has a flaw in how it was made, email us within 7 days of delivery with photos of the print and the box, and please keep the packaging until it's sorted out, in case the carrier needs to see it. We'll replace it at no cost, or refund you if you'd rather.</p>
+    <p>If a package is lost in transit, we'll send you a replacement at no cost.</p>
+
+    <h2>Refunds</h2>
+    <p>Refunds go back to the card you paid with. We issue them within 7 business days of a cancellation or an approved claim. Your bank may take a few more days to show it.</p>
+
+    <h2>Copyright</h2>
+    <p>Every photograph on this site is © Kawika Lopez. Buying a print gives you the print itself: hang it, give it as a gift, or sell it on someday. Copyright stays with Kawika, so buying a print doesn't give you the right to copy, scan, photograph for resale, or otherwise reproduce the image. Want to license a photo for a website, marketing or publication? <a href="{{ url('contact') }}">Get in touch</a>.</p>
+
+    <h2>Using this site</h2>
+    <p>Please don't download, copy or reuse the images on this site, or collect them with automated tools, without written permission. We work to keep prices and details accurate. If we find a mistake on an order, we'll contact you before we make anything, and you can cancel for a full refund.</p>
+
+    <h2>Our responsibility</h2>
+    <p>As far as the law allows, our responsibility for any order is limited to what you paid for it. Nothing here takes away rights you have under consumer protection law.</p>
+
+    <h2>The legal part</h2>
+    <p>These terms are governed by the laws of the State of Hawaiʻi. If these terms change, the new version goes on this page with a new effective date; your order follows the version that was here when you placed it. For how we handle your information, see the <a href="{{ url('privacy') }}">privacy policy</a>.</p>
+  </div>
+</article>
+{% endblock %}

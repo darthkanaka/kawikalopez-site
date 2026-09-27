@@ -17,7 +17,7 @@
       <p class="fine" data-ship-note></p>
       <button type="button" class="btn btn-buy" data-checkout>Check out</button>
       <p class="cart-status" data-cart-status role="status" aria-live="polite"></p>
-      <p class="fine">Secure checkout by Stripe, right on this page. Your address sets the shipping option, and a promo code goes in at checkout.{% if cart.mode == 'test' %} <strong>Staging test checkout:</strong> use card 4242 4242 4242 4242, any future date and any CVC.{% endif %}</p>
+      <p class="fine">Every print is made to order, so all sales are final, except damage or defects, which we replace free. You can cancel within 24 hours. <a href="{{ url('terms') }}">Terms of sale</a>. Secure checkout by Stripe, right on this page. Your address sets the shipping option, and a promo code goes in at checkout.{% if cart.mode == 'test' %} <strong>Staging test checkout:</strong> use card 4242 4242 4242 4242, any future date and any CVC.{% endif %}</p>
     </div>
   </div>
   <div class="checkout-wrap" data-checkout-wrap hidden>

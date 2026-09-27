@@ -402,7 +402,7 @@ class Builder:
                 p["location"]["page"] = self.place_docs[p["location"]["slug"]]["path"]
 
         # Pages that exist in this build. Nav and links only point at these.
-        self.available = ({"", "store/", "prints", "about", "contact", "privacy", "thank-you"}
+        self.available = ({"", "store/", "prints", "about", "contact", "privacy", "terms", "thank-you"}
                           | {c["path"] for c in COLLECTIONS}
                           | {d["path"] for d in self.place_docs.values()}
                           | {d["path"] for d in self.posts})
@@ -633,9 +633,14 @@ class Builder:
                   prints=[p for p in self.products if not p.get("draft")])
 
     def privacy_page(self):
-        desc = "What kawikalopez.com collects, why, and what happens to it: messages, orders and analytics."
-        self.emit("privacy.html", "privacy.html", "privacy", "page", "Privacy | Kawika Lopez Photography", desc,
-                  crumbs=[("Privacy", "privacy")], updated="September 25, 2026")
+        desc = "What kawikalopez.com collects when you buy a print or send a message, why, who sees it, and how to have it deleted."
+        self.emit("privacy.html", "privacy.html", "privacy", "page", "Privacy Policy | Kawika Lopez Photography", desc,
+                  crumbs=[("Privacy", "privacy")], updated="September 27, 2026")
+
+    def terms_page(self):
+        desc = "How print orders work at kawikalopez.com: made to order on Oʻahu, shipping and pickup, cancellations, damage and returns, and copyright."
+        self.emit("terms.html", "terms.html", "terms", "page", "Terms of Sale | Kawika Lopez Photography", desc,
+                  crumbs=[("Terms", "terms")], updated="September 27, 2026")
 
     def cart_page(self):
         """The cart page, and assets/data/cart.json: what the page needs to show each print, plus
@@ -840,6 +845,7 @@ class Builder:
         self.about_page()
         self.contact_page()
         self.privacy_page()
+        self.terms_page()
         self.thankyou_page()
         self.cart_page()
         self.place_pages()

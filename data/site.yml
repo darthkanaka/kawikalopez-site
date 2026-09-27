@@ -15,6 +15,7 @@ base_url:
 # Contact form: Google Apps Script web app (gas/contact-notify.gs). Empty until deployed;
 # the form falls back to a prefilled email while it is empty.
 contact:
+  phone: (808) 204-4575            # public Twilio number, forwards to Kawika; never publish the cell
   email: info@kawikalopez.com       # forwards to kawika@elevatemediahi.com (Squarespace email forwarding)
   endpoint: "https://script.google.com/macros/s/AKfycbxqGaf_-ZVOGrHI6ry3LgjSXf9Usi8MQX1GJffL5haLvgl7TrL53iZCY3gm3oDSpZOo/exec"
 
@@ -26,6 +27,12 @@ checkout:
     test: "pk_test_51UK15AISveyotPUlPXVzUMGD5bUZ9D3K8FgVVzbPWSulzxJxMHnUfBO3NTx1i2Z9nlWMyJTXwaL19agb5GKSSCdo00fXeI4aFM"
     live: "pk_live_51UK13aI80HaheYEoxxLBjgrL5eurxPcVnI5RksLgOJqTObmzSthWdp2uu44ZJDQO1HDBCk037gpaj2jutvQMnehn00z5vCartN"
   endpoint: "https://script.google.com/macros/s/AKfycbw4arRA_I0_ip7RWt1Z2gxWNIVM3bFf9J5lgzMrnfqJQzk5hgyhdAVNrna41dx8FewM/exec"
+
+# Order promises used by the terms page. ship_within_days is a commitment under the FTC mail order
+# rule: the order ships (or is ready for pickup) within this many business days, or the buyer gets
+# a delay notice with the option to cancel. Keep it above the lab's worst case.
+ship_within_days: 14
+statement_descriptor: KAWIKALOPEZ.COM
 
 person:
   name: Kawika Lopez
