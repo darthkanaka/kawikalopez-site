@@ -1,0 +1,355 @@
+material,size,zone,zip,option,price,days,checked_at
+metal,16x16,hi,96814,Shipping within Hawaii,35.42,7,2026-09-26T14:53:32-10:00
+metal,16x16,hi,96720,Shipping within Hawaii,35.42,7,2026-09-26T14:53:39-10:00
+metal,16x16,hi,96732,Shipping within Hawaii,35.42,7,2026-09-26T14:53:45-10:00
+metal,16x16,hi,96766,Shipping within Hawaii,35.42,7,2026-09-26T14:53:51-10:00
+metal,16x16,west,90001,US Domestic,85,7,2026-09-26T14:53:57-10:00
+metal,16x16,west,98101,US Domestic,85,7,2026-09-26T14:54:03-10:00
+metal,16x16,west,85004,US Domestic,85,7,2026-09-26T14:54:09-10:00
+metal,16x16,west,99501,US Domestic,85,7,2026-09-26T14:54:15-10:00
+metal,16x16,mid,80202,US Domestic,85,7,2026-09-26T14:54:21-10:00
+metal,16x16,mid,75201,US Domestic,85,7,2026-09-26T14:54:27-10:00
+metal,16x16,mid,60601,US Domestic,85,7,2026-09-26T14:54:33-10:00
+metal,16x16,mid,59101,US Domestic,85,7,2026-09-26T14:54:39-10:00
+metal,16x16,east,10001,US Domestic,85,7,2026-09-26T14:54:45-10:00
+metal,16x16,east,33131,US Domestic,85,7,2026-09-26T14:54:51-10:00
+metal,16x16,east,02108,US Domestic,85,7,2026-09-26T14:54:58-10:00
+metal,16x16,east,04101,US Domestic,85,7,2026-09-26T14:55:04-10:00
+metal,16x20,hi,96814,Shipping within Hawaii,39.26,7,2026-09-26T14:59:24-10:00
+metal,16x20,hi,96720,Shipping within Hawaii,39.26,7,2026-09-26T14:59:25-10:00
+metal,16x20,hi,96732,Shipping within Hawaii,39.26,7,2026-09-26T14:59:25-10:00
+metal,16x20,hi,96766,Shipping within Hawaii,39.26,7,2026-09-26T14:59:26-10:00
+metal,16x20,west,90001,US Domestic,85,7,2026-09-26T14:59:26-10:00
+metal,16x20,west,98101,US Domestic,85,7,2026-09-26T14:59:27-10:00
+metal,16x20,west,85004,US Domestic,85,7,2026-09-26T14:59:27-10:00
+metal,16x20,west,99501,US Domestic,85,7,2026-09-26T14:59:28-10:00
+metal,16x20,mid,80202,US Domestic,85,7,2026-09-26T14:59:28-10:00
+metal,16x20,mid,75201,US Domestic,85,7,2026-09-26T14:59:28-10:00
+metal,16x20,mid,60601,US Domestic,85,7,2026-09-26T14:59:29-10:00
+metal,16x20,mid,59101,US Domestic,85,7,2026-09-26T14:59:29-10:00
+metal,16x20,east,10001,US Domestic,85,7,2026-09-26T14:59:30-10:00
+metal,16x20,east,33131,US Domestic,85,7,2026-09-26T14:59:30-10:00
+metal,16x20,east,02108,US Domestic,85,7,2026-09-26T14:59:31-10:00
+metal,16x20,east,04101,US Domestic,85,7,2026-09-26T14:59:31-10:00
+metal,18x12,hi,96814,Shipping within Hawaii,33.02,7,2026-09-26T15:00:15-10:00
+metal,18x12,hi,96720,Shipping within Hawaii,33.02,7,2026-09-26T15:00:15-10:00
+metal,18x12,hi,96732,Shipping within Hawaii,33.02,7,2026-09-26T15:00:16-10:00
+metal,18x12,hi,96766,Shipping within Hawaii,33.02,7,2026-09-26T15:00:16-10:00
+metal,18x12,west,90001,US Domestic,85,7,2026-09-26T15:00:17-10:00
+metal,18x12,west,98101,US Domestic,85,7,2026-09-26T15:00:17-10:00
+metal,18x12,west,85004,US Domestic,85,7,2026-09-26T15:00:18-10:00
+metal,18x12,west,99501,US Domestic,85,7,2026-09-26T15:00:18-10:00
+metal,18x12,mid,80202,US Domestic,85,7,2026-09-26T15:00:19-10:00
+metal,18x12,mid,75201,US Domestic,85,7,2026-09-26T15:00:19-10:00
+metal,18x12,mid,60601,US Domestic,85,7,2026-09-26T15:00:20-10:00
+metal,18x12,mid,59101,US Domestic,85,7,2026-09-26T15:00:20-10:00
+metal,18x12,east,10001,US Domestic,85,7,2026-09-26T15:00:21-10:00
+metal,18x12,east,33131,US Domestic,85,7,2026-09-26T15:00:21-10:00
+metal,18x12,east,02108,US Domestic,85,7,2026-09-26T15:00:22-10:00
+metal,18x12,east,04101,US Domestic,85,7,2026-09-26T15:00:22-10:00
+metal,20x25,hi,96814,Shipping within Hawaii,50.06,7,2026-09-26T15:01:29-10:00
+metal,20x25,hi,96720,Shipping within Hawaii,50.06,7,2026-09-26T15:01:29-10:00
+metal,20x25,hi,96732,Shipping within Hawaii,50.06,7,2026-09-26T15:01:30-10:00
+metal,20x25,hi,96766,Shipping within Hawaii,50.06,7,2026-09-26T15:01:30-10:00
+metal,20x25,west,90001,US Domestic,95,7,2026-09-26T15:01:31-10:00
+metal,20x25,west,98101,US Domestic,95,7,2026-09-26T15:01:31-10:00
+metal,20x25,west,85004,US Domestic,95,7,2026-09-26T15:01:32-10:00
+metal,20x25,west,99501,US Domestic,95,7,2026-09-26T15:01:32-10:00
+metal,20x25,mid,80202,US Domestic,95,7,2026-09-26T15:01:32-10:00
+metal,20x25,mid,75201,US Domestic,95,7,2026-09-26T15:01:33-10:00
+metal,20x25,mid,60601,US Domestic,95,7,2026-09-26T15:01:33-10:00
+metal,20x25,mid,59101,US Domestic,95,7,2026-09-26T15:01:34-10:00
+metal,20x25,east,10001,US Domestic,95,7,2026-09-26T15:01:34-10:00
+metal,20x25,east,33131,US Domestic,95,7,2026-09-26T15:01:35-10:00
+metal,20x25,east,02108,US Domestic,95,7,2026-09-26T15:01:35-10:00
+metal,20x25,east,04101,US Domestic,95,7,2026-09-26T15:01:36-10:00
+metal,24x16,hi,96814,Shipping within Hawaii,43.1,7,2026-09-26T15:01:48-10:00
+metal,24x16,hi,96720,Shipping within Hawaii,43.1,7,2026-09-26T15:01:49-10:00
+metal,24x16,hi,96732,Shipping within Hawaii,43.1,7,2026-09-26T15:01:49-10:00
+metal,24x16,hi,96766,Shipping within Hawaii,43.1,7,2026-09-26T15:01:49-10:00
+metal,24x16,west,90001,US Domestic,85,7,2026-09-26T15:01:50-10:00
+metal,24x16,west,98101,US Domestic,85,7,2026-09-26T15:01:50-10:00
+metal,24x16,west,85004,US Domestic,85,7,2026-09-26T15:01:51-10:00
+metal,24x16,west,99501,US Domestic,85,7,2026-09-26T15:01:51-10:00
+metal,24x16,mid,80202,US Domestic,85,7,2026-09-26T15:01:52-10:00
+metal,24x16,mid,75201,US Domestic,85,7,2026-09-26T15:01:52-10:00
+metal,24x16,mid,60601,US Domestic,85,7,2026-09-26T15:01:53-10:00
+metal,24x16,mid,59101,US Domestic,85,7,2026-09-26T15:01:53-10:00
+metal,24x16,east,10001,US Domestic,85,7,2026-09-26T15:01:54-10:00
+metal,24x16,east,33131,US Domestic,85,7,2026-09-26T15:01:54-10:00
+metal,24x16,east,02108,US Domestic,85,7,2026-09-26T15:01:54-10:00
+metal,24x16,east,04101,US Domestic,85,7,2026-09-26T15:01:55-10:00
+metal,24x24,hi,96814,Shipping within Hawaii,54.62,7,2026-09-26T15:02:07-10:00
+metal,24x24,hi,96720,Shipping within Hawaii,54.62,7,2026-09-26T15:02:07-10:00
+metal,24x24,hi,96732,Shipping within Hawaii,54.62,7,2026-09-26T15:02:07-10:00
+metal,24x24,hi,96766,Shipping within Hawaii,54.62,7,2026-09-26T15:02:08-10:00
+metal,24x24,west,90001,US Domestic,100,7,2026-09-26T15:02:08-10:00
+metal,24x24,west,98101,US Domestic,100,7,2026-09-26T15:02:09-10:00
+metal,24x24,west,85004,US Domestic,100,7,2026-09-26T15:02:09-10:00
+metal,24x24,west,99501,US Domestic,100,7,2026-09-26T15:02:09-10:00
+metal,24x24,mid,80202,US Domestic,100,7,2026-09-26T15:02:10-10:00
+metal,24x24,mid,75201,US Domestic,100,7,2026-09-26T15:02:10-10:00
+metal,24x24,mid,60601,US Domestic,100,7,2026-09-26T15:02:11-10:00
+metal,24x24,mid,59101,US Domestic,100,7,2026-09-26T15:02:11-10:00
+metal,24x24,east,10001,US Domestic,100,7,2026-09-26T15:02:11-10:00
+metal,24x24,east,33131,US Domestic,100,7,2026-09-26T15:02:12-10:00
+metal,24x24,east,02108,US Domestic,100,7,2026-09-26T15:02:12-10:00
+metal,24x24,east,04101,US Domestic,100,7,2026-09-26T15:02:13-10:00
+metal,24x30,hi,96814,Shipping within Hawaii,63.26,7,2026-09-26T15:02:26-10:00
+metal,24x30,hi,96720,Shipping within Hawaii,63.26,7,2026-09-26T15:02:26-10:00
+metal,24x30,hi,96732,Shipping within Hawaii,63.26,7,2026-09-26T15:02:27-10:00
+metal,24x30,hi,96766,Shipping within Hawaii,63.26,7,2026-09-26T15:02:27-10:00
+metal,24x30,west,90001,US Domestic,105,7,2026-09-26T15:02:28-10:00
+metal,24x30,west,98101,US Domestic,105,7,2026-09-26T15:02:28-10:00
+metal,24x30,west,85004,US Domestic,105,7,2026-09-26T15:02:28-10:00
+metal,24x30,west,99501,US Domestic,105,7,2026-09-26T15:02:29-10:00
+metal,24x30,mid,80202,US Domestic,105,7,2026-09-26T15:02:29-10:00
+metal,24x30,mid,75201,US Domestic,105,7,2026-09-26T15:02:30-10:00
+metal,24x30,mid,60601,US Domestic,105,7,2026-09-26T15:02:30-10:00
+metal,24x30,mid,59101,US Domestic,105,7,2026-09-26T15:02:30-10:00
+metal,24x30,east,10001,US Domestic,105,7,2026-09-26T15:02:31-10:00
+metal,24x30,east,33131,US Domestic,105,7,2026-09-26T15:02:31-10:00
+metal,24x30,east,02108,US Domestic,105,7,2026-09-26T15:02:32-10:00
+metal,24x30,east,04101,US Domestic,105,7,2026-09-26T15:02:32-10:00
+metal,30x10,hi,96814,Shipping within Hawaii,38.06,7,2026-09-26T15:02:46-10:00
+metal,30x10,hi,96720,Shipping within Hawaii,38.06,7,2026-09-26T15:02:46-10:00
+metal,30x10,hi,96732,Shipping within Hawaii,38.06,7,2026-09-26T15:02:46-10:00
+metal,30x10,hi,96766,Shipping within Hawaii,38.06,7,2026-09-26T15:02:47-10:00
+metal,30x10,west,90001,US Domestic,85,7,2026-09-26T15:02:47-10:00
+metal,30x10,west,98101,US Domestic,85,7,2026-09-26T15:02:48-10:00
+metal,30x10,west,85004,US Domestic,85,7,2026-09-26T15:02:48-10:00
+metal,30x10,west,99501,US Domestic,85,7,2026-09-26T15:02:49-10:00
+metal,30x10,mid,80202,US Domestic,85,7,2026-09-26T15:02:49-10:00
+metal,30x10,mid,75201,US Domestic,85,7,2026-09-26T15:02:50-10:00
+metal,30x10,mid,60601,US Domestic,85,7,2026-09-26T15:02:50-10:00
+metal,30x10,mid,59101,US Domestic,85,7,2026-09-26T15:02:51-10:00
+metal,30x10,east,10001,US Domestic,85,7,2026-09-26T15:02:51-10:00
+metal,30x10,east,33131,US Domestic,85,7,2026-09-26T15:02:52-10:00
+metal,30x10,east,02108,US Domestic,85,7,2026-09-26T15:02:52-10:00
+metal,30x10,east,04101,US Domestic,85,7,2026-09-26T15:02:53-10:00
+metal,30x20,hi,96814,Shipping within Hawaii,56.06,7,2026-09-26T15:03:03-10:00
+metal,30x20,hi,96720,Shipping within Hawaii,56.06,7,2026-09-26T15:03:04-10:00
+metal,30x20,hi,96732,Shipping within Hawaii,56.06,7,2026-09-26T15:03:04-10:00
+metal,30x20,hi,96766,Shipping within Hawaii,56.06,7,2026-09-26T15:03:05-10:00
+metal,30x20,west,90001,US Domestic,100,7,2026-09-26T15:03:05-10:00
+metal,30x20,west,98101,US Domestic,100,7,2026-09-26T15:03:06-10:00
+metal,30x20,west,85004,US Domestic,100,7,2026-09-26T15:03:06-10:00
+metal,30x20,west,99501,US Domestic,100,7,2026-09-26T15:03:07-10:00
+metal,30x20,mid,80202,US Domestic,100,7,2026-09-26T15:03:07-10:00
+metal,30x20,mid,75201,US Domestic,100,7,2026-09-26T15:03:08-10:00
+metal,30x20,mid,60601,US Domestic,100,7,2026-09-26T15:03:08-10:00
+metal,30x20,mid,59101,US Domestic,100,7,2026-09-26T15:03:08-10:00
+metal,30x20,east,10001,US Domestic,100,7,2026-09-26T15:03:09-10:00
+metal,30x20,east,33131,US Domestic,100,7,2026-09-26T15:03:09-10:00
+metal,30x20,east,02108,US Domestic,100,7,2026-09-26T15:03:10-10:00
+metal,30x20,east,04101,US Domestic,100,7,2026-09-26T15:03:10-10:00
+metal,36x24,hi,96814,Shipping within Hawaii,71.9,7,2026-09-26T15:03:26-10:00
+metal,36x24,hi,96720,Shipping within Hawaii,71.9,7,2026-09-26T15:03:26-10:00
+metal,36x24,hi,96732,Shipping within Hawaii,71.9,7,2026-09-26T15:03:27-10:00
+metal,36x24,hi,96766,Shipping within Hawaii,71.9,7,2026-09-26T15:03:27-10:00
+metal,36x24,west,90001,US Domestic,145,7,2026-09-26T15:03:27-10:00
+metal,36x24,west,98101,US Domestic,145,7,2026-09-26T15:03:28-10:00
+metal,36x24,west,85004,US Domestic,145,7,2026-09-26T15:03:28-10:00
+metal,36x24,west,99501,US Domestic,145,7,2026-09-26T15:03:29-10:00
+metal,36x24,mid,80202,US Domestic,145,7,2026-09-26T15:03:29-10:00
+metal,36x24,mid,75201,US Domestic,145,7,2026-09-26T15:03:30-10:00
+metal,36x24,mid,60601,US Domestic,145,7,2026-09-26T15:03:30-10:00
+metal,36x24,mid,59101,US Domestic,145,7,2026-09-26T15:03:30-10:00
+metal,36x24,east,10001,US Domestic,145,7,2026-09-26T15:03:31-10:00
+metal,36x24,east,33131,US Domestic,145,7,2026-09-26T15:03:31-10:00
+metal,36x24,east,02108,US Domestic,145,7,2026-09-26T15:03:32-10:00
+metal,36x24,east,04101,US Domestic,145,7,2026-09-26T15:03:32-10:00
+metal,48x16,hi,96814,Shipping within Hawaii,66.14,7,2026-09-26T15:03:46-10:00
+metal,48x16,hi,96720,Shipping within Hawaii,66.14,7,2026-09-26T15:03:46-10:00
+metal,48x16,hi,96732,Shipping within Hawaii,66.14,7,2026-09-26T15:03:47-10:00
+metal,48x16,hi,96766,Shipping within Hawaii,66.14,7,2026-09-26T15:03:47-10:00
+metal,48x16,west,90001,US Domestic,105,7,2026-09-26T15:03:48-10:00
+metal,48x16,west,98101,US Domestic,105,7,2026-09-26T15:03:48-10:00
+metal,48x16,west,85004,US Domestic,105,7,2026-09-26T15:03:49-10:00
+metal,48x16,west,99501,US Domestic,105,7,2026-09-26T15:03:49-10:00
+metal,48x16,mid,80202,US Domestic,105,7,2026-09-26T15:03:50-10:00
+metal,48x16,mid,75201,US Domestic,105,7,2026-09-26T15:03:50-10:00
+metal,48x16,mid,60601,US Domestic,105,7,2026-09-26T15:03:51-10:00
+metal,48x16,mid,59101,US Domestic,105,7,2026-09-26T15:03:51-10:00
+metal,48x16,east,10001,US Domestic,105,7,2026-09-26T15:03:51-10:00
+metal,48x16,east,33131,US Domestic,105,7,2026-09-26T15:03:52-10:00
+metal,48x16,east,02108,US Domestic,105,7,2026-09-26T15:03:52-10:00
+metal,48x16,east,04101,US Domestic,105,7,2026-09-26T15:03:53-10:00
+metal,40x40,west,90001,US Domestic (over 60x30 limit: lab cancels),410,7,2026-09-26T15:04:45-10:00
+metal,72x24,west,90001,US Domestic (over 60x30 limit: lab cancels),410,7,2026-09-26T15:04:47-10:00
+canvas,16x16,hi,96814,Shipping within Hawaii,35.48,7,2026-09-26T15:05:29-10:00
+canvas,16x16,hi,96720,Shipping within Hawaii,35.48,7,2026-09-26T15:05:30-10:00
+canvas,16x16,hi,96732,Shipping within Hawaii,35.48,7,2026-09-26T15:05:30-10:00
+canvas,16x16,hi,96766,Shipping within Hawaii,35.48,7,2026-09-26T15:05:31-10:00
+canvas,16x16,west,90001,US Domestic,85,7,2026-09-26T15:05:32-10:00
+canvas,16x16,west,98101,US Domestic,85,7,2026-09-26T15:05:32-10:00
+canvas,16x16,west,85004,US Domestic,85,7,2026-09-26T15:05:33-10:00
+canvas,16x16,west,99501,US Domestic,85,7,2026-09-26T15:05:33-10:00
+canvas,16x16,mid,80202,US Domestic,85,7,2026-09-26T15:05:34-10:00
+canvas,16x16,mid,75201,US Domestic,85,7,2026-09-26T15:05:35-10:00
+canvas,16x16,mid,60601,US Domestic,85,7,2026-09-26T15:05:35-10:00
+canvas,16x16,mid,59101,US Domestic,85,7,2026-09-26T15:05:36-10:00
+canvas,16x16,east,10001,US Domestic,85,7,2026-09-26T15:05:37-10:00
+canvas,16x16,east,33131,US Domestic,85,7,2026-09-26T15:05:37-10:00
+canvas,16x16,east,02108,US Domestic,85,7,2026-09-26T15:05:37-10:00
+canvas,16x16,east,04101,US Domestic,85,7,2026-09-26T15:05:38-10:00
+canvas,16x20,hi,96814,Shipping within Hawaii,39.32,7,2026-09-26T15:05:51-10:00
+canvas,16x20,hi,96720,Shipping within Hawaii,39.32,7,2026-09-26T15:05:52-10:00
+canvas,16x20,hi,96732,Shipping within Hawaii,39.32,7,2026-09-26T15:05:52-10:00
+canvas,16x20,hi,96766,Shipping within Hawaii,39.32,7,2026-09-26T15:05:53-10:00
+canvas,16x20,west,90001,US Domestic,85,7,2026-09-26T15:05:53-10:00
+canvas,16x20,west,98101,US Domestic,85,7,2026-09-26T15:05:54-10:00
+canvas,16x20,west,85004,US Domestic,85,7,2026-09-26T15:05:54-10:00
+canvas,16x20,west,99501,US Domestic,85,7,2026-09-26T15:05:55-10:00
+canvas,16x20,mid,80202,US Domestic,85,7,2026-09-26T15:05:55-10:00
+canvas,16x20,mid,75201,US Domestic,85,7,2026-09-26T15:05:56-10:00
+canvas,16x20,mid,60601,US Domestic,85,7,2026-09-26T15:05:56-10:00
+canvas,16x20,mid,59101,US Domestic,85,7,2026-09-26T15:05:57-10:00
+canvas,16x20,east,10001,US Domestic,85,7,2026-09-26T15:05:57-10:00
+canvas,16x20,east,33131,US Domestic,85,7,2026-09-26T15:05:58-10:00
+canvas,16x20,east,02108,US Domestic,85,7,2026-09-26T15:05:58-10:00
+canvas,16x20,east,04101,US Domestic,85,7,2026-09-26T15:05:59-10:00
+canvas,18x12,hi,96814,Shipping within Hawaii,33.08,7,2026-09-26T15:06:11-10:00
+canvas,18x12,hi,96720,Shipping within Hawaii,33.08,7,2026-09-26T15:06:11-10:00
+canvas,18x12,hi,96732,Shipping within Hawaii,33.08,7,2026-09-26T15:06:12-10:00
+canvas,18x12,hi,96766,Shipping within Hawaii,33.08,7,2026-09-26T15:06:12-10:00
+canvas,18x12,west,90001,US Domestic,85,7,2026-09-26T15:06:13-10:00
+canvas,18x12,west,98101,US Domestic,85,7,2026-09-26T15:06:13-10:00
+canvas,18x12,west,85004,US Domestic,85,7,2026-09-26T15:06:14-10:00
+canvas,18x12,west,99501,US Domestic,85,7,2026-09-26T15:06:14-10:00
+canvas,18x12,mid,80202,US Domestic,85,7,2026-09-26T15:06:15-10:00
+canvas,18x12,mid,75201,US Domestic,85,7,2026-09-26T15:06:15-10:00
+canvas,18x12,mid,60601,US Domestic,85,7,2026-09-26T15:06:16-10:00
+canvas,18x12,mid,59101,US Domestic,85,7,2026-09-26T15:06:16-10:00
+canvas,18x12,east,10001,US Domestic,85,7,2026-09-26T15:06:17-10:00
+canvas,18x12,east,33131,US Domestic,85,7,2026-09-26T15:06:17-10:00
+canvas,18x12,east,02108,US Domestic,85,7,2026-09-26T15:06:18-10:00
+canvas,18x12,east,04101,US Domestic,85,7,2026-09-26T15:06:18-10:00
+canvas,20x25,hi,96814,Shipping within Hawaii,50.12,7,2026-09-26T15:06:28-10:00
+canvas,20x25,hi,96720,Shipping within Hawaii,50.12,7,2026-09-26T15:06:29-10:00
+canvas,20x25,hi,96732,Shipping within Hawaii,50.12,7,2026-09-26T15:06:29-10:00
+canvas,20x25,hi,96766,Shipping within Hawaii,50.12,7,2026-09-26T15:06:30-10:00
+canvas,20x25,west,90001,US Domestic,95,7,2026-09-26T15:06:30-10:00
+canvas,20x25,west,98101,US Domestic,95,7,2026-09-26T15:06:31-10:00
+canvas,20x25,west,85004,US Domestic,95,7,2026-09-26T15:06:31-10:00
+canvas,20x25,west,99501,US Domestic,95,7,2026-09-26T15:06:32-10:00
+canvas,20x25,mid,80202,US Domestic,95,7,2026-09-26T15:06:32-10:00
+canvas,20x25,mid,75201,US Domestic,95,7,2026-09-26T15:06:32-10:00
+canvas,20x25,mid,60601,US Domestic,95,7,2026-09-26T15:06:33-10:00
+canvas,20x25,mid,59101,US Domestic,95,7,2026-09-26T15:06:33-10:00
+canvas,20x25,east,10001,US Domestic,95,7,2026-09-26T15:06:34-10:00
+canvas,20x25,east,33131,US Domestic,95,7,2026-09-26T15:06:34-10:00
+canvas,20x25,east,02108,US Domestic,95,7,2026-09-26T15:06:35-10:00
+canvas,20x25,east,04101,US Domestic,95,7,2026-09-26T15:06:35-10:00
+canvas,24x16,hi,96814,Shipping within Hawaii,43.16,7,2026-09-26T15:06:46-10:00
+canvas,24x16,hi,96720,Shipping within Hawaii,43.16,7,2026-09-26T15:06:46-10:00
+canvas,24x16,hi,96732,Shipping within Hawaii,43.16,7,2026-09-26T15:06:47-10:00
+canvas,24x16,hi,96766,Shipping within Hawaii,43.16,7,2026-09-26T15:06:47-10:00
+canvas,24x16,west,90001,US Domestic,85,7,2026-09-26T15:06:48-10:00
+canvas,24x16,west,98101,US Domestic,85,7,2026-09-26T15:06:48-10:00
+canvas,24x16,west,85004,US Domestic,85,7,2026-09-26T15:06:49-10:00
+canvas,24x16,west,99501,US Domestic,85,7,2026-09-26T15:06:49-10:00
+canvas,24x16,mid,80202,US Domestic,85,7,2026-09-26T15:06:50-10:00
+canvas,24x16,mid,75201,US Domestic,85,7,2026-09-26T15:06:50-10:00
+canvas,24x16,mid,60601,US Domestic,85,7,2026-09-26T15:06:51-10:00
+canvas,24x16,mid,59101,US Domestic,85,7,2026-09-26T15:06:51-10:00
+canvas,24x16,east,10001,US Domestic,85,7,2026-09-26T15:06:52-10:00
+canvas,24x16,east,33131,US Domestic,85,7,2026-09-26T15:06:52-10:00
+canvas,24x16,east,02108,US Domestic,85,7,2026-09-26T15:06:53-10:00
+canvas,24x16,east,04101,US Domestic,85,7,2026-09-26T15:06:53-10:00
+canvas,24x24,hi,96814,Shipping within Hawaii,54.68,7,2026-09-26T15:07:05-10:00
+canvas,24x24,hi,96720,Shipping within Hawaii,54.68,7,2026-09-26T15:07:06-10:00
+canvas,24x24,hi,96732,Shipping within Hawaii,54.68,7,2026-09-26T15:07:06-10:00
+canvas,24x24,hi,96766,Shipping within Hawaii,54.68,7,2026-09-26T15:07:06-10:00
+canvas,24x24,west,90001,US Domestic,100,7,2026-09-26T15:07:07-10:00
+canvas,24x24,west,98101,US Domestic,100,7,2026-09-26T15:07:07-10:00
+canvas,24x24,west,85004,US Domestic,100,7,2026-09-26T15:07:08-10:00
+canvas,24x24,west,99501,US Domestic,100,7,2026-09-26T15:07:08-10:00
+canvas,24x24,mid,80202,US Domestic,100,7,2026-09-26T15:07:09-10:00
+canvas,24x24,mid,75201,US Domestic,100,7,2026-09-26T15:07:09-10:00
+canvas,24x24,mid,60601,US Domestic,100,7,2026-09-26T15:07:10-10:00
+canvas,24x24,mid,59101,US Domestic,100,7,2026-09-26T15:07:10-10:00
+canvas,24x24,east,10001,US Domestic,100,7,2026-09-26T15:07:11-10:00
+canvas,24x24,east,33131,US Domestic,100,7,2026-09-26T15:07:11-10:00
+canvas,24x24,east,02108,US Domestic,100,7,2026-09-26T15:07:12-10:00
+canvas,24x24,east,04101,US Domestic,100,7,2026-09-26T15:07:12-10:00
+canvas,24x30,hi,96814,Shipping within Hawaii,63.32,7,2026-09-26T15:07:23-10:00
+canvas,24x30,hi,96720,Shipping within Hawaii,63.32,7,2026-09-26T15:07:24-10:00
+canvas,24x30,hi,96732,Shipping within Hawaii,63.32,7,2026-09-26T15:07:24-10:00
+canvas,24x30,hi,96766,Shipping within Hawaii,63.32,7,2026-09-26T15:07:24-10:00
+canvas,24x30,west,90001,US Domestic,105,7,2026-09-26T15:07:25-10:00
+canvas,24x30,west,98101,US Domestic,105,7,2026-09-26T15:07:25-10:00
+canvas,24x30,west,85004,US Domestic,105,7,2026-09-26T15:07:26-10:00
+canvas,24x30,west,99501,US Domestic,105,7,2026-09-26T15:07:26-10:00
+canvas,24x30,mid,80202,US Domestic,105,7,2026-09-26T15:07:27-10:00
+canvas,24x30,mid,75201,US Domestic,105,7,2026-09-26T15:07:27-10:00
+canvas,24x30,mid,60601,US Domestic,105,7,2026-09-26T15:07:28-10:00
+canvas,24x30,mid,59101,US Domestic,105,7,2026-09-26T15:07:28-10:00
+canvas,24x30,east,10001,US Domestic,105,7,2026-09-26T15:07:28-10:00
+canvas,24x30,east,33131,US Domestic,105,7,2026-09-26T15:07:29-10:00
+canvas,24x30,east,02108,US Domestic,105,7,2026-09-26T15:07:29-10:00
+canvas,24x30,east,04101,US Domestic,105,7,2026-09-26T15:07:30-10:00
+canvas,30x10,hi,96814,Shipping within Hawaii,38.12,7,2026-09-26T15:07:43-10:00
+canvas,30x10,hi,96720,Shipping within Hawaii,38.12,7,2026-09-26T15:07:43-10:00
+canvas,30x10,hi,96732,Shipping within Hawaii,38.12,7,2026-09-26T15:07:44-10:00
+canvas,30x10,hi,96766,Shipping within Hawaii,38.12,7,2026-09-26T15:07:45-10:00
+canvas,30x10,west,90001,US Domestic,85,7,2026-09-26T15:07:45-10:00
+canvas,30x10,west,98101,US Domestic,85,7,2026-09-26T15:07:46-10:00
+canvas,30x10,west,85004,US Domestic,85,7,2026-09-26T15:07:46-10:00
+canvas,30x10,west,99501,US Domestic,85,7,2026-09-26T15:07:47-10:00
+canvas,30x10,mid,80202,US Domestic,85,7,2026-09-26T15:07:47-10:00
+canvas,30x10,mid,75201,US Domestic,85,7,2026-09-26T15:07:48-10:00
+canvas,30x10,mid,60601,US Domestic,85,7,2026-09-26T15:07:48-10:00
+canvas,30x10,mid,59101,US Domestic,85,7,2026-09-26T15:07:49-10:00
+canvas,30x10,east,10001,US Domestic,85,7,2026-09-26T15:07:49-10:00
+canvas,30x10,east,33131,US Domestic,85,7,2026-09-26T15:07:50-10:00
+canvas,30x10,east,02108,US Domestic,85,7,2026-09-26T15:07:50-10:00
+canvas,30x10,east,04101,US Domestic,85,7,2026-09-26T15:07:51-10:00
+canvas,30x20,hi,96814,Shipping within Hawaii,56.12,7,2026-09-26T15:08:01-10:00
+canvas,30x20,hi,96720,Shipping within Hawaii,56.12,7,2026-09-26T15:08:02-10:00
+canvas,30x20,hi,96732,Shipping within Hawaii,56.12,7,2026-09-26T15:08:02-10:00
+canvas,30x20,hi,96766,Shipping within Hawaii,56.12,7,2026-09-26T15:08:03-10:00
+canvas,30x20,west,90001,US Domestic,100,7,2026-09-26T15:08:03-10:00
+canvas,30x20,west,98101,US Domestic,100,7,2026-09-26T15:08:04-10:00
+canvas,30x20,west,85004,US Domestic,100,7,2026-09-26T15:08:04-10:00
+canvas,30x20,west,99501,US Domestic,100,7,2026-09-26T15:08:05-10:00
+canvas,30x20,mid,80202,US Domestic,100,7,2026-09-26T15:08:05-10:00
+canvas,30x20,mid,75201,US Domestic,100,7,2026-09-26T15:08:06-10:00
+canvas,30x20,mid,60601,US Domestic,100,7,2026-09-26T15:08:06-10:00
+canvas,30x20,mid,59101,US Domestic,100,7,2026-09-26T15:08:07-10:00
+canvas,30x20,east,10001,US Domestic,100,7,2026-09-26T15:08:07-10:00
+canvas,30x20,east,33131,US Domestic,100,7,2026-09-26T15:08:08-10:00
+canvas,30x20,east,02108,US Domestic,100,7,2026-09-26T15:08:08-10:00
+canvas,30x20,east,04101,US Domestic,100,7,2026-09-26T15:08:09-10:00
+canvas,36x24,hi,96814,Shipping within Hawaii,71.96,7,2026-09-26T15:08:20-10:00
+canvas,36x24,hi,96720,Shipping within Hawaii,71.96,7,2026-09-26T15:08:20-10:00
+canvas,36x24,hi,96732,Shipping within Hawaii,71.96,7,2026-09-26T15:08:21-10:00
+canvas,36x24,hi,96766,Shipping within Hawaii,71.96,7,2026-09-26T15:08:21-10:00
+canvas,36x24,west,90001,US Domestic,145,7,2026-09-26T15:08:22-10:00
+canvas,36x24,west,98101,US Domestic,145,7,2026-09-26T15:08:23-10:00
+canvas,36x24,west,85004,US Domestic,145,7,2026-09-26T15:08:23-10:00
+canvas,36x24,west,99501,US Domestic,145,7,2026-09-26T15:08:24-10:00
+canvas,36x24,mid,80202,US Domestic,145,7,2026-09-26T15:08:24-10:00
+canvas,36x24,mid,75201,US Domestic,145,7,2026-09-26T15:08:25-10:00
+canvas,36x24,mid,60601,US Domestic,145,7,2026-09-26T15:08:25-10:00
+canvas,36x24,mid,59101,US Domestic,145,7,2026-09-26T15:08:26-10:00
+canvas,36x24,east,10001,US Domestic,145,7,2026-09-26T15:08:26-10:00
+canvas,36x24,east,33131,US Domestic,145,7,2026-09-26T15:08:27-10:00
+canvas,36x24,east,02108,US Domestic,145,7,2026-09-26T15:08:27-10:00
+canvas,36x24,east,04101,US Domestic,145,7,2026-09-26T15:08:28-10:00
+canvas,48x16,hi,96814,Shipping within Hawaii,66.2,7,2026-09-26T15:08:39-10:00
+canvas,48x16,hi,96720,Shipping within Hawaii,66.2,7,2026-09-26T15:08:39-10:00
+canvas,48x16,hi,96732,Shipping within Hawaii,66.2,7,2026-09-26T15:08:40-10:00
+canvas,48x16,hi,96766,Shipping within Hawaii,66.2,7,2026-09-26T15:08:40-10:00
+canvas,48x16,west,90001,US Domestic,105,7,2026-09-26T15:08:41-10:00
+canvas,48x16,west,98101,US Domestic,105,7,2026-09-26T15:08:41-10:00
+canvas,48x16,west,85004,US Domestic,105,7,2026-09-26T15:08:42-10:00
+canvas,48x16,west,99501,US Domestic,105,7,2026-09-26T15:08:42-10:00
+canvas,48x16,mid,80202,US Domestic,105,7,2026-09-26T15:08:43-10:00
+canvas,48x16,mid,75201,US Domestic,105,7,2026-09-26T15:08:43-10:00
+canvas,48x16,mid,60601,US Domestic,105,7,2026-09-26T15:08:44-10:00
+canvas,48x16,mid,59101,US Domestic,105,7,2026-09-26T15:08:44-10:00
+canvas,48x16,east,10001,US Domestic,105,7,2026-09-26T15:08:45-10:00
+canvas,48x16,east,33131,US Domestic,105,7,2026-09-26T15:08:45-10:00
+canvas,48x16,east,02108,US Domestic,105,7,2026-09-26T15:08:46-10:00
+canvas,48x16,east,04101,US Domestic,105,7,2026-09-26T15:08:46-10:00

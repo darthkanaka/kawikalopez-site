@@ -18,7 +18,7 @@ Reads
   data/locations.yml    places the prints come from
   data/images.json      what tools/images.py wrote for each print
   data/scenes.json      rooms for the to-scale wall preview (tools/scenes.py)
-  data/shipping.yml     tiers and the pickup-only rule
+  data/shipping.yml     rates by size and material, and the pickup-only rule
   data/payment-links.json  Stripe links per variant (tools/stripe_catalog.py), when checkout is live
   data/redirects.yml    old Squarespace paths that get a redirect page
 
@@ -128,14 +128,22 @@ def variants_from_pricing(url_id, orientation, pricing):
     return out
 
 
-def shipping_tier(v, ship):
+def oversize(v, ship):
     long_edge, short_edge = max(v["w"], v["h"]), min(v["w"], v["h"])
-    if long_edge > ship.get("max_ship_long_edge_in", 60) or short_edge > ship.get("max_ship_short_edge_in", 30):
-        return "oversize"
-    for t in ship.get("tiers", []):
-        if long_edge <= t["max_long_edge_in"]:
-            return t["id"]
-    return "oversize"
+    return long_edge > ship.get("max_ship_long_edge_in", 60) or short_edge > ship.get("max_ship_short_edge_in", 30)
+
+
+def ship_rates(v, ship):
+    """The zone rates for a variant's size and material, or None when it is pickup only."""
+    if oversize(v, ship):
+        return None
+    table = (ship.get("rates") or {}).get(v.get("material"), {})
+    return table.get(f"{v['w']}x{v['h']}") or table.get(f"{v['h']}x{v['w']}")
+
+
+def ships(v, ship):
+    """Whether a size ships at all (either material), for pages that list sizes without a material."""
+    return any(ship_rates(dict(v, material=m), ship) for m in (ship.get("rates") or {}))
 
 
 def first_sentence(text):
@@ -223,12 +231,14 @@ def load_products(site, links, warn=WARN):
                 warn.add(f"{url_id}: location '{loc_key}' is not in data/locations.yml")
             else:
                 p["location"] = dict(locations[loc_key], slug=loc_key, page=None)
-        # variants: shipping tier, link
+        # variants: shipping rates, link
         vs = []
         for v in p["variants"]:
             v = dict(v)
-            v["tier"] = shipping_tier(v, ship)
-            v["ships"] = v["tier"] != "oversize"
+            v["ship_rates"] = ship_rates(v, ship)
+            v["ships"] = v["ship_rates"] is not None
+            if not v["ships"] and not oversize(v, ship):
+                warn.add(f"{v['id']}: no shipping rate in data/shipping.yml, pickup only until one is added")
             link = (links or {}).get(v["id"])
             v["link"] = link["url"] if link else None
             vs.append(v)
@@ -577,7 +587,7 @@ class Builder:
                 "orientation": o, "label": labels[o][0], "shape": labels[o][1], "count": len(items),
                 "example": ex, "ghosts": ghosts, "browse": browse,
                 "rows": [{"size": r["size"], "canvas": r.get("canvas"), "metal": r.get("metal"),
-                          "ships": shipping_tier(r, ship) != "oversize"} for r in rows],
+                          "ships": ships(r, ship)} for r in rows],
             })
         lows = [r.get(m) for g in groups for r in g["rows"] for m in ("canvas", "metal") if r.get(m)]
         desc = (f"Sizes and prices for Kawika Lopez's Hawaiʻi prints, from ${min(lows):,}: panoramas up to 72 inches, "

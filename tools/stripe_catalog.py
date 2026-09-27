@@ -14,11 +14,12 @@ What it makes, found again on later runs by metadata, so running it twice change
   - one Product per print (metadata.urlId), image = the print's share image on the site
   - one Price per variant, lookup_key <urlId>_<w>x<h>_<material>; a changed price makes a new
     Price and archives the old one
-  - shipping rates from data/shipping.yml: free Oʻahu pickup, plus one rate per size tier and
-    zone (metadata.key = <tier>_<zone>); a changed amount archives the old rate and makes a new one
+  - shipping rates from data/shipping.yml: free Oʻahu pickup, plus one rate per material, size
+    and zone (metadata.key = <material>_<w>x<h>_<zone>); a changed amount archives the old rate and
+    makes a new one, and rates no longer in the file are archived
   - coupon and promotion code NEW20OFF (20% off, first purchase only), from data/site.yml
-  - one Payment Link per variant: quantity 1 to 5, US shipping address, pickup plus the four zone
-    rates for its size (pickup only over 60 inches), promotion codes on, phone number, a note
+  - one Payment Link per variant: quantity 1 to 5, US shipping address, pickup plus the zone
+    rates for its size and material (pickup only over 60 x 30 inches), promotion codes on, phone number, a note
     field, and a redirect to /thank-you. Recreated when its price or shipping options change.
 
 Writes
@@ -133,15 +134,20 @@ def days(rng):
     return {"minimum": {"unit": "business_day", "value": lo}, "maximum": {"unit": "business_day", "value": hi}}
 
 
+def rate_key(material, size, zone):
+    return f"{material}_{size}_{zone}"
+
+
 def ensure_shipping_rates(s, ship):
-    """Pickup plus tier x zone. Rates can't change amount once made, so a new amount means
-    archive and recreate."""
+    """Pickup plus material x size x zone. Rates can't change amount once made, so a new amount
+    means archive and recreate."""
     existing = {r["metadata"].get("key"): r for r in s.all("shipping_rates", {"active": "true"}) if r["metadata"].get("key")}
     wanted = {"pickup": (ship["pickup"]["label"], ship["pickup"]["amount"], ship["pickup"]["days"])}
-    zone_label = {z["id"]: z["label"] for z in ship["zones"]}
-    for t in ship["tiers"]:
-        for z, amount in t["rates"].items():
-            wanted[f"{t['id']}_{z}"] = (f"Ship to {zone_label[z]}", amount, t["days"])
+    zones = {z["id"]: z for z in ship["zones"]}
+    for material, sizes in ship["rates"].items():
+        for size, by_zone in sizes.items():
+            for z, amount in by_zone.items():
+                wanted[rate_key(material, size, z)] = (f"Ship to {zones[z]['label']}", amount, zones[z]["days"])
     ids = {}
     for key, (label, amount, rng) in wanted.items():
         cur = existing.get(key)
@@ -155,6 +161,10 @@ def ensure_shipping_rates(s, ship):
                                           "delivery_estimate": days(rng), "metadata": {"key": key}})
         ids[key] = made["id"]
         print(f"  shipping rate {key}: {label} ${amount / 100:,.2f}")
+    for key, cur in existing.items():
+        if key not in wanted:
+            s.post(f"shipping_rates/{cur['id']}", {"active": False})
+            print(f"  archived shipping rate {key}")
     return ids
 
 
@@ -180,8 +190,10 @@ def ensure_promo(s, promo):
 def shipping_options_for(v, ship, rates):
     if not v["ships"]:
         return [{"shipping_rate": rates["pickup"]}]
-    tier = v["tier"]
-    return [{"shipping_rate": rates["pickup"]}] + [{"shipping_rate": rates[f"{tier}_{z['id']}"]} for z in ship["zones"]]
+    size = next(f"{a}x{b}" for a, b in ((v["w"], v["h"]), (v["h"], v["w"]))
+                if f"{a}x{b}" in ship["rates"][v["material"]])
+    return [{"shipping_rate": rates["pickup"]}] + [{"shipping_rate": rates[rate_key(v["material"], size, z["id"])]}
+                                                   for z in ship["zones"]]
 
 
 def main(argv=None):
@@ -233,8 +245,7 @@ def main(argv=None):
                 new = s.post("prices", {"product": prod["id"], "currency": "usd", "unit_amount": amount,
                                         "lookup_key": v["id"], "transfer_lookup_key": True,
                                         "nickname": f"{v['size']} {v['material']}",
-                                        "metadata": {"urlId": p["urlId"], "size": v["size"], "material": v["material"],
-                                                     "tier": v["tier"]}})
+                                        "metadata": {"urlId": p["urlId"], "size": v["size"], "material": v["material"]}})
                 if pr:
                     s.post(f"prices/{pr['id']}", {"active": False})
                 pr = new
@@ -250,7 +261,7 @@ def main(argv=None):
                 s.post(f"payment_links/{known['id']}", {"active": False})
             pickup_note = ("Pickup only on Oʻahu for this size. We'll email you to set a time."
                            if not v["ships"] else
-                           "Choose free pickup on Oʻahu, or the shipping option for your state.")
+                           "Choose free pickup on Oʻahu, or shipping to Hawaiʻi or the US mainland.")
             link = s.post("payment_links", {
                 "line_items": [{"price": pr["id"], "quantity": 1,
                                 "adjustable_quantity": {"enabled": True, "minimum": 1, "maximum": 5}}],

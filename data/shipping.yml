@@ -1,15 +1,20 @@
-# Shipping at checkout. Read by tools/stripe_catalog.py and by the product page copy.
+# Shipping at checkout. Read by tools/build.py and tools/stripe_catalog.py.
 #
-# Kawika, 2026-09-25: free pickup on Oʻahu, otherwise a rate by size and destination.
-# Stripe shipping rates are fixed amounts and a payment link can offer at most 5, so each
-# print size gets: pickup, plus one rate per zone for its size tier. The customer picks
-# their zone at checkout. Pictures Plus ships nothing larger than 60 x 30 inches, so any
-# size with a long edge over 60 inches is pickup only.
+# Kawika, 2026-09-25: free pickup on Oʻahu, otherwise a flat rate by print size, material and
+# destination. A payment link can offer at most 5 shipping options; each one offers pickup plus
+# one rate per zone for that exact size and material. Pictures Plus ships nothing larger than
+# 60 x 30 inches, so bigger sizes are pickup only.
 #
-# AMOUNTS ARE PLACEHOLDERS (cents). rates_confirmed stays false until Kawika supplies them,
-# and stripe_catalog.py refuses to run in live mode while it is false.
+# Rates, 2026-09-26: quoted on the Pictures Plus shipping calculator (354 lookups, 16 ZIPs, raw
+# data in harvest/shipping-quotes.csv). Mainland quotes are one "US Domestic" price per size,
+# the same in every state tested (Anchorage included), so the three mainland zones became one.
+# Charged amount = highest quote in the zone x 1.08, rounded up to the next dollar. The 8%
+# covers the 4.5% GET and the Stripe fee on the shipping charge. Amounts are in cents.
+#
+# Kawika approved the rule and the rates 2026-09-26 (rates_confirmed: true). stripe_catalog.py
+# refuses to run in live mode while rates_confirmed is false.
 
-rates_confirmed: false
+rates_confirmed: true
 currency: usd
 allowed_countries: [US]
 max_ship_long_edge_in: 60
@@ -20,33 +25,38 @@ pickup:
   amount: 0
   days: [7, 10]
 
+# days: business days from order to delivery, production (about a week) plus transit.
 zones:
-  - {id: hi, label: Hawaiʻi}
-  - {id: west, label: US West}
-  - {id: mid, label: US Central and Mountain}
-  - {id: east, label: US East}
+  - {id: hi, label: Hawaiʻi, days: [7, 14]}
+  - {id: mainland, label: US mainland, days: [10, 21]}
 
-tiers:
-  - id: small
-    max_long_edge_in: 24
-    days: [7, 14]
-    rates: {hi: 0, west: 0, mid: 0, east: 0}
-  - id: medium
-    max_long_edge_in: 36
-    days: [7, 14]
-    rates: {hi: 0, west: 0, mid: 0, east: 0}
-  - id: large
-    max_long_edge_in: 60
-    days: [10, 21]
-    rates: {hi: 0, west: 0, mid: 0, east: 0}
+# Keyed by material, then size as width x height in inches (either orientation matches).
+rates:
+  metal:
+    "16x16": {hi: 3900, mainland: 9200}   # quote $35.42 / $85.00
+    "16x20": {hi: 4300, mainland: 9200}   # quote $39.26 / $85.00
+    "18x12": {hi: 3600, mainland: 9200}   # quote $33.02 / $85.00
+    "20x25": {hi: 5500, mainland: 10300}   # quote $50.06 / $95.00
+    "24x16": {hi: 4700, mainland: 9200}   # quote $43.10 / $85.00
+    "24x24": {hi: 5900, mainland: 10800}   # quote $54.62 / $100.00
+    "24x30": {hi: 6900, mainland: 11400}   # quote $63.26 / $105.00
+    "30x10": {hi: 4200, mainland: 9200}   # quote $38.06 / $85.00
+    "30x20": {hi: 6100, mainland: 10800}   # quote $56.06 / $100.00
+    "36x24": {hi: 7800, mainland: 15700}   # quote $71.90 / $145.00
+    "48x16": {hi: 7200, mainland: 11400}   # quote $66.14 / $105.00
+  canvas:
+    "16x16": {hi: 3900, mainland: 9200}   # quote $35.48 / $85.00
+    "16x20": {hi: 4300, mainland: 9200}   # quote $39.32 / $85.00
+    "18x12": {hi: 3600, mainland: 9200}   # quote $33.08 / $85.00
+    "20x25": {hi: 5500, mainland: 10300}   # quote $50.12 / $95.00
+    "24x16": {hi: 4700, mainland: 9200}   # quote $43.16 / $85.00
+    "24x24": {hi: 6000, mainland: 10800}   # quote $54.68 / $100.00
+    "24x30": {hi: 6900, mainland: 11400}   # quote $63.32 / $105.00
+    "30x10": {hi: 4200, mainland: 9200}   # quote $38.12 / $85.00
+    "30x20": {hi: 6100, mainland: 10800}   # quote $56.12 / $100.00
+    "36x24": {hi: 7800, mainland: 15700}   # quote $71.96 / $145.00
+    "48x16": {hi: 7200, mainland: 11400}   # quote $66.20 / $105.00
 
 oversize:
   options: [pickup]
-  note: Sizes over 60 inches are pickup only. Get in touch and we'll quote freight.
-
-# Which checkout option a customer should pick, by state. Shown as a helper on product pages.
-zone_hint:
-  hi: [HI]
-  west: [AK, AZ, CA, NV, OR, WA]
-  mid: [AR, CO, IA, ID, IL, KS, LA, MN, MO, MS, MT, ND, NE, NM, OK, SD, TX, UT, WI, WY]
-  east: [AL, CT, DC, DE, FL, GA, IN, KY, MA, MD, ME, MI, NC, NH, NJ, NY, OH, PA, RI, SC, TN, VA, VT, WV]
+  note: Sizes over 60 x 30 inches are pickup only. Get in touch and we'll quote freight.
