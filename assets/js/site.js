@@ -278,6 +278,8 @@ var Cart = (function () {
   var summary = root.querySelector("[data-cart-summary]");
   var status = root.querySelector("[data-cart-status]");
   var go = root.querySelector("[data-checkout]");
+  var ack = root.querySelector("[data-terms-ack]");
+  var ready = function () { return !ack || ack.checked; };
   var prefix = root.getAttribute("data-root");
   var cfg = null;
   var dollars = function (cents) { return KL.money(cents / 100); };
@@ -382,7 +384,7 @@ var Cart = (function () {
 
   function fail(e) {
     started = false;
-    go.disabled = false;
+    go.disabled = !ready();
     go.hidden = false;
     wrap.hidden = true;
     status.classList.add("is-error");
@@ -399,19 +401,19 @@ var Cart = (function () {
     mountEl.innerHTML = "";
     wrap.hidden = true;
     go.hidden = false;
-    go.disabled = false;
+    go.disabled = !ready();
     status.textContent = "Your cart changed. Check out again when you're ready.";
   }
 
   function checkout() {
     var ls = lines();
-    if (!ls.length || started) return;
+    if (!ls.length || started || !ready()) return;
     started = true;
     go.disabled = true;
     status.textContent = "Opening secure checkout...";
     status.classList.remove("is-error");
     Promise.all([
-      post({ action: "create", items: ls.map(function (x) { return { id: x.id, qty: x.qty }; }) }),
+      post({ action: "create", terms_ack: true, items: ls.map(function (x) { return { id: x.id, qty: x.qty }; }) }),
       stripeJs()
     ]).then(function (res) {
       var d = res[0];
@@ -488,6 +490,10 @@ var Cart = (function () {
       render();
       document.addEventListener("cart:change", function () { stop(); render(); });
       go.addEventListener("click", checkout);
+      if (ack) {
+        go.disabled = !ack.checked;
+        ack.addEventListener("change", function () { if (!started) go.disabled = !ack.checked; });
+      }
     })
     .catch(function () {
       empty.hidden = false;

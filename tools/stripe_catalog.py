@@ -47,6 +47,10 @@ sys.path.insert(0, str(ROOT / "tools"))
 import build  # noqa: E402  (reuses the catalog loader, so Stripe sees exactly what the site shows)
 
 API = "https://api.stripe.com/v1/"
+# Buyers tick this before paying (Hawaiʻi HRS 481B-5.5: a made-to-order sale can be final only with
+# the buyer's acknowledgment). Needs a Terms of service URL in each Stripe account's Public details.
+TERMS_ACK = ("I understand every print is made to order, so all sales are final except damage or defects. "
+             "See the [terms of sale](https://kawikalopez.com/terms).")
 VERSION = "2024-06-20"
 CREDS = Path.home() / ".claude" / "credentials" / "kawikalopez-stripe.env"
 IDS = ROOT / "data" / "stripe-ids.json"
@@ -253,7 +257,7 @@ def main(argv=None):
             ids["prices"][v["id"]] = pr["id"]
 
             options = shipping_options_for(v, ship, rates)
-            sig = pr["id"] + "|" + ",".join(o["shipping_rate"] for o in options) + "|" + base + "|qty1"
+            sig = pr["id"] + "|" + ",".join(o["shipping_rate"] for o in options) + "|" + base + "|qty1|tos1"
             known = ids["links"].get(v["id"])
             if known and known.get("sig") == sig and links_out.get(v["id"]):
                 continue
@@ -270,7 +274,9 @@ def main(argv=None):
                 "phone_number_collection": {"enabled": True},
                 "customer_creation": "always",
                 "custom_text": {"shipping_address": {"message": pickup_note},
-                                "submit": {"message": "Printed to order on Oʻahu, usually in about a week."}},
+                                "submit": {"message": "Printed to order on Oʻahu, usually in about a week."},
+                                "terms_of_service_acceptance": {"message": TERMS_ACK}},
+                "consent_collection": {"terms_of_service": "required"},
                 "custom_fields": [{"key": "note", "label": {"type": "custom", "custom": "Anything we should know?"},
                                    "type": "text", "optional": True}],
                 "after_completion": {"type": "redirect",

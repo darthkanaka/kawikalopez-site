@@ -434,3 +434,6 @@ html:not(.js) .js-only { display: none; }
 }
 .checkout-wrap { margin-top: 48px; max-width: 760px; scroll-margin-top: 24px; }
 .checkout-form { margin-top: 20px; min-height: 200px; }
+.cart-ack { display: flex; gap: 10px; align-items: flex-start; margin-top: 18px; font-size: 0.875rem; line-height: 1.45; cursor: pointer; }
+.cart-ack input { width: 18px; height: 18px; margin-top: 1px; flex: none; accent-color: var(--accent); }
+.btn-buy:disabled { opacity: 0.45; cursor: not-allowed; }

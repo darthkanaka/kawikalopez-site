@@ -110,6 +110,8 @@ function createSession_(req) {
     want[id] = Math.min((want[id] || 0) + qty, model.max_qty);
   });
   if (!order.length) throw new Error("CUSTOMER:Your cart is empty.");
+  // The buyer ticked the made-to-order, final-sale box on the cart page (Hawaiʻi HRS 481B-5.5).
+  if (req.terms_ack !== true) throw new Error("CUSTOMER:Please tick the box to confirm you've read the terms of sale.");
   if (order.length > model.max_items) throw new Error("CUSTOMER:Up to " + model.max_items + " different prints per order, please.");
 
   // Prices from Stripe, by lookup key (the variant id).
@@ -156,7 +158,7 @@ function createSession_(req) {
     custom_fields: [{ key: "note", label: { type: "custom", custom: "Anything we should know?" }, type: "text", optional: true }],
     return_url: base + "thank-you?session_id={CHECKOUT_SESSION_ID}",
     payment_intent_data: { description: description },
-    metadata: { source: "cart", ships: s.ships ? "yes" : "pickup only", lab_orders_mainland: labPlan.slice(0, 500) }
+    metadata: { source: "cart", terms_ack: "yes, cart checkbox", ships: s.ships ? "yes" : "pickup only", lab_orders_mainland: labPlan.slice(0, 500) }
   });
   return session.client_secret;
 }
