@@ -1,0 +1,28 @@
+name: IndexNow ping
+on:
+  push:
+    branches: [main]
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wait for Pages deploy
+        run: sleep 90
+      - name: Notify IndexNow
+        run: |
+          # URLs come from the committed sitemap, not a hardcoded list that
+          # silently goes stale. Read the checkout rather than the live file:
+          # the Pages CDN caches for ~10 minutes, so a fetch this soon after a
+          # push often still serves the previous version.
+          URLS=$(grep -o '<loc>[^<]*</loc>' sitemap.xml | sed -E 's#</?loc>##g' | jq -R . | jq -sc .)
+          echo "Submitting $(echo "$URLS" | jq 'length') URLs"
+          BODY=$(jq -nc \
+            --arg h "kawikalopez.com" \
+            --arg k "2296d603ce9bc17c37f0d11b61f74403" \
+            --argjson u "$URLS" \
+            '{host: $h, key: $k, keyLocation: ("https://" + $h + "/" + $k + ".txt"), urlList: $u}')
+          curl -s -o /dev/null -w "IndexNow responded %{http_code}\n" \
+            -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d "$BODY"

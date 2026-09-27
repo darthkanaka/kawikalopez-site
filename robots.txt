@@ -1,3 +1,4 @@
-# Staging: every page also carries a noindex tag.
 User-agent: *
-Disallow: /
+Allow: /
+
+Sitemap: https://kawikalopez.com/sitemap.xml
