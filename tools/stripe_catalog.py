@@ -18,7 +18,7 @@ What it makes, found again on later runs by metadata, so running it twice change
     and zone (metadata.key = <material>_<w>x<h>_<zone>); a changed amount archives the old rate and
     makes a new one, and rates no longer in the file are archived
   - coupon and promotion code NEW20OFF (20% off, first purchase only), from data/site.yml
-  - one Payment Link per variant: quantity 1 to 5, US shipping address, pickup plus the zone
+  - one Payment Link per variant: quantity fixed at 1 (shipping is a flat rate per order), US shipping address, pickup plus the zone
     rates for its size and material (pickup only over 60 x 30 inches), promotion codes on, phone number, a note
     field, and a redirect to /thank-you. Recreated when its price or shipping options change.
 
@@ -253,7 +253,7 @@ def main(argv=None):
             ids["prices"][v["id"]] = pr["id"]
 
             options = shipping_options_for(v, ship, rates)
-            sig = pr["id"] + "|" + ",".join(o["shipping_rate"] for o in options) + "|" + base
+            sig = pr["id"] + "|" + ",".join(o["shipping_rate"] for o in options) + "|" + base + "|qty1"
             known = ids["links"].get(v["id"])
             if known and known.get("sig") == sig and links_out.get(v["id"]):
                 continue
@@ -263,8 +263,7 @@ def main(argv=None):
                            if not v["ships"] else
                            "Choose free pickup on Oʻahu, or shipping to Hawaiʻi or the US mainland.")
             link = s.post("payment_links", {
-                "line_items": [{"price": pr["id"], "quantity": 1,
-                                "adjustable_quantity": {"enabled": True, "minimum": 1, "maximum": 5}}],
+                "line_items": [{"price": pr["id"], "quantity": 1}],
                 "shipping_address_collection": {"allowed_countries": ship["allowed_countries"]},
                 "shipping_options": options,
                 "allow_promotion_codes": True,
