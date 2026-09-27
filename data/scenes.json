@@ -28,8 +28,8 @@
    "h": 590
   },
   "calibration": {
-   "object": "the back of the sofa, 9 feet (108 inches) per Kawika 2026-09-26, measured along the back cushions at the wall",
-   "inches": 108,
+   "object": "the back of the sofa, measured along the back cushions at the wall. Set to 108 in (9 ft) on 2026-09-26, then 123 in (about 10 ft) the same day when Kawika judged prints still about 12% too big",
+   "inches": 123,
    "from": [
     370,
     740
@@ -39,7 +39,7 @@
     740
    ]
   },
-  "ppi": 11.019,
+  "ppi": 9.675,
   "anchor": {
    "x": 0.4868,
    "y": 0.712

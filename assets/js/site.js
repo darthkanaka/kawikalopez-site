@@ -90,7 +90,7 @@ var KL = (function () {
     room.classList.toggle("is-canvas", v.material === "canvas");
     if (caption) {
       caption.textContent = (title ? title.textContent : "This print") + " at " + v.size + " in, " +
-        v.material + ", shown to scale above a 9 foot sofa.";
+        v.material + ", shown to scale above a 10 foot sofa.";
     }
   });
 })();
