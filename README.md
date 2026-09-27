@@ -34,13 +34,19 @@ Static HTML on GitHub Pages. The pages are rendered by a small Python build and 
 | `data/pricing.yml` | Hand | Price matrix per orientation; new prints inherit it |
 | `data/locations.yml` | Hand | The places prints come from, with the search phrase each place page targets |
 | `data/site.yml` | Hand | Site facts, nav, feature flags, contact, featured order |
-| `data/shipping.yml` | Hand (Kawika's numbers) | Pickup, zones, size tiers, the pickup-only rule over 60 inches |
+| `data/shipping.yml` | Hand (Kawika's numbers) | Pickup, zones, per size and material rates, the pickup-only rule, the cart shipping model |
 | `data/scenes.json` | `tools/scenes.py` and hand | Rooms for the to-scale wall preview: wall rectangle, pixels per inch, anchor |
 | `data/images.json`, `data/pages.json`, `data/lastmod.json` | Tools only | What was generated, what was rendered, when each page last changed |
 
 ## Contact form
 
 The form on /contact posts to a Google Apps Script web app whose source is `gas/contact-notify.gs`. It logs every message to a Google Sheet, then emails kawika@elevatemediahi.com with Reply-To set to the sender. Until the script is deployed and its `/exec` URL is in `data/site.yml` as `contact.endpoint`, the form opens the visitor's email app with the message filled in, so nothing is lost. Deploy steps are at the top of the script. To change it later: Manage deployments, New version, never New deployment.
+
+## Cart and checkout
+
+Every print and size has a Stripe payment link (`tools/stripe_catalog.py`), quantity fixed at 1. On top of that, the cart lets a buyer check out several prints with one shipping charge priced the way the print lab prices it: by total square inches (Hawaiʻi: a formula; mainland: a step table, split into boxes under the lab's freight jump). The cart lives in the browser; `gas/checkout.gs` (a Google Apps Script web app) prices the order from Stripe and creates the Checkout Session. The cart only appears once the script is deployed and its `/exec` URL is in `data/site.yml` as `checkout.endpoint`; until then product pages sell through the payment links. Deploy steps are at the top of the script.
+
+The shipping math (`shipQuote`) is the same code in `assets/js/site.js` and `gas/checkout.gs`. `cd tools && node test_shipping.mjs` checks the two match and reproduce the lab's quotes. `tools/checkout_dev.mjs` runs the script locally against the Stripe sandbox for an end to end test (steps in the file); rebuild without `KL_CHECKOUT_ENDPOINT` afterwards and delete the leftover `cart.html` and `assets/data/`.
 
 ## Logo
 
@@ -79,6 +85,7 @@ Then open http://localhost:8779/kawikalopez-site/. The server maps `/store/kaima
 cd tools && npm install          # once: Playwright and axe, pinned
 node verify.mjs                  # every page: errors, one h1, alt, links, JSON-LD, canonical, noindex, lengths, picker, no-JS, mobile, reduced motion
 node a11y.mjs                    # axe WCAG 2.1 AA at 1440, 1024 and 390
+node test_shipping.mjs           # cart shipping math against the lab quotes (no preview needed)
 ```
 
 Both expect the preview running on port 8779 with the staging prefix. For a production build, run verify with `EXPECT_NOINDEX=0`.

@@ -18,6 +18,11 @@ contact:
   email: kawika@elevatemediahi.com
   endpoint: ""
 
+# Cart checkout: Google Apps Script web app (gas/checkout.gs). Empty until deployed; while it
+# is empty there is no cart and each print sells through its own payment link.
+checkout:
+  endpoint: ""
+
 person:
   name: Kawika Lopez
   job_title: Landscape and aerial photographer

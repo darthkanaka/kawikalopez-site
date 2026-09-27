@@ -7,6 +7,9 @@
    02 Size and material picker
    03 Room preview (to scale)
    04 Contact form
+   05 Cart: storage and header count
+   06 Cart: add from a print page
+   07 Cart page and checkout
 */
 
 /* 01 Shared ---------------------------------------------------------------- */
@@ -38,6 +41,7 @@ var KL = (function () {
   var priceEl = form.querySelector("[data-price]");
   var noteEl = form.querySelector("[data-ship-note]");
   var buy = form.querySelector("[data-buy]");
+  var add = form.querySelector("[data-add]");
 
   function current() {
     var size = form.querySelector('input[name="size"]:checked');
@@ -55,6 +59,7 @@ var KL = (function () {
     if (!v) return;
     priceEl.textContent = KL.money(v.price);
     noteEl.textContent = v.ships ? "" : "Pickup on Oʻahu only";
+    if (add) add.setAttribute("data-id", v.id);
     if (v.link) {
       buy.href = v.link;
     } else {
@@ -147,3 +152,242 @@ var KL = (function () {
   });
 })();
 
+/* 05 Cart: storage and header count --------------------------------------- */
+/* BEGIN shipQuote: identical in assets/js/site.js and gas/checkout.gs (tools/test_shipping.mjs checks) */
+/* Shipping for a cart, in cents, from the model in data/shipping.yml (cart:).
+   items: [{w, h, qty, material}]. Returns {ships, pickupOnly, hi, mainland, hiQuote,
+   mainlandQuote, boxes}; hi and mainland are what the customer pays (quote x markup, rounded
+   up to the next dollar). boxes: the lab orders for mainland shipping, each a list of units. */
+function shipQuote(model, items) {
+  var units = [], i, j, it;
+  for (i = 0; i < items.length; i++) {
+    it = items[i];
+    for (j = 0; j < it.qty; j++) {
+      units.push({ w: it.w, h: it.h, material: it.material, area: it.w * it.h });
+    }
+  }
+  var oversize = function (u) {
+    return Math.max(u.w, u.h) > model.max_long_edge_in || Math.min(u.w, u.h) > model.max_short_edge_in ||
+      u.area > model.mainland_box_max_sq_in;
+  };
+  for (i = 0; i < units.length; i++) {
+    if (oversize(units[i])) return { ships: false, pickupOnly: true, boxes: [] };
+  }
+  if (!units.length) return { ships: false, pickupOnly: false, boxes: [] };
+
+  var hq = model.hi.base;
+  for (i = 0; i < units.length; i++) {
+    hq += model.hi.per_sq_in * units[i].area + model.hi.per_print +
+      (units[i].material === "canvas" ? model.hi.per_canvas_print : 0);
+  }
+
+  // Largest first into the first box with room; each box stays under the freight jump.
+  var sorted = units.slice().sort(function (a, b) { return b.area - a.area; });
+  var boxes = [], sums = [];
+  for (i = 0; i < sorted.length; i++) {
+    for (j = 0; j < boxes.length; j++) {
+      if (sums[j] + sorted[i].area <= model.mainland_box_max_sq_in) break;
+    }
+    if (j === boxes.length) { boxes.push([]); sums.push(0); }
+    boxes[j].push(sorted[i]);
+    sums[j] += sorted[i].area;
+  }
+  var step = function (area) {
+    for (var k = 0; k < model.mainland_steps.length; k++) {
+      if (area <= model.mainland_steps[k][0]) return model.mainland_steps[k][1];
+    }
+    return null;
+  };
+  var mq = 0;
+  for (j = 0; j < sums.length; j++) mq += step(sums[j]);
+
+  var charge = function (q) { return Math.ceil(q * model.markup_pct / 10000) * 100; };
+  return { ships: true, pickupOnly: false, hi: charge(hq), mainland: charge(mq), hiQuote: hq,
+    mainlandQuote: mq, boxes: boxes };
+}
+/* END shipQuote */
+
+/* The cart lives in this browser only (localStorage): [{id, qty}]. Prices, sizes and shipping
+   are looked up fresh from assets/data/cart.json and again by the checkout service. */
+var Cart = (function () {
+  "use strict";
+  var KEY = "kl-cart";
+  function read() {
+    try {
+      var v = JSON.parse(localStorage.getItem(KEY) || "[]");
+      return Array.isArray(v) ? v.filter(function (x) { return x && typeof x.id === "string" && x.qty > 0; }) : [];
+    } catch (e) { return []; }
+  }
+  function write(items) {
+    try { localStorage.setItem(KEY, JSON.stringify(items)); } catch (e) { /* private mode: cart lasts this page only */ }
+    badge(items);
+    document.dispatchEvent(new CustomEvent("cart:change", { detail: items }));
+  }
+  function count(items) {
+    return (items || read()).reduce(function (n, x) { return n + x.qty; }, 0);
+  }
+  function badge(items) {
+    var n = count(items);
+    [].forEach.call(document.querySelectorAll("[data-cart-count]"), function (el) {
+      el.textContent = n ? "(" + n + ")" : "";
+    });
+  }
+  function add(id, max) {
+    var items = read(), hit = null;
+    items.forEach(function (x) { if (x.id === id) hit = x; });
+    if (hit) hit.qty = Math.min(hit.qty + 1, max || 5);
+    else items.push({ id: id, qty: 1 });
+    write(items);
+  }
+  function set(id, qty) {
+    write(read().map(function (x) { return x.id === id ? { id: id, qty: qty } : x; }).filter(function (x) { return x.qty > 0; }));
+  }
+  function clear() { write([]); }
+  badge();
+  if (document.querySelector("[data-cart-clear]") && /session_id=/.test(location.search)) clear();
+  return { read: read, write: write, add: add, set: set, clear: clear, count: count };
+})();
+
+/* 06 Cart: add from a print page -------------------------------------------- */
+(function () {
+  "use strict";
+  var btn = document.querySelector("[data-add]");
+  if (!btn) return;
+  var msg = document.querySelector("[data-added]");
+  var cartUrl = btn.getAttribute("data-cart-url");
+  btn.addEventListener("click", function () {
+    var id = btn.getAttribute("data-id");
+    if (!id) return;
+    Cart.add(id, 5);
+    msg.innerHTML = "";
+    msg.appendChild(document.createTextNode("Added to your cart. "));
+    var a = document.createElement("a");
+    a.href = cartUrl;
+    a.textContent = "View cart and check out (" + Cart.count() + ")";
+    msg.appendChild(a);
+  });
+})();
+
+/* 07 Cart page and checkout -------------------------------------------------- */
+(function () {
+  "use strict";
+  var root = document.querySelector("[data-cart]");
+  if (!root) return;
+  var list = root.querySelector("[data-cart-list]");
+  var empty = root.querySelector("[data-cart-empty]");
+  var summary = root.querySelector("[data-cart-summary]");
+  var status = root.querySelector("[data-cart-status]");
+  var go = root.querySelector("[data-checkout]");
+  var prefix = root.getAttribute("data-root");
+  var cfg = null;
+  var dollars = function (cents) { return KL.money(cents / 100); };
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text !== undefined) e.textContent = text;
+    return e;
+  }
+
+  function lines() {
+    // Drop anything no longer sold; the rest joins the catalog entry.
+    var items = Cart.read(), out = [];
+    items.forEach(function (x) { if (cfg.variants[x.id]) out.push({ id: x.id, qty: Math.min(x.qty, cfg.model.max_qty), v: cfg.variants[x.id] }); });
+    if (out.length !== items.length) Cart.write(out.map(function (x) { return { id: x.id, qty: x.qty }; }));
+    return out;
+  }
+
+  function render() {
+    var ls = lines();
+    list.innerHTML = "";
+    empty.hidden = ls.length > 0;
+    summary.hidden = ls.length === 0;
+    if (!ls.length) return;
+    var subtotal = 0;
+    ls.forEach(function (x) {
+      var v = x.v;
+      subtotal += v.price * x.qty;
+      var li = el("li", "cart-item");
+      var img = el("img", "cart-thumb");
+      img.src = prefix + v.img; img.alt = ""; img.width = 96; img.height = 96; img.loading = "lazy";
+      li.appendChild(img);
+      var info = el("div", "cart-info");
+      var a = el("a", "cart-title", v.title); a.href = prefix + v.path;
+      info.appendChild(a);
+      info.appendChild(el("p", "cart-meta", v.size + " in, " + v.material + (v.ships ? "" : ". Pickup on Oʻahu only")));
+      var row = el("div", "cart-row");
+      var lab = el("label", "cart-qty");
+      lab.appendChild(document.createTextNode("Qty "));
+      var sel = el("select");
+      for (var q = 1; q <= cfg.model.max_qty; q++) {
+        var o = el("option", "", String(q)); o.value = q; if (q === x.qty) o.selected = true; sel.appendChild(o);
+      }
+      sel.setAttribute("aria-label", "Quantity of " + v.title + ", " + v.size + " " + v.material);
+      sel.addEventListener("change", function () { Cart.set(x.id, Number(sel.value)); });
+      lab.appendChild(sel);
+      row.appendChild(lab);
+      var rm = el("button", "cart-remove", "Remove"); rm.type = "button";
+      rm.setAttribute("aria-label", "Remove " + v.title + ", " + v.size + " " + v.material);
+      rm.addEventListener("click", function () { Cart.set(x.id, 0); });
+      row.appendChild(rm);
+      info.appendChild(row);
+      li.appendChild(info);
+      li.appendChild(el("p", "cart-line", KL.money(v.price * x.qty)));
+      list.appendChild(li);
+    });
+
+    var s = shipQuote(cfg.model, ls.map(function (x) { return { w: x.v.w, h: x.v.h, qty: x.qty, material: x.v.material }; }));
+    root.querySelector("[data-subtotal]").textContent = KL.money(subtotal);
+    var ship = root.querySelector("[data-ship]");
+    ship.innerHTML = "";
+    var add = function (label, value) {
+      var dt = el("dt", "", label), dd = el("dd", "", value);
+      ship.appendChild(dt); ship.appendChild(dd);
+    };
+    add(cfg.model.pickup.label, "Free");
+    if (s.ships) {
+      add("Ship to " + cfg.model.zones.hi.label, dollars(s.hi));
+      add("Ship to " + cfg.model.zones.mainland.label, dollars(s.mainland));
+    }
+    root.querySelector("[data-ship-note]").textContent = s.pickupOnly
+      ? "This order includes a print too large to ship, so it's pickup on Oʻahu only. Get in touch if you need it shipped and we'll quote freight."
+      : "One shipping charge covers every print in the order. You choose pickup or shipping at checkout.";
+  }
+
+  function checkout() {
+    var ls = lines();
+    if (!ls.length) return;
+    go.disabled = true;
+    status.textContent = "Opening secure checkout...";
+    status.classList.remove("is-error");
+    fetch(cfg.endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({ mode: cfg.mode, items: ls.map(function (x) { return { id: x.id, qty: x.qty }; }) })
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (d && d.url) { location.href = d.url; return; }
+        throw { user: d && d.error };
+      })
+      .catch(function (e) {
+        go.disabled = false;
+        status.classList.add("is-error");
+        status.textContent = (e && e.user ? e.user + " " : "Checkout didn't open. ") +
+          "Please try again, or buy a print on its own from its page.";
+      });
+  }
+
+  fetch(root.getAttribute("data-src"))
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      cfg = d;
+      render();
+      document.addEventListener("cart:change", render);
+      go.addEventListener("click", checkout);
+    })
+    .catch(function () {
+      empty.hidden = false;
+      empty.textContent = "The cart couldn't load. Please refresh the page.";
+    });
+})();

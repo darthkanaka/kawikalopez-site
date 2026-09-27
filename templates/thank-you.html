@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block main %}
 <section class="wrap page-head thanks">
+  {% if cart %}<span data-cart-clear hidden></span>{% endif %}
   <img class="signoff" src="{{ asset('assets/img/site/logo.svg') }}" width="2455" height="1183" alt="" decoding="async">
   <h1>Thank you. Your order is in.</h1>
   <div class="prose">

@@ -130,7 +130,7 @@ p { margin: 0 0 1em; }
 
 /* 06 Header and menu ------------------------------------------------------- */
 .site-header { border-bottom: 1px solid var(--rule); background: var(--paper); }
-.header-row { display: flex; align-items: center; justify-content: space-between; min-height: 72px; gap: 24px; }
+.header-row { display: flex; align-items: center; min-height: 72px; gap: 24px; }
 /* The logo is traced vector art (tools/logo.py). The header uses the side-by-side version:
    signature, then KAWIKA LOPEZ over PHOTOGRAPHY. */
 .logo { display: block; }
@@ -138,6 +138,9 @@ p { margin: 0 0 1em; }
 .brand .logo-horizontal { height: 50px; width: auto; }
 .brand:hover .logo { opacity: 0.75; }
 .nav-list { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; font-size: 0.9375rem; }
+.brand { margin-right: auto; }
+.cart-link { font-size: 0.9375rem; text-decoration: none; white-space: nowrap; }
+.cart-link:hover, .cart-link[aria-current="page"] { text-decoration: underline; }
 .nav-list a, .menu-list a { text-decoration: none; }
 .nav-list a:hover, .nav-list a[aria-current="page"] { text-decoration: underline; }
 .menu { display: none; position: relative; }
@@ -397,3 +400,34 @@ p { margin: 0 0 1em; }
 .post-item-desc { color: var(--ink-2); }
 .post-item:hover .post-item-title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.15em; }
 
+/* 20 Cart ------------------------------------------------------------------ */
+html:not(.js) .js-only { display: none; }
+.added { margin: 10px 0 0; font-size: 0.9375rem; min-height: 1.4em; }
+.cart { padding-top: 8px; }
+.cart-grid { display: grid; gap: 40px; align-items: start; }
+@media (min-width: 900px) { .cart-grid { grid-template-columns: minmax(0, 1fr) 360px; gap: 56px; } }
+.cart-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+.cart-item { display: grid; grid-template-columns: 96px minmax(0, 1fr) auto; gap: 18px; padding: 20px 0; border-bottom: 1px solid var(--rule); align-items: start; }
+.cart-thumb { width: 96px; height: 96px; object-fit: cover; background: var(--paper-2); }
+.cart-title { font-family: var(--serif); font-size: 1.375rem; line-height: 1.15; text-decoration: none; }
+.cart-title:hover { text-decoration: underline; }
+.cart-meta { margin: 4px 0 10px; color: var(--ink-2); font-size: 0.9375rem; }
+.cart-row { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; font-size: 0.9375rem; }
+.cart-qty select { font: inherit; padding: 6px 8px; margin-left: 6px; border: 1px solid var(--rule); background: var(--paper); color: var(--ink); min-height: 40px; }
+.cart-remove { font: inherit; background: none; border: 0; padding: 8px 0; color: var(--ink-2); text-decoration: underline; cursor: pointer; min-height: 40px; }
+.cart-remove:hover { color: var(--ink); }
+.cart-line { margin: 0; font-variant-numeric: tabular-nums; }
+.cart-summary { border: 1px solid var(--rule); padding: 24px; background: var(--paper); }
+.cart-h { font-family: var(--sans); font-size: 0.8125rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); margin: 20px 0 8px; }
+.cart-totals { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 16px; margin: 0; font-variant-numeric: tabular-nums; }
+.cart-totals dt { margin: 0; }
+.cart-totals dd { margin: 0; text-align: right; }
+.cart-summary .btn-buy { margin-top: 18px; }
+.cart-status { margin: 12px 0 0; font-size: 0.9375rem; min-height: 1.4em; }
+.cart-status.is-error { color: #8a1c1c; }
+.cart-empty { font-size: 1.0625rem; }
+@media (max-width: 639px) {
+  .cart-item { grid-template-columns: 72px minmax(0, 1fr); }
+  .cart-thumb { width: 72px; height: 72px; }
+  .cart-line { grid-column: 2; }
+}

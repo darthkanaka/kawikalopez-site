@@ -60,3 +60,37 @@ rates:
 oversize:
   options: [pickup]
   note: Sizes over 60 x 30 inches are pickup only. Get in touch and we'll quote freight.
+
+# Cart shipping (2026-09-26): the lab prices an order by its total square inches, so a cart
+# of several prints is priced as one order. Model probed on the lab's calculator, notes in
+# harvest/shipping-calculator-model.md. Kawika: the lab only ever bills what it quotes at checkout.
+# Used by the cart page (assets/js/site.js) and the checkout service (gas/checkout.gs), which
+# read it from assets/data/cart.json. tools/test_shipping.mjs checks both against the quotes.
+#   Hawaiʻi: base + per square inch + per print (+ per canvas print), one lab order.
+#   Mainland: a step price by total square inches. Above `box_max_sq_in` the lab jumps to
+#   freight pricing ($410+), so the order is split into boxes that each stay under it, and
+#   Kawika places one lab order per box.
+#   Charge = the lab quote x markup, rounded up to the next dollar.
+cart:
+  markup_pct: 108
+  hi: {base: 2000, per_sq_in: 6, per_print: 6, per_canvas_print: 6}
+  mainland_box_max_sq_in: 1320
+  # [up to this many square inches, cents]. Between probed points the higher step applies.
+  mainland_steps:
+    - [50, 4000]
+    - [100, 5500]
+    - [150, 6500]
+    - [180, 7400]
+    - [210, 7800]
+    - [420, 8500]
+    - [450, 9000]
+    - [550, 9500]
+    - [650, 10000]
+    - [780, 10500]
+    - [820, 11500]
+    - [850, 13800]
+    - [1000, 14500]
+    - [1100, 15000]
+    - [1320, 15500]
+  max_items: 10
+  max_qty: 5

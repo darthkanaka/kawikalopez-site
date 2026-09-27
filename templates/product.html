@@ -40,7 +40,11 @@
           </div>
         </fieldset>
         <p class="price"><span data-price>{{ money(default_variant.price) }}</span> <span class="price-note" data-ship-note>{% if not default_variant.ships %}Pickup on Oʻahu only{% endif %}</span></p>
-        {% if default_variant.link %}
+        {% if default_variant.link and cart %}
+        <button type="button" class="btn btn-buy js-only" data-add data-id="{{ default_variant.id }}" data-cart-url="{{ url('cart') }}">Add to cart</button>
+        <p class="added" data-added role="status" aria-live="polite"></p>
+        <p class="fine">Free pickup on Oʻahu, or one shipping charge for the whole order to Hawaiʻi or the US mainland. <a data-buy href="{{ default_variant.link }}">Or buy just this print now</a>.{% if links_mode == 'test' %} <strong>Staging test checkout:</strong> use card 4242 4242 4242 4242, any future date and any CVC.{% endif %}</p>
+        {% elif default_variant.link %}
         <a class="btn btn-buy" data-buy href="{{ default_variant.link }}">Buy this print</a>
         <p class="fine">Secure checkout by Stripe. Free pickup on Oʻahu, or shipping priced by size to Hawaiʻi or the US mainland.{% if links_mode == 'test' %} <strong>Staging test checkout:</strong> use card 4242 4242 4242 4242, any future date and any CVC.{% endif %}</p>
         {% else %}
@@ -63,7 +67,7 @@
         {{ picture(p, "(min-width: 1328px) 700px, 60vw", alt="") }}
       </div>
     </div>
-    <p class="fine">Pick a size or material above and the room updates. The wall is measured from a 72 inch print, so the sizes are true to each other.</p>
+    <p class="fine">Pick a size or material above and the room updates. The sofa is about 10 feet wide, so the sizes are true to the room and to each other.</p>
   </section>
   {% endif %}
 

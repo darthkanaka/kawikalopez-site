@@ -18,7 +18,7 @@ Reads
   data/locations.yml    places the prints come from
   data/images.json      what tools/images.py wrote for each print
   data/scenes.json      rooms for the to-scale wall preview (tools/scenes.py)
-  data/shipping.yml     rates by size and material, and the pickup-only rule
+  data/shipping.yml     rates by size and material, the pickup-only rule, and the cart shipping model
   data/payment-links-test.json, data/payment-links-live.json
                         Stripe links per variant (tools/stripe_catalog.py); staging uses test, production live
   data/redirects.yml    old Squarespace paths that get a redirect page
@@ -40,6 +40,7 @@ import datetime as dt
 import hashlib
 import html
 import json
+import os
 import re
 import sys
 from urllib.parse import urlparse
@@ -363,6 +364,10 @@ class Builder:
         self.scenes = load_json("scenes.json", [])
         self.scene = self.scenes[0] if self.scenes else None
         self.shipping = load_yaml("shipping.yml", {})
+        # Cart: on when checkout links exist and the checkout service (gas/checkout.gs) is deployed.
+        # KL_CHECKOUT_ENDPOINT overrides site.yml for local testing (tools/checkout_dev.mjs).
+        endpoint = os.environ.get("KL_CHECKOUT_ENDPOINT") or (self.site.get("checkout") or {}).get("endpoint") or ""
+        self.cart = {"endpoint": endpoint, "mode": self.links_mode} if endpoint and self.links_mode else None
         self.lastmod = load_json("lastmod.json", {}) or {}
         self.pages = []            # every page rendered: {path, file, type, title, indexable}
         self.changed = []
@@ -370,7 +375,8 @@ class Builder:
                                autoescape=select_autoescape(["html", "xml"]),
                                trim_blocks=True, lstrip_blocks=True, undefined=StrictUndefined)
         self.env.globals.update(links_mode=self.links_mode, picture=picture, pic_site=pic_site, url=url, asset=asset, preload_img=preload_img,
-                                money=lambda n: f"${n:,}", site=self.site, production=production)
+                                money=lambda n: f"${n:,}", site=self.site, production=production,
+                                cart=self.cart)
         self.env.filters["longdate"] = lambda d: (dt.date.fromisoformat(str(d)[:10]).strftime("%B %-d, %Y") if d else "")
         self.env.filters["json"] = lambda o: Markup(html.escape(json.dumps(o, ensure_ascii=False, separators=(",", ":")), quote=True))
         # Place pages and posts from content/ (synced from the vault). Drafts render on staging
@@ -404,6 +410,8 @@ class Builder:
             self.available.add("hawaii-prints/")
         if self.posts:
             self.available.add("blog/")
+        if self.cart:
+            self.available.add("cart")
 
     # -- output
     def write(self, rel, text):
@@ -629,6 +637,29 @@ class Builder:
         self.emit("privacy.html", "privacy.html", "privacy", "page", "Privacy | Kawika Lopez Photography", desc,
                   crumbs=[("Privacy", "privacy")], updated="September 25, 2026")
 
+    def cart_page(self):
+        """The cart page, and assets/data/cart.json: what the page needs to show each print, plus
+        the shipping model that the checkout service (gas/checkout.gs) also reads."""
+        if not self.cart:
+            return
+        ship = self.shipping
+        variants = {}
+        for p in self.products:
+            if p.get("draft"):
+                continue
+            for v in p["variants"]:
+                variants[v["id"]] = {"title": p["title"], "size": v["size"], "material": v["material"], "price": v["price"],
+                                     "w": v["w"], "h": v["h"], "ships": v["ships"], "path": p["path"],
+                                     "img": f"assets/img/prints/{p['urlId']}-240.webp", "link": v["link"]}
+        model = dict(ship["cart"], max_long_edge_in=ship["max_ship_long_edge_in"],
+                     max_short_edge_in=ship["max_ship_short_edge_in"],
+                     pickup={"label": ship["pickup"]["label"], "days": ship["pickup"]["days"]},
+                     zones={z["id"]: {"label": z["label"], "days": z["days"]} for z in ship["zones"]})
+        data = {"mode": self.cart["mode"], "endpoint": self.cart["endpoint"], "model": model, "variants": variants}
+        self.write("assets/data/cart.json", json.dumps(data, ensure_ascii=False, separators=(",", ":"), sort_keys=True) + "\n")
+        self.emit("cart.html", "cart.html", "cart", "page", "Your cart | Kawika Lopez Photography",
+                  "The prints in your cart, shipping to Hawaiʻi or the US mainland, and checkout.", indexable=False)
+
     def thankyou_page(self):
         self.emit("thank-you.html", "thank-you.html", "thank-you", "page", "Thank you | Kawika Lopez Photography",
                   "Your order is in. What happens next.", indexable=False)
@@ -807,6 +838,7 @@ class Builder:
         self.contact_page()
         self.privacy_page()
         self.thankyou_page()
+        self.cart_page()
         self.place_pages()
         self.places_index()
         self.post_pages()

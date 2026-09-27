@@ -10,6 +10,9 @@
         {% endfor %}
       </ul>
     </nav>
+    {% if cart %}
+    <a class="cart-link" href="{{ url('cart') }}"{% if path == 'cart' %} aria-current="page"{% endif %}>Cart <span data-cart-count></span></a>
+    {% endif %}
     <details class="menu">
       <summary><span class="menu-label">Menu</span></summary>
       <ul class="menu-list">

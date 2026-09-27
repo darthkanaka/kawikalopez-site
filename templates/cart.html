@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block main %}
+<section class="wrap page-head">
+  <h1>Your cart</h1>
+</section>
+<section class="wrap cart" data-cart data-src="{{ asset('assets/data/cart.json') }}" data-root="{{ root }}">
+  <p class="cart-empty" data-cart-empty hidden>Your cart is empty. <a href="{{ url('store/') }}">Browse the prints</a>.</p>
+  <noscript><p>The cart needs JavaScript. You can still buy any print on its own from its page.</p></noscript>
+  <div class="cart-grid">
+    <ul class="cart-list" data-cart-list></ul>
+    <div class="cart-summary" data-cart-summary hidden>
+      <dl class="cart-totals">
+        <dt>Prints</dt><dd data-subtotal></dd>
+      </dl>
+      <h2 class="cart-h">Pickup or shipping</h2>
+      <dl class="cart-totals cart-ship" data-ship></dl>
+      <p class="fine" data-ship-note></p>
+      <button type="button" class="btn btn-buy" data-checkout>Check out</button>
+      <p class="cart-status" data-cart-status role="status" aria-live="polite"></p>
+      <p class="fine">Secure checkout by Stripe. Have a promo code? Add it at checkout.{% if cart.mode == 'test' %} <strong>Staging test checkout:</strong> use card 4242 4242 4242 4242, any future date and any CVC.{% endif %}</p>
+    </div>
+  </div>
+</section>
+{% endblock %}
