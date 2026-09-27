@@ -439,7 +439,7 @@ var Cart = (function () {
       function price() {
         if (busy || !wanted || wanted.key === priced) return;
         busy = true;
-        var want = wanted;
+        var want = wanted, reply = null;
         shipNote.classList.remove("is-error");
         shipNote.textContent = "Finding shipping for " + want.addr.state + "...";
         sdk.loadActions().then(function (r) {
@@ -447,15 +447,17 @@ var Cart = (function () {
           var a = r.actions;
           return a.runServerUpdate(function () {
             return post({ action: "shipping", session_id: a.getSession().id, address: want.addr })
-              .then(function (out) { if (out.type === "error") throw new Error(out.message); return out; });
+              .then(function (out) { if (out.type === "error") throw new Error(out.message); reply = out; return out; });
           });
         }).then(function () {
           priced = want.key;
-          shipNote.textContent = "";
+          var msg = reply && reply.value && reply.value.message;
+          shipNote.classList.toggle("is-error", !!msg);
+          shipNote.textContent = msg || "";
         }).catch(function (e) {
           shipNote.classList.add("is-error");
-          shipNote.textContent = (e && e.message && e.message !== "actions" ? e.message : "Shipping didn't load.") +
-            " Check the address, or choose free pickup.";
+          shipNote.textContent = e && e.message && e.message !== "actions" ? e.message
+            : "Shipping didn't load. Check the address, or choose free pickup.";
         }).then(function () {
           busy = false;
           if (wanted.key !== priced && wanted !== want) price();
@@ -465,7 +467,7 @@ var Cart = (function () {
         var sa = ev.value && ev.value.shippingAddress;
         var addr = sa && sa.address;
         if (!addr || !addr.country || !addr.state || !/^\d{5}/.test(addr.postal_code || "")) return;
-        wanted = { key: addr.country + "|" + addr.state, addr: addr };
+        wanted = { key: addr.country + "|" + addr.state + "|" + addr.postal_code.slice(0, 5), addr: addr };
         price();
       });
       sdk.loadActions().then(function (r) {

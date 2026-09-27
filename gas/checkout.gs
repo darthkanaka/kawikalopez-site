@@ -17,7 +17,8 @@
  *   {"action": "create", "mode": "test" | "live", "items": [{"id": "033_36x24_metal", "qty": 1}, ...]}
  *     -> {"client_secret": "..."} or {"error": "..."}
  *   {"action": "shipping", "mode": ..., "session_id": "cs_...", "address": {"state": "HI", "country": "US"}}
- *     -> {"type": "object", "value": {"succeeded": true}} or {"type": "error", "message": "..."}
+ *     -> {"type": "object", "value": {"succeeded": true, "message": ""}} or {"type": "error", "message": "..."}
+ *     A state and ZIP that disagree (Hawaiʻi ZIPs start 967 or 968) get pickup only, with a message.
  * The embedded form needs Stripe API version 2026-03-25.dahlia or later.
  *
  * DEPLOY (one time)
@@ -56,8 +57,8 @@ function doPost(e) {
   try {
     req = JSON.parse((e && e.postData && e.postData.contents) || "{}");
     if (req.action === "shipping") {
-      updateShipping_(req);
-      return json_({ type: "object", value: { succeeded: true } });
+      var note = updateShipping_(req);
+      return json_({ type: "object", value: { succeeded: true, message: note } });
     }
     return json_({ client_secret: createSession_(req) });
   } catch (err) {
@@ -177,9 +178,20 @@ function updateShipping_(req) {
   });
   var a = req.address || {};
   var country = String(a.country || "US").toUpperCase(), state = String(a.state || "").toUpperCase();
+  var zip = String(a.postal_code || "").trim();
   if (country !== "US") throw new Error("CUSTOMER:We ship within the US only. Choose pickup on Oʻahu, or get in touch.");
-  var zone = state === "HI" ? "hi" : "mainland";
+  if (!/^\d{5}/.test(zip)) throw new Error("CUSTOMER:Please enter a 5 digit ZIP code.");
+  // State and ZIP must agree: Hawaiʻi ZIPs start with 967 or 968.
+  var hiZip = /^96[78]/.test(zip);
+  if (hiZip !== (state === "HI")) {
+    // Offer pickup only until the address is fixed. Returned as a note, not an error, so the
+    // form refreshes and drops the shipping option it was showing.
+    stripe_(key, "post", "checkout/sessions/" + id, { shipping_options: shippingOptions_(model, { ships: false }, null) });
+    return "Your state and ZIP code don't match. Fix the address to see shipping, or choose free pickup.";
+  }
+  var zone = hiZip ? "hi" : "mainland";
   stripe_(key, "post", "checkout/sessions/" + id, { shipping_options: shippingOptions_(model, shipQuote(model, items), zone) });
+  return "";
 }
 
 /* The site's cart.json (shipping model), cached for ten minutes. */
