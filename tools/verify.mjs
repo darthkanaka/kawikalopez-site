@@ -7,8 +7,10 @@
 // Checks per page: page errors, console errors, failed requests, exactly one h1, alt on every
 // image, no bare # links, labelled form fields, horizontal overflow, internal links resolve,
 // JSON-LD parses, canonical present, noindex matches the build mode, title and description
-// lengths. Then: the product picker updates price and room, the site reads with JS off, the
-// mobile menu opens, and reduced motion is honored.
+// lengths. On print pages: one buy button, the configured default size and material checked,
+// and Google's shipping data matching the amounts shown. Then: the picker updates price,
+// shipping, link and room; a ?size= link opens that print; the site reads with JS off; the
+// mobile menu opens; and reduced motion is honored.
 import { chromium } from "playwright";
 import { readFileSync } from "fs";
 
@@ -64,6 +66,36 @@ for (const pg of pages) {
   flag(!EXPECT_NOINDEX && pg.indexable && r.noindex, "STILL NOINDEX");
   flag(pg.indexable && r.title.length > 65, `title ${r.title.length} chars`);
   flag(pg.indexable && (r.desc.length < 50 || r.desc.length > 160), `description ${r.desc.length} chars`);
+  if (pg.type === "product") {
+    const q = await p.evaluate(() => {
+      const shown = el => el && el.getClientRects().length > 0 && getComputedStyle(el).visibility !== "hidden";
+      const num = el => el ? Number(el.textContent.replace(/[^0-9.]/g, "")) : null;
+      const graph = [].concat(...[...document.querySelectorAll('script[type="application/ld+json"]')].map(s => JSON.parse(s.textContent)["@graph"] || []));
+      const byId = Object.fromEntries(graph.filter(n => n["@id"]).map(n => [n["@id"], n]));
+      const group = graph.find(n => n["@type"] === "ProductGroup");
+      const data = JSON.parse(document.querySelector("[data-picker]").getAttribute("data-picker"));
+      const variant = group && group.hasVariant.find(v => v.sku === data.default);
+      const ld = {};
+      for (const ref of [].concat(variant ? variant.offers.shippingDetails || [] : [])) {
+        const node = ref["@id"] ? byId[ref["@id"]] : ref;
+        if (node && node.shippingRate) ld[node.shippingDestination.addressRegion.includes("HI") ? "hi" : "mainland"] = Number(node.shippingRate.value);
+      }
+      return {
+        buttons: [...document.querySelectorAll(".btn-buy")].filter(shown).length,
+        size: (document.querySelector('input[name="size"]:checked') || {}).value,
+        material: (document.querySelector('input[name="material"]:checked') || {}).value,
+        shownRates: { hi: shown(document.querySelector('[data-ship-row="hi"]')) ? num(document.querySelector('[data-ship="hi"]')) : null,
+                      mainland: shown(document.querySelector('[data-ship-row="mainland"]')) ? num(document.querySelector('[data-ship="mainland"]')) : null },
+        ld, hasGroup: !!group, offers: group ? group.hasVariant.length : 0, variants: data.variants.length,
+      };
+    });
+    const m = pg.meta || {};
+    flag(q.buttons !== 1, `${q.buttons} visible buy buttons (want 1)`);
+    flag(m.default_size && q.size !== m.default_size, `default size ${q.size}, want ${m.default_size}`);
+    flag(m.default_material && q.material !== m.default_material, `default material ${q.material}, want ${m.default_material}`);
+    flag(!q.hasGroup || q.offers !== q.variants, `structured data has ${q.offers} offers for ${q.variants} variants`);
+    for (const z of ["hi", "mainland"]) flag((q.ld[z] ?? null) !== q.shownRates[z], `${z} shipping ${q.shownRates[z]} on the page but ${q.ld[z]} in structured data`);
+  }
 
   const hrefs = await p.$$eval("a[href]", as => as.map(a => a.getAttribute("href")).filter(h => h && !h.startsWith("#") && !/^(https?:|mailto:|tel:)/.test(h)));
   for (const h of new Set(hrefs)) {
@@ -83,14 +115,35 @@ await ctx.close();
   const product = pages.find(x => x.type === "product");
   const { ctx, p } = await open();
   await p.goto(BASE + "/" + product.path, { waitUntil: "networkidle" });
-  const before = await p.evaluate(() => ({ price: document.querySelector("[data-price]").textContent, w: document.querySelector("[data-room-print]")?.style.width, href: document.querySelector("[data-buy]").href }));
+  const before = await p.evaluate(() => ({ price: document.querySelector("[data-price]").textContent, ship: document.querySelector('[data-ship="hi"]')?.textContent, w: document.querySelector("[data-room-print]")?.style.width, href: document.querySelector("[data-buy]").href }));
   const labels = await p.$$(".opt:first-of-type .pill");
   await labels[0].click();
   await p.click('.pill:has(input[value="canvas"])');
   await p.waitForTimeout(450);
-  const after = await p.evaluate(() => ({ price: document.querySelector("[data-price]").textContent, w: document.querySelector("[data-room-print]")?.style.width, href: document.querySelector("[data-buy]").href, canvas: document.querySelector("[data-room]")?.classList.contains("is-canvas") }));
-  console.log(`picker on /${product.path}: ${before.price} -> ${after.price}, room width ${before.w} -> ${after.w}, canvas=${after.canvas}`);
-  if (before.price === after.price || before.w === after.w || before.href === after.href || !after.canvas) problems.push("picker did not update price, link or room");
+  const after = await p.evaluate(() => ({ price: document.querySelector("[data-price]").textContent, ship: document.querySelector('[data-ship="hi"]')?.textContent, w: document.querySelector("[data-room-print]")?.style.width, href: document.querySelector("[data-buy]").href, canvas: document.querySelector("[data-room]")?.classList.contains("is-canvas") }));
+  console.log(`picker on /${product.path}: ${before.price} -> ${after.price}, shipping ${before.ship} -> ${after.ship}, room width ${before.w} -> ${after.w}, canvas=${after.canvas}`);
+  if (before.price === after.price || before.ship === after.ship || before.w === after.w || before.href === after.href || !after.canvas) problems.push("picker did not update price, shipping, link or room");
+  await ctx.close();
+}
+
+// A ?size=&material= link opens the page on that print; a value that isn't sold leaves the default.
+{
+  const product = pages.find(x => x.type === "product");
+  const { ctx, p } = await open();
+  await p.goto(BASE + "/" + product.path, { waitUntil: "networkidle" });
+  const base = await p.evaluate(() => ({ data: JSON.parse(document.querySelector("[data-picker]").getAttribute("data-picker")),
+                                         price: document.querySelector("[data-price]").textContent, w: document.querySelector("[data-room-print]")?.style.width }));
+  const def = base.data.variants.find(v => v.id === base.data.default);
+  const v = base.data.variants.find(x => x.ships && x.size !== def.size && x.material !== def.material);
+  await p.goto(BASE + "/" + product.path + `?size=${v.w}x${v.h}&material=${v.material}`, { waitUntil: "networkidle" });
+  const got = await p.evaluate(() => ({ price: document.querySelector("[data-price]").textContent, w: document.querySelector("[data-room-print]")?.style.width,
+                                         id: document.querySelector("[data-add]")?.getAttribute("data-id"), size: document.querySelector('input[name="size"]:checked').value }));
+  const want = "$" + Number(v.price).toLocaleString("en-US");
+  console.log(`?size link on /${product.path}: ${v.size} ${v.material} -> ${got.price}, room width ${base.w} -> ${got.w}`);
+  if (got.price !== want || got.size !== v.size || (got.id && got.id !== v.id) || got.w === base.w) problems.push(`?size link did not open ${v.id}`);
+  await p.goto(BASE + "/" + product.path + "?size=99x99&material=gold", { waitUntil: "networkidle" });
+  const bad = await p.evaluate(() => document.querySelector("[data-price]").textContent);
+  if (bad !== base.price) problems.push(`a ?size link for a size that isn't sold changed the page (${bad})`);
   await ctx.close();
 }
 

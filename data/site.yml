@@ -49,6 +49,14 @@ printer:
   lab: Pictures Plus, Kapolei
   turnaround: about a week
 
+# Print page copy. A line shows only once confirmed is true (Kawika approves each one).
+product_copy:
+  facts:
+    - text: Checked in person by Kawika before it ships
+      confirmed: false
+  returns: All sales are final, except damage or defects, which we replace free. You can cancel within 24 hours.
+  returns_confirmed: false
+
 promo:
   code: NEW20OFF
   text: 20% off your first print

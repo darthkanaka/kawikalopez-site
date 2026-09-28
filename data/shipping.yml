@@ -26,6 +26,11 @@ pickup:
   days: [7, 10]
 
 # days: business days from order to delivery, production (about a week) plus transit.
+# handling_days (making and checking the print) plus a zone's transit_days add up to its days.
+# days_confirmed: the windows show on print pages and in Google's listing data only when true.
+handling_days: [7, 10]
+transit_days: {hi: [0, 4], mainland: [3, 11]}
+days_confirmed: false
 zones:
   - {id: hi, label: Hawaiʻi, days: [7, 14]}
   - {id: mainland, label: US mainland, days: [10, 21]}

@@ -1,0 +1,28 @@
+{# Every size and price for a print, with what one print costs to ship. linked=True makes each price
+   a direct Stripe checkout link (the no-JavaScript way to order any size). #}
+{% macro sizes_table(table, linked=True) %}
+<div class="table-wrap">
+  <table class="sizes">
+    <thead><tr><th scope="col">Size (inches)</th><th scope="col">Canvas</th><th scope="col">Metal</th><th scope="col">Ship to Hawaiʻi</th><th scope="col">Ship to the mainland</th></tr></thead>
+    <tbody>
+      {% for row in table %}
+      {% set vs = [row.canvas, row.metal] | select | list %}
+      <tr>
+        <th scope="row">{{ row.size.label }}</th>
+        {% for m in ["canvas", "metal"] %}
+        <td>{% if row[m] %}{% if linked and row[m].link %}<a href="{{ row[m].link }}">{{ money(row[m].price) }}</a>{% else %}{{ money(row[m].price) }}{% endif %}{% endif %}</td>
+        {% endfor %}
+        {% if vs and vs[0].rates %}
+        {% for z in ["hi", "mainland"] %}
+        {% set r = vs | map(attribute="rates") | map(attribute=z) | unique | sort | list %}
+        <td>{{ money(r[0]) }}{% if r | length > 1 %} to {{ money(r[-1]) }}{% endif %}</td>
+        {% endfor %}
+        {% else %}
+        <td colspan="2">Pickup on Oʻahu only</td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endmacro %}

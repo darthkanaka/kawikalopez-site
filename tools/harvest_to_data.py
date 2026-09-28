@@ -122,10 +122,24 @@ def main():
     raw = json.loads(SRC.read_text())
     products = [normalize(r) for r in raw]
     products.sort(key=lambda p: p["urlId"])
+    # Descriptions written by hand after the harvest (the Squarespace copy had none) survive a rerun.
+    if OUT.exists():
+        kept = {p["urlId"]: p.get("description") for p in json.loads(OUT.read_text())}
+        for p in products:
+            if not p.get("description") and kept.get(p["urlId"]):
+                p["description"] = kept[p["urlId"]]
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(products, indent=1, ensure_ascii=False) + "\n")
 
     matrix, deviations = pricing_matrix(products)
+    # Keys added by hand to pricing.yml rows (default and the like) survive a rerun.
+    if PRICING.exists():
+        old = yaml.safe_load(PRICING.read_text()) or {}
+        for o, rows in matrix.items():
+            prev = {(r["w"], r["h"]): r for r in old.get(o) or []}
+            for r in rows:
+                for k, v in (prev.get((r["w"], r["h"])) or {}).items():
+                    r.setdefault(k, v)
     header = ("# Size and price matrix per orientation, derived from the Squarespace catalog on 2026-09-25.\n"
               "# New prints inherit the matrix of their orientation. Prices in whole dollars.\n"
               "# Edit here to change prices for every print of an orientation; per-print prices live in products.json.\n")

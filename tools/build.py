@@ -250,8 +250,12 @@ def load_products(site, links, warn=WARN):
                 warn.add(f"{v['id']}: no shipping rate in data/shipping.yml, pickup only until one is added")
             link = (links or {}).get(v["id"])
             v["link"] = link["url"] if link else None
+            # What one print of this size and material costs to ship, in dollars, per zone.
+            v["rates"] = {z: c // 100 for z, c in v["ship_rates"].items()} if v["ship_rates"] else None
             vs.append(v)
         p["variants"] = vs
+        p["sizes"] = [dict(sz, ships=ships(next(v for v in vs if v["size"] == sz["label"]), ship)) for sz in p["sizes"]]
+        pick_defaults(p, ov, pricing, site, warn)
         p["orientation_label"] = ORIENT_LABEL[p["orientation"]]
         p["collection_labels"] = [COLLECTION_LABEL.get(c, c.title()) for c in p.get("collections", [])]
         p["title_tag"] = p.get("seo_title") or seo_title(p)
@@ -264,13 +268,42 @@ def load_products(site, links, warn=WARN):
 
 # ------------------------------------------------------------------ room preview math
 
-def default_size(p, scene):
-    """Largest shippable size that fits the scene's wall; the smallest size if none fits."""
-    wall, ppi = scene["wall"], scene["ppi"]
-    fits = [s for s in p["sizes"]
-            if s["w"] * ppi <= wall["w"] * 0.96 and s["h"] * ppi <= wall["h"] * 0.96
-            and max(s["w"], s["h"]) <= 60]
-    return (fits or p["sizes"][:1])[-1]
+def pick_defaults(p, ov, pricing, site, warn=WARN):
+    """The size and material a print page opens on. Size: `default_size` in overrides.yml, else the
+    row marked `default: true` for the print's shape in pricing.yml, else the upper middle of the
+    sizes that ship. Material: `recommend` in overrides.yml, else site.yml picker.default_material."""
+    labels = [s["label"] for s in p["sizes"]]
+    rows = {(r["w"], r["h"]): r for r in pricing.get(p["orientation"]) or []}
+    flagged = [s["label"] for s in p["sizes"] if (rows.get((s["w"], s["h"])) or {}).get("default")]
+    if len(flagged) > 1:
+        warn.add(f"{p['urlId']}: more than one default size in pricing.yml ({', '.join(flagged)})")
+    size = ov.get("default_size") if ov.get("default_size") in labels else None
+    if ov.get("default_size") and not size:
+        warn.add(f"{p['urlId']}: default_size '{ov['default_size']}' is not one of its sizes")
+    if not size and flagged:
+        size = flagged[0]
+    if not size:
+        pool = [s["label"] for s in p["sizes"] if s["ships"]] or labels
+        size = pool[len(pool) // 2]
+    if size == labels[0] and len(labels) > 1:
+        warn.add(f"{p['urlId']}: the default size is the first one listed; verify.mjs clicks the first size to test the picker")
+    if not next(s for s in p["sizes"] if s["label"] == size)["ships"]:
+        warn.add(f"{p['urlId']}: the default size {size} is pickup only")
+    material = ov.get("recommend") or (site.get("picker") or {}).get("default_material") or "metal"
+    p["recommend"] = ov.get("recommend")
+    p["default_size"] = size
+    p["default_variant"] = (next((v for v in p["variants"] if v["size"] == size and v["material"] == material), None)
+                            or next((v for v in p["variants"] if v["size"] == size), p["variants"][0]))
+
+
+def default_size(p, scene=None):
+    """The print's default size (see pick_defaults). With a scene, warn if it would not fit the wall."""
+    s = next(s for s in p["sizes"] if s["label"] == p["default_size"])
+    if scene:
+        wall, ppi = scene["wall"], scene["ppi"]
+        if s["w"] * ppi > wall["w"] * 0.96 or s["h"] * ppi > wall["h"] * 0.96:
+            WARN.add(f"{p['urlId']}: default size {s['label']} is wider or taller than the room scene's wall")
+    return s
 
 
 def viz_rect(scene, w_in, h_in, anchor=None):
@@ -315,28 +348,77 @@ def breadcrumbs_ld(base, items):
         for i, (name, path) in enumerate(items)]}
 
 
-def product_ld(p, base):
+# Every state but Hawaiʻi pays the mainland rate (gas/checkout.gs), Alaska included.
+MAINLAND = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "ID", "IL", "IN", "IA", "KS", "KY",
+            "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND",
+            "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
+WEEKDAYS = ["https://schema.org/" + d for d in ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")]
+
+
+def variant_url(url, v):
+    """The address that opens a print page on one size and material (read by site.js)."""
+    return f"{url}?size={v['w']}x{v['h']}&material={v['material']}"
+
+
+def product_ld(p, base, ship=None, site=None):
+    """A ProductGroup with one Product and Offer per size and material, which is what Google's
+    merchant listings accept. Each offer carries its shipping rates per zone and the returns policy
+    from /terms. Delivery times go in only once shipping.yml days_confirmed is true."""
+    ship, site = ship or {}, site or {}
     url = base + p["path"]
     img = p["image"]
     big = max(w for w in img["widths"] if w >= 480) if any(w >= 480 for w in img["widths"]) else img["widths"][-1]
     image_url = f"{base}assets/img/prints/{p['urlId']}-{big}.jpg"
-    offers = [{"@type": "Offer", "sku": v["id"], "name": f"{v['size']} in {v['material']}",
-               "price": f"{v['price']:.2f}", "priceCurrency": "USD",
-               "availability": "https://schema.org/InStock" if v["ships"] else "https://schema.org/InStoreOnly",
-               "itemCondition": "https://schema.org/NewCondition", "url": url,
-               "seller": {"@id": base + "#org"}} for v in p["variants"]]
-    prod = {"@type": "Product", "@id": url + "#product", "name": f"{p['title']}" + (f": {p['subtitle']}" if p.get("subtitle") else ""),
-            "description": p["meta_description"], "sku": p["urlId"], "image": [image_url, f"{base}assets/img/og/{p['urlId']}.jpg"],
-            "brand": {"@type": "Brand", "name": "Kawika Lopez"}, "category": "Art > Photographs",
-            "material": "Canvas, Metal",
-            "offers": {"@type": "AggregateOffer", "priceCurrency": "USD", "lowPrice": f"{p['priceFrom']:.2f}",
-                       "highPrice": f"{p['priceTo']:.2f}", "offerCount": len(offers), "offers": offers}}
+    zones = {z["id"]: z for z in ship.get("zones", [])}
+    shared = {}
+
+    def days(lo_hi):
+        return {"@type": "QuantitativeValue", "minValue": lo_hi[0], "maxValue": lo_hi[1], "unitCode": "DAY"}
+
+    def ship_ref(zone, cents):
+        nid = f"{url}#ship-{zone}-{cents}"
+        if nid not in shared:
+            node = {"@type": "OfferShippingDetails", "@id": nid,
+                    "shippingRate": {"@type": "MonetaryAmount", "value": f"{cents / 100:.2f}", "currency": "USD"},
+                    "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "US",
+                                            "addressRegion": ["HI"] if zone == "hi" else MAINLAND}}
+            if ship.get("days_confirmed") and ship.get("handling_days") and (ship.get("transit_days") or {}).get(zone):
+                node["deliveryTime"] = {"@type": "ShippingDeliveryTime", "handlingTime": days(ship["handling_days"]),
+                                        "transitTime": days(ship["transit_days"][zone]),
+                                        "businessDays": {"@type": "OpeningHoursSpecification", "dayOfWeek": WEEKDAYS}}
+            shared[nid] = node
+        return {"@id": nid}
+
+    returns = {"@type": "MerchantReturnPolicy", "@id": url + "#returns", "applicableCountry": "US",
+               "returnPolicyCountry": "US", "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
+               "merchantReturnLink": base + "terms"}
+    variants = []
+    for v in p["variants"]:
+        offer = {"@type": "Offer", "url": variant_url(url, v), "price": f"{v['price']:.2f}", "priceCurrency": "USD",
+                 "itemCondition": "https://schema.org/NewCondition", "seller": {"@id": base + "#org"},
+                 "hasMerchantReturnPolicy": {"@id": returns["@id"]}}
+        if v["ships"] and v.get("ship_rates"):
+            offer["availability"] = "https://schema.org/InStock"
+            offer["shippingDetails"] = [ship_ref(z, c) for z, c in v["ship_rates"].items() if z in zones]
+        else:
+            offer["availability"] = "https://schema.org/InStoreOnly"
+            offer["availableDeliveryMethod"] = "https://schema.org/OnSitePickup"
+            offer["shippingDetails"] = {"@type": "OfferShippingDetails", "doesNotShip": True,
+                                        "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "US"}}
+        variants.append({"@type": "Product", "sku": v["id"], "inProductGroupWithID": p["urlId"],
+                         "name": f"{p['title']}, {v['size']} in {v['material']}", "image": image_url,
+                         "size": f"{v['size']} in", "material": v["material"].capitalize(), "offers": offer})
+    group = {"@type": "ProductGroup", "@id": url + "#product", "productGroupID": p["urlId"], "url": url,
+             "name": f"{p['title']}" + (f": {p['subtitle']}" if p.get("subtitle") else ""),
+             "description": p["meta_description"], "image": [image_url, f"{base}assets/img/og/{p['urlId']}.jpg"],
+             "brand": {"@type": "Brand", "name": "Kawika Lopez"}, "category": "Art > Photographs",
+             "variesBy": ["https://schema.org/size", "https://schema.org/material"], "hasVariant": variants}
     photo = {"@type": "ImageObject", "contentUrl": image_url, "name": p["title"], "caption": p["alt"],
              "creator": {"@id": base + "#kawika"}, "creditText": "Kawika Lopez",
              "copyrightNotice": "© Kawika Lopez", "copyrightHolder": {"@id": base + "#kawika"}}
     if p.get("location"):
         photo["contentLocation"] = {"@type": "Place", "name": p["location"]["title"]}
-    return [prod, photo]
+    return [group, returns, *shared.values(), photo]
 
 
 def collection_ld(base, path, name, description, items):
@@ -371,6 +453,11 @@ class Builder:
         self.scenes = load_json("scenes.json", [])
         self.scene = self.scenes[0] if self.scenes else None
         self.shipping = load_yaml("shipping.yml", {})
+        hd = self.shipping.get("handling_days")
+        for z in self.shipping.get("zones", []):
+            td = (self.shipping.get("transit_days") or {}).get(z["id"])
+            if hd and td and [hd[0] + td[0], hd[1] + td[1]] != list(z["days"]):
+                WARN.add(f"shipping.yml: handling_days plus transit_days for {z['id']} do not add up to its days {z['days']}")
         # Cart: on when checkout links exist and the checkout service (gas/checkout.gs) is deployed.
         # KL_CHECKOUT_ENDPOINT overrides site.yml for local testing (tools/checkout_dev.mjs).
         endpoint = os.environ.get("KL_CHECKOUT_ENDPOINT") or (self.site.get("checkout") or {}).get("endpoint") or ""
@@ -433,7 +520,7 @@ class Builder:
         return True
 
     def emit(self, template, rel, path, page_type, title, description, crumbs=None, graph=None,
-             indexable=True, **ctx):
+             indexable=True, meta=None, **ctx):
         depth = rel.count("/")
         root = "../" * depth
         is404 = rel == "404.html"
@@ -463,7 +550,11 @@ class Builder:
             if not prev or prev.get("hash") != digest:
                 self.lastmod[key] = {"hash": digest, "date": TODAY}
         self.pages.append({"path": path, "file": rel, "type": page_type, "title": title,
-                           "description": description, "indexable": indexable and not is404})
+                           "description": description, "indexable": indexable and not is404, **({"meta": meta} if meta else {})})
+
+    def ship_zones(self):
+        places = {"hi": "Hawaiʻi", "mainland": "the US mainland"}
+        return [dict(z, place=places.get(z["id"], z["label"])) for z in self.shipping.get("zones", [])]
 
     def nav(self):
         return [n for n in self.site["nav"] if n["href"] in self.available]
@@ -514,17 +605,16 @@ class Builder:
     def product_pages(self):
         for p in self.products:
             room = self.room_for(p)
-            default = room["size"] if room else p["sizes"][0]
-            default_variant = next((v for v in p["variants"] if v["size"] == default["label"] and v["material"] == "metal"),
-                                   p["variants"][0])
+            default_variant = p["default_variant"]
             orient_page = f"{p['orientation']}-prints"
             crumbs = [("Prints", "store/")]
             if orient_page in self.available:
                 crumbs.append((p["orientation_label"], orient_page))
             crumbs.append((p["title"], p["path"]))
             picker = {"variants": [{"id": v["id"], "size": v["size"], "w": v["w"], "h": v["h"], "material": v["material"],
-                                    "price": v["price"], "link": v["link"], "ships": v["ships"]} for v in p["variants"]],
-                      "title": p["title"], "email": self.site["contact"]["email"]}
+                                    "price": v["price"], "link": v["link"], "ships": v["ships"], "rates": v["rates"]}
+                                   for v in p["variants"]],
+                      "title": p["title"], "email": self.site["contact"]["email"], "default": default_variant["id"]}
             table = []
             for s in p["sizes"]:
                 row = {"size": s, "canvas": None, "metal": None}
@@ -533,9 +623,14 @@ class Builder:
                         row[v["material"]] = v
                 table.append(row)
             self.emit("product.html", f"store/{p['urlId']}.html", p["path"], "product",
-                      p["title_tag"], p["meta_description"], crumbs=crumbs, graph=product_ld(p, self.base),
+                      p["title_tag"], p["meta_description"], crumbs=crumbs,
+                      graph=product_ld(p, self.base, self.shipping, self.site),
                       indexable=not p.get("draft"), p=p, room=room, picker=picker, table=table,
                       default_variant=default_variant, related=self.related(p),
+                      ship_zones=self.ship_zones(), pickup_days=self.shipping["pickup"]["days"],
+                      days_on=bool(self.shipping.get("days_confirmed")),
+                      meta={"default_id": default_variant["id"], "default_size": default_variant["size"],
+                            "default_material": default_variant["material"], "orientation": p["orientation"]},
                       og_image=f"{self.base}assets/img/og/{p['urlId']}.jpg", og_alt=p["alt"],
                       preload=(f"assets/img/prints/{p['urlId']}", p["image"]["widths"], sizes_for_product(p)))
 

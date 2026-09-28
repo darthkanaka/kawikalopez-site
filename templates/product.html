@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% from "partials/card.html" import card with context %}
+{% from "partials/sizes_table.html" import sizes_table with context %}
 {% block main %}
 {% include "partials/crumbs.html" %}
 <article class="product product--{{ p.orientation }}">
@@ -17,6 +18,7 @@
         <ul class="facts">
           <li>Printed to order locally on Oʻahu, usually in {{ site.printer.turnaround }}</li>
           <li>Free pickup on Oʻahu, or shipped anywhere in the US</li>
+          {% for f in site.product_copy.facts if f.confirmed %}<li>{{ f.text }}</li>{% endfor %}
           {% if room %}<li><a href="#room">See it to scale on a wall</a></li>{% endif %}
         </ul>
         <p class="ask"><a href="{{ url('contact') }}?print={{ p.title | urlencode }}">Questions about this print?</a> <a href="{{ url('prints') }}">Sizes and pricing</a></p>
@@ -39,14 +41,24 @@
             {% endfor %}
           </div>
         </fieldset>
-        <p class="price"><span data-price>{{ money(default_variant.price) }}</span> <span class="price-note" data-ship-note>{% if not default_variant.ships %}Pickup on Oʻahu only{% endif %}</span></p>
+        {% set dv = default_variant %}
+        <p class="price"><span data-price>{{ money(dv.price) }}</span> <span class="price-note" data-choice>{{ dv.size }} in, {{ dv.material }}</span></p>
+        <ul class="ship-list" aria-label="Shipping and pickup">
+          {% for z in ship_zones %}
+          <li data-ship-row="{{ z.id }}"{% if not dv.ships %} hidden{% endif %}>Ships to {{ z.place }} for <span data-ship="{{ z.id }}">{% if dv.rates %}{{ money(dv.rates[z.id]) }}{% endif %}</span>{% if days_on %}, in {{ z.days[0] }} to {{ z.days[1] }} business days{% endif %}</li>
+          {% endfor %}
+          <li data-ship-note data-text="Too big to ship, so it's pickup on Oʻahu only"{% if dv.ships %} hidden{% endif %}>{% if not dv.ships %}Too big to ship, so it's pickup on Oʻahu only{% endif %}</li>
+          <li>Free pickup on Oʻahu{% if days_on %}, ready in {{ pickup_days[0] }} to {{ pickup_days[1] }} business days{% endif %}</li>
+        </ul>
         {% if default_variant.link and cart %}
         <button type="button" class="btn btn-buy js-only" data-add data-id="{{ default_variant.id }}" data-cart-url="{{ url('cart') }}">Add to cart</button>
         <p class="added" data-added role="status" aria-live="polite"></p>
-        <p class="fine">Free pickup on Oʻahu, or one shipping charge for the whole order to Hawaiʻi or the US mainland. <a data-buy href="{{ default_variant.link }}">Or buy just this print now</a>.{% if links_mode == 'test' %} <strong>Staging test checkout:</strong> use card 4242 4242 4242 4242, any future date and any CVC.{% endif %}</p>
+        {% if site.product_copy.returns_confirmed %}<p class="returns">{{ site.product_copy.returns }} <a href="{{ url('terms') }}">Terms of sale</a></p>{% endif %}
+        <p class="fine">Buying more than one print? One shipping charge covers the whole order. <a data-buy href="{{ default_variant.link }}">Or buy just this print now</a>.{% if links_mode == 'test' %} <strong>Staging test checkout:</strong> use card 4242 4242 4242 4242, any future date and any CVC.{% endif %}</p>
         {% elif default_variant.link %}
         <a class="btn btn-buy" data-buy href="{{ default_variant.link }}">Buy this print</a>
-        <p class="fine">Secure checkout by Stripe. Free pickup on Oʻahu, or shipping priced by size to Hawaiʻi or the US mainland.{% if links_mode == 'test' %} <strong>Staging test checkout:</strong> use card 4242 4242 4242 4242, any future date and any CVC.{% endif %}</p>
+        {% if site.product_copy.returns_confirmed %}<p class="returns">{{ site.product_copy.returns }} <a href="{{ url('terms') }}">Terms of sale</a></p>{% endif %}
+        <p class="fine">Secure checkout by Stripe.{% if links_mode == 'test' %} <strong>Staging test checkout:</strong> use card 4242 4242 4242 4242, any future date and any CVC.{% endif %}</p>
         {% else %}
         <a class="btn btn-buy" data-buy href="mailto:{{ site.contact.email }}?subject={{ ('Print order: ' ~ p.title ~ ', ' ~ default_variant.size ~ ' in ' ~ default_variant.material) | urlencode }}">Order this print</a>
         <p class="fine">Online checkout is coming soon. Until then, this opens an email with your print, size and material filled in, and Kawika will reply to confirm the order.</p>
@@ -59,7 +71,7 @@
   <section id="room" class="section wrap room-section" aria-labelledby="room-h">
     <div class="section-head">
       <h2 id="room-h">See it on a wall</h2>
-      <p class="room-caption" data-room-caption>{{ p.title }} at {{ room.size.label }} in, shown to scale above a 10 foot sofa.</p>
+      <p class="room-caption" data-room-caption>{{ p.title }} at {{ room.size.label }} in, {{ default_variant.material }}, shown to scale above a 10 foot sofa.</p>
     </div>
     <div class="room is-{{ default_variant.material }}" data-room="{{ room.data | json }}">
       {{ pic_site(room.scene.image.base, room.scene.image.widths, room.scene.image.width, room.scene.image.height, "(min-width: 1328px) 1280px, calc(100vw - 32px)", room.scene.image.alt) }}
@@ -82,21 +94,7 @@
 
   <section class="section wrap" aria-labelledby="sizes-h">
     <h2 id="sizes-h">Sizes and prices</h2>
-    <div class="table-wrap">
-      <table class="sizes">
-        <thead><tr><th scope="col">Size (inches)</th><th scope="col">Canvas</th><th scope="col">Metal</th></tr></thead>
-        <tbody>
-          {% for row in table %}
-          <tr>
-            <th scope="row">{{ row.size.label }}{% if not (row.metal or row.canvas).ships %} <span class="tag">Pickup only</span>{% endif %}</th>
-            {% for m in ["canvas", "metal"] %}
-            <td>{% if row[m] %}{% if row[m].link %}<a href="{{ row[m].link }}">{{ money(row[m].price) }}</a>{% else %}{{ money(row[m].price) }}{% endif %}{% endif %}</td>
-            {% endfor %}
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
+    {{ sizes_table(table, linked=True) }}
     <div class="cols2 materials">
       <div>
         <h3>Canvas</h3>

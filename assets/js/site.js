@@ -51,16 +51,26 @@ var KL = (function () {
 })();
 
 /* 02 Size and material picker ---------------------------------------------- */
+/* Updates the price, what one print costs to ship, the order link and the cart button when the
+   size or material changes. ?size=48x16&material=metal in the address opens the page on that
+   print (Google's product listings link to these). Every element is optional, so an older cached
+   page keeps working with this script. */
 (function () {
   "use strict";
   var form = document.querySelector("[data-picker]");
   if (!form) return;
   var data = KL.parse(form, "data-picker");
-  if (!data) return;
+  if (!data || !data.variants) return;
   var priceEl = form.querySelector("[data-price]");
+  var choiceEl = form.querySelector("[data-choice]");
   var noteEl = form.querySelector("[data-ship-note]");
+  var rowEls = form.querySelectorAll("[data-ship-row]");
+  var rateEls = form.querySelectorAll("[data-ship]");
   var buy = form.querySelector("[data-buy]");
   var add = form.querySelector("[data-add]");
+  var more = form.querySelector("[data-more-sizes]");
+  var each = function (list, fn) { Array.prototype.forEach.call(list, fn); };
+  var squash = function (s) { return String(s || "").toLowerCase().replace(/[^a-z0-9]/g, ""); };
 
   function current() {
     var size = form.querySelector('input[name="size"]:checked');
@@ -73,24 +83,59 @@ var KL = (function () {
     return null;
   }
 
+  /* A value that matches no size, or a size and material that isn't sold, leaves the default. */
+  function preselect() {
+    var q, hit = false;
+    try { q = new URLSearchParams(window.location.search); } catch (e) { return false; }
+    ["size", "material"].forEach(function (name) {
+      var want = squash(q.get(name));
+      if (!want) return;
+      each(form.querySelectorAll('input[name="' + name + '"]'), function (r) {
+        if (squash(r.value) === want) { r.checked = true; hit = true; }
+      });
+    });
+    if (hit && !current()) {
+      each(form.querySelectorAll('input[type="radio"]'), function (r) { r.checked = r.defaultChecked; });
+      hit = false;
+    }
+    return hit;
+  }
+
+  function shipping(v) {
+    var ok = !!(v.ships && v.rates);
+    each(rowEls, function (el) { el.hidden = !ok; });
+    if (ok) each(rateEls, function (el) {
+      var n = v.rates[el.getAttribute("data-ship")];
+      if (typeof n === "number") el.textContent = KL.money(n);
+    });
+    if (noteEl) {
+      noteEl.textContent = v.ships ? "" : (noteEl.getAttribute("data-text") || "Pickup on Oʻahu only");
+      if (noteEl.hasAttribute("data-text")) noteEl.hidden = !!v.ships;
+    }
+  }
+
   function update() {
     var v = current();
     if (!v) return;
-    priceEl.textContent = KL.money(v.price);
-    noteEl.textContent = v.ships ? "" : "Pickup on Oʻahu only";
+    if (priceEl) priceEl.textContent = KL.money(v.price);
+    if (choiceEl) choiceEl.textContent = v.size + " in, " + v.material;
+    shipping(v);
+    if (more && !more.open) {
+      var s = form.querySelector('input[name="size"]:checked');
+      if (s && more.contains(s)) more.open = true;
+    }
     if (add) add.setAttribute("data-id", v.id);
-    if (v.link) {
-      buy.href = v.link;
-    } else {
-      var subject = "Print order: " + data.title + ", " + v.size + " in " + v.material;
-      buy.href = "mailto:" + data.email + "?subject=" + encodeURIComponent(subject);
+    if (buy) {
+      buy.href = v.link ? v.link : "mailto:" + data.email + "?subject=" +
+        encodeURIComponent("Print order: " + data.title + ", " + v.size + " in " + v.material);
     }
     document.dispatchEvent(new CustomEvent("variant:change", { detail: v }));
   }
 
+  var picked = preselect();
   form.addEventListener("change", update);
   update();
-  KL.product = { title: data.title, current: current };
+  KL.product = { title: data.title, current: current, defaultId: data["default"] || null, picked: picked };
 
   var v0 = current();
   if (v0) KL.track("view_item", { currency: "USD", value: v0.price, items: [KL.item(v0.id, data.title, v0.size, v0.material, v0.price)] });
@@ -111,20 +156,27 @@ var KL = (function () {
   var title = document.querySelector(".info-head h1");
   if (!cfg || !print) return;
 
-  document.addEventListener("variant:change", function (e) {
-    var v = e.detail;
+  function show(v, instant) {
     var r = KL.rect(cfg, v.w, v.h);
+    if (instant) print.style.transition = "none";
     print.style.left = r.left + "%";
     print.style.top = r.top + "%";
     print.style.width = r.width + "%";
     print.style.height = r.height + "%";
+    if (instant) { void print.offsetWidth; print.style.transition = ""; }
     room.classList.toggle("is-metal", v.material === "metal");
     room.classList.toggle("is-canvas", v.material === "canvas");
     if (caption) {
       caption.textContent = (title ? title.textContent : "This print") + " at " + v.size + " in, " +
         v.material + ", shown to scale above a 10 foot sofa.";
     }
-  });
+  }
+
+  document.addEventListener("variant:change", function (e) { show(e.detail); });
+  /* The picker ran first. If the page opened on another print than the one the build drew
+     (a ?size= link, or a form the browser restored), catch up without animating. */
+  var v0 = KL.product && KL.product.current && KL.product.current();
+  if (v0 && KL.product.defaultId && v0.id !== KL.product.defaultId) show(v0, true);
 })();
 
 /* 04 Contact form ------------------------------------------------------------ */

@@ -248,6 +248,10 @@ p { margin: 0 0 1em; }
 .price { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 14px; margin: 6px 0 16px; }
 .price [data-price] { font-family: var(--serif); font-size: 2.5rem; line-height: 1; font-variant-numeric: tabular-nums; }
 .price-note { font-size: var(--step--1); color: var(--ink-2); }
+.ship-list { list-style: none; margin: -6px 0 18px; padding: 0; display: grid; gap: 4px; font-size: 0.9375rem; color: var(--ink-2); }
+.ship-list [hidden] { display: none; }
+.ship-list [data-ship] { color: var(--ink); font-variant-numeric: tabular-nums; }
+.returns { font-size: var(--step--1); color: var(--ink-2); margin-top: 12px; max-width: 60ch; }
 .prose-grid { display: grid; gap: 8px 64px; }
 @media (min-width: 960px) {
   .product-grid { grid-template-columns: minmax(0, 1.45fr) minmax(320px, 1fr); gap: 56px; }

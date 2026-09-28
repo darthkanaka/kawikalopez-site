@@ -1,6 +1,8 @@
 # Size and price matrix per orientation, derived from the Squarespace catalog on 2026-09-25.
 # New prints inherit the matrix of their orientation. Prices in whole dollars.
 # Edit here to change prices for every print of an orientation; per-print prices live in products.json.
+# default: true marks the size a print page opens on (tools/build.py pick_defaults). One per shape.
+# tools/harvest_to_data.py carries these extra keys over if it ever rewrites this file.
 vertical:
 - size: 16 x 20
   w: 16
@@ -17,6 +19,7 @@ vertical:
   h: 30
   canvas: 570
   metal: 700
+  default: true
 horizontal:
 - size: 18 x 12
   w: 18
@@ -38,6 +41,7 @@ horizontal:
   h: 24
   canvas: 600
   metal: 780
+  default: true
 panoramic:
 - size: 30 x 10
   w: 30
@@ -49,6 +53,7 @@ panoramic:
   h: 16
   canvas: 600
   metal: 950
+  default: true
 - size: 72 x 24
   w: 72
   h: 24
@@ -65,6 +70,7 @@ square:
   h: 24
   canvas: 420
   metal: 600
+  default: true
 - size: 40 x 40
   w: 40
   h: 40
