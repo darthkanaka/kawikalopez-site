@@ -192,14 +192,6 @@
   "indexable": true
  },
  {
-  "path": "store/036",
-  "file": "store/036.html",
-  "type": "product",
-  "title": "Maluna nā ao: Puʻu Huluhulu Above the Clouds | Kawika Lopez",
-  "description": "Puʻu Huluhulu breaking through a sea of clouds, seen in the morning from the Mauna Kea Access Road. Canvas or metal panorama, from $360, made on Oʻahu.",
-  "indexable": true
- },
- {
   "path": "store/043",
   "file": "store/043.html",
   "type": "product",
@@ -221,6 +213,14 @@
   "type": "product",
   "title": "Mokoliʻi Reflection: Chinaman's Hat at Low Tide | Kawika Lopez",
   "description": "Mokoliʻi (Chinaman's Hat) at sunrise, reflected in still water over the low tide reef. Tall canvas or metal print, from $300, made on Oʻahu.",
+  "indexable": true
+ },
+ {
+  "path": "store/036",
+  "file": "store/036.html",
+  "type": "product",
+  "title": "Moku o ka Lani: Puʻu Huluhulu Above the Clouds | Kawika Lopez",
+  "description": "Puʻu Huluhulu breaking through a sea of clouds, seen in the morning from the Mauna Kea Access Road. Canvas or metal panorama, from $360, made on Oʻahu.",
   "indexable": true
  },
  {
