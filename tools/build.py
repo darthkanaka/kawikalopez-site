@@ -202,7 +202,7 @@ def load_products(site, links, warn=WARN):
         if key not in by_id and ov.get("orientation"):
             v = variants_from_pricing(key, ov["orientation"], pricing)
             sizes = sorted({(x["size"], x["w"], x["h"]) for x in v}, key=lambda s: s[1] * s[2])
-            by_id[key] = {"urlId": key, "title": ov.get("title", key), "description": "",
+            by_id[key] = {"urlId": key, "title": ov.get("title", key), "description": ov.get("description", ""),
                           "orientation": ov["orientation"], "collections": ov.get("collections", ["landscape"]),
                           "ratio": round(sizes[0][1] / sizes[0][2], 4) if sizes else 1,
                           "addedOn": TODAY, "updatedOn": TODAY,

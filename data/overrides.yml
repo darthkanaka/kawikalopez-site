@@ -10,6 +10,8 @@
 #   island         shown in specs and schema
 #   seo_title      replaces the generated <title> (keep it near 60 characters)
 #   seo_description replaces the generated meta description (keep it under 155)
+#   description    Kawika's words, only for prints that are not in products.json (the rest keep
+#                  theirs in products.json)
 #   story          extra markdown shown after the description
 #   fixes          [[wrong, right], ...] spelling fixes applied to the Squarespace description.
 #                  Kawika's words are kept; only typos are corrected. The build warns if a
@@ -28,7 +30,7 @@
   subtitle: Koʻolau Valley Aerial
   tags: [aerial, mountains, abstract]
   alt: Aerial view down a deep green valley in the Koʻolau Mountains, its sheer walls carved by rain into folds and ridges
-  seo_description: "ʻĀlina: a deep green Koʻolau valley from the air, sheer walls carved by rain into folds and ridges. Tall canvas or metal print, from $300, made on Oʻahu."
+  seo_description: "A deep green Koʻolau valley from the air, sheer walls carved by rain into folds and ridges. Tall canvas or metal print, from $300, made on Oʻahu."
   location: koolau
   island: Oʻahu
   fixes:
@@ -59,7 +61,7 @@
   subtitle: Black Sand Wave Patterns
   tags: [beach, abstract]
   alt: Black sand beach in soft morning light, fine lines drawn in the wet sand by a receding wave under a pastel sky
-  seo_description: "Kai Emi: fine lines drawn in black sand by a receding wave under a soft pastel morning sky. Tall canvas or metal print, from $300, made on Oʻahu."
+  seo_description: "Fine lines drawn in black sand by a receding wave under a soft pastel morning sky. Tall canvas or metal print, from $300, made on Oʻahu."
   fixes:
     - ["The significants of this image is such that", "The significance of this image is"]
     - ["absolute beautiful", "absolutely beautiful"]
@@ -69,15 +71,16 @@
   subtitle: Palm Trees on an Oʻahu Beach
   tags: [aerial, beach]
   alt: Aerial view of three coconut palms casting long shadows across a sandy beach beside turquoise water on the east side of Oʻahu
-  seo_description: "Pakele: three coconut palms casting long shadows across a beach on Oʻahu's east side, from the air. Canvas or metal, from $210, made on Oʻahu."
+  seo_description: "Three coconut palms casting long shadows across a beach on Oʻahu's east side, seen from the air. Canvas or metal, from $210, made on Oʻahu."
   island: Oʻahu
 
 "036":
   title: Maluna nā ao
-  subtitle: A Ridge Above the Clouds
+  subtitle: Puʻu Huluhulu Above the Clouds
   tags: [mountains, clouds]
-  alt: A forested ridge rising out of a sea of cloud under a clear blue sky
-  seo_description: "Maluna nā ao: a forested ridge rising out of a sea of clouds under a clear blue sky. Panorama in canvas or metal, from $360, made on Oʻahu."
+  alt: Puʻu Huluhulu, a forested cinder cone beside Saddle Road on Hawaiʻi Island, breaking through a sea of cloud under a clear blue sky
+  seo_description: "Puʻu Huluhulu breaking through a sea of clouds, seen in the morning from the Mauna Kea Access Road. Canvas or metal panorama, from $360, made on Oʻahu."
+  island: Hawaiʻi Island
 
 "037":
   title: Wanaka
@@ -191,7 +194,7 @@ hookahi:
   subtitle: Lone Islet at Sunrise
   tags: [aerial, islet, clouds, sunrise]
   alt: A lone islet in a calm sea under dramatic orange sunrise clouds
-  seo_description: "Hoʻokahi: a lone islet in a calm sea under dramatic orange clouds just before sunrise. Tall canvas or metal print, from $300, made on Oʻahu."
+  seo_description: "A lone islet in a calm sea under dramatic orange clouds just before sunrise. Tall canvas or metal print, from $300, made on Oʻahu."
   island: Oʻahu
   fixes:
     - ["clouds int he sky", "clouds in the sky"]
@@ -303,7 +306,7 @@ makapuubeach-h:
   subtitle: Wide Aerial
   tags: [aerial, beach, abstract]
   alt: Straight-down aerial of Makapuʻu Beach, white sand and green dune plants between turquoise surf
-  seo_description: "Makapuʻu Beach straight down from a drone: white sand, green dune plants and turquoise surf. Canvas or metal, from $210, made on Oʻahu."
+  seo_description: "Makapuʻu Beach straight down from a drone, white sand, green dune plants and turquoise surf. Canvas or metal, from $210, made on Oʻahu."
   location: makapuu
   island: Oʻahu
   fixes:
@@ -314,7 +317,7 @@ makapuubeach-v:
   subtitle: Tall Aerial
   tags: [aerial, beach, abstract]
   alt: Straight-down aerial of Makapuʻu Beach, turquoise water above white sand and green naupaka
-  seo_description: "Makapuʻu Beach straight down from a drone: turquoise water, white sand and green naupaka. Tall canvas or metal print, from $300, made on Oʻahu."
+  seo_description: "Makapuʻu Beach straight down from a drone, turquoise water, white sand and green naupaka. Tall canvas or metal print, from $300, made on Oʻahu."
   location: makapuu
   island: Oʻahu
   featured: true
@@ -326,7 +329,7 @@ malie:
   subtitle: Papailoa Beach, North Shore
   tags: [long-exposure, reef, sunset]
   alt: Silky water flowing over dark reef at Papailoa Beach on the North Shore at sunset
-  seo_description: "Mālie: silky water pouring over reef at Papailoa Beach on the North Shore at sunset. Canvas or metal, from $210, made on Oʻahu."
+  seo_description: "Silky water pouring over reef at Papailoa Beach on the North Shore at sunset. Canvas or metal, from $210, made on Oʻahu."
   location: north-shore
   island: Oʻahu
   featured: true
@@ -384,7 +387,7 @@ puao:
   subtitle: Koʻolau Mountains Aerial
   tags: [aerial, mountains, abstract]
   alt: Aerial view of a triangular face of the Koʻolau Mountains, lush ridges lit from one side
-  seo_description: "Pūʻao: a triangular face of the Koʻolau Mountains from a drone, lit from one side. Tall canvas or metal print, from $300, made on Oʻahu."
+  seo_description: "A triangular face of the Koʻolau Mountains seen from a drone, lit from one side. Tall canvas or metal print, from $300, made on Oʻahu."
   location: koolau
   island: Oʻahu
   featured: true
@@ -436,6 +439,7 @@ olomana:
   subtitle: Olomana Above the Mist
   tags: [aerial, mountains, clouds]
   alt: Aerial view of the sharp peak of Olomana rising over a misty rainforest in Maunawili, with the Koʻolau cliffs behind it
+  description: "Olomana's sharp peak, the landmark above Kailua and Maunawili, seen from the air. Mist hangs over the rainforest below, and the Koʻolau cliffs rise behind it. A tall print for a narrow wall."
   seo_description: "Olomana's sharp peak from the air, rising over misty Maunawili rainforest below the Koʻolau. Tall canvas or metal print, from $300, made on Oʻahu."
   location: kailua-waimanalo
   island: Oʻahu
@@ -447,6 +451,7 @@ mokulua-islands:
   subtitle: Mokulua Islands Aerial
   tags: [aerial, islet, coast]
   alt: Aerial view of the two Mokulua islets off Lanikai in warm low light, turquoise water and the Kailua coast behind them
+  description: "Nā Mokulua, the two islands off Lanikai, from the air in warm, low light, with turquoise water and the Kailua coast behind them. It's the color companion to Mokulua Monochrome, the same islands seen a different way."
   seo_description: "The Mokulua islets off Lanikai from the air in warm low light, the Kailua coast behind them. Canvas or metal, from $210, made on Oʻahu."
   location: kailua-waimanalo
   island: Oʻahu
