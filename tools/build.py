@@ -43,6 +43,7 @@ import json
 import os
 import re
 import sys
+import unicodedata
 from urllib.parse import urlparse
 from pathlib import Path
 
@@ -159,6 +160,12 @@ def clip(text, n):
         return text
     cut = text[: n - 1].rsplit(" ", 1)[0].rstrip(",;:")
     return cut + "…"
+
+
+def fold(s):
+    """Lowercase, without ʻokina, kahakō or other marks, for comparing phrases to titles."""
+    s = unicodedata.normalize("NFKD", s.replace("ʻ", "").replace("'", "").replace("’", ""))
+    return "".join(c for c in s if not unicodedata.combining(c)).lower()
 
 
 def seo_title(p):
@@ -439,6 +446,8 @@ class Builder:
         full_graph += graph or []
         ctx.setdefault("preload", None)
         ctx.setdefault("draft", False)
+        for k in ("og_alt", "og_type", "published", "modified"):
+            ctx.setdefault(k, None)
         if ctx.get("og_image") is None:
             ctx.pop("og_image", None)
         text = self.env.get_template(template).render(
@@ -454,7 +463,7 @@ class Builder:
             if not prev or prev.get("hash") != digest:
                 self.lastmod[key] = {"hash": digest, "date": TODAY}
         self.pages.append({"path": path, "file": rel, "type": page_type, "title": title,
-                           "indexable": indexable and not is404})
+                           "description": description, "indexable": indexable and not is404})
 
     def nav(self):
         return [n for n in self.site["nav"] if n["href"] in self.available]
@@ -527,7 +536,7 @@ class Builder:
                       p["title_tag"], p["meta_description"], crumbs=crumbs, graph=product_ld(p, self.base),
                       indexable=not p.get("draft"), p=p, room=room, picker=picker, table=table,
                       default_variant=default_variant, related=self.related(p),
-                      og_image=f"{self.base}assets/img/og/{p['urlId']}.jpg",
+                      og_image=f"{self.base}assets/img/og/{p['urlId']}.jpg", og_alt=p["alt"],
                       preload=(f"assets/img/prints/{p['urlId']}", p["image"]["widths"], sizes_for_product(p)))
 
     def store_page(self):
@@ -622,7 +631,7 @@ class Builder:
                 "isPartOf": {"@id": self.base + "#site"}}
         self.emit("about.html", "about.html", "about", "page", "About Kawika Lopez | Hawaiʻi Landscape Photographer",
                   desc, crumbs=[("About", "about")], graph=[page], feature=feature, portrait=portrait,
-                  og_image=self.base + f"assets/img/site/portrait-{portrait['widths'][-1]}.jpg")
+                  og_image=self.base + "assets/img/og/about.jpg", og_alt="Kawika Lopez, landscape and aerial photographer")
 
     def contact_page(self):
         desc = "Questions about a Kawika Lopez print, sizing for your wall, or shipping a large piece? Send a message."
@@ -781,6 +790,8 @@ class Builder:
                       doc=d, body=body, hero=hero, prints=prints, places=places,
                       minutes=md.reading_minutes(d["body"]),
                       og_image=f"{self.base}assets/img/og/{hero['urlId']}.jpg" if hero else None,
+                      og_alt=hero["alt"] if hero else None, og_type="article",
+                      published=d.get("date"), modified=d.get("updated") or d.get("date"),
                       preload=(f"assets/img/prints/{hero['urlId']}", hero["image"]["widths"], "(min-width: 1100px) 1040px, 100vw") if hero else None)
 
     def blog_index(self):
@@ -871,6 +882,29 @@ class Builder:
         for t, paths in titles.items():
             if len(paths) > 1:
                 WARN.add(f"duplicate title '{t}' on " + ", ".join("/" + p for p in paths))
+
+        # Descriptions: 50 to 160 characters, and none cut off mid-sentence.
+        clipped = []
+        for pg in self.pages:
+            if not pg["indexable"]:
+                continue
+            d = pg.get("description") or ""
+            if "…" in d:
+                clipped.append(pg["path"].replace("store/", ""))
+            elif not 50 <= len(d) <= 160:
+                WARN.add(f"description is {len(d)} characters on /{pg['path']} (want 50 to 160)")
+        if clipped:
+            WARN.add(f"{len(clipped)} descriptions are cut off mid-sentence; give them seo_description in "
+                     "overrides.yml (SEO plan phase 2): " + ", ".join(sorted(clipped)))
+
+        # Target phrase registry (data/targets.yml).
+        by_path = {pg["path"]: pg for pg in self.pages}
+        for t in load_yaml("targets.yml", []) or []:
+            pg = by_path.get(t["page"])
+            if not pg or not pg["indexable"]:
+                WARN.add(f"target '{t['phrase']}': /{t['page']} is not an indexable page in this build")
+            elif fold(t["phrase"]) not in fold(pg["title"]):
+                WARN.add(f"target '{t['phrase']}': not in the title of /{t['page']} ('{pg['title']}')")
 
 
 # ------------------------------------------------------------------ template helpers

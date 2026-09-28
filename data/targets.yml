@@ -1,0 +1,105 @@
+# Target phrase registry: one entry per page we want to rank, and the searches it is written for.
+# The SEO plan (vault projects/kawikalopez-seo-plan.md) picks new pages from Search Console data
+# and adds them here. tools/build.py checks every entry:
+#   - `page` must be an indexable page in this build
+#   - `phrase` must appear in that page's <title> (ʻokina, kahakō and case ignored)
+# `queries` are what people actually type (usually without ʻokina or kahakō); the monthly report
+# matches Search Console queries against them.
+#   cluster: place, gift, subject, island-type, buying, room, brand
+#   volume:  Keyword Planner range, or "gsc: N/mo" once Search Console has data, or blank
+
+- phrase: Hawaiʻi wall art prints
+  page: store/
+  cluster: island-type
+  queries: [hawaii wall art prints, hawaii wall art, hawaii prints for sale]
+  priority: 1
+- phrase: Kawika Lopez
+  page: ""
+  cluster: brand
+  queries: [kawika lopez, kawika lopez photography, kawika lopez prints]
+  priority: 1
+- phrase: Panoramic Hawaiʻi prints
+  page: panoramic-prints
+  cluster: island-type
+  queries: [hawaii panoramic prints, panoramic hawaii wall art]
+  priority: 2
+- phrase: Hawaiʻi landscape prints
+  page: horizontal-prints
+  cluster: island-type
+  queries: [hawaii landscape prints, oahu landscape prints]
+  priority: 2
+- phrase: Vertical Hawaiʻi prints
+  page: vertical-prints
+  cluster: island-type
+  queries: [vertical hawaii prints, tall hawaii wall art]
+  priority: 3
+- phrase: Hawaiʻi landscape photography prints
+  page: landscape-1
+  cluster: island-type
+  queries: [hawaii landscape photography prints, hawaii photography prints]
+  priority: 2
+- phrase: Fine art Hawaiʻi photography prints
+  page: fine-art
+  cluster: island-type
+  queries: [hawaii fine art photography, oahu fine art prints, hawaii fine art prints]
+  priority: 2
+- phrase: Diamond Head and Waikīkī prints
+  page: hawaii-prints/diamond-head
+  cluster: place
+  queries: [diamond head print, waikiki print, diamond head wall art, waikiki panoramic print]
+  priority: 1
+- phrase: Kaʻaʻawa Valley and Kualoa prints
+  page: hawaii-prints/kaaawa-valley
+  cluster: place
+  queries: [kualoa ranch print, kaaawa valley print, kualoa wall art]
+  priority: 1
+- phrase: Lanikai, Kailua and Waimānalo prints
+  page: hawaii-prints/kailua-waimanalo
+  cluster: place
+  queries: [lanikai print, mokulua islands print, waimanalo beach print, kailua wall art]
+  priority: 1
+- phrase: Kaiwi coast and Hanauma Bay prints
+  page: hawaii-prints/kaiwi-coast
+  cluster: place
+  queries: [hanauma bay print, kaiwi coast print, sandy beach print]
+  priority: 1
+- phrase: Koʻolau mountain prints
+  page: hawaii-prints/koolau
+  cluster: place
+  queries: [koolau mountains print, koolau wall art]
+  priority: 2
+- phrase: Makapuʻu lighthouse and beach prints
+  page: hawaii-prints/makapuu
+  cluster: place
+  queries: [makapuu sunrise print, makapuu lighthouse print, makapuu beach print]
+  priority: 1
+- phrase: Chinaman's Hat
+  page: hawaii-prints/mokolii
+  cluster: place
+  queries: [mokolii print, chinamans hat print, chinaman's hat wall art]
+  priority: 2
+- phrase: North Shore Oʻahu prints
+  page: hawaii-prints/north-shore
+  cluster: place
+  queries: [north shore oahu print, north shore wall art]
+  priority: 2
+- phrase: Hawaiʻi prints by place
+  page: hawaii-prints/
+  cluster: island-type
+  queries: [oahu prints, oahu wall art]
+  priority: 2
+- phrase: Choosing the perfect wall art
+  page: blog/5-tips-for-choosing-wall-art
+  cluster: buying
+  queries: [choosing wall art, how to choose wall art]
+  priority: 3
+- phrase: Canvas or metal print
+  page: blog/canvas-or-metal-print
+  cluster: buying
+  queries: [canvas or metal print, metal print vs canvas]
+  priority: 2
+- phrase: Print goes above a sofa
+  page: blog/what-size-print-above-a-sofa
+  cluster: buying
+  queries: [what size print above a sofa, what size art above couch]
+  priority: 2

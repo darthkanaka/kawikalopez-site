@@ -307,6 +307,14 @@ def site_images(force=False):
                 save_jpg(r, OUT_SITE / f"portrait-{w}.jpg")
             done.append("portrait")
 
+    # Share image for the about page: the portrait on the paper color with the logo band, so the
+    # declared 1200 x 630 is true.
+    src = s / "portrait-kawika.jpg"
+    target = OUT_OG / "about.jpg"
+    if src.exists() and (force or not fresh([target], src.stat().st_mtime)):
+        write_og(to_srgb(Image.open(src)), target)
+        done.append("og/about.jpg")
+
     # Home hero: the living room mockup with Nani Waikīkī on the wall.
     src = s / "home-hero-living-room-panorama.jpg"
     if src.exists():
