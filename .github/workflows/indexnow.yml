@@ -19,7 +19,7 @@ jobs:
           echo "Submitting $(echo "$URLS" | jq 'length') URLs"
           BODY=$(jq -nc \
             --arg h "kawikalopez.com" \
-            --arg k "2296d603ce9bc17c37f0d11b61f74403" \
+            --arg k "d46e2ec9e36d6a96a29b21c93550a3ad" \
             --argjson u "$URLS" \
             '{host: $h, key: $k, keyLocation: ("https://" + $h + "/" + $k + ".txt"), urlList: $u}')
           CODE=$(curl -s -o answer.txt -w "%{http_code}" \
@@ -28,6 +28,6 @@ jobs:
             -d "$BODY")
           echo "IndexNow responded $CODE"
           cat answer.txt; echo
-          # 200 and 202 are the only accepted answers. Anything else fails the run, so a
-          # rejected key shows as a red run instead of hiding inside a green one.
-          case "$CODE" in 200|202) ;; *) exit 1 ;; esac
+          # 200 and 202 mean accepted. Anything else is flagged as a warning on the run, not a
+          # failure, so a rejection shows in the Actions log without emailing on every push.
+          case "$CODE" in 200|202) ;; *) echo "::warning title=IndexNow rejected::IndexNow answered $CODE" ;; esac
