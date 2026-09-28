@@ -117,16 +117,19 @@ def flatten(obj, prefix=""):
     return items
 
 
-def load_key(mode):
+def load_key(mode, name=None):
+    """The key for a mode; `name` picks another variable in the env file (tools/gsc_report.py reads
+    STRIPE_LIVE_READ_KEY, a read-only key)."""
     env = {}
     if CREDS.exists():
         for line in CREDS.read_text().splitlines():
             if "=" in line and not line.strip().startswith("#"):
                 k, v = line.split("=", 1)
                 env[k.strip()] = v.strip()
-    key = env.get("STRIPE_TEST_KEY" if mode == "test" else "STRIPE_LIVE_KEY")
+    name = name or ("STRIPE_TEST_KEY" if mode == "test" else "STRIPE_LIVE_KEY")
+    key = env.get(name)
     if not key:
-        raise SystemExit(f"no {mode} key in {CREDS}")
+        raise SystemExit(f"no {name} in {CREDS}")
     want = ("sk_test_", "rk_test_") if mode == "test" else ("sk_live_", "rk_live_")
     if not key.startswith(want):
         raise SystemExit(f"the {mode} key in {CREDS} does not start with {' or '.join(want)}")

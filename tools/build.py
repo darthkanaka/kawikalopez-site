@@ -897,9 +897,12 @@ class Builder:
             WARN.add(f"{len(clipped)} descriptions are cut off mid-sentence; give them seo_description in "
                      "overrides.yml (SEO plan phase 2): " + ", ".join(sorted(clipped)))
 
-        # Target phrase registry (data/targets.yml).
+        # Target phrase registry (data/targets.yml). `planned: true` entries have no page yet; they are
+        # the queue the monthly report picks the next pages from.
         by_path = {pg["path"]: pg for pg in self.pages}
         for t in load_yaml("targets.yml", []) or []:
+            if t.get("planned"):
+                continue
             pg = by_path.get(t["page"])
             if not pg or not pg["indexable"]:
                 WARN.add(f"target '{t['phrase']}': /{t['page']} is not an indexable page in this build")
