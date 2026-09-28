@@ -21,7 +21,7 @@ Read `README.md` first (layout, data files, commands). The project hub with deci
 5. Keep `viz_rect()` in `tools/build.py` and `KL.rect` in `assets/js/site.js` identical. The room preview must look the same with and without JavaScript.
 6. Product URLs are `/store/<urlId>` forever.
 7. Nothing larger than 2000 px on the long edge is ever published.
-8. No em dashes anywhere. Customer copy is spoken and plain: contractions on, no corporate verbs.
+8. No em dashes anywhere. Customer copy is spoken and plain, contractions on, no corporate verbs, and no colons. Periods and commas, the way Kawika talks out loud (his rule, 2026-09-28).
 9. **The site is live (cutover 2026-09-27) and this repo is production: every push to main goes to kawikalopez.com.** Always build with `python3 tools/build.py --production` before committing. A plain `build.py` makes a noindex staging build with test Stripe links; never push one. Preview locally with `python3 tools/serve.py 8781` and `cd tools && BASE=http://localhost:8781 EXPECT_NOINDEX=0 node verify.mjs`.
 10. Never name the print lab on the site. Say the prints are made locally on Oʻahu (Kawika, 2026-09-25). The lab is on record in `data/site.yml` as `printer.lab`, which no template uses.
 
