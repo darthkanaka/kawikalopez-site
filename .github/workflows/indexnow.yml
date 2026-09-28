@@ -22,7 +22,12 @@ jobs:
             --arg k "2296d603ce9bc17c37f0d11b61f74403" \
             --argjson u "$URLS" \
             '{host: $h, key: $k, keyLocation: ("https://" + $h + "/" + $k + ".txt"), urlList: $u}')
-          curl -s -o /dev/null -w "IndexNow responded %{http_code}\n" \
+          CODE=$(curl -s -o answer.txt -w "%{http_code}" \
             -X POST "https://api.indexnow.org/indexnow" \
             -H "Content-Type: application/json; charset=utf-8" \
-            -d "$BODY"
+            -d "$BODY")
+          echo "IndexNow responded $CODE"
+          cat answer.txt; echo
+          # 200 and 202 are the only accepted answers. Anything else fails the run, so a
+          # rejected key shows as a red run instead of hiding inside a green one.
+          case "$CODE" in 200|202) ;; *) exit 1 ;; esac
