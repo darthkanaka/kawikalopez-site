@@ -251,7 +251,25 @@ def ga4(s, start, end):
         "sources": run(["sessionSource", "sessionMedium"], ["sessions"], 20),
         "transactions": [r for r in run(["transactionId"], ["ecommercePurchases", "purchaseRevenue"])
                          if r["transactionId"] not in ("", "(not set)")],
+        "funnel": funnel(run),
     }
+
+
+def funnel(run):
+    """Per-print funnel from GA4's item-scoped metrics: views, add to carts, checkouts, purchases,
+    and which size and material people chose. Any failure falls back to event counts by page, then
+    to an error note, so the rest of the GA4 section always survives."""
+    mets = ["itemsViewed", "itemsAddedToCart", "itemsCheckedOut", "itemsPurchased", "itemRevenue"]
+    try:
+        return {"by_item": [r for r in run(["itemId", "itemName"], mets, 5000) if r["itemId"] not in ("", "(not set)")],
+                "by_variant": [r for r in run(["itemVariant"], mets[1:], 1000) if r["itemVariant"] not in ("", "(not set)")]}
+    except Exception as e:
+        try:
+            rows = run(["eventName", "pagePath"], ["eventCount"], 5000)
+            keep = ("view_item", "add_to_cart", "begin_checkout", "purchase")
+            return {"events_by_page": [r for r in rows if r["eventName"] in keep], "note": str(e)[:200]}
+        except Exception as e2:
+            return {"error": str(e2)[:300]}
 
 
 # ------------------------------------------------------------------ Stripe
@@ -451,6 +469,7 @@ def section_sales(g, st, types):
             ev = [f"{r['eventName']} {n(r['eventCount'])}" for r in g["events"]
                   if r["eventName"] in ("view_item", "add_to_cart", "begin_checkout", "purchase")]
             out += ["", "Store events: " + (", ".join(ev) if ev else "none recorded yet") + "."]
+            out += ["", section_funnel(g.get("funnel"))]
     if st is not None:
         out.append("")
         if "error" in st:
@@ -478,6 +497,57 @@ def section_sales(g, st, types):
                 flag = " Under 80 percent: time for the Stripe webhook to GA4 upgrade in the SEO plan." if hit / st["count"] < 0.8 else ""
                 out.append(f"GA4 recorded {hit} of {st['count']} Stripe orders.{flag}")
     return "\n".join(out) if out else ""
+
+
+def section_funnel(f):
+    """Which prints get looked at, added and bought, and which size and material people pick."""
+    out = ["**Print funnel**", ""]
+    if not f or "error" in f:
+        return "\n".join(out + [f"Not available: {(f or {}).get('error', 'GA4 not pulled')}."])
+    if "events_by_page" in f:
+        per = {}
+        for r in f["events_by_page"]:
+            if r["pagePath"].startswith("/store/"):
+                a = per.setdefault(r["pagePath"][7:], {})
+                a[r["eventName"]] = a.get(r["eventName"], 0) + r["eventCount"]
+        if not per:
+            return "\n".join(out + ["No store events with items recorded yet."])
+        rows = sorted(per.items(), key=lambda kv: -kv[1].get("view_item", 0))[:20]
+        return "\n".join(out + ["From event counts by page (item metrics were not available).", "",
+                                table(["Print", "Views", "Add to carts", "Checkouts", "Purchases"],
+                                      [[k, n(v.get("view_item")), n(v.get("add_to_cart")), n(v.get("begin_checkout")),
+                                        n(v.get("purchase"))] for k, v in rows])])
+    per = {}
+    for r in f["by_item"]:
+        key = r["itemId"].rsplit("_", 2)[0]  # naniwaikiki_48x16_metal -> naniwaikiki, so a rename keeps one row
+        a = per.setdefault(key, {"name": r["itemName"], "v": 0, "a": 0, "c": 0, "p": 0, "rev": 0.0})
+        a["v"] += r["itemsViewed"]; a["a"] += r["itemsAddedToCart"]; a["c"] += r["itemsCheckedOut"]
+        a["p"] += r["itemsPurchased"]; a["rev"] += r["itemRevenue"]
+    if not per:
+        return "\n".join(out + ["No store events with items recorded yet."])
+    rows = sorted(per.values(), key=lambda a: (-a["p"], -a["a"], -a["v"]))[:25]
+    out.append(table(["Print", "Views", "Add to carts", "Checkouts", "Purchases", "Revenue"],
+                     [[a["name"], n(a["v"]), n(a["a"]), n(a["c"]), n(a["p"]), money(a["rev"])] for a in rows]))
+    views = sum(a["v"] for a in per.values())
+    if views >= 30:
+        adds = sum(a["a"] for a in per.values())
+        out += ["", f"Add to cart rate: {adds / views:.1%} of {n(views)} print views."]
+    idle = [a["name"] for a in per.values() if a["v"] and not a["a"]]
+    if idle:
+        out += ["", "Viewed with no add to cart: " + ", ".join(sorted(idle)) + "."]
+    if f.get("by_variant"):
+        out += ["", "**Size and material picked**", "",
+                table(["Size and material", "Add to carts", "Checkouts", "Purchases"],
+                      [[r["itemVariant"], n(r["itemsAddedToCart"]), n(r["itemsCheckedOut"]), n(r["itemsPurchased"])]
+                       for r in sorted(f["by_variant"], key=lambda r: -r["itemsAddedToCart"])[:20]])]
+    defaults = {p["path"][6:]: p["meta"]["default_id"] for p in load_json("pages.json", []) or []
+                if p.get("type") == "product" and (p.get("meta") or {}).get("default_id")}
+    if defaults:
+        kept = sum(r["itemsAddedToCart"] for r in f["by_item"] if r["itemId"] in set(defaults.values()))
+        total = sum(r["itemsAddedToCart"] for r in f["by_item"])
+        if total:
+            out += ["", f"Default kept: {n(kept)} of {n(total)} add to carts were the preselected size and material."]
+    return "\n".join(out)
 
 
 def section_other(sc, maps):
