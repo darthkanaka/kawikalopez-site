@@ -4,8 +4,8 @@ Kawika Lopez's fine art print store: landscape and aerial prints of Hawaiʻi on 
 
 Static HTML on GitHub Pages. The pages are rendered by a small Python build and the rendered HTML is committed, because Pages has no build step.
 
-- Staging: https://darthkanaka.github.io/kawikalopez-site/ (every page carries noindex)
-- Production: https://kawikalopez.com/ (after cutover; see DNS below)
+- Live: https://kawikalopez.com/ since 2026-09-27. This repo is production; every push to main deploys. Build with `--production` before every commit.
+- The old staging URL (darthkanaka.github.io/kawikalopez-site) now redirects to the domain.
 - Project hub: `~/Documents/Obsidian/projects/kawikalopez-site.md`
 - Build plan: `~/.claude/plans/ok-can-you-properly-magical-mochi.md`
 
@@ -94,7 +94,7 @@ Both expect the preview running on port 8779 with the staging prefix. For a prod
 
 Push `main`. GitHub Pages serves the repo root in about a minute.
 
-## DNS (at cutover, not before)
+## DNS (done 2026-09-27; kept for the record)
 
 1. `python3 tools/build.py --production`, add a `CNAME` file containing `kawikalopez.com`, commit, push.
 2. At Squarespace Domains: remove the Squarespace site records, add four A records on `@` for 185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153, and a `www` CNAME to `darthkanaka.github.io`. Leave any MX records alone.
