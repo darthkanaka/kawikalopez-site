@@ -549,8 +549,15 @@ class Builder:
         if changed or not prev:
             if not prev or prev.get("hash") != digest:
                 self.lastmod[key] = {"hash": digest, "date": TODAY}
+        # The page's main photograph at its largest JPG, for the image sitemap. Pages that preload a
+        # print (print, place and post pages) have one; the others list none.
+        images = []
+        if ctx.get("preload"):
+            base_path, widths = ctx["preload"][0], ctx["preload"][1]
+            images.append(f"{base_path}-{max([w for w in widths if w >= 480] or widths)}.jpg")
         self.pages.append({"path": path, "file": rel, "type": page_type, "title": title,
-                           "description": description, "indexable": indexable and not is404, **({"meta": meta} if meta else {})})
+                           "description": description, "indexable": indexable and not is404,
+                           **({"images": images} if images else {}), **({"meta": meta} if meta else {})})
 
     def ship_zones(self):
         places = {"hi": "Hawaiʻi", "mainland": "the US mainland"}
@@ -929,11 +936,16 @@ class Builder:
     def sitemap_and_robots(self):
         urls = [pg for pg in self.pages if pg["indexable"]]
         prod_base = self.site["base_url"]["production"]
+        # Image entries tell Google Images which photograph belongs to which page. Only image:loc is
+        # read now (Google dropped caption, title and license from image sitemaps in 2022).
         lines = ['<?xml version="1.0" encoding="UTF-8"?>',
-                 '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+                 '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+                 'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">']
         for pg in sorted(urls, key=lambda x: (x["path"] != "", x["path"])):
             lm = self.lastmod.get(pg["path"] or "/", {}).get("date", TODAY)
-            lines.append(f"  <url><loc>{html.escape(prod_base + pg['path'])}</loc><lastmod>{lm}</lastmod></url>")
+            imgs = "".join(f"<image:image><image:loc>{html.escape(prod_base + i)}</image:loc></image:image>"
+                           for i in pg.get("images", []))
+            lines.append(f"  <url><loc>{html.escape(prod_base + pg['path'])}</loc><lastmod>{lm}</lastmod>{imgs}</url>")
         lines.append("</urlset>")
         self.write("sitemap.xml", "\n".join(lines) + "\n")
         if self.production:
