@@ -14,7 +14,7 @@ tags: [kawikalopez-site, post]
 project: kawikalopez-site
 ---
 
-Every print here comes on canvas or metal, and both are made locally on Oʻahu. There's no wrong answer, but they do look different on a wall. Here's how to choose.
+Every print here comes on canvas or metal, and both are made here on Oʻahu. There's no wrong answer, but they do look different on a wall. Here's how to choose.
 
 ## Canvas
 

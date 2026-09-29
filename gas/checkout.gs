@@ -136,7 +136,9 @@ function createSession_(req) {
 
   var s = shipQuote(model, items);
 
-  // For Kawika: how to place the order with the lab if it ships to the mainland.
+  // For Kawika only: how to place the order with the lab if it ships to the mainland. It goes in the
+  // order's metadata, which only the Stripe dashboard shows. The description is printed on the
+  // buyer's receipt, so it lists the prints and nothing else.
   var labPlan = "";
   if (s.ships && s.boxes.length > 1) {
     labPlan = "If shipping to the mainland, place " + s.boxes.length + " separate lab orders: " +
@@ -144,7 +146,9 @@ function createSession_(req) {
         return (i + 1) + ") " + b.map(function (u) { return u.w + "x" + u.h + " " + u.material; }).join(" + ");
       }).join("; ") + ".";
   }
-  var description = ("Cart: " + names.join("; ") + (labPlan ? ". " + labPlan : "")).slice(0, 1000);
+  var description = names.join("; ").slice(0, 1000);
+  var intent = { description: description };
+  if (labPlan) intent.metadata = { lab_orders_mainland: labPlan.slice(0, 500) };
 
   var session = stripe_(key, "post", "checkout/sessions", {
     ui_mode: "form",
@@ -157,7 +161,7 @@ function createSession_(req) {
     customer_creation: "always",
     custom_fields: [{ key: "note", label: { type: "custom", custom: "Anything we should know?" }, type: "text", optional: true }],
     return_url: base + "thank-you?session_id={CHECKOUT_SESSION_ID}",
-    payment_intent_data: { description: description },
+    payment_intent_data: intent,
     metadata: { source: "cart", terms_ack: "yes, cart checkbox", ships: s.ships ? "yes" : "pickup only", lab_orders_mainland: labPlan.slice(0, 500) }
   });
   return session.client_secret;

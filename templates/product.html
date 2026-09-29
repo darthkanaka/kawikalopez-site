@@ -16,7 +16,7 @@
         {% if p.subtitle %}<p class="subtitle">{{ p.subtitle }}</p>{% endif %}
         <p class="from">From {{ money(p.priceFrom) }}, canvas or metal</p>
         <ul class="facts">
-          <li>Printed to order locally on Oʻahu, usually in {{ site.printer.turnaround }}</li>
+          <li>Printed to order here on Oʻahu, usually in {{ site.printer.turnaround }}</li>
           <li>Free pickup on Oʻahu, or shipped anywhere in the US</li>
           {% for f in site.product_copy.facts if f.confirmed %}<li>{{ f.text }}</li>{% endfor %}
           {% if room %}<li><a href="#room">See it to scale on a wall</a></li>{% endif %}

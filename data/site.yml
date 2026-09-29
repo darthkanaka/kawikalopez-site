@@ -5,7 +5,7 @@ short_name: Kawika Lopez
 legal_name: Veex Photo LLC
 tagline: Hawaiʻi landscape prints, printed on Oʻahu
 description: >-
-  Fine art landscape and aerial prints of Hawaiʻi by Kawika Lopez, printed locally on
+  Fine art landscape and aerial prints of Hawaiʻi by Kawika Lopez, printed here on
   Oʻahu on canvas or metal.
 
 base_url:
@@ -43,7 +43,8 @@ person:
     - https://www.facebook.com/kawikalopezphotography/
     - https://fstoppers.com/u/kawika
 
-# The site says prints are made locally on Oʻahu and never names the lab (Kawika, 2026-09-25).
+# The site says prints are made here on Oʻahu and never names the lab (Kawika, 2026-09-25; "here"
+# rather than "locally" since 2026-09-29, so it reads as his own place, not a local shop).
 # `lab` is for our records only; no template uses it.
 printer:
   lab: Pictures Plus, Kapolei
@@ -52,8 +53,8 @@ printer:
 # Print page copy. A line shows only once confirmed is true (Kawika approves each one).
 product_copy:
   facts:
-    - text: Checked in person by Kawika before it ships
-      confirmed: false
+    - text: From the photograph to the finished print, every order goes through Kawika
+      confirmed: true
   returns: All sales are final, except damage or defects, which we replace free. You can cancel within 24 hours.
   returns_confirmed: false
 
