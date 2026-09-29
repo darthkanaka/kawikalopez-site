@@ -25,6 +25,7 @@ Reads
 
 Writes
   index.html, store/..., collection pages, 404.html, redirect pages, sitemap.xml, robots.txt
+  merchant-feed.xml     the product feed Google Merchant Center fetches daily, one item per shippable variant
   data/pages.json       every rendered page, for tools/verify.mjs and tools/a11y.mjs
   data/lastmod.json     the date each page's content last changed, for the sitemap
 
@@ -954,6 +955,61 @@ class Builder:
             robots = "# Staging: every page also carries a noindex tag.\nUser-agent: *\nDisallow: /\n"
         self.write("robots.txt", robots)
 
+    def merchant_feed(self):
+        """merchant-feed.xml, the product feed Google Merchant Center fetches each day: one item per
+        size and material that ships (pickup-only sizes can't be listed), grouped by print. Shipping
+        is spelled out per state, Hawaiʻi at its rate and every mainland state at the mainland rate,
+        because Google asks for one price per place rather than overlapping entries. Delivery times
+        go in only once shipping.yml days_confirmed is true, the same rule as the page."""
+        base = self.site["base_url"]["production"]
+        ship = self.shipping
+        timed = bool(ship.get("days_confirmed"))
+        transit = ship.get("transit_days") or {}
+        x = html.escape
+        out = ['<?xml version="1.0" encoding="UTF-8"?>',
+               '<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">',
+               "<channel>", "<title>Kawika Lopez Photography</title>", f"<link>{base}</link>",
+               "<description>Landscape and aerial prints of Hawaiʻi by Kawika Lopez</description>"]
+
+        def rate(state, cents, zone):
+            t = transit.get(zone) if timed else None
+            times = f"<g:min_transit_time>{t[0]}</g:min_transit_time><g:max_transit_time>{t[1]}</g:max_transit_time>" if t else ""
+            return (f"<g:shipping><g:country>US</g:country><g:region>{state}</g:region><g:service>Standard</g:service>"
+                    f"<g:price>{cents / 100:.2f} USD</g:price>{times}</g:shipping>")
+
+        for p in sorted(self.products, key=lambda q: q["urlId"]):
+            widths = p["image"]["widths"]
+            image = f"{base}assets/img/prints/{p['urlId']}-{max([w for w in widths if w >= 480] or widths)}.jpg"
+            name = p["title"] + (f": {p['subtitle']}" if p.get("subtitle") else "")
+            about = re.sub(r"<[^>]+>", "", p.get("description") or p["meta_description"]).strip()
+            for v in p["variants"]:
+                if not (v["ships"] and v.get("ship_rates")):
+                    continue
+                material = v["material"].capitalize()
+                title = f"{name}, {material} Print, {v['w']} x {v['h']} in"
+                item = [f"<g:id>{x(v['id'])}</g:id>", f"<g:title>{x(title)}</g:title>",
+                        f"<g:description>{x(about)}</g:description>",
+                        f"<g:link>{x(variant_url(base + p['path'], v))}</g:link>",
+                        f"<g:image_link>{x(image)}</g:image_link>",
+                        "<g:availability>in_stock</g:availability>",
+                        f"<g:price>{v['price']:.2f} USD</g:price>",
+                        "<g:brand>Kawika Lopez</g:brand>", "<g:condition>new</g:condition>",
+                        "<g:identifier_exists>no</g:identifier_exists>",
+                        f"<g:item_group_id>{x(p['urlId'])}</g:item_group_id>",
+                        f"<g:size>{v['w']} x {v['h']} in</g:size>", f"<g:material>{material}</g:material>",
+                        "<g:google_product_category>500044</g:google_product_category>"]
+                if timed and ship.get("handling_days"):
+                    item += [f"<g:min_handling_time>{ship['handling_days'][0]}</g:min_handling_time>",
+                             f"<g:max_handling_time>{ship['handling_days'][1]}</g:max_handling_time>"]
+                rates = v["ship_rates"]
+                if "hi" in rates:
+                    item.append(rate("HI", rates["hi"], "hi"))
+                if "mainland" in rates:
+                    item += [rate(st, rates["mainland"], "mainland") for st in MAINLAND]
+                out.append("<item>" + "".join(item) + "</item>")
+        out += ["</channel>", "</rss>"]
+        self.write("merchant-feed.xml", "\n".join(out) + "\n")
+
     def run(self):
         self.product_pages()
         self.store_page()
@@ -973,6 +1029,7 @@ class Builder:
         self.not_found()
         self.redirects()
         self.sitemap_and_robots()
+        self.merchant_feed()
         if not self.check:
             (DATA / "pages.json").write_text(json.dumps(self.pages, indent=1, ensure_ascii=False) + "\n")
             (DATA / "lastmod.json").write_text(json.dumps(self.lastmod, indent=1, sort_keys=True) + "\n")
