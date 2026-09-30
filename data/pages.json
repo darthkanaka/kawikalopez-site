@@ -4,7 +4,7 @@
   "file": "store/naniwaikiki.html",
   "type": "product",
   "title": "Nani Waikīkī: Waikīkī Sunset Panorama Print | Kawika Lopez",
-  "description": "Waikīkī and Diamond Head from the air at sunset, pink clouds over the city and reef. Panorama in canvas or metal, from $360, made on Oʻahu.",
+  "description": "Waikīkī and Diamond Head from the air at sunset, pink clouds over the city and reef. Panorama in metal or canvas, from $360, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/naniwaikiki-2000.jpg"
@@ -21,7 +21,7 @@
   "file": "store/kaimana.html",
   "type": "product",
   "title": "Kaimana: Diamond Head Sunrise Panorama Print | Kawika Lopez",
-  "description": "Diamond Head and Waikīkī from the air at sunrise, gold light on the crater and reef. Panorama in canvas or metal, from $360, made on Oʻahu.",
+  "description": "Diamond Head and Waikīkī from the air at sunrise, gold light on the crater and reef. Panorama in metal or canvas, from $360, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/kaimana-2000.jpg"
@@ -38,7 +38,7 @@
   "file": "store/kaaawavalley.html",
   "type": "product",
   "title": "Kaʻaʻawa Valley: Kaʻaʻawa Valley Panorama Print | Kawika Lopez",
-  "description": "Kaʻaʻawa Valley and the Kualoa ridges from the air, clouds on the peaks and Mokoliʻi offshore. Canvas or metal panorama, from $360, made on Oʻahu.",
+  "description": "Kaʻaʻawa Valley and the Kualoa ridges from the air, clouds on the peaks and Mokoliʻi offshore. Metal or canvas panorama, from $360, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/kaaawavalley-2000.jpg"
@@ -55,14 +55,14 @@
   "file": "store/malie.html",
   "type": "product",
   "title": "Mālie: Papailoa Beach, North Shore Print | Kawika Lopez",
-  "description": "Silky water pouring over reef at Papailoa Beach on the North Shore at sunset. Canvas or metal, from $210, made on Oʻahu.",
+  "description": "Silky water pouring over reef at Papailoa Beach on the North Shore at sunset. Metal, canvas or matted, from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/malie-960.jpg"
   ],
   "meta": {
-   "default_id": "malie_36x24_metal",
-   "default_size": "36 x 24",
+   "default_id": "malie_30x20_metal",
+   "default_size": "30 x 20",
    "default_material": "metal",
    "orientation": "horizontal"
   }
@@ -72,14 +72,14 @@
   "file": "store/kaaawasunrise.html",
   "type": "product",
   "title": "Kaʻaʻawa Sunrise: Kaʻaʻawa Ridge Reflection | Kawika Lopez",
-  "description": "The Kaʻaʻawa ridge glowing pink at sunrise, mirrored in still water at Waikāne on the windward side. Canvas or metal, from $210, made on Oʻahu.",
+  "description": "The Kaʻaʻawa ridge glowing pink at sunrise, mirrored in still water at Waikāne on the windward side. Metal, canvas or matted, from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/kaaawasunrise-2000.jpg"
   ],
   "meta": {
-   "default_id": "kaaawasunrise_36x24_metal",
-   "default_size": "36 x 24",
+   "default_id": "kaaawasunrise_30x20_metal",
+   "default_size": "30 x 20",
    "default_material": "metal",
    "orientation": "horizontal"
   }
@@ -89,14 +89,14 @@
   "file": "store/makapuubeach-v.html",
   "type": "product",
   "title": "Makapuʻu Beach: Tall Aerial Print | Kawika Lopez",
-  "description": "Makapuʻu Beach straight down from a drone, turquoise water, white sand and green naupaka. Tall canvas or metal print, from $300, made on Oʻahu.",
+  "description": "Makapuʻu Beach straight down from a drone, turquoise water, white sand and green naupaka. Tall metal, canvas or matted print, from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/makapuubeach-v-1600.jpg"
   ],
   "meta": {
-   "default_id": "makapuubeach-v_24x30_metal",
-   "default_size": "24 x 30",
+   "default_id": "makapuubeach-v_20x25_metal",
+   "default_size": "20 x 25",
    "default_material": "metal",
    "orientation": "vertical"
   }
@@ -106,14 +106,14 @@
   "file": "store/mokulua.html",
   "type": "product",
   "title": "Mokulua Monochrome: Lanikai in Black and White | Kawika Lopez",
-  "description": "The Mokulua islets off Lanikai from the air in black and white, reef lines leading out to them. Canvas or metal, from $210, made on Oʻahu.",
+  "description": "The Mokulua islets off Lanikai from the air in black and white, reef lines leading out to them. Metal, canvas or matted, from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/mokulua-960.jpg"
   ],
   "meta": {
-   "default_id": "mokulua_36x24_metal",
-   "default_size": "36 x 24",
+   "default_id": "mokulua_30x20_metal",
+   "default_size": "30 x 20",
    "default_material": "metal",
    "orientation": "horizontal"
   }
@@ -123,14 +123,14 @@
   "file": "store/puao.html",
   "type": "product",
   "title": "Pūʻao: Koʻolau Mountains Aerial Print | Kawika Lopez",
-  "description": "A triangular face of the Koʻolau Mountains seen from a drone, lit from one side. Tall canvas or metal print, from $300, made on Oʻahu.",
+  "description": "A triangular face of the Koʻolau Mountains seen from a drone, lit from one side. Tall metal, canvas or matted print, from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/puao-1600.jpg"
   ],
   "meta": {
-   "default_id": "puao_24x30_metal",
-   "default_size": "24 x 30",
+   "default_id": "puao_20x25_metal",
+   "default_size": "20 x 25",
    "default_material": "metal",
    "orientation": "vertical"
   }
@@ -140,14 +140,14 @@
   "file": "store/hanohanohakipuu.html",
   "type": "product",
   "title": "Hanohano Hakipuʻu: Kāneʻohe Bay Sunrise Print | Kawika Lopez",
-  "description": "Sunrise over Kāneʻohe Bay from the ridge above Hakipuʻu, with Mokoliʻi and the fishpond below. Canvas or metal, from $210, made on Oʻahu.",
+  "description": "Sunrise over Kāneʻohe Bay from the ridge above Hakipuʻu, with Mokoliʻi and the fishpond below. Metal, canvas or matted, from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/hanohanohakipuu-2000.jpg"
   ],
   "meta": {
-   "default_id": "hanohanohakipuu_36x24_metal",
-   "default_size": "36 x 24",
+   "default_id": "hanohanohakipuu_30x20_metal",
+   "default_size": "30 x 20",
    "default_material": "metal",
    "orientation": "horizontal"
   }
@@ -157,14 +157,14 @@
   "file": "store/jumanji.html",
   "type": "product",
   "title": "Jumanji: Kaʻaʻawa Valley Aerial Print | Kawika Lopez",
-  "description": "Kaʻaʻawa Valley from the air at sunrise, green cliffs dropping to the coast road and the sea. Canvas or metal, from $210, made on Oʻahu.",
+  "description": "Kaʻaʻawa Valley from the air at sunrise, green cliffs dropping to the coast road and the sea. Metal, canvas or matted, from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/jumanji-2000.jpg"
   ],
   "meta": {
-   "default_id": "jumanji_36x24_metal",
-   "default_size": "36 x 24",
+   "default_id": "jumanji_30x20_metal",
+   "default_size": "30 x 20",
    "default_material": "metal",
    "orientation": "horizontal"
   }
@@ -174,14 +174,14 @@
   "file": "store/jurassicdawn.html",
   "type": "product",
   "title": "Jurassic Dawn: Kaʻaʻawa Valley at Dawn Print | Kawika Lopez",
-  "description": "Kaʻaʻawa Valley at dawn from the air, looking along the windward coast to the ridge. Tall canvas or metal print, from $300, made on Oʻahu.",
+  "description": "Kaʻaʻawa Valley at dawn from the air, looking along the windward coast to the ridge. Tall metal, canvas or matted print, from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/jurassicdawn-1600.jpg"
   ],
   "meta": {
-   "default_id": "jurassicdawn_24x30_metal",
-   "default_size": "24 x 30",
+   "default_id": "jurassicdawn_20x25_metal",
+   "default_size": "20 x 25",
    "default_material": "metal",
    "orientation": "vertical"
   }
@@ -191,14 +191,14 @@
   "file": "store/033.html",
   "type": "product",
   "title": "Candlestick: Makapuʻu Lighthouse Sunrise Print | Kawika Lopez",
-  "description": "Makapuʻu Lighthouse from a drone at sunrise, one cliff lit gold and one in shadow over deep blue water. Canvas or metal, from $210, made on Oʻahu.",
+  "description": "Makapuʻu Lighthouse from a drone at sunrise, one cliff lit gold and one in shadow over deep blue water. Metal, canvas or matted, from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/033-2000.jpg"
   ],
   "meta": {
-   "default_id": "033_36x24_metal",
-   "default_size": "36 x 24",
+   "default_id": "033_30x20_metal",
+   "default_size": "30 x 20",
    "default_material": "metal",
    "orientation": "horizontal"
   }
@@ -208,14 +208,14 @@
   "file": "store/frostedtidepool.html",
   "type": "product",
   "title": "Frosted Tidepool: Kaiwi Coast Tide Pool Print | Kawika Lopez",
-  "description": "A Kaiwi coast tide pool at sunrise, a long exposure turning the water to frosted glass between lava rocks. Tall print from $300, made on Oʻahu.",
+  "description": "A Kaiwi coast tide pool at sunrise, a long exposure turning the water to frosted glass between lava rocks. Tall print from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/frostedtidepool-800.jpg"
   ],
   "meta": {
-   "default_id": "frostedtidepool_24x30_metal",
-   "default_size": "24 x 30",
+   "default_id": "frostedtidepool_20x25_metal",
+   "default_size": "20 x 25",
    "default_material": "metal",
    "orientation": "vertical"
   }
@@ -225,7 +225,7 @@
   "file": "store/hanauma.html",
   "type": "product",
   "title": "Hanauma: Hanauma Bay Aerial Print | Kawika Lopez",
-  "description": "Hanauma Bay from straight above at sunrise, reef showing through clear water inside the crater. Square canvas or metal, from $240, made on Oʻahu.",
+  "description": "Hanauma Bay from straight above at sunrise, reef showing through clear water inside the crater. Square metal or canvas, from $240, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/hanauma-1999.jpg"
@@ -242,14 +242,14 @@
   "file": "store/homecoming.html",
   "type": "product",
   "title": "Homecoming: Haleakalā Sunrise, Maui Print | Kawika Lopez",
-  "description": "First light breaking over a sea of clouds from the summit of Haleakalā on Maui, at sunrise. Canvas or metal, from $210, made on Oʻahu.",
+  "description": "First light breaking over a sea of clouds from the summit of Haleakalā on Maui, at sunrise. Metal, canvas or matted, from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/homecoming-960.jpg"
   ],
   "meta": {
-   "default_id": "homecoming_36x24_metal",
-   "default_size": "36 x 24",
+   "default_id": "homecoming_30x20_metal",
+   "default_size": "30 x 20",
    "default_material": "metal",
    "orientation": "horizontal"
   }
@@ -259,14 +259,14 @@
   "file": "store/hoihoi.html",
   "type": "product",
   "title": "Hoʻi hou: South Point, Hawaiʻi Island Print | Kawika Lopez",
-  "description": "Waves washing over lava rock at South Point on Hawaiʻi Island, a long exposure with the sun low. Canvas or metal, from $210, made on Oʻahu.",
+  "description": "Waves washing over lava rock at South Point on Hawaiʻi Island, a long exposure with the sun low. Metal, canvas or matted, from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/hoihoi-2000.jpg"
   ],
   "meta": {
-   "default_id": "hoihoi_36x24_metal",
-   "default_size": "36 x 24",
+   "default_id": "hoihoi_30x20_metal",
+   "default_size": "30 x 20",
    "default_material": "metal",
    "orientation": "horizontal"
   }
@@ -276,14 +276,14 @@
   "file": "store/hookahi.html",
   "type": "product",
   "title": "Hoʻokahi: Lone Islet at Sunrise Print | Kawika Lopez",
-  "description": "A lone islet in a calm sea under dramatic orange clouds just before sunrise. Tall canvas or metal print, from $300, made on Oʻahu.",
+  "description": "A lone islet in a calm sea under dramatic orange clouds just before sunrise. Tall metal, canvas or matted print, from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/hookahi-1600.jpg"
   ],
   "meta": {
-   "default_id": "hookahi_24x30_metal",
-   "default_size": "24 x 30",
+   "default_id": "hookahi_20x25_metal",
+   "default_size": "20 x 25",
    "default_material": "metal",
    "orientation": "vertical"
   }
@@ -293,14 +293,14 @@
   "file": "store/kahana.html",
   "type": "product",
   "title": "Kahana: Kahana Bay from the Ridge Print | Kawika Lopez",
-  "description": "Kahana Bay at sunrise from the ridge above, the valley and beach curving below. Tall canvas or metal print, from $300, made on Oʻahu.",
+  "description": "Kahana Bay at sunrise from the ridge above, the valley and beach curving below. Tall metal, canvas or matted print, from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/kahana-1600.jpg"
   ],
   "meta": {
-   "default_id": "kahana_24x30_metal",
-   "default_size": "24 x 30",
+   "default_id": "kahana_20x25_metal",
+   "default_size": "20 x 25",
    "default_material": "metal",
    "orientation": "vertical"
   }
@@ -310,14 +310,14 @@
   "file": "store/034.html",
   "type": "product",
   "title": "Kai Emi: Black Sand Wave Patterns Print | Kawika Lopez",
-  "description": "Fine lines drawn in black sand by a receding wave under a soft pastel morning sky. Tall canvas or metal print, from $300, made on Oʻahu.",
+  "description": "Fine lines drawn in black sand by a receding wave under a soft pastel morning sky. Tall metal, canvas or matted print, from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/034-1600.jpg"
   ],
   "meta": {
-   "default_id": "034_24x30_metal",
-   "default_size": "24 x 30",
+   "default_id": "034_20x25_metal",
+   "default_size": "20 x 25",
    "default_material": "metal",
    "orientation": "vertical"
   }
@@ -327,14 +327,14 @@
   "file": "store/kaiwi.html",
   "type": "product",
   "title": "Kaiwi: Kaiwi Coast Highway Aerial Print | Kawika Lopez",
-  "description": "The Kaiwi coast from straight above, Kalanianaʻole Highway winding beside deep blue ocean. Tall canvas or metal print, from $300, made on Oʻahu.",
+  "description": "The Kaiwi coast from straight above, Kalanianaʻole Highway winding beside deep blue ocean. Tall metal, canvas or matted print, from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/kaiwi-1600.jpg"
   ],
   "meta": {
-   "default_id": "kaiwi_24x30_metal",
-   "default_size": "24 x 30",
+   "default_id": "kaiwi_20x25_metal",
+   "default_size": "20 x 25",
    "default_material": "metal",
    "orientation": "vertical"
   }
@@ -344,14 +344,14 @@
   "file": "store/kuamoo.html",
   "type": "product",
   "title": "Kuamoʻo: Kualoa Ridge at Sunrise Print | Kawika Lopez",
-  "description": "The Kaʻaʻawa ridge at Kualoa at sunrise, framed by ironwood branches on the windward shore. Canvas or metal, from $210, made on Oʻahu.",
+  "description": "The Kaʻaʻawa ridge at Kualoa at sunrise, framed by ironwood branches on the windward shore. Metal, canvas or matted, from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/kuamoo-2000.jpg"
   ],
   "meta": {
-   "default_id": "kuamoo_36x24_metal",
-   "default_size": "36 x 24",
+   "default_id": "kuamoo_30x20_metal",
+   "default_size": "30 x 20",
    "default_material": "metal",
    "orientation": "horizontal"
   }
@@ -361,14 +361,14 @@
   "file": "store/032.html",
   "type": "product",
   "title": "Kākau: Koko Head Crater Aerial Print | Kawika Lopez",
-  "description": "Koko Head crater from a drone in low gold light, eroded ridges running across it like a tattoo. Tall canvas or metal print, from $300, made on Oʻahu.",
+  "description": "Koko Head crater from a drone in low gold light, eroded ridges running across it like a tattoo. Tall metal, canvas or matted print, from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/032-1600.jpg"
   ],
   "meta": {
-   "default_id": "032_24x30_metal",
-   "default_size": "24 x 30",
+   "default_id": "032_20x25_metal",
+   "default_size": "20 x 25",
    "default_material": "metal",
    "orientation": "vertical"
   }
@@ -378,14 +378,14 @@
   "file": "store/leahikahiko.html",
   "type": "product",
   "title": "Lēʻahi Kahiko: Diamond Head Crater Aerial Print | Kawika Lopez",
-  "description": "Diamond Head crater, Lēʻahi, from the air at sunrise with Waikīkī and Honolulu beyond. Canvas or metal, from $210, made on Oʻahu.",
+  "description": "Diamond Head crater, Lēʻahi, from the air at sunrise with Waikīkī and Honolulu beyond. Metal, canvas or matted, from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/leahikahiko-2000.jpg"
   ],
   "meta": {
-   "default_id": "leahikahiko_36x24_metal",
-   "default_size": "36 x 24",
+   "default_id": "leahikahiko_30x20_metal",
+   "default_size": "30 x 20",
    "default_material": "metal",
    "orientation": "horizontal"
   }
@@ -395,14 +395,14 @@
   "file": "store/makapuubeach-h.html",
   "type": "product",
   "title": "Makapuʻu Beach: Wide Aerial Print | Kawika Lopez",
-  "description": "Makapuʻu Beach straight down from a drone, white sand, green dune plants and turquoise surf. Canvas or metal, from $210, made on Oʻahu.",
+  "description": "Makapuʻu Beach straight down from a drone, white sand, green dune plants and turquoise surf. Metal, canvas or matted, from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/makapuubeach-h-2000.jpg"
   ],
   "meta": {
-   "default_id": "makapuubeach-h_36x24_metal",
-   "default_size": "36 x 24",
+   "default_id": "makapuubeach-h_30x20_metal",
+   "default_size": "30 x 20",
    "default_material": "metal",
    "orientation": "horizontal"
   }
@@ -412,7 +412,7 @@
   "file": "store/043.html",
   "type": "product",
   "title": "Mauka i Makai: Pālolo to Waikīkī Panorama Print | Kawika Lopez",
-  "description": "From a ridge above Pālolo Valley across Honolulu to Diamond Head and Waikīkī at golden hour. Canvas or metal panorama, from $360, made on Oʻahu.",
+  "description": "From a ridge above Pālolo Valley across Honolulu to Diamond Head and Waikīkī at golden hour. Metal or canvas panorama, from $360, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/043-1500.jpg"
@@ -429,7 +429,7 @@
   "file": "store/038.html",
   "type": "product",
   "title": "Mokoliʻi Pano: Mokoliʻi Aerial Panorama Print | Kawika Lopez",
-  "description": "Mokoliʻi (Chinaman's Hat) from the air at sunrise, the Kualoa ridge and Kāneʻohe Bay behind. Canvas or metal panorama, from $360, made on Oʻahu.",
+  "description": "Mokoliʻi (Chinaman's Hat) from the air at sunrise, the Kualoa ridge and Kāneʻohe Bay behind. Metal or canvas panorama, from $360, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/038-1500.jpg"
@@ -446,14 +446,14 @@
   "file": "store/mokoliireflection.html",
   "type": "product",
   "title": "Mokoliʻi Reflection: Chinaman's Hat at Low Tide | Kawika Lopez",
-  "description": "Mokoliʻi (Chinaman's Hat) at sunrise, reflected in still water over the low tide reef. Tall canvas or metal print, from $300, made on Oʻahu.",
+  "description": "Mokoliʻi (Chinaman's Hat) at sunrise, reflected in still water over the low tide reef. Tall metal, canvas or matted print, from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/mokoliireflection-1599.jpg"
   ],
   "meta": {
-   "default_id": "mokoliireflection_24x30_metal",
-   "default_size": "24 x 30",
+   "default_id": "mokoliireflection_20x25_metal",
+   "default_size": "20 x 25",
    "default_material": "metal",
    "orientation": "vertical"
   }
@@ -463,7 +463,7 @@
   "file": "store/036.html",
   "type": "product",
   "title": "Moku o ka Lani: Puʻu Huluhulu Above the Clouds | Kawika Lopez",
-  "description": "Puʻu Huluhulu breaking through a sea of clouds, seen in the morning from the Mauna Kea Access Road. Canvas or metal panorama, from $360, made on Oʻahu.",
+  "description": "Puʻu Huluhulu breaking through a sea of clouds, seen in the morning from the Mauna Kea Access Road. Metal or canvas panorama, from $360, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/036-1500.jpg"
@@ -480,14 +480,14 @@
   "file": "store/mokulele.html",
   "type": "product",
   "title": "Mokulele: Kualoa Ridge from Mokoliʻi Print | Kawika Lopez",
-  "description": "The Kualoa ridge at sunrise, seen from the rocks of Mokoliʻi across a channel of clear water. Tall canvas or metal print, from $300, made on Oʻahu.",
+  "description": "The Kualoa ridge at sunrise, seen from the rocks of Mokoliʻi across a channel of clear water. Tall metal, canvas or matted print, from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/mokulele-1600.jpg"
   ],
   "meta": {
-   "default_id": "mokulele_24x30_metal",
-   "default_size": "24 x 30",
+   "default_id": "mokulele_20x25_metal",
+   "default_size": "20 x 25",
    "default_material": "metal",
    "orientation": "vertical"
   }
@@ -497,14 +497,14 @@
   "file": "store/mokulua-islands.html",
   "type": "product",
   "title": "Mokulua: Mokulua Islands Aerial Print | Kawika Lopez",
-  "description": "The Mokulua islets off Lanikai from the air in warm low light, the Kailua coast behind them. Canvas or metal, from $210, made on Oʻahu.",
+  "description": "The Mokulua islets off Lanikai from the air in warm low light, the Kailua coast behind them. Metal, canvas or matted, from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/mokulua-islands-2000.jpg"
   ],
   "meta": {
-   "default_id": "mokulua-islands_36x24_metal",
-   "default_size": "36 x 24",
+   "default_id": "mokulua-islands_30x20_metal",
+   "default_size": "30 x 20",
    "default_material": "metal",
    "orientation": "horizontal"
   }
@@ -514,14 +514,14 @@
   "file": "store/olomana.html",
   "type": "product",
   "title": "Olomana: Olomana Above the Mist Print | Kawika Lopez",
-  "description": "Olomana's sharp peak from the air, rising over misty Maunawili rainforest below the Koʻolau. Tall canvas or metal print, from $300, made on Oʻahu.",
+  "description": "Olomana's sharp peak from the air, rising over misty Maunawili rainforest below the Koʻolau. Tall metal, canvas or matted print, from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/olomana-1600.jpg"
   ],
   "meta": {
-   "default_id": "olomana_24x30_metal",
-   "default_size": "24 x 30",
+   "default_id": "olomana_20x25_metal",
+   "default_size": "20 x 25",
    "default_material": "metal",
    "orientation": "vertical"
   }
@@ -531,14 +531,14 @@
   "file": "store/035.html",
   "type": "product",
   "title": "Pakele: Palm Trees on an Oʻahu Beach Print | Kawika Lopez",
-  "description": "Three coconut palms casting long shadows across a beach on Oʻahu's east side, seen from the air. Canvas or metal, from $210, made on Oʻahu.",
+  "description": "Three coconut palms casting long shadows across a beach on Oʻahu's east side, seen from the air. Metal, canvas or matted, from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/035-2000.jpg"
   ],
   "meta": {
-   "default_id": "035_36x24_metal",
-   "default_size": "36 x 24",
+   "default_id": "035_30x20_metal",
+   "default_size": "30 x 20",
    "default_material": "metal",
    "orientation": "horizontal"
   }
@@ -548,14 +548,14 @@
   "file": "store/shorelinecascade.html",
   "type": "product",
   "title": "Shoreline Cascade: North Shore Reef at Sunset | Kawika Lopez",
-  "description": "Water pouring off a mossy reef at low tide on the North Shore at sunset. Tall canvas or metal print, from $300, made on Oʻahu.",
+  "description": "Water pouring off a mossy reef at low tide on the North Shore at sunset. Tall metal, canvas or matted print, from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/shorelinecascade-1600.jpg"
   ],
   "meta": {
-   "default_id": "shorelinecascade_24x30_metal",
-   "default_size": "24 x 30",
+   "default_id": "shorelinecascade_20x25_metal",
+   "default_size": "20 x 25",
    "default_material": "metal",
    "orientation": "vertical"
   }
@@ -565,14 +565,14 @@
   "file": "store/timespan.html",
   "type": "product",
   "title": "Timespan: Makapuʻu Long Exposure Print | Kawika Lopez",
-  "description": "A two minute exposure of Makapuʻu Beach and the lighthouse point at sunrise, clouds streaking the sky. Canvas or metal, from $210, made on Oʻahu.",
+  "description": "A two minute exposure of Makapuʻu Beach and the lighthouse point at sunrise, clouds streaking the sky. Metal, canvas or matted, from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/timespan-2000.jpg"
   ],
   "meta": {
-   "default_id": "timespan_36x24_metal",
-   "default_size": "36 x 24",
+   "default_id": "timespan_30x20_metal",
+   "default_size": "30 x 20",
    "default_material": "metal",
    "orientation": "horizontal"
   }
@@ -582,14 +582,14 @@
   "file": "store/waimanalo.html",
   "type": "product",
   "title": "Waimānalo: Waimānalo Beach Aerial Print | Kawika Lopez",
-  "description": "Waimānalo Beach from the air, scalloped patterns in the sand leading to the Koʻolau cliffs. Tall canvas or metal print, from $300, made on Oʻahu.",
+  "description": "Waimānalo Beach from the air, scalloped patterns in the sand leading to the Koʻolau cliffs. Tall metal, canvas or matted print, from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/waimanalo-1600.jpg"
   ],
   "meta": {
-   "default_id": "waimanalo_24x30_metal",
-   "default_size": "24 x 30",
+   "default_id": "waimanalo_20x25_metal",
+   "default_size": "20 x 25",
    "default_material": "metal",
    "orientation": "vertical"
   }
@@ -599,7 +599,7 @@
   "file": "store/037.html",
   "type": "product",
   "title": "Wanaka: Roys Peak, New Zealand Print | Kawika Lopez",
-  "description": "Roys Peak at sunrise above Lake Wānaka, New Zealand, with snowcapped mountains beyond. Panorama in canvas or metal, from $360, made on Oʻahu.",
+  "description": "Roys Peak at sunrise above Lake Wānaka, New Zealand, with snowcapped mountains beyond. Panorama in metal or canvas, from $360, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/037-2000.jpg"
@@ -616,14 +616,14 @@
   "file": "store/anuenue.html",
   "type": "product",
   "title": "Ānuenue: North Shore Rainbow Print | Kawika Lopez",
-  "description": "A full rainbow arching over the North Shore surf, a mossy rock on the sand in front. Canvas or metal, from $210, made on Oʻahu.",
+  "description": "A full rainbow arching over the North Shore surf, a mossy rock on the sand in front. Metal, canvas or matted, from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/anuenue-2000.jpg"
   ],
   "meta": {
-   "default_id": "anuenue_36x24_metal",
-   "default_size": "36 x 24",
+   "default_id": "anuenue_30x20_metal",
+   "default_size": "30 x 20",
    "default_material": "metal",
    "orientation": "horizontal"
   }
@@ -633,14 +633,14 @@
   "file": "store/eleu.html",
   "type": "product",
   "title": "ʻEleu: Sandy Beach Sunrise Print | Kawika Lopez",
-  "description": "A breaking wave backlit by the rising sun at Sandy Beach on Oʻahu's Kaiwi coast. Canvas or metal, from $210, made on Oʻahu.",
+  "description": "A breaking wave backlit by the rising sun at Sandy Beach on Oʻahu's Kaiwi coast. Metal, canvas or matted, from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/eleu-2000.jpg"
   ],
   "meta": {
-   "default_id": "eleu_36x24_metal",
-   "default_size": "36 x 24",
+   "default_id": "eleu_30x20_metal",
+   "default_size": "30 x 20",
    "default_material": "metal",
    "orientation": "horizontal"
   }
@@ -650,14 +650,14 @@
   "file": "store/018.html",
   "type": "product",
   "title": "ʻĀlina: Koʻolau Valley Aerial Print | Kawika Lopez",
-  "description": "A deep green Koʻolau valley from the air, sheer walls carved by rain into folds and ridges. Tall canvas or metal print, from $300, made on Oʻahu.",
+  "description": "A deep green Koʻolau valley from the air, sheer walls carved by rain into folds and ridges. Tall metal, canvas or matted print, from $55, made on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/prints/018-1600.jpg"
   ],
   "meta": {
-   "default_id": "018_24x30_metal",
-   "default_size": "24 x 30",
+   "default_id": "018_20x25_metal",
+   "default_size": "20 x 25",
    "default_material": "metal",
    "orientation": "vertical"
   }
@@ -667,7 +667,7 @@
   "file": "store/index.html",
   "type": "store",
   "title": "Hawaiʻi Wall Art Prints for Sale | Kawika Lopez",
-  "description": "Fine art prints of Hawaiʻi by Kawika Lopez: panoramas of Waikīkī and Kaʻaʻawa Valley and aerials of the Kaiwi coast, on canvas or metal.",
+  "description": "Fine art prints of Hawaiʻi by Kawika Lopez: panoramas of Waikīkī and Kaʻaʻawa Valley and aerials of the Kaiwi coast, on metal or canvas, or matted from $55.",
   "indexable": true
  },
  {
@@ -675,7 +675,7 @@
   "file": "panoramic-prints.html",
   "type": "collection",
   "title": "Panoramic Hawaiʻi Prints | Kawika Lopez",
-  "description": "Wide panoramic prints of Oʻahu, from Waikīkī and Diamond Head to Kaʻaʻawa Valley. Canvas or metal, up to 72 inches, printed on Oʻahu.",
+  "description": "Wide panoramic prints of Oʻahu, from Waikīkī and Diamond Head to Kaʻaʻawa Valley. Metal or canvas, up to 72 inches, printed on Oʻahu.",
   "indexable": true
  },
  {
@@ -683,7 +683,7 @@
   "file": "horizontal-prints.html",
   "type": "collection",
   "title": "Horizontal Hawaiʻi Landscape Prints | Kawika Lopez",
-  "description": "Horizontal landscape and aerial prints of Hawaiʻi on canvas or metal, 18 x 12 to 36 x 24 inches, printed on Oʻahu.",
+  "description": "Horizontal landscape and aerial prints of Hawaiʻi on metal or canvas, 18 x 12 to 36 x 24 inches, or matted from $55. Printed on Oʻahu.",
   "indexable": true
  },
  {
@@ -691,7 +691,7 @@
   "file": "vertical-prints.html",
   "type": "collection",
   "title": "Vertical Hawaiʻi Prints for Tall Walls | Kawika Lopez",
-  "description": "Vertical landscape and aerial prints of Oʻahu for narrow and tall walls, 16 x 20 to 24 x 30 inches, on canvas or metal.",
+  "description": "Vertical landscape and aerial prints of Oʻahu for narrow and tall walls, 16 x 20 to 24 x 30 inches on metal or canvas, or matted from $55.",
   "indexable": true
  },
  {
@@ -699,7 +699,7 @@
   "file": "landscape-1.html",
   "type": "collection",
   "title": "Hawaiʻi Landscape Photography Prints | Kawika Lopez",
-  "description": "Landscape photography prints of Oʻahu and the islands: valleys, ridges, beaches and coastline at sunrise. Canvas or metal, printed on Oʻahu.",
+  "description": "Landscape photography prints of Oʻahu and the islands: valleys, ridges, beaches and coastline at sunrise. Metal or canvas, printed on Oʻahu.",
   "indexable": true
  },
  {
@@ -707,7 +707,7 @@
   "file": "fine-art.html",
   "type": "collection",
   "title": "Fine Art Hawaiʻi Photography Prints | Kawika Lopez",
-  "description": "Fine art photography prints of Hawaiʻi by Kawika Lopez: long exposures, aerial abstracts and quiet seascapes, on canvas or metal.",
+  "description": "Fine art photography prints of Hawaiʻi by Kawika Lopez: long exposures, aerial abstracts and quiet seascapes, on metal or canvas.",
   "indexable": true
  },
  {
@@ -715,7 +715,7 @@
   "file": "index.html",
   "type": "home",
   "title": "Kawika Lopez | Hawaiʻi Landscape and Aerial Prints",
-  "description": "Hawaiʻi landscape and aerial photography prints by Kawika Lopez. Panoramas of Waikīkī, Diamond Head and Kaʻaʻawa Valley on canvas or metal, printed on Oʻahu.",
+  "description": "Hawaiʻi landscape and aerial photography prints by Kawika Lopez. Panoramas of Waikīkī, Diamond Head and Kaʻaʻawa Valley on metal or canvas, printed on Oʻahu.",
   "indexable": true,
   "images": [
    "assets/img/site/hero-living-2000.jpg"
@@ -726,7 +726,7 @@
   "file": "prints.html",
   "type": "page",
   "title": "Print Sizes and Prices | Kawika Lopez",
-  "description": "Sizes and prices for Kawika Lopez's Hawaiʻi prints, from $210: panoramas up to 72 inches, canvas or metal, each size drawn to scale on a real wall.",
+  "description": "Sizes and prices for Kawika Lopez's Hawaiʻi prints, from matted prints at $55 to metal and canvas panoramas up to 72 inches, each drawn to scale on a real wall.",
   "indexable": true
  },
  {

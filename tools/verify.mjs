@@ -116,13 +116,42 @@ await ctx.close();
   const { ctx, p } = await open();
   await p.goto(BASE + "/" + product.path, { waitUntil: "networkidle" });
   const before = await p.evaluate(() => ({ price: document.querySelector("[data-price]").textContent, ship: document.querySelector('[data-ship="hi"]')?.textContent, w: document.querySelector("[data-room-print]")?.style.width, href: document.querySelector("[data-buy]").href }));
-  const labels = await p.$$(".opt:first-of-type .pill");
+  const labels = await p.$$(".opt-size .tier");
   await labels[0].click();
   await p.click('.pill:has(input[value="canvas"])');
   await p.waitForTimeout(450);
   const after = await p.evaluate(() => ({ price: document.querySelector("[data-price]").textContent, ship: document.querySelector('[data-ship="hi"]')?.textContent, w: document.querySelector("[data-room-print]")?.style.width, href: document.querySelector("[data-buy]").href, canvas: document.querySelector("[data-room]")?.classList.contains("is-canvas") }));
   console.log(`picker on /${product.path}: ${before.price} -> ${after.price}, shipping ${before.ship} -> ${after.ship}, room width ${before.w} -> ${after.w}, canvas=${after.canvas}`);
   if (before.price === after.price || before.ship === after.ship || before.w === after.w || before.href === after.href || !after.canvas) problems.push("picker did not update price, shipping, link or room");
+  await ctx.close();
+}
+
+// The matted print: its card sets $55, hides the material choice, ships at its own rates, and the
+// room switches to the side table scene with the print in its mat. A ?size= link opens it too.
+{
+  const product = pages.find(x => x.type === "product" && ["vertical", "horizontal"].includes((x.meta || {}).orientation));
+  const { ctx, p } = await open();
+  await p.goto(BASE + "/" + product.path, { waitUntil: "networkidle" });
+  const data = await p.evaluate(() => JSON.parse(document.querySelector("[data-picker]").getAttribute("data-picker")));
+  const mv = data.variants.find(v => v.material === "matted");
+  if (!mv) problems.push(`/${product.path}: no matted print`);
+  else {
+    await p.click(".tier-matted");
+    await p.waitForTimeout(100);
+    const m = await p.evaluate(() => ({
+      price: document.querySelector("[data-price]").textContent,
+      materialShown: document.querySelector(".opt-material").getClientRects().length > 0,
+      matted: document.querySelector("[data-room]").classList.contains("is-matted"),
+      scene: [...document.querySelectorAll("[data-scene-img]")].filter(el => !el.hidden).map(el => el.getAttribute("data-scene-img")),
+      hi: document.querySelector('[data-ship="hi"]').textContent, id: document.querySelector("[data-add]")?.getAttribute("data-id"),
+      photo: document.querySelector("[data-room-photo]").style.width }));
+    console.log(`matted on /${product.path}: ${m.price}, material shown=${m.materialShown}, scene=${m.scene}, Hawaiʻi ${m.hi}, photo ${m.photo}`);
+    if (m.price !== "$" + mv.price || m.materialShown || !m.matted || m.scene.length !== 1 || m.scene[0] === "living-dark" ||
+        m.hi !== "$" + mv.rates.hi || (m.id && m.id !== mv.id) || !m.photo) problems.push("matted print did not switch price, material, scene, shipping or mat");
+    await p.goto(BASE + "/" + product.path + `?size=${mv.w}x${mv.h}&material=matted`, { waitUntil: "networkidle" });
+    const q = await p.evaluate(() => ({ price: document.querySelector("[data-price]").textContent, matted: document.querySelector("[data-room]").classList.contains("is-matted") }));
+    if (q.price !== "$" + mv.price || !q.matted) problems.push(`?size link did not open ${mv.id}`);
+  }
   await ctx.close();
 }
 

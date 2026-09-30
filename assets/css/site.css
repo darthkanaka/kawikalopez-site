@@ -252,6 +252,32 @@ p { margin: 0 0 1em; }
 .ship-list [hidden] { display: none; }
 .ship-list [data-ship] { color: var(--ink); font-variant-numeric: tabular-nums; }
 .returns { font-size: var(--step--1); color: var(--ink-2); margin-top: 12px; max-width: 60ch; }
+/* Release B: three named sizes as cards, the default one tagged, more sizes and the matted
+   print below them, the material line under the materials. */
+.tiers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; padding-top: 10px; }
+.tier { position: relative; cursor: pointer; display: block; }
+.tier input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.tier-box { position: relative; display: flex; flex-direction: column; gap: 2px; height: 100%; min-height: 44px; padding: 14px 12px 12px; border: 1px solid var(--rule); border-radius: var(--radius); transition: border-color .15s ease, box-shadow .15s ease; }
+.tier:hover .tier-box { border-color: var(--ink); }
+.tier input:checked + .tier-box { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); background: var(--paper-2); }
+.tier input:focus-visible + .tier-box { outline: 2px solid var(--accent); outline-offset: 3px; }
+.tier-name { font-weight: 600; font-size: 0.9375rem; }
+.tier-dims { font-size: var(--step--1); color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.tier-price { margin-top: 6px; font-size: 0.9375rem; font-variant-numeric: tabular-nums; }
+.tier-tag { position: absolute; top: -10px; left: 10px; padding: 2px 8px; border-radius: 999px; background: var(--accent); color: var(--on-accent); font-size: 0.6875rem; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+.more-sizes { margin-top: 10px; }
+.more-sizes summary { display: inline-flex; align-items: center; min-height: 44px; cursor: pointer; font-size: 0.9375rem; color: var(--ink-2); text-decoration: underline; text-underline-offset: 3px; }
+.more-sizes .opt-row { margin-top: 4px; }
+.pill-price { margin-left: 8px; color: var(--ink-2); }
+.pill input:checked + span .pill-price { color: inherit; }
+.tier-lead { margin: 18px 0 8px; font-size: var(--step--1); color: var(--ink-2); }
+.tier-matted .tier-box { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
+.tier-matted .tier-price { margin: 0 0 0 auto; }
+.compare-link { margin: 12px 0 0; font-size: var(--step--1); }
+.opt-help { margin: 10px 0 0; max-width: 60ch; font-size: var(--step--1); color: var(--ink-2); }
+.picker.is-matted .opt-material { display: none; }
+.noscript-buy { margin-top: 16px; font-size: 0.9375rem; }
+.noscript-buy ul { margin: 6px 0 0; padding-left: 18px; }
 .prose-grid { display: grid; gap: 8px 64px; }
 @media (min-width: 960px) {
   .product-grid { grid-template-columns: minmax(0, 1.45fr) minmax(320px, 1fr); gap: 56px; }
@@ -273,10 +299,20 @@ p { margin: 0 0 1em; }
    pixels per inch (tools/build.py viz_rect, mirrored in site.js). Shadows use container
    units so they scale with the room. */
 .room { position: relative; container-type: inline-size; overflow: hidden; background: #2b2a28; }
-.room > picture img { width: 100%; }
+.room-scene img { display: block; width: 100%; }
+.room-scene[hidden] { display: none; }
 .room-print { position: absolute; transition: left .35s ease, top .35s ease, width .35s ease, height .35s ease; }
-.room-print picture, .room-print img { width: 100%; height: 100%; }
-.room-print img { object-fit: cover; }
+.room-photo { position: absolute; inset: 0; }
+.room-photo picture, .room-photo img { display: block; width: 100%; height: 100%; }
+.room-photo img { object-fit: cover; }
+/* A matted print on the side table scene: the mat toned to that room's light (white reads (186,181,173)
+   on its switch plate), a 45 degree bevel lit from the window on the left, the thin shadow the 1.5 mm
+   mat casts on the print, and two shadows on the wall falling right and down. Kawika tuned these in
+   mockups on 2026-09-29. Sizes are in cqw so they scale with the scene. */
+.is-matted .room-print { background: linear-gradient(90deg, rgb(223 219 211), rgb(212 208 200)); box-shadow: 0.2cqw 0.2cqw 0.4cqw rgba(58, 48, 36, .55), 1.04cqw 0.91cqw 2.34cqw rgba(58, 48, 36, .4); }
+.is-matted .room-photo { box-sizing: border-box; border: 0.2cqw solid; border-color: rgb(210 208 201) rgb(240 237 230) rgb(231 228 221) rgb(194 192 186); }
+.is-matted .room-photo::before { content: ""; position: absolute; inset: 0; z-index: 1; background: rgb(238 233 223); mix-blend-mode: multiply; pointer-events: none; }
+.is-matted .room-photo::after { content: ""; position: absolute; inset: 0; z-index: 2; box-shadow: inset 0.33cqw 0.26cqw 0.4cqw rgba(30, 26, 20, .42); pointer-events: none; }
 .is-canvas .room-print { box-shadow: 0.28cqw 0.22cqw 0 rgba(12, 12, 12, .55), 0.9cqw 1.4cqw 1.6cqw rgba(0, 0, 0, .5); }
 .is-canvas .room-print::after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .18); pointer-events: none; }
 .is-metal .room-print { box-shadow: 1.1cqw 1.6cqw 2cqw rgba(0, 0, 0, .55); }
@@ -317,6 +353,10 @@ p { margin: 0 0 1em; }
   .card { flex: 1 1 100%; }
   .tile-label { font-size: 1.875rem; }
   .price [data-price] { font-size: 2.125rem; }
+}
+
+@media (max-width: 380px) {
+  .tiers { grid-template-columns: 1fr; }
 }
 
 /* 16 Reduced motion -------------------------------------------------------- */

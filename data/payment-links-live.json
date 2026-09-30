@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-28",
+ "generated": "2026-09-29",
  "links": {
   "018_16x20_canvas": {
    "amount": 30000,
@@ -37,6 +37,12 @@
    "ships": true,
    "url": "https://buy.stripe.com/3cI4gzbEBfNfgR04jYenV0t"
   },
+  "018_8x10_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3nI80HaheYEo8EsrLSvZ",
+   "ships": true,
+   "url": "https://buy.stripe.com/3cI6oHcIF7gJ44edUyenV0Y"
+  },
   "032_16x20_canvas": {
    "amount": 30000,
    "price_id": "price_1UK72CI80HaheYEoXH8axLjY",
@@ -72,6 +78,12 @@
    "price_id": "price_1UK72GI80HaheYEoDnjI1hOA",
    "ships": true,
    "url": "https://buy.stripe.com/fZu3cvbEB44x0S2aImenU2J"
+  },
+  "032_8x10_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3bI80HaheYEov46w8Vr1",
+   "ships": true,
+   "url": "https://buy.stripe.com/4gM3cvcIF58B58idUyenV0L"
   },
   "033_18x12_canvas": {
    "amount": 25500,
@@ -121,6 +133,12 @@
    "ships": true,
    "url": "https://buy.stripe.com/fZu00jeQNfNf30a7waenU1F"
   },
+  "033_8x12_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3UI80HaheYEosegv0ax1",
+   "ships": true,
+   "url": "https://buy.stripe.com/00wfZheQNgRj8ku7waenV0C"
+  },
   "034_16x20_canvas": {
    "amount": 30000,
    "price_id": "price_1UK71tI80HaheYEoiHiZmHjM",
@@ -156,6 +174,12 @@
    "price_id": "price_1UK71yI80HaheYEodqu4XxxO",
    "ships": true,
    "url": "https://buy.stripe.com/6oU5kDaAxbwZ30aaImenU2p"
+  },
+  "034_8x10_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3ZI80HaheYEoCkXrKyiv",
+   "ships": true,
+   "url": "https://buy.stripe.com/7sY5kDgYVgRj0S217MenV0I"
   },
   "035_18x12_canvas": {
    "amount": 25500,
@@ -204,6 +228,12 @@
    "price_id": "price_1UK73HI80HaheYEoZC3wVXbJ",
    "ships": true,
    "url": "https://buy.stripe.com/7sY9AT0ZX58B30aeYCenU3P"
+  },
+  "035_8x12_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3hI80HaheYEof3SYIffU",
+   "ships": true,
+   "url": "https://buy.stripe.com/4gM7sL9wt30t6cm9EienV0S"
   },
   "036_30x10_canvas": {
    "amount": 36000,
@@ -397,6 +427,12 @@
    "ships": true,
    "url": "https://buy.stripe.com/9B63cvfUR0Sl7gq6s6enV0f"
   },
+  "anuenue_8x12_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3lI80HaheYEoZXpMhCrF",
+   "ships": true,
+   "url": "https://buy.stripe.com/14A4gz9wtfNfeIS17MenV0W"
+  },
   "eleu_18x12_canvas": {
    "amount": 25500,
    "price_id": "price_1UK73nI80HaheYEoTigthG7R",
@@ -445,6 +481,12 @@
    "ships": true,
    "url": "https://buy.stripe.com/fZudR96kh1Wp58i2bQenV0n"
   },
+  "eleu_8x12_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3mI80HaheYEoddA7bcnu",
+   "ships": true,
+   "url": "https://buy.stripe.com/cNi9ATfUR58B30a2bQenV0X"
+  },
   "frostedtidepool_16x20_canvas": {
    "amount": 30000,
    "price_id": "price_1UK71JI80HaheYEotOw7aDKY",
@@ -480,6 +522,12 @@
    "price_id": "price_1UK71NI80HaheYEo37ah0Xmd",
    "ships": true,
    "url": "https://buy.stripe.com/dRm00jeQNdF7bwG17MenU1L"
+  },
+  "frostedtidepool_8x10_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3UI80HaheYEoKKXjYpHw",
+   "ships": true,
+   "url": "https://buy.stripe.com/3cI5kD4c99oRbwG2bQenV0D"
   },
   "hanauma_16x16_canvas": {
    "amount": 26000,
@@ -565,6 +613,12 @@
    "ships": true,
    "url": "https://buy.stripe.com/eVq7sL3856cFbwGaImenU1j"
   },
+  "hanohanohakipuu_8x12_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3RI80HaheYEo771LqZLe",
+   "ships": true,
+   "url": "https://buy.stripe.com/7sYbJ1aAxgRj8ku8AeenV0z"
+  },
   "hoihoi_18x12_canvas": {
    "amount": 25500,
    "price_id": "price_1UK71bI80HaheYEoUd2TT8NQ",
@@ -612,6 +666,12 @@
    "price_id": "price_1UK71hI80HaheYEoARCQ2gTM",
    "ships": true,
    "url": "https://buy.stripe.com/28E9ATbEBasV44ecQuenU27"
+  },
+  "hoihoi_8x12_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3WI80HaheYEozcBlxMc3",
+   "ships": true,
+   "url": "https://buy.stripe.com/fZudR93858kNasCdUyenV0F"
   },
   "homecoming_18x12_canvas": {
    "amount": 25500,
@@ -661,6 +721,12 @@
    "ships": true,
    "url": "https://buy.stripe.com/14AaEX6kh9oRcAK6s6enU1Z"
   },
+  "homecoming_8x12_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3VI80HaheYEoEaSPQaaP",
+   "ships": true,
+   "url": "https://buy.stripe.com/5kQ00jgYVdF79oyg2GenV0E"
+  },
   "hookahi_16x20_canvas": {
    "amount": 30000,
    "price_id": "price_1UK71iI80HaheYEoKV8WGxEN",
@@ -696,6 +762,12 @@
    "price_id": "price_1UK71nI80HaheYEosABu0IP8",
    "ships": true,
    "url": "https://buy.stripe.com/eVq28r7oldF7bwGg2GenU2d"
+  },
+  "hookahi_8x10_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3XI80HaheYEoNzXOZbxt",
+   "ships": true,
+   "url": "https://buy.stripe.com/9B6dR9cIFdF79oy5o2enV0G"
   },
   "jumanji_18x12_canvas": {
    "amount": 25500,
@@ -745,6 +817,12 @@
    "ships": true,
    "url": "https://buy.stripe.com/28E7sL9wt44x8ku6s6enU1r"
   },
+  "jumanji_8x12_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3SI80HaheYEowtDmD7ji",
+   "ships": true,
+   "url": "https://buy.stripe.com/14AfZhdMJcB3dEO2bQenV0A"
+  },
   "jurassicdawn_16x20_canvas": {
    "amount": 30000,
    "price_id": "price_1UK716I80HaheYEoQpJNZ1aK",
@@ -780,6 +858,12 @@
    "price_id": "price_1UK71BI80HaheYEoezCajmfO",
    "ships": true,
    "url": "https://buy.stripe.com/aFaaEXcIFgRj9oycQuenU1x"
+  },
+  "jurassicdawn_8x10_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3TI80HaheYEoK1Yflqla",
+   "ships": true,
+   "url": "https://buy.stripe.com/5kQ00j6kh6cFasC6s6enV0B"
   },
   "kaaawasunrise_18x12_canvas": {
    "amount": 25500,
@@ -828,6 +912,12 @@
    "price_id": "price_1UK70XI80HaheYEo7IFNBgu6",
    "ships": true,
    "url": "https://buy.stripe.com/3cI14ncIF44xasC7waenU0R"
+  },
+  "kaaawasunrise_8x12_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3NI80HaheYEoX37iUXe3",
+   "ships": true,
+   "url": "https://buy.stripe.com/fZu00jgYV8kN8ku8AeenV0v"
   },
   "kaaawavalley_30x10_canvas": {
    "amount": 36000,
@@ -901,6 +991,12 @@
    "ships": true,
    "url": "https://buy.stripe.com/28E00j7olfNffMW5o2enU2j"
   },
+  "kahana_8x10_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3YI80HaheYEoxqMJMsdw",
+   "ships": true,
+   "url": "https://buy.stripe.com/00w5kDfUR58B58ieYCenV0H"
+  },
   "kaimana_30x10_canvas": {
    "amount": 36000,
    "price_id": "price_1UK708I80HaheYEoqGdFCIhb",
@@ -973,6 +1069,12 @@
    "ships": true,
    "url": "https://buy.stripe.com/6oUbJ124144x1W6dUyenU2v"
   },
+  "kaiwi_8x10_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3aI80HaheYEo3d7ebigA",
+   "ships": true,
+   "url": "https://buy.stripe.com/7sY14ngYVdF79oyg2GenV0J"
+  },
   "kuamoo_18x12_canvas": {
    "amount": 25500,
    "price_id": "price_1UK724I80HaheYEo6NkiBq9d",
@@ -1020,6 +1122,12 @@
    "price_id": "price_1UK72AI80HaheYEoPbYdJjkR",
    "ships": true,
    "url": "https://buy.stripe.com/eVq3cv6kh58BfMWeYCenU2D"
+  },
+  "kuamoo_8x12_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3bI80HaheYEoeFfvy0dD",
+   "ships": true,
+   "url": "https://buy.stripe.com/28EdR92418kN58i3fUenV0K"
   },
   "leahikahiko_18x12_canvas": {
    "amount": 25500,
@@ -1069,6 +1177,12 @@
    "ships": true,
    "url": "https://buy.stripe.com/9B69ATeQNasVbwG8AeenU2R"
   },
+  "leahikahiko_8x12_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3cI80HaheYEoux3fQA1I",
+   "ships": true,
+   "url": "https://buy.stripe.com/cNi5kDfURcB344e5o2enV0M"
+  },
   "makapuubeach-h_18x12_canvas": {
    "amount": 25500,
    "price_id": "price_1UK72PI80HaheYEoI3VnO9yi",
@@ -1117,6 +1231,12 @@
    "ships": true,
    "url": "https://buy.stripe.com/7sYeVdcIF6cFfMW3fUenU2Z"
   },
+  "makapuubeach-h_8x12_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3dI80HaheYEoYMcXHqmq",
+   "ships": true,
+   "url": "https://buy.stripe.com/4gM8wPfURgRjcAK7waenV0N"
+  },
   "makapuubeach-v_16x20_canvas": {
    "amount": 30000,
    "price_id": "price_1UK70ZI80HaheYEoYUDHvQQP",
@@ -1152,6 +1272,12 @@
    "price_id": "price_1UK70dI80HaheYEo5rwLl6EK",
    "ships": true,
    "url": "https://buy.stripe.com/5kQeVd8spgRj8ku2bQenU0X"
+  },
+  "makapuubeach-v_8x10_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3OI80HaheYEoUvlTIGP0",
+   "ships": true,
+   "url": "https://buy.stripe.com/28EfZh2410SlasC3fUenV0w"
   },
   "malie_18x12_canvas": {
    "amount": 25500,
@@ -1201,6 +1327,12 @@
    "ships": true,
    "url": "https://buy.stripe.com/cNi14n6kh6cF6cm7waenU0J"
   },
+  "malie_8x12_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3NI80HaheYEo6haf2xpX",
+   "ships": true,
+   "url": "https://buy.stripe.com/aFa00jdMJ30t7gq4jYenV0u"
+  },
   "mokoliireflection_16x20_canvas": {
    "amount": 30000,
    "price_id": "price_1UK72nI80HaheYEo6a3vst10",
@@ -1237,6 +1369,12 @@
    "ships": true,
    "url": "https://buy.stripe.com/9B6aEX7ol44xdEOeYCenU3n"
   },
+  "mokoliireflection_8x10_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3eI80HaheYEoTCZe2c5B",
+   "ships": true,
+   "url": "https://buy.stripe.com/fZu3cvfUR30tdEOcQuenV0O"
+  },
   "mokulele_16x20_canvas": {
    "amount": 30000,
    "price_id": "price_1UK72sI80HaheYEokeipsRJ3",
@@ -1272,6 +1410,12 @@
    "price_id": "price_1UK72xI80HaheYEo6FbteWP7",
    "ships": true,
    "url": "https://buy.stripe.com/4gM00jfUR1WpasCeYCenU3t"
+  },
+  "mokulele_8x10_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3fI80HaheYEoTcsUcehA",
+   "ships": true,
+   "url": "https://buy.stripe.com/fZu14n241asVcAK6s6enV0P"
   },
   "mokulua-islands_18x12_canvas": {
    "amount": 25500,
@@ -1321,6 +1465,12 @@
    "ships": true,
    "url": "https://buy.stripe.com/7sY14neQNbwZ58idUyenU3B"
   },
+  "mokulua-islands_8x12_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3gI80HaheYEoOGo2swny",
+   "ships": true,
+   "url": "https://buy.stripe.com/dRmdR90ZX44x1W64jYenV0Q"
+  },
   "mokulua_18x12_canvas": {
    "amount": 25500,
    "price_id": "price_1UK70eI80HaheYEo9nPEXeaX",
@@ -1368,6 +1518,12 @@
    "price_id": "price_1UK70kI80HaheYEoSAkkwH51",
    "ships": true,
    "url": "https://buy.stripe.com/6oU9AT6kh58BdEO5o2enU15"
+  },
+  "mokulua_8x12_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3PI80HaheYEoYlWucZqj",
+   "ships": true,
+   "url": "https://buy.stripe.com/8x23cv8spasV0S2cQuenV0x"
   },
   "naniwaikiki_30x10_canvas": {
    "amount": 36000,
@@ -1441,6 +1597,12 @@
    "ships": true,
    "url": "https://buy.stripe.com/9B614n5gd6cF30a5o2enU3H"
   },
+  "olomana_8x10_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3hI80HaheYEoRek7ge3v",
+   "ships": true,
+   "url": "https://buy.stripe.com/14A00jbEB0Sl7gqbMqenV0R"
+  },
   "puao_16x20_canvas": {
    "amount": 30000,
    "price_id": "price_1UK70mI80HaheYEorhyRYgE4",
@@ -1477,6 +1639,12 @@
    "ships": true,
    "url": "https://buy.stripe.com/eVq3cv8spcB3cAK9EienU1b"
   },
+  "puao_8x10_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3QI80HaheYEoXmcCR2AA",
+   "ships": true,
+   "url": "https://buy.stripe.com/3cI5kDcIF44xfMW4jYenV0y"
+  },
   "shorelinecascade_16x20_canvas": {
    "amount": 30000,
    "price_id": "price_1UK73II80HaheYEonnEsgOiS",
@@ -1512,6 +1680,12 @@
    "price_id": "price_1UK73MI80HaheYEom0msvcqB",
    "ships": true,
    "url": "https://buy.stripe.com/cNi6oHdMJ8kN8ku9EienU3V"
+  },
+  "shorelinecascade_8x10_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3iI80HaheYEojlUwuka6",
+   "ships": true,
+   "url": "https://buy.stripe.com/aFa5kD2411Wp0S2eYCenV0T"
   },
   "timespan_18x12_canvas": {
    "amount": 25500,
@@ -1561,6 +1735,12 @@
    "ships": true,
    "url": "https://buy.stripe.com/8x24gzcIFcB31W617MenU43"
   },
+  "timespan_8x12_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3kI80HaheYEokbHlRtwG",
+   "ships": true,
+   "url": "https://buy.stripe.com/6oUeVdaAxdF7bwG2bQenV0U"
+  },
   "waimanalo_16x20_canvas": {
    "amount": 30000,
    "price_id": "price_1UK73UI80HaheYEoCSf50jC6",
@@ -1596,6 +1776,12 @@
    "price_id": "price_1UK73ZI80HaheYEoSbRfRfHU",
    "ships": true,
    "url": "https://buy.stripe.com/fZu14n6kh9oR58i2bQenV01"
+  },
+  "waimanalo_8x10_matted": {
+   "amount": 5500,
+   "price_id": "price_1ULH3kI80HaheYEoellasUMZ",
+   "ships": true,
+   "url": "https://buy.stripe.com/fZu3cv0ZX9oR6cm03IenV0V"
   }
  },
  "mode": "live"

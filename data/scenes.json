@@ -50,6 +50,39 @@
    "dx": 6,
    "dy": 10,
    "opacity": 0.45
-  }
+  },
+  "tail": "shown to scale above a 10 foot sofa"
+ },
+ {
+  "id": "nook-light",
+  "name": "Side table",
+  "use": "matted",
+  "note": "For matted prints. Kawika's ChatGPT scene (2026-09-29): a small light-wood side table against a warm greige wall, with a light switch plate for scale. Mat tone, bevel and shadows tuned with Kawika the same day.",
+  "source": "harvest/images/site/nook-light-source.png",
+  "image": {
+   "base": "assets/img/scenes/nook-light",
+   "width": 1536,
+   "height": 1024,
+   "widths": [
+    960,
+    1536
+   ],
+   "alt": "A small light-wood side table against a warm greige wall, a monstera leaf in a white vase and a book on top, a window on the left and a light switch on the right"
+  },
+  "wall": {
+   "x": 130,
+   "y": 0,
+   "w": 1230,
+   "h": 690
+  },
+  "calibration_note": "The light switch plate on the wall plane: face 76 x 119 px for a standard 2.75 x 4.5 in plate, averaged to 27 px per inch. Kawika approved the size in mockups on 2026-09-29.",
+  "ppi": 27.0,
+  "anchor": {
+   "x": 0.5163,
+   "bottom": 0.7507
+  },
+  "anchor_note": "Prints hang with their bottom edge 7 in above the tabletop (y 707), centred on the table (x 765).",
+  "tail": "shown to scale above a small side table",
+  "wallTone": "light"
  }
 ]

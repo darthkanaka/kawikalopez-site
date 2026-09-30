@@ -24,7 +24,8 @@ var KL = (function () {
   var rect = function (room, wIn, hIn) {
     var W = room.W, H = room.H, wall = room.wall, a = room.anchor;
     var wpx = wIn * room.ppi, hpx = hIn * room.ppi;
-    var cx = wall.x + a.x * wall.w, cy = wall.y + a.y * wall.h;
+    var cx = wall.x + a.x * wall.w;
+    var cy = a.bottom !== undefined ? wall.y + a.bottom * wall.h - hpx / 2 : wall.y + a.y * wall.h;
     var left = wpx <= wall.w ? Math.min(Math.max(cx - wpx / 2, wall.x), wall.x + wall.w - wpx) : cx - wpx / 2;
     var top = hpx <= wall.h ? Math.min(Math.max(cy - hpx / 2, wall.y), wall.y + wall.h - hpx) : cy - hpx / 2;
     return { left: left / W * 100, top: top / H * 100, width: wpx / W * 100, height: hpx / H * 100 };
@@ -72,15 +73,31 @@ var KL = (function () {
   var each = function (list, fn) { Array.prototype.forEach.call(list, fn); };
   var squash = function (s) { return String(s || "").toLowerCase().replace(/[^a-z0-9]/g, ""); };
 
+  /* The chosen size and material. A size sold in one material only (the matted print) needs no
+     material choice. */
   function current() {
     var size = form.querySelector('input[name="size"]:checked');
     var mat = form.querySelector('input[name="material"]:checked');
-    if (!size || !mat) return null;
-    for (var i = 0; i < data.variants.length; i++) {
-      var v = data.variants[i];
-      if (v.size === size.value && v.material === mat.value) return v;
+    if (!size) return null;
+    var same = data.variants.filter(function (v) { return v.size === size.value; });
+    if (same.length === 1) return same[0];
+    for (var i = 0; i < same.length; i++) {
+      if (mat && same[i].material === mat.value) return same[i];
     }
     return null;
+  }
+
+  var label = function (v) { return v.material === "matted" ? v.size + " print, 11 x 14 mat" : v.size + " in, " + v.material; };
+
+  /* Each size card shows its price in the material that's chosen. */
+  function cardPrices() {
+    var mat = form.querySelector('input[name="material"]:checked');
+    var m = mat ? mat.value : "metal";
+    each(form.querySelectorAll("[data-tier-price]"), function (el) {
+      var size = el.getAttribute("data-tier-price"), hit = null;
+      data.variants.forEach(function (x) { if (x.size === size && x.material === m) hit = x; });
+      el.textContent = hit ? KL.money(hit.price) : "";
+    });
   }
 
   /* A value that matches no size, or a size and material that isn't sold, leaves the default. */
@@ -118,7 +135,9 @@ var KL = (function () {
     var v = current();
     if (!v) return;
     if (priceEl) priceEl.textContent = KL.money(v.price);
-    if (choiceEl) choiceEl.textContent = v.size + " in, " + v.material;
+    if (choiceEl) choiceEl.textContent = label(v);
+    form.classList.toggle("is-matted", v.material === "matted");
+    cardPrices();
     shipping(v);
     if (more && !more.open) {
       var s = form.querySelector('input[name="size"]:checked');
@@ -127,7 +146,7 @@ var KL = (function () {
     if (add) add.setAttribute("data-id", v.id);
     if (buy) {
       buy.href = v.link ? v.link : "mailto:" + data.email + "?subject=" +
-        encodeURIComponent("Print order: " + data.title + ", " + v.size + " in " + v.material);
+        encodeURIComponent("Print order: " + data.title + ", " + (v.material === "matted" ? v.size + " matted print" : v.size + " in " + v.material));
     }
     document.dispatchEvent(new CustomEvent("variant:change", { detail: v }));
   }
@@ -146,29 +165,48 @@ var KL = (function () {
 })();
 
 /* 03 Room preview (to scale) ------------------------------------------------ */
+/* Canvas and metal show in the living room. The matted print shows in its mat on the side table
+   scene, where an 11 x 14 reads at a natural size; switching scenes jumps rather than slides. */
 (function () {
   "use strict";
   var room = document.querySelector("[data-room]");
   if (!room) return;
   var cfg = KL.parse(room, "data-room");
   var print = room.querySelector("[data-room-print]");
+  var photo = room.querySelector("[data-room-photo]");
   var caption = document.querySelector("[data-room-caption]");
   var title = document.querySelector(".info-head h1");
   if (!cfg || !print) return;
+  if (!cfg.scenes) cfg = { scenes: { main: cfg }, main: "main", matted: null };   /* a page from before two scenes */
+  var imgs = room.querySelectorAll("[data-scene-img]");
+  var shown = cfg.main;
 
   function show(v, instant) {
-    var r = KL.rect(cfg, v.w, v.h);
-    if (instant) print.style.transition = "none";
+    var matted = v.material === "matted" && v.mat && cfg.matted && cfg.scenes[cfg.matted];
+    var id = matted ? cfg.matted : cfg.main, sc = cfg.scenes[id];
+    var jump = instant || id !== shown;
+    var r = KL.rect(sc, matted ? v.mat.w : v.w, matted ? v.mat.h : v.h);
+    if (jump) print.style.transition = "none";
     print.style.left = r.left + "%";
     print.style.top = r.top + "%";
     print.style.width = r.width + "%";
     print.style.height = r.height + "%";
-    if (instant) { void print.offsetWidth; print.style.transition = ""; }
+    Array.prototype.forEach.call(imgs, function (el) { el.hidden = el.getAttribute("data-scene-img") !== id; });
+    shown = id;
+    if (photo) {
+      var m = matted ? v.mat : null;
+      photo.style.left = m ? (m.w - m.open_w) / 2 / m.w * 100 + "%" : "";
+      photo.style.top = m ? (m.h - m.open_h) / 2 / m.h * 100 + "%" : "";
+      photo.style.width = m ? m.open_w / m.w * 100 + "%" : "";
+      photo.style.height = m ? m.open_h / m.h * 100 + "%" : "";
+    }
     room.classList.toggle("is-metal", v.material === "metal");
     room.classList.toggle("is-canvas", v.material === "canvas");
+    room.classList.toggle("is-matted", !!matted);
+    if (jump) { void print.offsetWidth; print.style.transition = ""; }
     if (caption) {
-      caption.textContent = (title ? title.textContent : "This print") + " at " + v.size + " in, " +
-        v.material + ", shown to scale above a 10 foot sofa.";
+      caption.textContent = (title ? title.textContent : "This print") + " at " +
+        (matted ? v.size + " in, in an 11 x 14 mat" : v.size + " in, " + v.material) + ", " + (sc.tail || "shown to scale") + ".";
     }
   }
 
@@ -238,21 +276,30 @@ var KL = (function () {
    mainlandQuote, boxes}; hi and mainland are what the customer pays (quote x markup, rounded
    up to the next dollar). boxes: the lab orders for mainland shipping, each a list of units. */
 function shipQuote(model, items) {
-  var units = [], i, j, it;
+  var units = [], matted = 0, i, j, it;
   for (i = 0; i < items.length; i++) {
     it = items[i];
+    if (it.material === "matted") { matted += it.qty; continue; }
     for (j = 0; j < it.qty; j++) {
       units.push({ w: it.w, h: it.h, material: it.material, area: it.w * it.h });
     }
   }
+  // Matted prints ship from Kawika, not the lab: up to model.matted.per_mailer to a mailer, each
+  // mailer a flat charge (already marked up) added to whatever the lab part of the order costs.
+  var mm = model.matted || { per_mailer: 3, hi: 0, mainland: 0 };
+  var mailers = matted ? Math.ceil(matted / mm.per_mailer) : 0;
   var oversize = function (u) {
     return Math.max(u.w, u.h) > model.max_long_edge_in || Math.min(u.w, u.h) > model.max_short_edge_in ||
       u.area > model.mainland_box_max_sq_in;
   };
   for (i = 0; i < units.length; i++) {
-    if (oversize(units[i])) return { ships: false, pickupOnly: true, boxes: [] };
+    if (oversize(units[i])) return { ships: false, pickupOnly: true, boxes: [], mailers: mailers };
   }
-  if (!units.length) return { ships: false, pickupOnly: false, boxes: [] };
+  if (!units.length && !mailers) return { ships: false, pickupOnly: false, boxes: [], mailers: 0 };
+  if (!units.length) {
+    return { ships: true, pickupOnly: false, hi: mailers * mm.hi, mainland: mailers * mm.mainland, hiQuote: 0,
+      mainlandQuote: 0, boxes: [], mailers: mailers };
+  }
 
   var hq = model.hi.base;
   for (i = 0; i < units.length; i++) {
@@ -281,8 +328,8 @@ function shipQuote(model, items) {
   for (j = 0; j < sums.length; j++) mq += step(sums[j]);
 
   var charge = function (q) { return Math.ceil(q * model.markup_pct / 10000) * 100; };
-  return { ships: true, pickupOnly: false, hi: charge(hq), mainland: charge(mq), hiQuote: hq,
-    mainlandQuote: mq, boxes: boxes };
+  return { ships: true, pickupOnly: false, hi: charge(hq) + mailers * mm.hi, mainland: charge(mq) + mailers * mm.mainland,
+    hiQuote: hq, mainlandQuote: mq, boxes: boxes, mailers: mailers };
 }
 /* END shipQuote */
 
@@ -397,7 +444,8 @@ var Cart = (function () {
       var info = el("div", "cart-info");
       var a = el("a", "cart-title", v.title); a.href = prefix + v.path;
       info.appendChild(a);
-      info.appendChild(el("p", "cart-meta", v.size + " in, " + v.material + (v.ships ? "" : ". Pickup on Oʻahu only")));
+      info.appendChild(el("p", "cart-meta", (v.material === "matted" ? v.size + " print, in an 11 x 14 mat" : v.size + " in, " + v.material) +
+        (v.ships ? "" : ". Pickup on Oʻahu only")));
       var row = el("div", "cart-row");
       var lab = el("label", "cart-qty");
       lab.appendChild(document.createTextNode("Qty "));

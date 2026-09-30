@@ -131,7 +131,8 @@ function createSession_(req) {
     if (!m) throw new Error("price " + p.id + " has no size metadata");
     lines.push({ price: p.id, quantity: want[id] });
     items.push({ w: Number(m[1]), h: Number(m[2]), qty: want[id], material: p.metadata.material });
-    names.push(want[id] + " x " + p.product.name + ", " + p.metadata.size + " " + p.metadata.material);
+    names.push(want[id] + " x " + p.product.name + ", " + p.metadata.size + " " +
+      (p.metadata.material === "matted" ? "matted print" : p.metadata.material));
   });
 
   var s = shipQuote(model, items);
@@ -251,21 +252,30 @@ function json_(o) {
    mainlandQuote, boxes}; hi and mainland are what the customer pays (quote x markup, rounded
    up to the next dollar). boxes: the lab orders for mainland shipping, each a list of units. */
 function shipQuote(model, items) {
-  var units = [], i, j, it;
+  var units = [], matted = 0, i, j, it;
   for (i = 0; i < items.length; i++) {
     it = items[i];
+    if (it.material === "matted") { matted += it.qty; continue; }
     for (j = 0; j < it.qty; j++) {
       units.push({ w: it.w, h: it.h, material: it.material, area: it.w * it.h });
     }
   }
+  // Matted prints ship from Kawika, not the lab: up to model.matted.per_mailer to a mailer, each
+  // mailer a flat charge (already marked up) added to whatever the lab part of the order costs.
+  var mm = model.matted || { per_mailer: 3, hi: 0, mainland: 0 };
+  var mailers = matted ? Math.ceil(matted / mm.per_mailer) : 0;
   var oversize = function (u) {
     return Math.max(u.w, u.h) > model.max_long_edge_in || Math.min(u.w, u.h) > model.max_short_edge_in ||
       u.area > model.mainland_box_max_sq_in;
   };
   for (i = 0; i < units.length; i++) {
-    if (oversize(units[i])) return { ships: false, pickupOnly: true, boxes: [] };
+    if (oversize(units[i])) return { ships: false, pickupOnly: true, boxes: [], mailers: mailers };
   }
-  if (!units.length) return { ships: false, pickupOnly: false, boxes: [] };
+  if (!units.length && !mailers) return { ships: false, pickupOnly: false, boxes: [], mailers: 0 };
+  if (!units.length) {
+    return { ships: true, pickupOnly: false, hi: mailers * mm.hi, mainland: mailers * mm.mainland, hiQuote: 0,
+      mainlandQuote: 0, boxes: [], mailers: mailers };
+  }
 
   var hq = model.hi.base;
   for (i = 0; i < units.length; i++) {
@@ -294,7 +304,7 @@ function shipQuote(model, items) {
   for (j = 0; j < sums.length; j++) mq += step(sums[j]);
 
   var charge = function (q) { return Math.ceil(q * model.markup_pct / 10000) * 100; };
-  return { ships: true, pickupOnly: false, hi: charge(hq), mainland: charge(mq), hiQuote: hq,
-    mainlandQuote: mq, boxes: boxes };
+  return { ships: true, pickupOnly: false, hi: charge(hq) + mailers * mm.hi, mainland: charge(mq) + mailers * mm.mainland,
+    hiQuote: hq, mainlandQuote: mq, boxes: boxes, mailers: mailers };
 }
 /* END shipQuote */

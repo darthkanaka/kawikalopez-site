@@ -140,6 +140,8 @@ def main():
             for r in rows:
                 for k, v in (prev.get((r["w"], r["h"])) or {}).items():
                     r.setdefault(k, v)
+        for k, v in old.items():                         # sections that aren't a shape (matted)
+            matrix.setdefault(k, v)
     header = ("# Size and price matrix per orientation, derived from the Squarespace catalog on 2026-09-25.\n"
               "# New prints inherit the matrix of their orientation. Prices in whole dollars.\n"
               "# Edit here to change prices for every print of an orientation; per-print prices live in products.json.\n")

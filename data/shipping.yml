@@ -37,7 +37,13 @@ zones:
   - {id: mainland, label: US mainland, days: [10, 21]}
 
 # Keyed by material, then size as width x height in inches (either orientation matches).
+# matted (Kawika, 2026-09-29): Kawika mats and ships these himself by USPS Ground Advantage, so they
+# don't use the lab's rates. Charge = commercial postage (up to 1 lb: zone 4 $8.15, zones 8 and 9
+# $10.67, July 2026 prices) plus a $1.26 rigid mailer, x 1.08, rounded up to the next dollar.
 rates:
+  matted:
+    "8x10": {hi: 1100, mainland: 1300}
+    "8x12": {hi: 1100, mainland: 1300}
   metal:
     "16x16": {hi: 3900, mainland: 9200}   # quote $35.42 / $85.00
     "16x20": {hi: 4300, mainland: 9200}   # quote $39.26 / $85.00
@@ -100,3 +106,6 @@ cart:
     - [1320, 15500]
   max_items: 10
   max_qty: 5
+  # Matted prints ship from Kawika, not the lab: one mailer holds up to three, and each mailer is a
+  # flat charge on top of any lab shipping in the same order (cents, already marked up).
+  matted: {per_mailer: 3, hi: 1100, mainland: 1300}

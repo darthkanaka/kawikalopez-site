@@ -6,7 +6,7 @@ legal_name: Veex Photo LLC
 tagline: Hawaiʻi landscape prints, printed on Oʻahu
 description: >-
   Fine art landscape and aerial prints of Hawaiʻi by Kawika Lopez, printed here on
-  Oʻahu on canvas or metal.
+  Oʻahu on metal or canvas, or as matted prints from $55.
 
 base_url:
   staging: https://darthkanaka.github.io/kawikalopez-site/
@@ -49,6 +49,20 @@ person:
 printer:
   lab: Pictures Plus, Kapolei
   turnaround: about a week
+
+# The size and material picker (Release B, from Kawika's decision paralysis report, approved 2026-09-29).
+# Three named sizes per print; the default size carries pick_label. Kawika's wording for the material
+# line and the matted print description, approved 2026-09-29.
+picker:
+  tiers: {accent: Accent, signature: Signature, statement: Statement}
+  pick_label: Kawika's pick
+  more_label: More sizes
+  default_material: metal
+  material_help: Kawika has always leaned toward metal as his preferred way to show a photograph. The color comes out bright and deep, with a clean, modern look.
+  matted:
+    name: Matted print
+    lead: Or a smaller matted print
+    description: A smaller, simpler way to bring one of these photographs home. It's printed here on Oʻahu on 275-gram satin photo paper, with rich color and a smooth, scratch-resistant finish. It's set in an acid-free white mat, 11 x 14 on the outside, with a backing board and a clear sleeve to keep it clean. Vertical photos are 8 x 10 and horizontal ones are 8 x 12, and both fit any standard 11 x 14 frame.
 
 # Print page copy. A line shows only once confirmed is true (Kawika approves each one).
 product_copy:

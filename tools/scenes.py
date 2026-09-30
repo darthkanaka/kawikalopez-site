@@ -93,11 +93,13 @@ def main(argv=None):
     scenes = json.loads(DATA.read_text())
     for sc in scenes:
         src = ROOT / sc["source"]
-        outs = [OUT / f"{sc['id']}-{w}.{e}" for w in WIDTHS for e in ("webp", "jpg")]
-        stale = a.force or not all(p.exists() and p.stat().st_mtime >= src.stat().st_mtime for p in outs)
         im = Image.open(src).convert("RGB")
         sc["image"]["width"], sc["image"]["height"] = im.size
-        widths = [w for w in WIDTHS if w <= im.width] or [im.width]
+        # The standard widths it can fill, plus its own width when that is smaller than the largest,
+        # so a 1536 px scene still gets a sharp copy for wide screens.
+        widths = sorted({w for w in WIDTHS if w <= im.width} | ({im.width} if im.width < max(WIDTHS) else set()))
+        outs = [OUT / f"{sc['id']}-{w}.{e}" for w in widths for e in ("webp", "jpg")]
+        stale = a.force or not all(p.exists() and p.stat().st_mtime >= src.stat().st_mtime for p in outs)
         sc["image"]["widths"] = widths
         if sc.get("calibration"):
             cal = sc["calibration"]

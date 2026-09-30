@@ -14,7 +14,7 @@
         <p class="eyebrow">{{ p.orientation_label }} print{% if p.location %} · {{ p.location.short }}{% elif p.island %} · {{ p.island }}{% endif %}</p>
         <h1>{{ p.title }}</h1>
         {% if p.subtitle %}<p class="subtitle">{{ p.subtitle }}</p>{% endif %}
-        <p class="from">From {{ money(p.priceFrom) }}, canvas or metal</p>
+        <p class="from">From {{ money(p.priceFrom) }}, {{ "metal, canvas or matted" if p.matted else "metal or canvas" }}</p>
         <ul class="facts">
           <li>Printed to order here on Oʻahu, usually in {{ site.printer.turnaround }}</li>
           <li>Free pickup on Oʻahu, or shipped anywhere in the US</li>
@@ -24,22 +24,55 @@
         <p class="ask"><a href="{{ url('contact') }}?print={{ p.title | urlencode }}">Questions about this print?</a> <a href="{{ url('prints') }}">Sizes and pricing</a></p>
       </div>
 
+      {% set pk = site.picker %}
       <form class="picker" data-picker="{{ picker | json }}" onsubmit="return false">
-        <fieldset class="opt">
+        <fieldset class="opt opt-size">
           <legend>Size, in inches</legend>
-          <div class="opt-row">
-            {% for s in p.sizes %}
-            <label class="pill"><input type="radio" name="size" value="{{ s.label }}"{% if s.label == default_variant.size %} checked{% endif %}><span>{{ s.label }}</span></label>
+          <div class="tiers">
+            {% for s in p.sizes if not s.more %}
+            <label class="tier">
+              <input type="radio" name="size" value="{{ s.label }}"{% if s.label == default_variant.size %} checked{% endif %}>
+              <span class="tier-box">
+                <span class="tier-name">{{ pk.tiers[s.tier] if s.tier else s.label }}</span>
+                <span class="tier-dims">{{ s.label }}</span>
+                <span class="tier-price" data-tier-price="{{ s.label }}">{% if s.prices[default_variant.material] %}{{ money(s.prices[default_variant.material]) }}{% endif %}</span>
+                {% if s.label == p.default_size %}<span class="tier-tag">{{ pk.pick_label }}</span>{% endif %}
+              </span>
+            </label>
             {% endfor %}
           </div>
+          {% set more = p.sizes | selectattr("more") | list %}
+          {% if more %}
+          <details class="more-sizes" data-more-sizes{% if default_variant.size in more | map(attribute="label") | list %} open{% endif %}>
+            <summary>{{ pk.more_label }}</summary>
+            <div class="opt-row">
+              {% for s in more %}
+              <label class="pill"><input type="radio" name="size" value="{{ s.label }}"{% if s.label == default_variant.size %} checked{% endif %}><span>{{ s.label }} <span class="pill-price" data-tier-price="{{ s.label }}">{% if s.prices[default_variant.material] %}{{ money(s.prices[default_variant.material]) }}{% endif %}</span></span></label>
+              {% endfor %}
+            </div>
+          </details>
+          {% endif %}
+          {% if p.matted %}
+          <p class="tier-lead">{{ pk.matted.lead }}</p>
+          <label class="tier tier-matted">
+            <input type="radio" name="size" value="{{ p.matted.size }}">
+            <span class="tier-box">
+              <span class="tier-name">{{ pk.matted.name }}</span>
+              <span class="tier-dims">{{ p.matted.size }} print, 11 x 14 mat</span>
+              <span class="tier-price">{{ money(p.matted.price) }}</span>
+            </span>
+          </label>
+          {% endif %}
+          <p class="compare-link"><a href="#sizes-h">Compare all sizes and prices</a></p>
         </fieldset>
-        <fieldset class="opt">
+        <fieldset class="opt opt-material">
           <legend>Material</legend>
           <div class="opt-row">
             {% for m in ["metal", "canvas"] %}
             <label class="pill"><input type="radio" name="material" value="{{ m }}"{% if m == default_variant.material %} checked{% endif %}><span>{{ m | capitalize }}</span></label>
             {% endfor %}
           </div>
+          <p class="opt-help">{{ pk.material_help }}</p>
         </fieldset>
         {% set dv = default_variant %}
         <p class="price"><span data-price>{{ money(dv.price) }}</span> <span class="price-note" data-choice>{{ dv.size }} in, {{ dv.material }}</span></p>
@@ -63,6 +96,16 @@
         <a class="btn btn-buy" data-buy href="mailto:{{ site.contact.email }}?subject={{ ('Print order: ' ~ p.title ~ ', ' ~ default_variant.size ~ ' in ' ~ default_variant.material) | urlencode }}">Order this print</a>
         <p class="fine">Online checkout is coming soon. Until then, this opens an email with your print, size and material filled in, and Kawika will reply to confirm the order.</p>
         {% endif %}
+        {% if p.variants | selectattr("link") | list %}
+        <noscript>
+          <div class="noscript-buy">
+            <p>Buy a size</p>
+            <ul>
+              {% for v in p.variants if v.link %}<li><a href="{{ v.link }}">{{ v.size }} in, {{ "matted print" if v.material == "matted" else v.material }}, {{ money(v.price) }}</a></li>{% endfor %}
+            </ul>
+          </div>
+        </noscript>
+        {% endif %}
       </form>
     </div>
   </div>
@@ -71,15 +114,22 @@
   <section id="room" class="section wrap room-section" aria-labelledby="room-h">
     <div class="section-head">
       <h2 id="room-h">See it on a wall</h2>
-      <p class="room-caption" data-room-caption>{{ p.title }} at {{ room.size.label }} in, {{ default_variant.material }}, shown to scale above a 10 foot sofa.</p>
+      <p class="room-caption" data-room-caption>{{ p.title }} at {{ room.size.label }} in, {{ default_variant.material }}, {{ room.scene.tail }}.</p>
     </div>
     <div class="room is-{{ default_variant.material }}" data-room="{{ room.data | json }}">
-      {{ pic_site(room.scene.image.base, room.scene.image.widths, room.scene.image.width, room.scene.image.height, "(min-width: 1328px) 1280px, calc(100vw - 32px)", room.scene.image.alt) }}
+      <div class="room-scene" data-scene-img="{{ room.scene.id }}">
+        {{ pic_site(room.scene.image.base, room.scene.image.widths, room.scene.image.width, room.scene.image.height, "(min-width: 1328px) 1280px, calc(100vw - 32px)", room.scene.image.alt) }}
+      </div>
+      {% if room.mat_scene %}
+      <div class="room-scene" data-scene-img="{{ room.mat_scene.id }}" hidden>
+        {{ pic_site(room.mat_scene.image.base, room.mat_scene.image.widths, room.mat_scene.image.width, room.mat_scene.image.height, "(min-width: 1328px) 1280px, calc(100vw - 32px)", room.mat_scene.image.alt) }}
+      </div>
+      {% endif %}
       <div class="room-print" data-room-print style="left:{{ room.rect.left }}%;top:{{ room.rect.top }}%;width:{{ room.rect.width }}%;height:{{ room.rect.height }}%">
-        {{ picture(p, "(min-width: 1328px) 700px, 60vw", alt="") }}
+        <div class="room-photo" data-room-photo>{{ picture(p, "(min-width: 1328px) 700px, 60vw", alt="") }}</div>
       </div>
     </div>
-    <p class="fine">Pick a size or material above and the room updates. The sofa is about 10 feet wide, so the sizes are true to the room and to each other.</p>
+    <p class="fine">Pick a size or material above and the room updates. The sofa is about 10 feet wide, so the sizes are true to the room and to each other.{% if room.mat_scene %} Matted prints show above a small side table, to scale too.{% endif %}</p>
   </section>
   {% endif %}
 
@@ -94,16 +144,22 @@
 
   <section class="section wrap" aria-labelledby="sizes-h">
     <h2 id="sizes-h">Sizes and prices</h2>
-    {{ sizes_table(table, linked=True) }}
-    <div class="cols2 materials">
-      <div>
-        <h3>Canvas</h3>
-        <p>Printed with archival pigment inks on museum-quality canvas, then gallery-wrapped so it hangs clean without a frame. A soft texture and no glare, good for bright rooms.</p>
-      </div>
+    {{ sizes_table(table, linked=False, matted=p.matted) }}
+    <div class="cols{{ 3 if p.matted else 2 }} materials">
       <div>
         <h3>Metal</h3>
         <p>Dye-sublimated onto ChromaLuxe aluminum made in the USA. Colors run deep and detail stays sharp, and the surface holds up for years.</p>
       </div>
+      <div>
+        <h3>Canvas</h3>
+        <p>Printed with archival pigment inks on museum-quality canvas, then gallery-wrapped so it hangs clean without a frame. A soft texture and no glare, good for bright rooms.</p>
+      </div>
+      {% if p.matted %}
+      <div>
+        <h3>{{ pk.matted.name }}</h3>
+        <p>{{ pk.matted.description }}</p>
+      </div>
+      {% endif %}
     </div>
     <p class="fine">Prints ship up to 60 inches on the long side. Larger sizes are pickup on Oʻahu only; get in touch and we'll quote freight.</p>
   </section>

@@ -3,10 +3,10 @@
 {% include "partials/crumbs.html" %}
 <section class="wrap page-head">
   <h1>Print sizes and prices</h1>
-  <p class="lede">Every print is made to order on canvas or metal, here on Oʻahu. The sizes follow the shape of each photograph, so nothing gets cropped. Below, each size is drawn to scale on the same living room wall.</p>
+  <p class="lede">Every print is made to order on metal or canvas, here on Oʻahu, and most come as a smaller matted print too. The sizes follow the shape of each photograph, so nothing gets cropped. Below, each size is drawn to scale on the same living room wall.</p>
   <nav class="chips" aria-label="Jump to a shape">
     {% for g in groups %}<a href="#{{ g.orientation }}">{{ g.label }}</a>{% endfor %}
-    <a href="#materials">Canvas or metal</a>
+    <a href="#materials">Metal, canvas or matted</a>
     <a href="#how-big">How big to go</a>
     <a href="#delivery">Pickup and shipping</a>
   </nav>
@@ -28,15 +28,18 @@
     <div class="table-wrap">
       <table class="sizes">
         <caption class="visually-hidden">{{ g.label }} print sizes and prices</caption>
-        <thead><tr><th scope="col">Inches</th><th scope="col">Canvas</th><th scope="col">Metal</th></tr></thead>
+        <thead><tr><th scope="col">Inches</th><th scope="col">Metal</th><th scope="col">Canvas</th></tr></thead>
         <tbody>
           {% for r in g.rows %}
           <tr>
             <th scope="row">{{ r.size }}{% if not r.ships %} <span class="tag">Pickup only</span>{% endif %}</th>
-            <td>{{ money(r.canvas) if r.canvas else "" }}</td>
             <td>{{ money(r.metal) if r.metal else "" }}</td>
+            <td>{{ money(r.canvas) if r.canvas else "" }}</td>
           </tr>
           {% endfor %}
+          {% if g.matted %}
+          <tr><th scope="row">{{ g.matted.size }}, matted</th><td colspan="2">{{ money(g.matted.price) }}, in an 11 x 14 mat</td></tr>
+          {% endif %}
         </tbody>
       </table>
       <p class="fine">For example, <a href="{{ url(g.example.path) }}">{{ g.example.title }}</a>. Every {{ g.label | lower }} print comes in these sizes.</p>
@@ -46,15 +49,20 @@
 {% endfor %}
 
 <section id="materials" class="section wrap" aria-labelledby="materials-h">
-  <h2 id="materials-h">Canvas or metal</h2>
-  <div class="cols2 materials">
+  <h2 id="materials-h">Metal, canvas or matted</h2>
+  <p class="lede">{{ site.picker.material_help }}</p>
+  <div class="cols3 materials">
+    <div>
+      <h3>Metal</h3>
+      <p>Dye-sublimated onto ChromaLuxe aluminum made in the USA. Colors run deep, detail stays sharp and the surface holds up for years. It suits the ocean and sky shots especially well.</p>
+    </div>
     <div>
       <h3>Canvas</h3>
       <p>Printed with archival pigment inks on museum-quality canvas, then gallery-wrapped so it hangs clean without a frame. The texture is soft and there's no glare, so it's easy to live with in a bright room.</p>
     </div>
     <div>
-      <h3>Metal</h3>
-      <p>Dye-sublimated onto ChromaLuxe aluminum made in the USA. Colors run deep, detail stays sharp and the surface holds up for years. It suits the ocean and sky shots especially well.</p>
+      <h3>{{ site.picker.matted.name }}</h3>
+      <p>{{ site.picker.matted.description }} Panoramas and square prints come in metal and canvas only.</p>
     </div>
   </div>
 </section>

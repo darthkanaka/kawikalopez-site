@@ -65,5 +65,21 @@ eq("4x24x16 boxes", four.boxes.length, 2);
 eq("72x24 pickup only", q([{ w: 72, h: 24, qty: 1, material: "metal" }, { w: 18, h: 12, qty: 1, material: "metal" }]).pickupOnly, true);
 eq("40x40 pickup only", q([{ w: 40, h: 40, qty: 1, material: "canvas" }]).pickupOnly, true);
 
+// Matted prints ship from Kawika in mailers of up to three, a flat charge each, on top of any lab
+// shipping, and never into a lab box.
+const mm = model.matted;
+eq("3 matted, one mailer, Hawaiʻi", q([{ w: 8, h: 10, qty: 3, material: "matted" }]).hi, mm.hi);
+eq("3 matted, one mailer, mainland", q([{ w: 8, h: 12, qty: 3, material: "matted" }]).mainland, mm.mainland);
+const fourM = q([{ w: 8, h: 10, qty: 2, material: "matted" }, { w: 8, h: 12, qty: 2, material: "matted" }]);
+eq("4 matted, two mailers", fourM.mailers, 2);
+eq("4 matted mainland", fourM.mainland, 2 * mm.mainland);
+eq("4 matted, no lab boxes", fourM.boxes.length, 0);
+const mixed = q([{ w: 24, h: 16, qty: 1, material: "metal" }, { w: 8, h: 10, qty: 1, material: "matted" }]);
+const metalOnly = q([{ w: 24, h: 16, qty: 1, material: "metal" }]);
+eq("metal + matted Hawaiʻi", mixed.hi, metalOnly.hi + mm.hi);
+eq("metal + matted mainland", mixed.mainland, metalOnly.mainland + mm.mainland);
+eq("metal + matted lab boxes", mixed.boxes.length, 1);
+eq("oversize + matted is pickup only", q([{ w: 72, h: 24, qty: 1, material: "metal" }, { w: 8, h: 10, qty: 1, material: "matted" }]).pickupOnly, true);
+
 if (fails.length) { console.log(fails.join("\n")); console.log(`\n${fails.length} FAILED`); process.exit(1); }
-console.log(`shipping OK: ${n} single-print rates match, multi-print probes match, boxes split, oversize is pickup only`);
+console.log(`shipping OK: ${n} single-print rates match, multi-print probes match, boxes split, oversize is pickup only, matted mailers add up`);

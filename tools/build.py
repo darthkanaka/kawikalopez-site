@@ -66,27 +66,27 @@ COLLECTIONS = [
     {"path": "panoramic-prints", "kind": "orientation", "value": "panoramic", "chip": "Panoramic",
      "h1": "Panoramic Hawaiʻi prints",
      "title": "Panoramic Hawaiʻi Prints | Kawika Lopez",
-     "description": "Wide panoramic prints of Oʻahu, from Waikīkī and Diamond Head to Kaʻaʻawa Valley. Canvas or metal, up to 72 inches, printed on Oʻahu.",
+     "description": "Wide panoramic prints of Oʻahu, from Waikīkī and Diamond Head to Kaʻaʻawa Valley. Metal or canvas, up to 72 inches, printed on Oʻahu.",
      "lede": "Stitched from a dozen or more frames, these are made to run long across a wall: above a sofa, a bed or a long hallway."},
     {"path": "horizontal-prints", "kind": "orientation", "value": "horizontal", "chip": "Horizontal",
      "h1": "Horizontal Hawaiʻi prints",
      "title": "Horizontal Hawaiʻi Landscape Prints | Kawika Lopez",
-     "description": "Horizontal landscape and aerial prints of Hawaiʻi on canvas or metal, 18 x 12 to 36 x 24 inches, printed on Oʻahu.",
-     "lede": "Classic 3 by 2 landscapes, from 18 x 12 to 36 x 24 inches."},
+     "description": "Horizontal landscape and aerial prints of Hawaiʻi on metal or canvas, 18 x 12 to 36 x 24 inches, or matted from $55. Printed on Oʻahu.",
+     "lede": "Classic 3 by 2 landscapes, from 18 x 12 to 36 x 24 inches, or as an 8 x 12 matted print."},
     {"path": "vertical-prints", "kind": "orientation", "value": "vertical", "chip": "Vertical",
      "h1": "Vertical Hawaiʻi prints",
      "title": "Vertical Hawaiʻi Prints for Tall Walls | Kawika Lopez",
-     "description": "Vertical landscape and aerial prints of Oʻahu for narrow and tall walls, 16 x 20 to 24 x 30 inches, on canvas or metal.",
-     "lede": "Made for the narrow walls: beside a doorway, down a hallway, or in a pair."},
+     "description": "Vertical landscape and aerial prints of Oʻahu for narrow and tall walls, 16 x 20 to 24 x 30 inches on metal or canvas, or matted from $55.",
+     "lede": "Made for the narrow walls: beside a doorway, down a hallway, or in a pair. Each also comes as an 8 x 10 matted print."},
     {"path": "landscape-1", "kind": "collection", "value": "landscape", "chip": "Landscape",
      "h1": "Hawaiʻi landscape photography prints",
      "title": "Hawaiʻi Landscape Photography Prints | Kawika Lopez",
-     "description": "Landscape photography prints of Oʻahu and the islands: valleys, ridges, beaches and coastline at sunrise. Canvas or metal, printed on Oʻahu.",
+     "description": "Landscape photography prints of Oʻahu and the islands: valleys, ridges, beaches and coastline at sunrise. Metal or canvas, printed on Oʻahu.",
      "lede": "Valleys, ridges and coastline, mostly at sunrise, mostly on Oʻahu."},
     {"path": "fine-art", "kind": "collection", "value": "fine-art", "chip": "Fine art",
      "h1": "Fine art prints",
      "title": "Fine Art Hawaiʻi Photography Prints | Kawika Lopez",
-     "description": "Fine art photography prints of Hawaiʻi by Kawika Lopez: long exposures, aerial abstracts and quiet seascapes, on canvas or metal.",
+     "description": "Fine art photography prints of Hawaiʻi by Kawika Lopez: long exposures, aerial abstracts and quiet seascapes, on metal or canvas.",
      "lede": "Long exposures, aerial abstracts and quiet seascapes, each made to say one thing."},
 ]
 
@@ -185,7 +185,8 @@ def seo_description(p):
     sizes = p["sizes"]
     rng = f"{sizes[0]['label']} to {sizes[-1]['label']} inches" if len(sizes) > 1 else f"{sizes[0]['label']} inches"
     lead = first_sentence(p["description"]) if p["description"] else (p.get("subtitle") or p["title"]) + "."
-    tail = f" Canvas or metal, {rng}, from ${p['priceFrom']:,}. Printed on Oʻahu."
+    kinds = "Metal, canvas or matted" if p.get("matted") else "Metal or canvas"
+    tail = f" {kinds}, {rng}, from ${p['priceFrom']:,}. Printed on Oʻahu."
     room = 155 - len(tail)
     return clip(lead, max(room, 60)) + tail if len(lead) > room else lead + tail
 
@@ -255,7 +256,28 @@ def load_products(site, links, warn=WARN):
             v["rates"] = {z: c // 100 for z, c in v["ship_rates"].items()} if v["ship_rates"] else None
             vs.append(v)
         p["variants"] = vs
-        p["sizes"] = [dict(sz, ships=ships(next(v for v in vs if v["size"] == sz["label"]), ship)) for sz in p["sizes"]]
+        rows = {(r["w"], r["h"]): r for r in pricing.get(p["orientation"]) or []}
+        p["sizes"] = [dict(sz, ships=ships(next(v for v in vs if v["size"] == sz["label"]), ship),
+                           tier=(rows.get((sz["w"], sz["h"])) or {}).get("tier"),
+                           more=bool((rows.get((sz["w"], sz["h"])) or {}).get("more")),
+                           prices={v["material"]: v["price"] for v in vs if v["size"] == sz["label"]})
+                      for sz in p["sizes"]]
+        # The matted paper print (pricing.yml matted:), for the shapes a standard 11 x 14 mat fits.
+        # It sits outside p["sizes"]: the page shows it on its own, not as a size of canvas or metal.
+        m = (pricing.get("matted") or {}).get(p["orientation"])
+        p["matted"] = None
+        if m:
+            v = {"id": f"{url_id}_{m['w']}x{m['h']}_matted", "size": m["size"], "w": m["w"], "h": m["h"],
+                 "material": "matted", "price": int(m["price"]), "sku": None, "mat": m["mat"]}
+            v["ship_rates"] = ship_rates(v, ship)
+            v["ships"] = v["ship_rates"] is not None
+            link = (links or {}).get(v["id"])
+            v["link"] = link["url"] if link else None
+            v["rates"] = {z: c // 100 for z, c in v["ship_rates"].items()} if v["ship_rates"] else None
+            vs.append(v)
+            p["matted"] = v
+        p["priceFrom"] = min(v["price"] for v in vs)
+        p["priceTo"] = max(v["price"] for v in vs)
         pick_defaults(p, ov, pricing, site, warn)
         p["orientation_label"] = ORIENT_LABEL[p["orientation"]]
         p["collection_labels"] = [COLLECTION_LABEL.get(c, c.title()) for c in p.get("collections", [])]
@@ -315,7 +337,7 @@ def viz_rect(scene, w_in, h_in, anchor=None):
     a = anchor or scene["anchor"]
     wpx, hpx = w_in * ppi, h_in * ppi
     cx = wall["x"] + a["x"] * wall["w"]
-    cy = wall["y"] + a["y"] * wall["h"]
+    cy = wall["y"] + a["bottom"] * wall["h"] - hpx / 2 if "bottom" in a else wall["y"] + a["y"] * wall["h"]
     left = min(max(cx - wpx / 2, wall["x"]), wall["x"] + wall["w"] - wpx) if wpx <= wall["w"] else cx - wpx / 2
     top = min(max(cy - hpx / 2, wall["y"]), wall["y"] + wall["h"] - hpx) if hpx <= wall["h"] else cy - hpx / 2
     r = lambda v: round(v, 3)
@@ -406,9 +428,12 @@ def product_ld(p, base, ship=None, site=None):
             offer["availableDeliveryMethod"] = "https://schema.org/OnSitePickup"
             offer["shippingDetails"] = {"@type": "OfferShippingDetails", "doesNotShip": True,
                                         "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "US"}}
+        matted = v["material"] == "matted"
         variants.append({"@type": "Product", "sku": v["id"], "inProductGroupWithID": p["urlId"],
-                         "name": f"{p['title']}, {v['size']} in {v['material']}", "image": image_url,
-                         "size": f"{v['size']} in", "material": v["material"].capitalize(), "offers": offer})
+                         "name": (f"{p['title']}, {v['size']} in matted print" if matted
+                                  else f"{p['title']}, {v['size']} in {v['material']}"), "image": image_url,
+                         "size": f"{v['size']} in", "material": "Photo paper" if matted else v["material"].capitalize(),
+                         "offers": offer})
     group = {"@type": "ProductGroup", "@id": url + "#product", "productGroupID": p["urlId"], "url": url,
              "name": f"{p['title']}" + (f": {p['subtitle']}" if p.get("subtitle") else ""),
              "description": p["meta_description"], "image": [image_url, f"{base}assets/img/og/{p['urlId']}.jpg"],
@@ -602,13 +627,23 @@ class Builder:
                 break
         return picked
 
+    @staticmethod
+    def scene_data(sc):
+        return {"W": sc["image"]["width"], "H": sc["image"]["height"], "wall": sc["wall"], "ppi": sc["ppi"],
+                "anchor": sc["anchor"], "tail": sc.get("tail", "shown to scale")}
+
     def room_for(self, p):
+        """The living room for canvas and metal, plus the side table scene (scenes.json `use: matted`)
+        when the print comes as a matted print, so an 11 x 14 mat shows at a size a small wall suits."""
         if not self.scene:
             return None
         s = default_size(p, self.scene)
-        return {"scene": self.scene, "size": s, "rect": viz_rect(self.scene, s["w"], s["h"]),
-                "data": {"W": self.scene["image"]["width"], "H": self.scene["image"]["height"],
-                         "wall": self.scene["wall"], "ppi": self.scene["ppi"], "anchor": self.scene["anchor"]}}
+        mat_scene = next((sc for sc in self.scenes if sc.get("use") == "matted"), None) if p.get("matted") else None
+        scenes = {self.scene["id"]: self.scene_data(self.scene)}
+        if mat_scene:
+            scenes[mat_scene["id"]] = self.scene_data(mat_scene)
+        return {"scene": self.scene, "mat_scene": mat_scene, "size": s, "rect": viz_rect(self.scene, s["w"], s["h"]),
+                "data": {"scenes": scenes, "main": self.scene["id"], "matted": mat_scene["id"] if mat_scene else None}}
 
     def product_pages(self):
         for p in self.products:
@@ -619,8 +654,9 @@ class Builder:
             if orient_page in self.available:
                 crumbs.append((p["orientation_label"], orient_page))
             crumbs.append((p["title"], p["path"]))
-            picker = {"variants": [{"id": v["id"], "size": v["size"], "w": v["w"], "h": v["h"], "material": v["material"],
-                                    "price": v["price"], "link": v["link"], "ships": v["ships"], "rates": v["rates"]}
+            picker = {"variants": [dict({"id": v["id"], "size": v["size"], "w": v["w"], "h": v["h"], "material": v["material"],
+                                         "price": v["price"], "link": v["link"], "ships": v["ships"], "rates": v["rates"]},
+                                        **({"mat": v["mat"]} if v.get("mat") else {}))
                                    for v in p["variants"]],
                       "title": p["title"], "email": self.site["contact"]["email"], "default": default_variant["id"]}
             table = []
@@ -645,12 +681,12 @@ class Builder:
     def store_page(self):
         items = [p for p in self.products if not p.get("draft")]
         desc = ("Fine art prints of Hawaiʻi by Kawika Lopez: panoramas of Waikīkī and Kaʻaʻawa Valley and aerials "
-                "of the Kaiwi coast, on canvas or metal.")
+                "of the Kaiwi coast, on metal or canvas, or matted from $55.")
         self.emit("store.html", "store/index.html", "store/", "store", "Hawaiʻi Wall Art Prints for Sale | Kawika Lopez",
                   desc, crumbs=[("Prints", "store/")],
                   graph=[collection_ld(self.base, "store/", "Hawaiʻi wall art prints", desc, items)],
                   items=items, collections=COLLECTIONS, current="store/", h1="Hawaiʻi wall art prints",
-                  lede="Every print is made to order on Oʻahu, on canvas or metal. Pick a size and see it to scale on a wall before you buy.")
+                  lede="Every print is made to order on Oʻahu, on metal or canvas, and most come as a matted print from $55. Pick a size and see it to scale on a wall before you buy.")
 
     def collection_pages(self):
         for c in COLLECTIONS:
@@ -681,7 +717,7 @@ class Builder:
             s = default_size(k, self.scene)
             teaser = {"p": k, "size": s, "rect": viz_rect(self.scene, s["w"], s["h"]), "scene": self.scene}
         desc = ("Hawaiʻi landscape and aerial photography prints by Kawika Lopez. Panoramas of Waikīkī, Diamond Head "
-                "and Kaʻaʻawa Valley on canvas or metal, printed on Oʻahu.")
+                "and Kaʻaʻawa Valley on metal or canvas, printed on Oʻahu.")
         self.emit("home.html", "index.html", "", "home", "Kawika Lopez | Hawaiʻi Landscape and Aerial Prints", desc,
                   featured=featured, total=len([p for p in self.products if not p.get("draft")]),
                   places=list(self.place_docs.values()), tiles=tiles, teaser=teaser, hero_print=self.by_id.get("naniwaikiki"),
@@ -710,9 +746,13 @@ class Builder:
                 "rows": [{"size": r["size"], "canvas": r.get("canvas"), "metal": r.get("metal"),
                           "ships": ships(r, ship)} for r in rows],
             })
+        matted = pricing.get("matted") or {}
+        for g in groups:
+            g["matted"] = matted.get(g["orientation"])
         lows = [r.get(m) for g in groups for r in g["rows"] for m in ("canvas", "metal") if r.get(m)]
-        desc = (f"Sizes and prices for Kawika Lopez's Hawaiʻi prints, from ${min(lows):,}: panoramas up to 72 inches, "
-                "canvas or metal, each size drawn to scale on a real wall.")
+        lows += [m["price"] for m in matted.values()]
+        desc = (f"Sizes and prices for Kawika Lopez's Hawaiʻi prints, from matted prints at ${min(lows):,} to metal and "
+                "canvas panoramas up to 72 inches, each drawn to scale on a real wall.")
         page = {"@type": "WebPage", "@id": self.base + "prints", "url": self.base + "prints",
                 "name": "Print sizes and prices", "isPartOf": {"@id": self.base + "#site"}}
         self.emit("prints.html", "prints.html", "prints", "page", "Print Sizes and Prices | Kawika Lopez", desc,
@@ -985,8 +1025,11 @@ class Builder:
             for v in p["variants"]:
                 if not (v["ships"] and v.get("ship_rates")):
                     continue
-                material = v["material"].capitalize()
-                title = f"{name}, {material} Print, {v['w']} x {v['h']} in"
+                if v["material"] == "matted":
+                    material, title = "Photo paper", f"{name}, Matted Print, {v['size']} in"
+                else:
+                    material = v["material"].capitalize()
+                    title = f"{name}, {material} Print, {v['w']} x {v['h']} in"
                 item = [f"<g:id>{x(v['id'])}</g:id>", f"<g:title>{x(title)}</g:title>",
                         f"<g:description>{x(about)}</g:description>",
                         f"<g:link>{x(variant_url(base + p['path'], v))}</g:link>",
@@ -996,7 +1039,7 @@ class Builder:
                         "<g:brand>Kawika Lopez</g:brand>", "<g:condition>new</g:condition>",
                         "<g:identifier_exists>no</g:identifier_exists>",
                         f"<g:item_group_id>{x(p['urlId'])}</g:item_group_id>",
-                        f"<g:size>{v['w']} x {v['h']} in</g:size>", f"<g:material>{material}</g:material>",
+                        f"<g:size>{v['size']} in</g:size>", f"<g:material>{material}</g:material>",
                         "<g:google_product_category>500044</g:google_product_category>"]
                 if timed and ship.get("handling_days"):
                     item += [f"<g:min_handling_time>{ship['handling_days'][0]}</g:min_handling_time>",
