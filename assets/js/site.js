@@ -192,6 +192,7 @@ var KL = (function () {
     print.style.width = r.width + "%";
     print.style.height = r.height + "%";
     Array.prototype.forEach.call(imgs, function (el) { el.hidden = el.getAttribute("data-scene-img") !== id; });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-fine-scene]"), function (el) { el.hidden = el.getAttribute("data-fine-scene") !== id; });
     shown = id;
     if (photo) {
       var m = matted ? v.mat : null;

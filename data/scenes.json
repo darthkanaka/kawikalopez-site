@@ -51,7 +51,8 @@
    "dy": 10,
    "opacity": 0.45
   },
-  "tail": "shown to scale above a 10 foot sofa"
+  "tail": "shown to scale above a 10 foot sofa",
+  "fine": "Pick a size or material above and the room updates. The sofa is about 10 feet wide, so the sizes are true to the room and to each other."
  },
  {
   "id": "nook-light",
@@ -83,6 +84,7 @@
   },
   "anchor_note": "Prints hang with their bottom edge 7 in above the tabletop (y 707), centred on the table (x 765).",
   "tail": "shown to scale above a small side table",
-  "wallTone": "light"
+  "wallTone": "light",
+  "fine": "The side table is about 2½ feet wide, so the matted print is true to the room. Pick a bigger size above and it moves to the living room."
  }
 ]

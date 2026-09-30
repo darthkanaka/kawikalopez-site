@@ -129,7 +129,7 @@
         <div class="room-photo" data-room-photo>{{ picture(p, "(min-width: 1328px) 700px, 60vw", alt="") }}</div>
       </div>
     </div>
-    <p class="fine">Pick a size or material above and the room updates. The sofa is about 10 feet wide, so the sizes are true to the room and to each other.{% if room.mat_scene %} Matted prints show above a small side table, to scale too.{% endif %}</p>
+    <p class="fine"><span data-fine-scene="{{ room.scene.id }}">{{ room.scene.fine }}</span>{% if room.mat_scene %}<span data-fine-scene="{{ room.mat_scene.id }}" hidden>{{ room.mat_scene.fine }}</span>{% endif %}</p>
   </section>
   {% endif %}
 
