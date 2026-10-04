@@ -22,6 +22,8 @@ Writes, in the vault and never the repo (the site serves every file in the repo)
   ~/Documents/Obsidian/kawikalopez/reports/YYYY-MM.md, baseline.md, check-N.md
   ~/Documents/Obsidian/kawikalopez/reports/data/<same name>.json   raw numbers, for later comparisons
   ~/Documents/Obsidian/kawikalopez/reports/data/inspections.json   URL inspection cache
+Reads, from the vault: reports/data/own-devices.json, Kawika's own screens, so "Who visited" can sort
+his visits from everyone else's. It sorts; it never removes a visit from any number.
 
 The line under the heading always starts with **Headline:**, so /today can surface it.
 No buyer names, emails, addresses or gift notes are read into a report.
@@ -34,6 +36,7 @@ import json
 import re
 import shutil
 import sys
+import time
 import warnings
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -111,7 +114,14 @@ def google(force=False):
 
 
 def call(s, method, url, **kw):
-    r = s.request(method, url, timeout=90, **kw)
+    for attempt in range(3):  # Google sometimes stalls past the timeout; two retries before giving up
+        try:
+            r = s.request(method, url, timeout=90, **kw)
+            break
+        except (requests.Timeout, requests.ConnectionError):
+            if attempt == 2:
+                raise
+            time.sleep(15 * (attempt + 1))
     if r.status_code != 200:
         raise RuntimeError(f"{r.status_code} from {url}: {r.text[:300]}")
     return r.json()
@@ -252,7 +262,19 @@ def ga4(s, start, end):
         "transactions": [r for r in run(["transactionId"], ["ecommercePurchases", "purchaseRevenue"])
                          if r["transactionId"] not in ("", "(not set)")],
         "funnel": funnel(run),
+        "visits": visits(run),
     }
+
+
+def visits(run):
+    """One row per kind of visit: when, where, what device and screen, where it came from, how long it
+    stayed. "Who visited" sorts these into people, Kawika and robots."""
+    try:
+        return [dict(r, page=path_of(r.pop("landingPage"))) for r in
+                run(["dateHour", "city", "region", "screenResolution", "deviceCategory", "operatingSystem",
+                     "browser", "sessionSource", "landingPage"], ["sessions", "userEngagementDuration", "screenPageViews"], 5000)]
+    except Exception as e:
+        return {"error": str(e)[:300]}
 
 
 def funnel(run):
@@ -550,6 +572,93 @@ def section_funnel(f):
     return "\n".join(out)
 
 
+# Screens that headless browsers and preview bots report, and towns whose visits are almost always
+# data centers (Google in Council Bluffs and The Dalles, Meta in Prineville, cloud hosts elsewhere).
+BOT_SCREENS = {"800x600", "1024x1024", "1024x768"}
+DATA_CENTER_TOWNS = {"Council Bluffs", "The Dalles", "Prineville", "Ashburn", "Boardman", "Santa Clara", "Quincy",
+                     "Lenoir", "Moncks Corner", "Pryor", "Papillion", "Altoona", "Forest City", "Los Lunas",
+                     "Cardington", "Glenview", "Naperville", "New Albany", "Eagle Mountain"}
+SOURCES = {"(direct)": "direct", "google": "Google search", "bing": "Bing search",
+           "ig": "Instagram", "instagram.com": "Instagram", "l.instagram.com": "Instagram",
+           "m.facebook.com": "Facebook", "l.facebook.com": "Facebook", "facebook.com": "Facebook",
+           "(not set)": "unknown"}
+GROUPS = [("person", "Likely real people", "a device that isn't yours and isn't a robot, that stayed a while or opened 2+ pages"),
+          ("unclear", "Unclear", "a short visit (0 seconds, 1 page) or no location, with no robot signs"),
+          ("you", "Likely you", "one of your screens, from Hawaiʻi (reports/data/own-devices.json)"),
+          ("robot", "Likely robots", "a test-size screen (800 x 600, 1024 x 1024), a phone-size screen on a desktop, "
+                                     "no browser, or a data-center town with 0 seconds")]
+
+
+def own_devices():
+    f = RAW / "own-devices.json"
+    return json.loads(f.read_text()).get("devices", []) if f.exists() else []
+
+
+def sort_visit(v, own):
+    screen, w = v.get("screenResolution", ""), 0
+    try:
+        w = int(screen.split("x")[0])
+    except ValueError:
+        pass
+    city, secs, pages = v.get("city") or "", v["userEngagementDuration"], v["screenPageViews"]
+    if (screen in BOT_SCREENS or (v.get("deviceCategory") == "desktop" and 0 < w < 600)
+            or v.get("browser") == "(not set)" or (city in DATA_CENTER_TOWNS and secs == 0)):
+        return "robot"
+    if v.get("region") == "Hawaii" and any(d["screen"] == screen and d["os"] == v.get("operatingSystem") for d in own):
+        return "you"
+    if city in ("", "(not set)") or (secs == 0 and pages <= 1):
+        return "unclear"
+    return "person"
+
+
+def device_name(v, own):
+    os_ = {"Macintosh": "Mac", "iOS": "iPhone", "Windows": "Windows PC", "Linux": "Linux PC",
+           "Android": "Android", "Chrome OS": "Chromebook"}.get(v.get("operatingSystem"), v.get("operatingSystem") or "?")
+    if os_ == "iPhone" and v.get("deviceCategory") == "tablet":
+        os_ = "iPad"
+    mine = next((d["label"] for d in own if d["screen"] == v.get("screenResolution") and d["os"] == v.get("operatingSystem")), None)
+    screen = v.get("screenResolution", "?").replace("x", " x ")
+    if mine and v.get("region") == "Hawaii":
+        return f"{mine} ({v.get('browser')}, {screen})"
+    return f"{os_}, {v.get('browser')}, {screen}"
+
+
+def section_visits(g):
+    """Every visit, grouped by who it most likely was. The numbers elsewhere are untouched."""
+    if g is None or "error" in g:
+        return ""
+    vs = g.get("visits")
+    if not isinstance(vs, list):
+        return f"Not available: {(vs or {}).get('error', 'GA4 visits not pulled')}." if vs is not None else ""
+    if not vs:
+        return "No visits recorded yet."
+    own = own_devices()
+    for v in vs:
+        v["group"] = sort_visit(v, own)
+    total = sum(v["sessions"] for v in vs)
+    out = ["Every visit GA4 recorded, sorted by who it most likely was, from the place, device, screen size, "
+           "source and time on the site. Nothing is removed from the numbers above; this only groups them. "
+           f"{n(total)} visits in all.", "",
+           table(["Group", "Visits", "How it's spotted"],
+                 [[name, n(sum(v["sessions"] for v in vs if v["group"] == key)), how] for key, name, how in GROUPS]),
+           "", "Direct means typed in, bookmarked, or opened from a link that doesn't say where it came from "
+           "(a text, an email, most apps). Places come from internet addresses, so a Hawaiʻi visit can show up "
+           "on the wrong island."]
+    for key, name, _ in GROUPS:
+        rows = sorted((v for v in vs if v["group"] == key), key=lambda v: v["dateHour"])
+        if not rows:
+            continue
+        out += ["", f"**{name}**", "",
+                table(["When", "Where", "Device", "Came from", "Landed on", "Time", "Pages"],
+                      [[dt.datetime.strptime(v["dateHour"], "%Y%m%d%H").strftime("%b %-d, %-I %p")
+                        + (f" (x{n(v['sessions'])})" if v["sessions"] > 1 else ""),
+                        ", ".join(x for x in (v.get("city"), v.get("region")) if x and x != "(not set)") or "unknown",
+                        device_name(v, own), SOURCES.get(v.get("sessionSource"), v.get("sessionSource")),
+                        ("/" + v["page"]) if v["page"] not in ("(not set)",) else "unknown",
+                        f"{n(v['userEngagementDuration'])} s", n(v["screenPageViews"])] for v in rows])]
+    return "\n".join(out)
+
+
 def section_other(sc, maps):
     im = sc["image"]
     out = [f"- Image search: {n(im['impressions'])} impressions, {n(im['clicks'])} clicks.",
@@ -635,6 +744,9 @@ def report_month(s, args):
     sales = section_sales(g, st, types)
     if sales:
         parts += ["## Sales", "", sales, ""]
+    who = section_visits(g)
+    if who:
+        parts += ["## Who visited", "", who, ""]
     parts += ["## Everything else", "", section_other(sc, sitemaps(s)), "", "## Seasonal", ""]
     parts += [f"- {what}: publish by {d}" for d, what in seasons_due()] or ["- nothing due in the next 10 weeks"]
     parts += ["", "## Proposed next two pages", ""] + ([note, ""] if note else []) + [f"{i}. {x}" for i, x in enumerate(two, 1)]
@@ -737,6 +849,9 @@ def report_check(s, args):
     sales = section_sales(g, st, types)
     if sales:
         parts += ["## Store", "", sales, ""]
+    who = section_visits(g)
+    if who:
+        parts += ["## Who visited", "", who, ""]
     parts += ["## Everything else", "", section_other(sc, sitemaps(s)),
               "- Pinterest and Google Business Profile: n/a until they exist.",
               "- Linking sites: read Search Console, Links, and compare with the baseline list.", "",
