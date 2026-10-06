@@ -91,12 +91,20 @@ features:
 
 nav:
   - {label: Prints, href: store/}
+  - {label: Gifts, href: gifts/}
   - {label: Sizes and pricing, href: prints}
   - {label: See it on your wall, href: see-it-in-your-space}
   - {label: Places, href: hawaii-prints/}
   - {label: Blog, href: blog/}
   - {label: About, href: about}
   - {label: Contact, href: contact}
+
+# Christmas 2026 order-by dates, confirmed by Kawika 2026-10-06. Shown on the gift pages; a row hides
+# itself (site.js) once its date has passed in Hawaiʻi.
+gift_deadlines:
+  - {id: mainland, where: Mainland, date: 2026-11-20}
+  - {id: hi, where: Hawaiʻi, date: 2026-12-04}
+  - {id: pickup, where: Oʻahu pickup, date: 2026-12-10}
 
 # Search Console domain property, owner kaveex@gmail.com (2026-09-26). Keep this TXT record on the
 # domain forever; removing it unverifies the property.

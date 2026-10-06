@@ -1,0 +1,80 @@
+{# Shared pieces of the gift pages: rooms, the gallery wall, questions, deadlines and cards. #}
+
+{% macro scene_img(scene, sizes, eager=False) -%}
+{{ pic_site(scene.image.base, scene.image.widths, scene.image.width, scene.image.height, sizes, "", eager=eager) }}
+{%- endmacro %}
+
+{# A metal print at true size in the living room. crop = [inner width %, left %, top %] of the frame. #}
+{% macro metal_room(r, cls, crop, sizes, eager=False) -%}
+<div class="g-room {{ cls }}" role="img" aria-label="{{ r.p.title }} as a {{ r.w }} by {{ r.h }} inch metal print above a long white sofa">
+  <div class="g-room-in" style="width:{{ crop[0] }}%;left:{{ crop[1] }}%;top:{{ crop[2] }}%">
+    {{ scene_img(r.scene, sizes, eager) }}
+    <div class="g-room-print g-metal" style="left:{{ r.rect.left }}%;top:{{ r.rect.top }}%;width:{{ r.rect.width }}%;height:{{ r.rect.height }}%">
+      {{ picture(r.p, "(min-width: 960px) 40vw, 70vw", alt="") }}
+    </div>
+  </div>
+</div>
+{%- endmacro %}
+
+{# A matted print in its 11 x 14 mat above the side table. #}
+{% macro matted_room(m, cls, crop, sizes, eager=False) -%}
+<div class="g-room {{ cls }}" role="img" aria-label="{{ m.p.title }} as a matted print above a small side table">
+  <div class="g-room-in" style="width:{{ crop[0] }}%;left:{{ crop[1] }}%;top:{{ crop[2] }}%">
+    {{ scene_img(m.scene, sizes, eager) }}
+    <div class="g-room-print g-matted" style="left:{{ m.rect.left }}%;top:{{ m.rect.top }}%;width:{{ m.rect.width }}%;height:{{ m.rect.height }}%">
+      <div class="g-opening" style="left:{{ '%.3f' % m.opening.left }}%;top:{{ '%.3f' % m.opening.top }}%;width:{{ '%.3f' % m.opening.width }}%;height:{{ '%.3f' % m.opening.height }}%">
+        {{ picture(m.p, "(min-width: 960px) 25vw, 50vw", alt="") }}
+      </div>
+    </div>
+  </div>
+</div>
+{%- endmacro %}
+
+{# Prints hung at their default size on one stretch of wall, to scale with each other. #}
+{% macro wall(rows) -%}
+<div class="g-gallery">
+  {% for row in rows %}
+  <div class="g-row">
+    {% for x in row %}
+    <article class="g-item" style="--seg:{{ x.seg }}">
+      <a class="g-wall" href="{{ url(x.p.path) }}" tabindex="-1" aria-hidden="true">
+        <span class="g-frame" style="width:{{ x.fw }}%;height:{{ x.fh }}%">{{ picture(x.p, "(min-width: 960px) 26vw, 60vw", alt="") }}</span>
+      </a>
+      <div class="g-item-text">
+        <h3><a href="{{ url(x.p.path) }}">{{ x.p.title }}</a></h3>
+        <p class="g-place">{{ x.place }} · {{ x.size.w }} x {{ x.size.h }} in</p>
+        <p>{{ x.reason }}</p>
+        <p class="g-from">From {{ money(x.p.priceFrom) }}</p>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+  {% endfor %}
+</div>
+{%- endmacro %}
+
+{% macro faq(items) -%}
+<div class="g-faq">
+  {% for q, a in items %}
+  <details><summary>{{ q }}</summary><p>{{ a }}</p></details>
+  {% endfor %}
+</div>
+{%- endmacro %}
+
+{# Cards that lead to another gift page, with a photo and a short line. #}
+{% macro cards(items, cls="g-cards") -%}
+<div class="{{ cls }}">
+  {% for c in items %}
+  <a class="g-card" href="{{ url(c.href) }}">
+    {{ picture(c.p, "(min-width: 960px) 25vw, 50vw", alt="") }}
+    <span class="g-card-text"><strong>{{ c.title }}</strong>{% if c.get('line') %}<span>{{ c.line }}</span>{% endif %}</span>
+  </a>
+  {% endfor %}
+</div>
+{%- endmacro %}
+
+{% macro deadline_chip(deadlines) -%}
+{% if deadlines %}{% set d = deadlines[0] %}
+<span class="g-chip" data-deadline="{{ d.date }}">For Christmas on the {{ d.where | lower }}, order by <strong>{{ d.label }}</strong></span>
+{% endif %}
+{%- endmacro %}

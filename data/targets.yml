@@ -105,3 +105,23 @@
   cluster: buying
   queries: [what size print above a sofa, what size art above couch]
   priority: 2
+- phrase: Hawaiʻi Gifts
+  page: gifts/
+  cluster: gift
+  queries: [hawaii gifts, unique hawaii gifts, hawaiian gifts, gifts from hawaii, made in hawaii gifts]
+  priority: 1
+- phrase: Gifts for Hawaiʻi Lovers
+  page: gifts/for-hawaii-lovers
+  cluster: gift
+  queries: [gifts for hawaii lovers, gifts for someone who loves hawaii, hawaii gifts for someone who moved away]
+  priority: 1
+- phrase: Housewarming Gifts
+  page: gifts/housewarming
+  cluster: gift
+  queries: [hawaii housewarming gifts, housewarming gifts hawaii, housewarming gift oahu]
+  priority: 2
+- phrase: Gifts for Dad
+  page: gifts/for-dad
+  cluster: gift
+  queries: [hawaii gifts for dad, gifts for dad from hawaii, gift for dad who has everything]
+  priority: 2

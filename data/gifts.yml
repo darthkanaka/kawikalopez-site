@@ -1,0 +1,184 @@
+# The /gifts hub and the gift pages. Copy and print choices approved by Kawika in mockups on
+# 2026-10-05 (hub) and 2026-10-06 (gift pages); the mockups live in the vault at
+# kawikalopez/gifts-hub-mockup/ and kawikalopez/gift-pages-mockup/.
+#
+# Prints are urlIds from data/products.json. Gallery walls hang each print at its default (middle)
+# size, to scale with the others: a row holds up to 146 in of wall (see templates/partials/gifts.html).
+# Rooms reuse the store's scenes (data/scenes.json) and the same viz_rect math as the print pages.
+# Order-by dates live in data/site.yml as gift_deadlines. In copy, {hi}, {mainland} and {pickup} are
+# the delivery windows from shipping.yml, {matted_mainland} the matted print's mainland shipping and
+# {deadline_mainland} the first gift deadline.
+
+hub:
+  path: "gifts/"
+  title: "Unique Hawaiʻi Gifts: Prints Made on Oʻahu | Kawika Lopez"
+  description: "Hawaiʻi gifts they'll actually hang. Fine art prints of real places, made to order on Oʻahu and shipped straight to them, matted from $55."
+  h1: "A Hawaiʻi gift they'll actually hang"
+  lede: "A print of a real place they love, made to order here on Oʻahu. Ship it straight to them, anywhere in the US."
+  hero: {print: "naniwaikiki", size: [48, 16]}
+  tiers:
+    - price: "$55"
+      what: "Matted print"
+      why: "8 x 10 or 8 x 12 in a white mat. It fits any standard 11 x 14 frame."
+      show: {matted: "hookahi"}
+    - price: "$210 to $450"
+      what: "Canvas or metal"
+      why: "Ready to hang, in sizes that fit most walls."
+      show: {object: "mokulua-islands", wall: "light"}
+    - price: "$450 and up"
+      what: "The big wall"
+      why: "Large prints and panoramas for a living room or a lobby."
+      show: {object: "kaaawavalley", wall: "dark"}
+  who_heading: "Gifts for the people on your list"
+  who:
+    - {page: "gifts/for-hawaii-lovers", title: "Hawaiʻi lovers on the mainland", line: "A piece of home, shipped to wherever they live now.", print: "kaimana"}
+    - {page: "gifts/housewarming", title: "A new home", line: "The neighborhood they just moved into, for their first wall.", print: "waimanalo"}
+    - {page: "gifts/for-dad", title: "Dad", line: "For the one who has everything. Aerials look sharp on metal.", print: "jumanji"}
+    - {page: "blog/client-and-employee-gifts", fallback: "store/", title: "Clients and teams", line: "A thank-you that stays on the office wall, from $55.", print: "malie"}
+  picks_eyebrow: "Gift picks"
+  picks_heading: "Eight that make good gifts"
+  picks:
+    - - ["naniwaikiki", "For whoever misses home the most."]
+      - ["mokoliireflection", "Still water and a quiet morning. Calm in any room."]
+      - ["anuenue", "A full rainbow, and a reminder to be grateful."]
+    - - ["kahana", "For the hiker. Shot from the ridge at sunrise."]
+      - ["kaaawavalley", "The valley from the movies, end to end."]
+      - ["makapuubeach-h", "Teal water and white sand, straight down."]
+    - - ["mokulele", "Gold light on the Kualoa ridge."]
+      - ["leahikahiko", "Diamond Head at first light, from the air."]
+  steps:
+    - ["Pick a print and a size", "Not sure on size? The middle one fits most walls."]
+    - ["Put their address in at checkout", "It ships straight to them."]
+    - ["It's printed here on Oʻahu", "Made to order, usually in about a week."]
+    - ["It arrives with no price in the box", "In {hi} business days in Hawaiʻi, {mainland} on the mainland."]
+  visiting: "Order about two weeks before you fly and pick it up free on your way out. Or have it shipped home so it's waiting when you get there."
+  faq:
+    - ["Will they see what I paid?", "No. Nothing in the box shows a price."]
+    - ["How long does it take?", "Every print is made to order, usually in about a week. Delivery takes {hi} business days in Hawaiʻi and {mainland} to the mainland. Pickup on Oʻahu takes {pickup}."]
+    - ["What if it arrives damaged?", "Send a photo within 7 days and it's replaced free. Otherwise all sales are final, and you can cancel within 24 hours."]
+    - ["Canvas, metal or matted?", "Metal is bright and modern and Kawika's favorite. Canvas is softer and warmer. A matted print is the smallest and goes in any standard 11 x 14 frame."]
+
+pages:
+  - slug: "for-hawaii-lovers"
+    name: "Gifts for Hawaiʻi lovers"
+    card: "kaimana"
+    title: "Gifts for Hawaiʻi Lovers: Prints of Home | Kawika Lopez"
+    description: "Gifts for Hawaiʻi lovers far from home. A print of the place they miss, from Waikīkī to the North Shore, shipped anywhere in the US."
+    h1: "Gifts for Hawaiʻi lovers"
+    lede: "For the ones who moved away and still call it home. A print of the place they miss, shipped anywhere in the US."
+    button: ["Find their place", "#home-picker"]
+    chip: "deadline"
+    hero: {print: "kaimana", size: [48, 16], caption: "Kaimana, Diamond Head and Waikīkī at sunrise, 48 x 16 metal, to scale above a 10 foot sofa."}
+    picker:
+      eyebrow: "Find their side of the island"
+      heading: "Where's home for them?"
+      areas:
+        - {name: "Town and Waikīkī", page: "hawaii-prints/diamond-head", link: "Diamond Head and Waikīkī prints", prints: ["naniwaikiki", "kaimana", "leahikahiko", "043"]}
+        - {name: "Windward side", page: "hawaii-prints/kaaawa-valley", link: "Kualoa and Kaʻaʻawa prints", prints: ["kaaawavalley", "jumanji", "mokoliireflection", "hanohanohakipuu"], start: true}
+        - {name: "Kailua and Waimānalo", page: "hawaii-prints/kailua-waimanalo", link: "Lanikai and Waimānalo prints", prints: ["mokulua-islands", "mokulua", "waimanalo"]}
+        - {name: "Makapuʻu and the east side", page: "hawaii-prints/makapuu", link: "Makapuʻu and Kaiwi coast prints", prints: ["makapuubeach-h", "hanauma", "kaiwi", "eleu"]}
+        - {name: "North Shore", page: "hawaii-prints/north-shore", link: "North Shore prints", prints: ["malie", "anuenue", "shorelinecascade"]}
+        - {name: "Maui and Hawaiʻi Island", page: "store/", link: "prints", prints: ["homecoming", "hoihoi", "036"]}
+    facts:
+      eyebrow: "Shipping to the mainland"
+      heading: "Made here, mailed to them"
+      items:
+        - ["{matted_mainland}", "ships a matted print anywhere on the mainland"]
+        - ["{mainland}", "business days to the mainland, after it's made"]
+        - ["0", "prices in the box, so it's ready to give"]
+    wall:
+      eyebrow: "Prints that feel like home"
+      heading: "Six for someone far from home"
+      rows:
+        - - ["homecoming", "Sunrise over the clouds on Haleakalā. The name says it."]
+          - ["waimanalo", "The whole beach from above, all the way to the cliffs."]
+          - ["mokulua-islands", "The view from every Lanikai beach day."]
+        - - ["hoihoi", "Waves on the lava at the southern tip of the islands."]
+          - ["jurassicdawn", "The windward coast road at dawn, from the air."]
+          - ["kaaawasunrise", "The Kualoa ridge glowing pink over calm water."]
+    faq_heading: "Sending it away"
+    faq:
+      - ["Can I ship it straight to them?", "Yes. Put their address in at checkout and it goes straight to them, with no price in the box."]
+      - ["How long does it take to reach the mainland?", "Each print is made to order in about a week, then takes {mainland} business days to arrive. For Christmas, order by {deadline_mainland}."]
+      - ["What's easiest to send?", "A matted print. It ships flat for {matted_mainland} and fits any standard 11 x 14 frame they pick up near home."]
+
+  - slug: "housewarming"
+    name: "Housewarming gifts"
+    card: "mokulua-islands"
+    title: "Hawaiʻi Housewarming Gifts for a First Wall | Kawika Lopez"
+    description: "Housewarming gifts for a new home on Oʻahu. A print of the neighborhood they moved to, shown to scale so you can pick the right size."
+    h1: "Housewarming gifts for a first wall"
+    lede: "New walls start out empty. Give them a print of the place they just moved to, sized for the room."
+    button: ["Find their neighborhood", "#neighborhoods"]
+    chip: "pickup"
+    hero: {matted: "mokulua", caption: "Mokulua Monochrome, matted, above a side table. Black and white goes with any room."}
+    sizes:
+      eyebrow: "Sizing their first wall"
+      heading: "Which size for their new place?"
+      note: "The same print at three sizes, to scale above a 10 foot sofa."
+      print: "timespan"
+      tiers:
+        - ["accent", "A hallway, an entry or above a desk"]
+        - ["signature", "Above a sofa or a bed. Fits most walls."]
+        - ["statement", "The big empty wall in a new living room"]
+    hoods:
+      eyebrow: "Their new neighborhood"
+      heading: "Prints of where they moved"
+      items:
+        - ["Kailua and Lanikai", "hawaii-prints/kailua-waimanalo", "mokulua-islands"]
+        - ["Waimānalo", "hawaii-prints/kailua-waimanalo", "waimanalo"]
+        - ["Kāneʻohe and Kualoa", "hawaii-prints/kaaawa-valley", "hanohanohakipuu"]
+        - ["Hawaiʻi Kai and Makapuʻu", "hawaii-prints/makapuu", "033"]
+        - ["Diamond Head and Waikīkī", "hawaii-prints/diamond-head", "leahikahiko"]
+        - ["North Shore", "hawaii-prints/north-shore", "anuenue"]
+    band: ["Bringing it over yourself?", "Pickup on Oʻahu is free, usually {pickup} business days after you order. Then it's yours to hand them at the door."]
+    wall:
+      eyebrow: "Easy to live with"
+      heading: "Six that settle into any room"
+      rows:
+        - - ["frostedtidepool", "Soft and quiet. Made for a bedroom."]
+          - ["035", "Three palms and long shadows. Warm in a family room."]
+          - ["034", "Fine lines in black sand. Goes with any color."]
+        - - ["033", "The lighthouse at sunrise, one side lit gold."]
+          - ["shorelinecascade", "Water spilling off a mossy reef. Calm in a living room."]
+          - ["eleu", "A wave lit from behind at sunrise. Good for an entry."]
+    faq_heading: "Before you buy for a new home"
+    faq:
+      - ["What size should I get?", "The middle size fits most walls. For a hallway or above a desk, go a size down. For a big empty living room wall, go up."]
+      - ["Can I pick it up instead?", "Yes, free on Oʻahu, usually {pickup} business days after you order."]
+      - ["Do they need anything to hang it?", "Canvas comes with a hanger and metal with eyelets, so a nail or two does it. A matted print goes in any standard 11 x 14 frame."]
+
+  - slug: "for-dad"
+    name: "Gifts for Dad"
+    card: "jumanji"
+    title: "Gifts for Dad from Hawaiʻi: Aerial Prints | Kawika Lopez"
+    description: "Gifts for the dad who has everything. Aerial prints of Oʻahu, shot from a drone at first light and printed on metal for his office or den."
+    h1: "Gifts for the dad who has everything"
+    lede: "He doesn't have this. A place he knows, shot from the air before sunrise, printed on metal for his office or den."
+    button: ["See the aerials", "#wall"]
+    chip: "noprice"
+    hero: {print: "jumanji", size: [36, 24], caption: "Jumanji, Kaʻaʻawa Valley from the air, 36 x 24 metal, to scale above a 10 foot sofa."}
+    metal:
+      print: "032"
+      eyebrow: "Why metal"
+      heading: "Made for his wall"
+      points:
+        - ["Bright, deep color.", "Kawika's favorite way to show a photograph."]
+        - ["No glass and no frame.", "It hangs on its own, ready out of the box."]
+        - ["A story to tell.", "Every print has a name, many in Hawaiian, and the story of how it was made."]
+    wall:
+      eyebrow: "From the air"
+      heading: "Six aerials he hasn't seen"
+      note: "Most of these were made with a drone at first light."
+      rows:
+        - - ["kaiwi", "The coast highway, straight down."]
+          - ["038", "Mokoliʻi at sunrise with all of Kāneʻohe Bay behind it."]
+          - ["032", "Koko Head's ridges, lined like a Hawaiian tattoo."]
+        - - ["hanauma", "Straight down into the bay at sunrise, about 20 photos stitched into one."]
+          - ["puao", "A Koʻolau face lit from one side."]
+          - ["018", "A valley the rain carved. ʻĀlina means scar."]
+    faq_heading: "Buying for Dad"
+    faq:
+      - ["Will it fit his office?", "The middle size fits most walls. Above a desk or in a narrow spot, go a size down."]
+      - ["Can it ship straight to him?", "Yes, anywhere in the US. Put his address in at checkout, and nothing in the box shows a price."]
+      - ["Canvas or metal?", "Metal for an office, a den or anywhere with a modern look. Canvas if his place is warmer and softer."]

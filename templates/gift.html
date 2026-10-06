@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% import "partials/gifts.html" as gx with context %}
+{% block main %}
+{% include "partials/crumbs.html" %}
+<section class="wrap g-hero">
+  <div class="g-hero-grid">
+    <div>
+      <p class="eyebrow">Gifts</p>
+      <h1>{{ g.h1 }}</h1>
+    </div>
+    <div>
+      <p class="lede">{{ g.lede }}</p>
+      <p class="g-actions"><a class="btn" href="{{ g.button[1] }}">{{ g.button[0] }}</a>
+        {% if g.chip == "deadline" %}{{ gx.deadline_chip(deadlines) }}
+        {% elif g.chip == "pickup" %}<span class="g-chip">Local? Pickup on Oʻahu is <strong>free</strong></span>
+        {% elif g.chip == "noprice" %}<span class="g-chip">Ships to him with <strong>no price</strong> inside</span>{% endif %}</p>
+    </div>
+  </div>
+  <figure class="g-figure">
+    {% if room %}
+    {{ gx.metal_room(room, "g-room-hero", [150, -24.75, -33], "(min-width: 1328px) 1920px, 150vw", eager=True) }}
+    {% else %}
+    {{ gx.matted_room(matted, "g-room-hero", [140, -19.7, -16.6 if matted.shape == 'v' else -24.9], "(min-width: 1328px) 1800px, 140vw", eager=True) }}
+    {% endif %}
+    <figcaption>{{ g.hero.caption }}</figcaption>
+  </figure>
+</section>
+
+{% if g.get('picker') %}
+<section class="wrap section" id="home-picker" aria-labelledby="picker-h">
+  <p class="eyebrow">{{ g.picker.eyebrow }}</p>
+  <h2 id="picker-h">{{ g.picker.heading }}</h2>
+  <div class="g-areas" data-areas>
+    <div class="g-area-tabs" role="group" aria-label="Where they call home" hidden>
+      {% for a in areas %}
+      <button type="button" class="g-area-tab" data-area="{{ loop.index }}" aria-pressed="{{ 'true' if a.get('start') else 'false' }}">{{ a.name }}</button>
+      {% endfor %}
+    </div>
+    {% for a in areas %}
+    <div class="g-area" data-panel="{{ loop.index }}"{% if a.get('start') %} data-start{% endif %}>
+      <h3 class="g-area-name">{{ a.name }}</h3>
+      <div class="g-minis">
+        {% for p in a.prints %}
+        <a class="g-mini" href="{{ url(p.path) }}">
+          <span class="g-mini-wall"><span class="g-mini-print g-{{ shape(p) }}">{{ picture(p, "(min-width: 960px) 16vw, 40vw", alt="") }}</span></span>
+          <span class="g-mini-name">{{ p.title }}</span>
+        </a>
+        {% endfor %}
+      </div>
+      <a class="g-see-all" href="{{ url(a.href) }}">See all the {{ a.link }}</a>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% if g.get('facts') %}
+<section class="wrap section" aria-labelledby="facts-h">
+  <p class="eyebrow">{{ g.facts.eyebrow }}</p>
+  <h2 id="facts-h">{{ g.facts.heading }}</h2>
+  <div class="g-facts">
+    {% for big, line in g.facts["items"] %}
+    <div class="g-fact"><span class="g-big">{{ big }}</span><span>{{ line }}</span></div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% if sizes is defined %}
+<section class="wrap section" aria-labelledby="sizes-h">
+  <p class="eyebrow">{{ g.sizes.eyebrow }}</p>
+  <h2 id="sizes-h">{{ g.sizes.heading }}</h2>
+  <p class="g-note">{{ g.sizes.note }}</p>
+  <div class="g-sizes">
+    {% for s in sizes %}
+    <article class="g-size">
+      {{ gx.metal_room(s.room, "g-room-size", [220, -56.5, -37.1], "(min-width: 960px) 70vw, 220vw") }}
+      <div class="g-size-text">
+        <p class="g-size-name">{{ s.name }} <span>{{ s.size.w }} x {{ s.size.h }} in</span></p>
+        <p>{{ s.why }}</p>
+        <p class="g-from">From {{ money(s.from) }}</p>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% if hoods is defined %}
+<section class="wrap section" id="neighborhoods" aria-labelledby="hoods-h">
+  <p class="eyebrow">{{ g.hoods.eyebrow }}</p>
+  <h2 id="hoods-h">{{ g.hoods.heading }}</h2>
+  <div class="g-hoods">
+    {% for h in hoods %}
+    <a class="g-card g-hood" href="{{ url(h.href) }}">{{ picture(h.p, "(min-width: 960px) 30vw, 50vw", alt="") }}<span class="g-card-text"><strong>{{ h.name }}</strong></span></a>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% if g.get('band') %}
+<section class="g-band" aria-labelledby="band-h">
+  <div class="wrap g-band-grid">
+    <h2 id="band-h">{{ g.band[0] }}</h2>
+    <p>{{ g.band[1] }}</p>
+  </div>
+</section>
+{% endif %}
+
+{% if g.get('metal') %}
+<section class="wrap section" aria-labelledby="metal-h">
+  <div class="g-metal-feature">
+    <div class="g-swatch g-swatch-dark g-swatch-{{ shape(metal_p) }} g-swatch-tall">
+      <span class="g-obj g-metal">{{ picture(metal_p, "(min-width: 960px) 25vw, 45vw", alt=metal_p.title ~ " as a metal print on a dark wall") }}</span>
+    </div>
+    <div>
+      <p class="eyebrow">{{ g.metal.eyebrow }}</p>
+      <h2 id="metal-h">{{ g.metal.heading }}</h2>
+      <ul class="g-ticks">
+        {% for head, line in g.metal.points %}<li><strong>{{ head }}</strong> {{ line }}</li>{% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="wrap section" id="wall" aria-labelledby="wall-h">
+  <p class="eyebrow">{{ g.wall.eyebrow }}</p>
+  <h2 id="wall-h">{{ g.wall.heading }}</h2>
+  <p class="g-note">{% if g.wall.get('note') %}{{ g.wall.note }} {% endif %}Each one at its middle size, to scale with the others.</p>
+  {{ gx.wall(wall) }}
+</section>
+
+<section class="wrap section" aria-labelledby="faq-h">
+  <p class="eyebrow">Questions</p>
+  <h2 id="faq-h">{{ g.faq_heading }}</h2>
+  {{ gx.faq(g.faq) }}
+</section>
+
+<section class="wrap section" aria-labelledby="more-h">
+  <h2 id="more-h" class="g-more-h">More gift ideas</h2>
+  {{ gx.cards(more, "g-cards g-cards-3") }}
+</section>
+{% endblock %}

@@ -532,6 +532,11 @@ class Builder:
             self.available.add("blog/")
         if self.cart:
             self.available.add("cart")
+        # Gift pages (data/gifts.yml): the /gifts hub and one page per gift.
+        self.gifts = load_yaml("gifts.yml", {}) or {}
+        if self.gifts.get("hub"):
+            self.available.add(self.gifts["hub"]["path"])
+            self.available |= {f"gifts/{g['slug']}" for g in self.gifts.get("pages", [])}
 
     # -- output
     def write(self, rel, text):
@@ -721,6 +726,7 @@ class Builder:
         self.emit("home.html", "index.html", "", "home", "Kawika Lopez | Hawaiʻi Landscape and Aerial Prints", desc,
                   featured=featured, total=len([p for p in self.products if not p.get("draft")]),
                   places=list(self.place_docs.values()), tiles=tiles, teaser=teaser, hero_print=self.by_id.get("naniwaikiki"),
+                  gifts=self.gift_cards(self.gifts["hub"]) if self.gifts.get("hub") else None,
                   preload=("assets/img/site/hero-living", [480, 960, 1600, 2000], "100vw"))
 
     def prints_page(self):
@@ -950,6 +956,141 @@ class Builder:
                   crumbs=[("Blog", "blog/")], graph=[coll], items=items,
                   indexable=any(d["status"] == "published" for d in self.posts))
 
+    # -- gifts
+    WALL_H, WALL_SIDE, WALL_ROW = 36, 8, 146   # inches: wall height, wall each side of a print, widest row
+
+    def gift_numbers(self):
+        """The numbers gift copy quotes, from shipping.yml and site.yml, so the pages never drift from the store."""
+        z = {x["id"]: x["days"] for x in self.shipping["zones"]}
+        rng = lambda d: f"{d[0]} to {d[1]}"
+        dl = self.site.get("gift_deadlines") or []
+        m = ((self.shipping.get("rates") or {}).get("matted") or {}).get("8x10", {}).get("mainland")
+        return {"hi": rng(z["hi"]), "mainland": rng(z["mainland"]), "pickup": rng(self.shipping["pickup"]["days"]),
+                "matted_mainland": f"${m // 100}" if m else "",
+                "deadline_mainland": dt.date.fromisoformat(str(dl[0]["date"])).strftime("%b %-d") if dl else ""}
+
+    def gift_fill(self, obj, nums):
+        if isinstance(obj, str):
+            return obj.format(**nums) if "{" in obj else obj
+        if isinstance(obj, list):
+            return [self.gift_fill(x, nums) for x in obj]
+        if isinstance(obj, dict):
+            return {k: self.gift_fill(v, nums) for k, v in obj.items()}
+        return obj
+
+    def gift_print(self, uid, where):
+        p = self.by_id.get(str(uid))
+        if not p or p.get("draft"):
+            raise SystemExit(f"gifts.yml {where}: no print '{uid}'")
+        return p
+
+    def gift_link(self, page, fallback="store/"):
+        return page if page in self.available else fallback
+
+    @staticmethod
+    def shape(p):
+        return {"panoramic": "pano", "horizontal": "h", "vertical": "v", "square": "sq"}[p["orientation"]]
+
+    def gift_wall(self, rows, where):
+        """Rows of prints at their default size, to scale: each print gets WALL_SIDE inches of wall either side."""
+        out = []
+        for i, row in enumerate(rows):
+            items = []
+            for uid, reason in row:
+                p = self.gift_print(uid, where)
+                s = default_size(p)
+                seg = s["w"] + 2 * self.WALL_SIDE
+                items.append({"p": p, "reason": reason, "size": s, "seg": seg,
+                              "place": (p.get("location") or {}).get("short") or p.get("island", ""),
+                              "fw": round(s["w"] / seg * 100, 3), "fh": round(s["h"] / self.WALL_H * 100, 3)})
+            if sum(x["seg"] for x in items) > self.WALL_ROW:
+                WARN.add(f"gifts.yml {where} row {i + 1}: {sum(x['seg'] for x in items)} in of wall, more than {self.WALL_ROW}")
+            out.append(items)
+        return out
+
+    def gift_room(self, p, w_in, h_in):
+        """A metal print at true size in the living room scene."""
+        return {"scene": self.scene, "p": p, "rect": viz_rect(self.scene, w_in, h_in), "w": w_in, "h": h_in}
+
+    def gift_matted(self, p):
+        """A matted print in its 11 x 14 mat on the side table scene, as the print pages show it."""
+        nook = next(sc for sc in self.scenes if sc.get("use") == "matted")
+        m = (load_yaml("pricing.yml", {}).get("matted") or {})[p["orientation"]]["mat"]
+        opening = {"left": (m["w"] - m["open_w"]) / 2 / m["w"] * 100, "top": (m["h"] - m["open_h"]) / 2 / m["h"] * 100,
+                   "width": m["open_w"] / m["w"] * 100, "height": m["open_h"] / m["h"] * 100}
+        return {"scene": nook, "p": p, "rect": viz_rect(nook, m["w"], m["h"]), "opening": opening, "shape": self.shape(p)}
+
+    def gift_cards(self, hub):
+        return [{"href": self.gift_link(w["page"], w.get("fallback", "store/")), "title": w["title"], "line": w["line"],
+                 "p": self.gift_print(w["print"], "hub who")} for w in hub["who"]]
+
+    def gift_pages(self):
+        if not self.gifts.get("hub"):
+            return
+        nums = self.gift_numbers()
+        hub = self.gift_fill(self.gifts["hub"], nums)
+        pages = [self.gift_fill(g, nums) for g in self.gifts.get("pages", [])]
+        deadlines = [dict(d, date=str(d["date"]), label=dt.date.fromisoformat(str(d["date"])).strftime("%b %-d"))
+                     for d in self.site.get("gift_deadlines") or []]
+        more = [{"href": hub["path"], "title": "All gift ideas", "p": self.gift_print(hub["hero"]["print"], "hub hero"), "key": "hub"}]
+        more += [{"href": f"gifts/{g['slug']}", "title": g["name"], "p": self.gift_print(g["card"], g["slug"]), "key": g["slug"]} for g in pages]
+        common = {"deadlines": deadlines, "nums": nums, "shape": self.shape}
+
+        # The hub
+        hp = self.gift_print(hub["hero"]["print"], "hub hero")
+        tiers = []
+        for t in hub["tiers"]:
+            show = dict(t["show"])
+            if "matted" in show:
+                show["matted"] = self.gift_matted(self.gift_print(show["matted"], "hub tiers"))
+            else:
+                show["p"] = self.gift_print(show["object"], "hub tiers")
+            tiers.append(dict(t, show=show))
+        wall = self.gift_wall(hub["picks"], "hub picks")
+        items = [x["p"] for row in wall for x in row]
+        self.emit("gifts.html", "gifts/index.html", hub["path"], "gifts", hub["title"], hub["description"],
+                  crumbs=[("Gifts", hub["path"])],
+                  graph=[collection_ld(self.base, hub["path"], hub["h1"], hub["description"], items)],
+                  hub=hub, room=self.gift_room(hp, *hub["hero"]["size"]), tiers=tiers, who=self.gift_cards(hub),
+                  wall=wall, more=more[1:], og_image=f"{self.base}assets/img/og/{hp['urlId']}.jpg",
+                  preload=(self.scene["image"]["base"], self.scene["image"]["widths"], "(min-width: 1328px) 1920px, 150vw"),
+                  **common)
+
+        # One page per gift
+        for g in pages:
+            path, where = f"gifts/{g['slug']}", g["slug"]
+            hero = g["hero"]
+            if "matted" in hero:
+                room, matted = None, self.gift_matted(self.gift_print(hero["matted"], where))
+                preload = (matted["scene"]["image"]["base"], matted["scene"]["image"]["widths"], "(min-width: 1328px) 1800px, 140vw")
+                og = matted["p"]
+            else:
+                room, matted = self.gift_room(self.gift_print(hero["print"], where), *hero["size"]), None
+                preload = (self.scene["image"]["base"], self.scene["image"]["widths"], "(min-width: 1328px) 1920px, 150vw")
+                og = room["p"]
+            extra = {}
+            if g.get("picker"):
+                extra["areas"] = [dict(a, href=self.gift_link(a["page"]), prints=[self.gift_print(u, where) for u in a["prints"]])
+                                  for a in g["picker"]["areas"]]
+            if g.get("sizes"):
+                sp = self.gift_print(g["sizes"]["print"], where)
+                extra["sizes"] = []
+                for tier, why in g["sizes"]["tiers"]:
+                    s = next(x for x in sp["sizes"] if x.get("tier") == tier)
+                    extra["sizes"].append({"name": tier.title(), "size": s, "why": why, "from": min(s["prices"].values()),
+                                           "room": self.gift_room(sp, s["w"], s["h"])})
+            if g.get("hoods"):
+                extra["hoods"] = [{"name": n, "href": self.gift_link(pg), "p": self.gift_print(u, where)} for n, pg, u in g["hoods"]["items"]]
+            if g.get("metal"):
+                extra["metal_p"] = self.gift_print(g["metal"]["print"], where)
+            wall = self.gift_wall(g["wall"]["rows"], where)
+            items = [x["p"] for row in wall for x in row]
+            self.emit("gift.html", f"{path}.html", path, "gift", g["title"], g["description"],
+                      crumbs=[("Gifts", hub["path"]), (g["name"], path)],
+                      graph=[collection_ld(self.base, path, g["h1"], g["description"], items)],
+                      g=g, room=room, matted=matted, wall=wall, more=[m for m in more if m["key"] != g["slug"]],
+                      og_image=f"{self.base}assets/img/og/{og['urlId']}.jpg", preload=preload, **extra, **common)
+
     def not_found(self):
         self.emit("404.html", "404.html", "404", "404", "Page not found | Kawika Lopez",
                   "That page isn't here. Browse Hawaiʻi prints by Kawika Lopez instead.", indexable=False,
@@ -1069,6 +1210,7 @@ class Builder:
         self.places_index()
         self.post_pages()
         self.blog_index()
+        self.gift_pages()
         self.not_found()
         self.redirects()
         self.sitemap_and_robots()

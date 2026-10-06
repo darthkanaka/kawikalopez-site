@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% from "partials/card.html" import card with context %}
+{% import "partials/gifts.html" as gx with context %}
 {% block main %}
 <section class="hero">
   <div class="wrap hero-text">
@@ -31,6 +32,16 @@
   </div>
 </section>
 
+{% if gifts %}
+<section class="section wrap" aria-labelledby="gifts-h">
+  <div class="section-head">
+    <h2 id="gifts-h">Gifts they'll actually hang</h2>
+    <a class="more" href="{{ url('gifts/') }}">All gift ideas</a>
+  </div>
+  {{ gx.cards(gifts, "g-cards g-cards-4") }}
+</section>
+
+{% endif %}
 <section class="section wrap" aria-labelledby="coll-h">
   <h2 id="coll-h">Browse by shape and style</h2>
   <div class="tiles">

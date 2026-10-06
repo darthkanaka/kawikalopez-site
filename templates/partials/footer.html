@@ -8,6 +8,7 @@
       <h2 class="footer-h">Shop</h2>
       <ul>
         <li><a href="{{ url('store/') }}">All prints</a></li>
+        {% if nav | selectattr("href", "equalto", "gifts/") | list %}<li><a href="{{ url('gifts/') }}">Gifts</a></li>{% endif %}
         <li><a href="{{ url('panoramic-prints') }}">Panoramic</a></li>
         <li><a href="{{ url('horizontal-prints') }}">Horizontal</a></li>
         <li><a href="{{ url('vertical-prints') }}">Vertical</a></li>
@@ -18,7 +19,7 @@
     <div class="footer-nav">
       <h2 class="footer-h">Kawika Lopez</h2>
       <ul>
-        {% for n in nav if n.href not in ('store/',) %}
+        {% for n in nav if n.href not in ('store/', 'gifts/') %}
         <li><a href="{{ url(n.href) }}">{{ n.label }}</a></li>
         {% endfor %}
         <li><a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a></li>

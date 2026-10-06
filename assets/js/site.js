@@ -11,6 +11,7 @@
    06 Cart: add from a print page
    07 Cart page and checkout
    08 Analytics events (GA4, production only)
+   09 Gift pages: hometown picker and order-by dates
 */
 
 /* 01 Shared ---------------------------------------------------------------- */
@@ -650,4 +651,35 @@ var Cart = (function () {
   done.push(m[1]);
   KL.store("kl_purchased", done.slice(-20));
   try { localStorage.removeItem("kl_pending"); } catch (e) { /* nothing to clear */ }
+})();
+
+/* 09 Gift pages: hometown picker and order-by dates ------------------------------- */
+/* The picker shows one side of the island at a time; without this script every area shows,
+   one after another. An order-by date hides itself once that day has passed in Hawaiʻi. */
+(function () {
+  "use strict";
+  document.querySelectorAll("[data-areas]").forEach(function (box) {
+    var tabs = box.querySelector(".g-area-tabs");
+    var buttons = box.querySelectorAll(".g-area-tab");
+    var panels = box.querySelectorAll(".g-area");
+    if (!tabs || !buttons.length) return;
+    var show = function (id) {
+      buttons.forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-area") === id)); });
+      panels.forEach(function (p) { p.hidden = p.getAttribute("data-panel") !== id; });
+    };
+    var start = box.querySelector(".g-area[data-start]") || panels[0];
+    buttons.forEach(function (b) { b.addEventListener("click", function () { show(b.getAttribute("data-area")); }); });
+    tabs.hidden = false;
+    box.classList.add("is-ready");
+    show(start.getAttribute("data-panel"));
+  });
+
+  /* Today's date in Hawaiʻi as YYYY-MM-DD, which compares correctly as a string. */
+  var today = new Date(Date.now() - 10 * 3600 * 1000).toISOString().slice(0, 10);
+  document.querySelectorAll("[data-deadline]").forEach(function (el) {
+    if (el.getAttribute("data-deadline") < today) el.hidden = true;
+  });
+  document.querySelectorAll("[data-deadlines]").forEach(function (sec) {
+    if (!sec.querySelector("[data-deadline]:not([hidden])")) sec.hidden = true;
+  });
 })();

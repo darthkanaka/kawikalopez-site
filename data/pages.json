@@ -915,6 +915,50 @@
   "indexable": true
  },
  {
+  "path": "gifts/",
+  "file": "gifts/index.html",
+  "type": "gifts",
+  "title": "Unique Hawaiʻi Gifts: Prints Made on Oʻahu | Kawika Lopez",
+  "description": "Hawaiʻi gifts they'll actually hang. Fine art prints of real places, made to order on Oʻahu and shipped straight to them, matted from $55.",
+  "indexable": true,
+  "images": [
+   "assets/img/scenes/living-dark-2000.jpg"
+  ]
+ },
+ {
+  "path": "gifts/for-hawaii-lovers",
+  "file": "gifts/for-hawaii-lovers.html",
+  "type": "gift",
+  "title": "Gifts for Hawaiʻi Lovers: Prints of Home | Kawika Lopez",
+  "description": "Gifts for Hawaiʻi lovers far from home. A print of the place they miss, from Waikīkī to the North Shore, shipped anywhere in the US.",
+  "indexable": true,
+  "images": [
+   "assets/img/scenes/living-dark-2000.jpg"
+  ]
+ },
+ {
+  "path": "gifts/housewarming",
+  "file": "gifts/housewarming.html",
+  "type": "gift",
+  "title": "Hawaiʻi Housewarming Gifts for a First Wall | Kawika Lopez",
+  "description": "Housewarming gifts for a new home on Oʻahu. A print of the neighborhood they moved to, shown to scale so you can pick the right size.",
+  "indexable": true,
+  "images": [
+   "assets/img/scenes/nook-light-1536.jpg"
+  ]
+ },
+ {
+  "path": "gifts/for-dad",
+  "file": "gifts/for-dad.html",
+  "type": "gift",
+  "title": "Gifts for Dad from Hawaiʻi: Aerial Prints | Kawika Lopez",
+  "description": "Gifts for the dad who has everything. Aerial prints of Oʻahu, shot from a drone at first light and printed on metal for his office or den.",
+  "indexable": true,
+  "images": [
+   "assets/img/scenes/living-dark-2000.jpg"
+  ]
+ },
+ {
   "path": "404",
   "file": "404.html",
   "type": "404",

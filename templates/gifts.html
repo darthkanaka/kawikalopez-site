@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% import "partials/gifts.html" as gx with context %}
+{% block main %}
+{% include "partials/crumbs.html" %}
+<section class="wrap g-hero">
+  <div class="g-hero-grid">
+    <div>
+      <p class="eyebrow">Gifts</p>
+      <h1>{{ hub.h1 }}</h1>
+    </div>
+    <div>
+      <p class="lede">{{ hub.lede }}</p>
+      <p class="g-actions"><a class="btn" href="#picks">See the gift picks</a> {{ gx.deadline_chip(deadlines) }}</p>
+    </div>
+  </div>
+  <figure class="g-figure">
+    {{ gx.metal_room(room, "g-room-hero", [150, -24.75, -33], "(min-width: 1328px) 1920px, 150vw", eager=True) }}
+    <figcaption>{{ room.p.title }}, {{ room.w }} x {{ room.h }} metal, shown to scale above a 10 foot sofa.</figcaption>
+  </figure>
+</section>
+
+<section class="wrap section" aria-labelledby="tiers-h">
+  <p class="eyebrow">Three ways to give it</p>
+  <h2 id="tiers-h">Pick a size that fits the budget</h2>
+  <div class="g-tiers">
+    {% for t in tiers %}
+    <article class="g-tier">
+      {% if 'matted' in t.show %}
+      {{ gx.matted_room(t.show.matted, "g-room-tier", [160, -30, -16 if t.show.matted.shape == 'v' else -24], "(min-width: 960px) 52vw, 160vw") }}
+      {% else %}
+      <div class="g-swatch g-swatch-{{ t.show.wall }} g-swatch-{{ shape(t.show.p) }}">
+        <span class="g-obj g-metal">{{ picture(t.show.p, "(min-width: 960px) 28vw, 80vw", alt=t.show.p.title ~ " as a metal print") }}</span>
+      </div>
+      {% endif %}
+      <div class="g-tier-text"><p class="g-price">{{ t.price }}</p><p class="g-what">{{ t.what }}</p><p>{{ t.why }}</p></div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="wrap section" aria-labelledby="who-h">
+  <p class="eyebrow">Who it's for</p>
+  <h2 id="who-h">{{ hub.who_heading }}</h2>
+  {{ gx.cards(who, "g-cards g-cards-4") }}
+</section>
+
+<section class="wrap section" id="picks" aria-labelledby="picks-h">
+  <p class="eyebrow">{{ hub.picks_eyebrow }}</p>
+  <h2 id="picks-h">{{ hub.picks_heading }}</h2>
+  <p class="g-note">Each one is shown at its middle size, to scale with the others.</p>
+  {{ gx.wall(wall) }}
+</section>
+
+<section class="wrap section" aria-labelledby="how-h">
+  <p class="eyebrow">How gifting works</p>
+  <h2 id="how-h">Order here, it shows up there</h2>
+  <ol class="g-steps">
+    {% for title, line in hub.steps %}
+    <li><strong>{{ title }}</strong><span>{{ line }}</span></li>
+    {% endfor %}
+  </ol>
+</section>
+
+{% if deadlines %}
+<section class="wrap section" aria-labelledby="dates-h" data-deadlines>
+  <p class="eyebrow">Christmas 2026</p>
+  <h2 id="dates-h">Order by these dates</h2>
+  <div class="g-dates">
+    {% for d in deadlines %}
+    <div class="g-date" data-deadline="{{ d.date }}"><span class="g-where">{{ d.where }}</span><span class="g-day">{{ d.label }}</span></div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<section class="g-band" aria-labelledby="visit-h">
+  <div class="wrap g-band-grid">
+    <h2 id="visit-h">Visiting Oʻahu?</h2>
+    <p>{{ hub.visiting }}</p>
+  </div>
+</section>
+
+<section class="wrap section" aria-labelledby="faq-h">
+  <p class="eyebrow">Questions</p>
+  <h2 id="faq-h">Before you order</h2>
+  {{ gx.faq(hub.faq) }}
+</section>
+{% endblock %}
