@@ -1,286 +1,290 @@
 {
  "/": {
-  "date": "2026-10-06",
-  "hash": "7d05cc9a83df"
+  "date": "2026-10-08",
+  "hash": "c2d482a284f4"
  },
  "404": {
-  "date": "2026-10-06",
-  "hash": "467357c752a1"
+  "date": "2026-10-08",
+  "hash": "4fc79e30f6ca"
  },
  "about": {
-  "date": "2026-10-06",
-  "hash": "1eb2226f0988"
+  "date": "2026-10-08",
+  "hash": "904b32ed1f82"
  },
  "blog/": {
-  "date": "2026-10-06",
-  "hash": "4b8ae3ec4e8c"
+  "date": "2026-10-08",
+  "hash": "809af040cbf8"
  },
  "blog/5-tips-for-choosing-wall-art": {
-  "date": "2026-10-06",
-  "hash": "85dbd7443fd9"
+  "date": "2026-10-08",
+  "hash": "69de537ccbeb"
  },
  "blog/canvas-or-metal-print": {
-  "date": "2026-10-06",
-  "hash": "08b56c7e964b"
+  "date": "2026-10-08",
+  "hash": "b47edc1a764d"
+ },
+ "blog/client-and-employee-gifts": {
+  "date": "2026-10-08",
+  "hash": "6561deaa0676"
  },
  "blog/what-size-print-above-a-sofa": {
-  "date": "2026-10-06",
-  "hash": "fd3a0e33b79b"
+  "date": "2026-10-08",
+  "hash": "791a66d238a5"
  },
  "cart": {
-  "date": "2026-10-06",
-  "hash": "55403c79668c"
+  "date": "2026-10-08",
+  "hash": "83c7de41fcbf"
  },
  "contact": {
-  "date": "2026-10-06",
-  "hash": "b9e1af2170e5"
+  "date": "2026-10-08",
+  "hash": "53bf74dba541"
  },
  "fine-art": {
-  "date": "2026-10-06",
-  "hash": "648dfb58ddf5"
+  "date": "2026-10-08",
+  "hash": "af8c820d6971"
  },
  "gifts/": {
-  "date": "2026-10-06",
-  "hash": "00acf6dc618a"
+  "date": "2026-10-08",
+  "hash": "8d4e88dccfb9"
  },
  "gifts/for-dad": {
-  "date": "2026-10-06",
-  "hash": "a0b7a380e640"
+  "date": "2026-10-08",
+  "hash": "a2d4da030b39"
  },
  "gifts/for-hawaii-lovers": {
-  "date": "2026-10-06",
-  "hash": "47bf74d15659"
+  "date": "2026-10-08",
+  "hash": "a29115e1cd10"
  },
  "gifts/housewarming": {
-  "date": "2026-10-06",
-  "hash": "3b50420bacc8"
+  "date": "2026-10-08",
+  "hash": "ab02f30d7ce2"
  },
  "hawaii-prints/": {
-  "date": "2026-10-06",
-  "hash": "1b88f956adc3"
+  "date": "2026-10-08",
+  "hash": "069fa9b5ec9a"
  },
  "hawaii-prints/diamond-head": {
-  "date": "2026-10-06",
-  "hash": "47558ed610f2"
+  "date": "2026-10-08",
+  "hash": "65b29b21d4ae"
  },
  "hawaii-prints/kaaawa-valley": {
-  "date": "2026-10-06",
-  "hash": "e0d9aebfd13d"
+  "date": "2026-10-08",
+  "hash": "a6024a34a144"
  },
  "hawaii-prints/kailua-waimanalo": {
-  "date": "2026-10-06",
-  "hash": "e38e2bf6bfcc"
+  "date": "2026-10-08",
+  "hash": "6c823667bc08"
  },
  "hawaii-prints/kaiwi-coast": {
-  "date": "2026-10-06",
-  "hash": "a64bb87ab590"
+  "date": "2026-10-08",
+  "hash": "4434f70db8d1"
  },
  "hawaii-prints/koolau": {
-  "date": "2026-10-06",
-  "hash": "7947624780f8"
+  "date": "2026-10-08",
+  "hash": "b9acc778e794"
  },
  "hawaii-prints/makapuu": {
-  "date": "2026-10-06",
-  "hash": "fde8049f7447"
+  "date": "2026-10-08",
+  "hash": "4d3a740fb489"
  },
  "hawaii-prints/mokolii": {
-  "date": "2026-10-06",
-  "hash": "6f9d0caddb18"
+  "date": "2026-10-08",
+  "hash": "0c114cecfb09"
  },
  "hawaii-prints/north-shore": {
-  "date": "2026-10-06",
-  "hash": "d3bcc15bb14f"
+  "date": "2026-10-08",
+  "hash": "380912dd5ffb"
  },
  "horizontal-prints": {
-  "date": "2026-10-06",
-  "hash": "f7f32c819777"
+  "date": "2026-10-08",
+  "hash": "a8e8f48afb74"
  },
  "landscape-1": {
-  "date": "2026-10-06",
-  "hash": "931e9d045416"
+  "date": "2026-10-08",
+  "hash": "b0febd5ccaf4"
  },
  "panoramic-prints": {
-  "date": "2026-10-06",
-  "hash": "53ad480c312d"
+  "date": "2026-10-08",
+  "hash": "e29016e21244"
  },
  "prints": {
-  "date": "2026-10-06",
-  "hash": "f67efa2f1f89"
+  "date": "2026-10-08",
+  "hash": "d69d049ca12a"
  },
  "privacy": {
-  "date": "2026-10-06",
-  "hash": "fc29856fc4c3"
+  "date": "2026-10-08",
+  "hash": "4f8be36db449"
  },
  "store/": {
-  "date": "2026-10-06",
-  "hash": "9d04782c2e0b"
+  "date": "2026-10-08",
+  "hash": "35a0b0f71945"
  },
  "store/018": {
-  "date": "2026-10-06",
-  "hash": "b9ff59c625fe"
+  "date": "2026-10-08",
+  "hash": "67d9999abdda"
  },
  "store/032": {
-  "date": "2026-10-06",
-  "hash": "0d4050e7f1d1"
+  "date": "2026-10-08",
+  "hash": "fac891f5d0f2"
  },
  "store/033": {
-  "date": "2026-10-06",
-  "hash": "cd5e8fbb1002"
+  "date": "2026-10-08",
+  "hash": "7f5bdde8d030"
  },
  "store/034": {
-  "date": "2026-10-06",
-  "hash": "7e9b569e964f"
+  "date": "2026-10-08",
+  "hash": "35b7f813fe90"
  },
  "store/035": {
-  "date": "2026-10-06",
-  "hash": "d3f982c204e2"
+  "date": "2026-10-08",
+  "hash": "3b6c901c0f75"
  },
  "store/036": {
-  "date": "2026-10-06",
-  "hash": "e53a00a840e7"
+  "date": "2026-10-08",
+  "hash": "d36a054d117f"
  },
  "store/037": {
-  "date": "2026-10-06",
-  "hash": "2841370d03db"
+  "date": "2026-10-08",
+  "hash": "51c9c42b93f6"
  },
  "store/038": {
-  "date": "2026-10-06",
-  "hash": "b42a48ff03df"
+  "date": "2026-10-08",
+  "hash": "bc25d5bed816"
  },
  "store/043": {
-  "date": "2026-10-06",
-  "hash": "401b7ce45a75"
+  "date": "2026-10-08",
+  "hash": "0686a4d66eb7"
  },
  "store/anuenue": {
-  "date": "2026-10-06",
-  "hash": "cca922fe8a44"
+  "date": "2026-10-08",
+  "hash": "8438da4a1322"
  },
  "store/eleu": {
-  "date": "2026-10-06",
-  "hash": "52b944bc2e5f"
+  "date": "2026-10-08",
+  "hash": "da2fcad9c073"
  },
  "store/frostedtidepool": {
-  "date": "2026-10-06",
-  "hash": "cd2ee9bd795a"
+  "date": "2026-10-08",
+  "hash": "9816ab5b83fc"
  },
  "store/hanauma": {
-  "date": "2026-10-06",
-  "hash": "c1fa7620b831"
+  "date": "2026-10-08",
+  "hash": "d72a379ef981"
  },
  "store/hanohanohakipuu": {
-  "date": "2026-10-06",
-  "hash": "6be04a9d241b"
+  "date": "2026-10-08",
+  "hash": "628423a45c6e"
  },
  "store/hoihoi": {
-  "date": "2026-10-06",
-  "hash": "ca40abec717a"
+  "date": "2026-10-08",
+  "hash": "e3f1aefce9c1"
  },
  "store/homecoming": {
-  "date": "2026-10-06",
-  "hash": "d6c375a3b18e"
+  "date": "2026-10-08",
+  "hash": "5af1afb445e6"
  },
  "store/hookahi": {
-  "date": "2026-10-06",
-  "hash": "f1f6bfcc51ce"
+  "date": "2026-10-08",
+  "hash": "c2c8dfeaf6f1"
  },
  "store/jumanji": {
-  "date": "2026-10-06",
-  "hash": "b4f36ed09080"
+  "date": "2026-10-08",
+  "hash": "42c98a1811d8"
  },
  "store/jurassicdawn": {
-  "date": "2026-10-06",
-  "hash": "6c20c1e44887"
+  "date": "2026-10-08",
+  "hash": "68d53599afc5"
  },
  "store/kaaawasunrise": {
-  "date": "2026-10-06",
-  "hash": "7ac2f154410e"
+  "date": "2026-10-08",
+  "hash": "aa7b1d0ac8c4"
  },
  "store/kaaawavalley": {
-  "date": "2026-10-06",
-  "hash": "2a81496fa744"
+  "date": "2026-10-08",
+  "hash": "bd4ec849d0fc"
  },
  "store/kahana": {
-  "date": "2026-10-06",
-  "hash": "1f40de15cbb8"
+  "date": "2026-10-08",
+  "hash": "92b2d39e0990"
  },
  "store/kaimana": {
-  "date": "2026-10-06",
-  "hash": "9f7ebefd11a5"
+  "date": "2026-10-08",
+  "hash": "bb95b92f0cf9"
  },
  "store/kaiwi": {
-  "date": "2026-10-06",
-  "hash": "3b1b29424300"
+  "date": "2026-10-08",
+  "hash": "f3cf4464b28c"
  },
  "store/kuamoo": {
-  "date": "2026-10-06",
-  "hash": "0f694dc712f1"
+  "date": "2026-10-08",
+  "hash": "b473305af813"
  },
  "store/leahikahiko": {
-  "date": "2026-10-06",
-  "hash": "c15a9ff2911d"
+  "date": "2026-10-08",
+  "hash": "b38b754cd9aa"
  },
  "store/makapuubeach-h": {
-  "date": "2026-10-06",
-  "hash": "541f07dad5d6"
+  "date": "2026-10-08",
+  "hash": "109aea369c32"
  },
  "store/makapuubeach-v": {
-  "date": "2026-10-06",
-  "hash": "72fae37ad9c3"
+  "date": "2026-10-08",
+  "hash": "afa054c70826"
  },
  "store/malie": {
-  "date": "2026-10-06",
-  "hash": "4712383383dc"
+  "date": "2026-10-08",
+  "hash": "fef0cb7bd03e"
  },
  "store/mokoliireflection": {
-  "date": "2026-10-06",
-  "hash": "2cbcfbeed1b6"
+  "date": "2026-10-08",
+  "hash": "e6229a4320fd"
  },
  "store/mokulele": {
-  "date": "2026-10-06",
-  "hash": "4beb4e432401"
+  "date": "2026-10-08",
+  "hash": "15a977a67e88"
  },
  "store/mokulua": {
-  "date": "2026-10-06",
-  "hash": "9d96a3be23e9"
+  "date": "2026-10-08",
+  "hash": "cce8a21a12d1"
  },
  "store/mokulua-islands": {
-  "date": "2026-10-06",
-  "hash": "ea53c5c21dd0"
+  "date": "2026-10-08",
+  "hash": "c51f5b69bd9e"
  },
  "store/naniwaikiki": {
-  "date": "2026-10-06",
-  "hash": "3b3e761625f0"
+  "date": "2026-10-08",
+  "hash": "de5feafa6e82"
  },
  "store/olomana": {
-  "date": "2026-10-06",
-  "hash": "55017c0bdb3d"
+  "date": "2026-10-08",
+  "hash": "d7cf2c6fc614"
  },
  "store/puao": {
-  "date": "2026-10-06",
-  "hash": "a42ab7d936b7"
+  "date": "2026-10-08",
+  "hash": "9bf38154c664"
  },
  "store/shorelinecascade": {
-  "date": "2026-10-06",
-  "hash": "cae4e6200588"
+  "date": "2026-10-08",
+  "hash": "64d5140ecb10"
  },
  "store/timespan": {
-  "date": "2026-10-06",
-  "hash": "fbed4db65977"
+  "date": "2026-10-08",
+  "hash": "757a732c3651"
  },
  "store/waimanalo": {
-  "date": "2026-10-06",
-  "hash": "998cdbc49099"
+  "date": "2026-10-08",
+  "hash": "fd16019604da"
  },
  "terms": {
-  "date": "2026-10-06",
-  "hash": "42324bb08b25"
+  "date": "2026-10-08",
+  "hash": "b7d2f8061241"
  },
  "thank-you": {
-  "date": "2026-10-06",
-  "hash": "4f4fcf03ca5b"
+  "date": "2026-10-08",
+  "hash": "b19bd343a52a"
  },
  "vertical-prints": {
-  "date": "2026-10-06",
-  "hash": "7e22d64476fb"
+  "date": "2026-10-08",
+  "hash": "550f46568a4c"
  }
 }

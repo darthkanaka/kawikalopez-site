@@ -874,6 +874,17 @@
   "indexable": true
  },
  {
+  "path": "blog/client-and-employee-gifts",
+  "file": "blog/client-and-employee-gifts.html",
+  "type": "post",
+  "title": "Corporate Gifts from Hawaiʻi That Last | Kawika Lopez",
+  "description": "A print of a real Oʻahu place is a client or employee gift they'll keep. Prints start at $55. Here's how to pick a size, what you can deduct, and how it ships.",
+  "indexable": true,
+  "images": [
+   "assets/img/prints/malie-960.jpg"
+  ]
+ },
+ {
   "path": "blog/5-tips-for-choosing-wall-art",
   "file": "blog/5-tips-for-choosing-wall-art.html",
   "type": "post",

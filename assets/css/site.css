@@ -422,6 +422,12 @@ p { margin: 0 0 1em; }
 .post-body h3 { font-size: 1.75rem; margin-top: 1.2em; }
 .post-body ul, .post-body ol, .place-body ul { padding-left: 1.2em; }
 .post-body li + li { margin-top: 0.4em; }
+/* Tables in posts and place pages: left-aligned, ruled, the first column set large. */
+.post-body table, .place-body table { width: 100%; border-collapse: collapse; margin: 28px 0; font-size: 1rem; line-height: 1.45; font-variant-numeric: tabular-nums; }
+.post-body th, .post-body td, .place-body th, .place-body td { text-align: left; vertical-align: top; padding: 12px 16px 12px 0; border-bottom: 1px solid var(--rule); }
+.post-body th:last-child, .post-body td:last-child, .place-body th:last-child, .place-body td:last-child { padding-right: 0; }
+.post-body thead th, .place-body thead th { font-size: var(--step--1); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2); font-weight: 500; border-bottom-color: var(--ink); }
+.post-body tbody td:first-child, .place-body tbody td:first-child { font-family: var(--serif); font-size: 1.375rem; line-height: 1.15; white-space: nowrap; }
 .inline-prints { display: flex; flex-wrap: wrap; gap: 16px; margin: 28px 0; }
 .inline-print { flex: var(--r) 1 calc(var(--r) * 200px); min-width: 0; text-decoration: none; display: flex; flex-direction: column; }
 .inline-prints.is-one .inline-print { flex-basis: 100%; }
