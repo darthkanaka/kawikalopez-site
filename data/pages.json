@@ -874,6 +874,17 @@
   "indexable": true
  },
  {
+  "path": "blog/christmas-gifts-from-hawaii",
+  "file": "blog/christmas-gifts-from-hawaii.html",
+  "type": "post",
+  "title": "Best Gifts from Hawaiʻi for Christmas 2026 | Kawika Lopez",
+  "description": "The best gifts from Hawaiʻi are the ones they keep. A print of a real Oʻahu place, from $55, shipped to them by Christmas if you order by Nov 20.",
+  "indexable": true,
+  "images": [
+   "assets/img/prints/naniwaikiki-2000.jpg"
+  ]
+ },
+ {
   "path": "blog/client-and-employee-gifts",
   "file": "blog/client-and-employee-gifts.html",
   "type": "post",
