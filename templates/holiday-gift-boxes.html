@@ -31,8 +31,8 @@
 {% endif %}
 </head>
 <body class="t-gift-boxes">
-<p class="tah-bar">✴︎ Holiday gift boxes from Baker's Heart and Kawika Lopez. Pickups start November 16. ✴︎</p>
-<div class="tah-head">
+<aside aria-label="Announcement"><p class="tah-bar">✴︎ Holiday gift boxes from Baker's Heart and Kawika Lopez. Pickups start November 16. ✴︎</p></aside>
+<header class="tah-head">
   <div class="tah-in">
     <details class="tah-menu"><summary aria-label="Menu">☰</summary><nav class="tah-menu-list" aria-label="Touch A Heart">
       {% for m in bh.menu %}{% if m.get('sub') %}<div class="grp"><p>{{ m.name }}</p>{% for s in m.sub %}<a href="{{ s.href }}">{{ s.name }}</a>{% endfor %}</div>{% else %}<a href="{{ m.href }}">{{ m.name }}</a>{% endif %}{% endfor %}
@@ -43,18 +43,19 @@
     </ul>
     <button class="mine" type="button" data-open="">Order a gift box</button>
   </div>
-</div>
+</header>
 
-<header class="wrap">
+<main>
+<div class="wrap">
   <div class="lockup">
     <img class="tah" src="https://touchahearthawaii.org/cdn/shop/files/TAH_logo.jpg?v=1677166552" width="1838" height="914" alt="Touch A Heart, transforming lives, one heart at a time">
     <span class="x" aria-hidden="true">×</span>
     <img src="{{ root }}assets/img/site/logo.svg" width="2455" height="1183" alt="Kawika Lopez Photography">
   </div>
   <hr class="lockup-rule">
-</header>
+</div>
 
-<main>
+
 
   <!-- Opening -->
   <section class="wrap hero">
@@ -64,6 +65,7 @@
 
   <!-- The boxes -->
   <section class="wrap buy" id="boxes">
+    <h2 class="visually-hidden">Order a gift box</h2>
     <div class="offer">
     <div class="boxes">
       <article class="box">
@@ -98,28 +100,28 @@
       <div class="wall">
         <div class="wall-in">
           <div class="mats">
-            <figure class="mat-fig" role="button" tabindex="0" data-pick="mokulele" aria-label="Order a box with Mokulele">
-              <div class="mat v"><div class="photo"><img src="{{ root }}assets/img/prints/mokulele-480.jpg" width="480" height="600" alt="Mokulele, the green Kualoa ridge in gold sunrise light, seen past dark rocks and a small sand cove on an islet off the Kaʻaʻawa coast, matted" loading="lazy"></div></div>
+            <figure class="mat-fig" data-pick="mokulele">
+              <div class="mat v" role="button" tabindex="0" aria-label="Order a box with Mokulele"><div class="photo"><img src="{{ root }}assets/img/prints/mokulele-480.jpg" width="480" height="600" alt="Mokulele, the green Kualoa ridge in gold sunrise light, seen past dark rocks and a small sand cove on an islet off the Kaʻaʻawa coast, matted" loading="lazy"></div></div>
               <figcaption>Mokulele</figcaption>
             </figure>
-            <figure class="mat-fig" role="button" tabindex="0" data-pick="mokulua" aria-label="Order a box with Mokulua">
-              <div class="mat h"><div class="photo"><img src="{{ root }}assets/img/prints/mokulua-islands-480.jpg" width="480" height="320" alt="Mokulua, the two islets off Lanikai from the air in warm low light, turquoise water and the Kailua coast behind them, matted" loading="lazy"></div></div>
+            <figure class="mat-fig" data-pick="mokulua">
+              <div class="mat h" role="button" tabindex="0" aria-label="Order a box with Mokulua"><div class="photo"><img src="{{ root }}assets/img/prints/mokulua-islands-480.jpg" width="480" height="320" alt="Mokulua, the two islets off Lanikai from the air in warm low light, turquoise water and the Kailua coast behind them, matted" loading="lazy"></div></div>
               <figcaption>Mokulua</figcaption>
             </figure>
-            <figure class="mat-fig" role="button" tabindex="0" data-pick="shoreline" aria-label="Order a box with Shoreline Cascade">
-              <div class="mat v"><div class="photo"><img src="{{ root }}assets/img/prints/shorelinecascade-480.jpg" width="480" height="600" alt="Shoreline Cascade, water spilling over a mossy green reef on the North Shore at sunset, matted" loading="lazy"></div></div>
+            <figure class="mat-fig" data-pick="shoreline">
+              <div class="mat v" role="button" tabindex="0" aria-label="Order a box with Shoreline Cascade"><div class="photo"><img src="{{ root }}assets/img/prints/shorelinecascade-480.jpg" width="480" height="600" alt="Shoreline Cascade, water spilling over a mossy green reef on the North Shore at sunset, matted" loading="lazy"></div></div>
               <figcaption>Shoreline Cascade</figcaption>
             </figure>
-            <figure class="mat-fig" role="button" tabindex="0" data-pick="leahi" aria-label="Order a box with Lēʻahi Kahiko">
-              <div class="mat h"><div class="photo"><img src="{{ root }}assets/img/prints/leahikahiko-480.jpg" width="480" height="320" alt="Lēʻahi Kahiko, Diamond Head from the air with sunrise light across its ridges and the city behind, matted" loading="lazy"></div></div>
+            <figure class="mat-fig" data-pick="leahi">
+              <div class="mat h" role="button" tabindex="0" aria-label="Order a box with Lēʻahi Kahiko"><div class="photo"><img src="{{ root }}assets/img/prints/leahikahiko-480.jpg" width="480" height="320" alt="Lēʻahi Kahiko, Diamond Head from the air with sunrise light across its ridges and the city behind, matted" loading="lazy"></div></div>
               <figcaption>Lēʻahi Kahiko</figcaption>
             </figure>
-            <figure class="mat-fig" role="button" tabindex="0" data-pick="kahana" aria-label="Order a box with Kahana">
-              <div class="mat v"><div class="photo"><img src="{{ root }}assets/img/prints/kahana-480.jpg" width="480" height="600" alt="Kahana, a sunlit green ridge curving down toward Kahana Bay at sunrise, matted" loading="lazy"></div></div>
+            <figure class="mat-fig" data-pick="kahana">
+              <div class="mat v" role="button" tabindex="0" aria-label="Order a box with Kahana"><div class="photo"><img src="{{ root }}assets/img/prints/kahana-480.jpg" width="480" height="600" alt="Kahana, a sunlit green ridge curving down toward Kahana Bay at sunrise, matted" loading="lazy"></div></div>
               <figcaption>Kahana</figcaption>
             </figure>
-            <figure class="mat-fig" role="button" tabindex="0" data-pick="malie" aria-label="Order a box with Mālie">
-              <div class="mat h"><div class="photo"><img src="{{ root }}assets/img/prints/malie-480.jpg" width="480" height="320" alt="Mālie, water over a sharp reef on the North Shore, matted" loading="lazy"></div></div>
+            <figure class="mat-fig" data-pick="malie">
+              <div class="mat h" role="button" tabindex="0" aria-label="Order a box with Mālie"><div class="photo"><img src="{{ root }}assets/img/prints/malie-480.jpg" width="480" height="320" alt="Mālie, water over a sharp reef on the North Shore, matted" loading="lazy"></div></div>
               <figcaption>Mālie</figcaption>
             </figure>
           </div>

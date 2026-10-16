@@ -306,9 +306,9 @@
   });
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && !co.hidden) closeCo();
-    if ((e.key === "Enter" || e.key === " ") && e.target.matches && e.target.matches("[data-pick]")) {
+    if ((e.key === "Enter" || e.key === " ") && e.target.matches && e.target.matches('[data-pick] [role="button"]')) {
       e.preventDefault();
-      openCo(null, e.target.getAttribute("data-pick"));
+      openCo(null, e.target.closest("[data-pick]").getAttribute("data-pick"));
     }
   });
 

@@ -62,6 +62,7 @@ const arrows = `[...document.querySelectorAll('#co-cal [data-mon]')].map(b=>b.di
   const { ev, shot, send } = b;
 
   // Toolbar
+  check('gold bar text is dark enough to read', await ev(`getComputedStyle(document.querySelector('.tah-bar')).color`), 'rgb(27, 26, 24)');
   check('gold bar', await ev(text('.tah-bar')), "✴︎ Holiday gift boxes from Baker's Heart and Kawika Lopez. Pickups start November 16. ✴︎");
   check('desktop menu visible, hamburger hidden', await ev(`[getComputedStyle(document.querySelector('.tah-nav')).display, getComputedStyle(document.querySelector('.tah-menu')).display]`), ['flex', 'none']);
   check('top-level menu', await ev(`[...document.querySelectorAll('.tah-nav > li > a')].map(a=>a.firstChild.textContent.trim())`),
@@ -74,7 +75,7 @@ const arrows = `[...document.querySelectorAll('#co-cal [data-mon]')].map(b=>b.di
   check('pickup line', await ev(`document.querySelector('#boxes .prose').textContent.includes('You can order now. Pickups run November 16 to December 22, at Kalihi Union Church on weekdays or Pearl City Community Church on Wednesdays.')`), true);
   check('order buttons', await ev(`[...document.querySelectorAll('[data-open]')].map(b=>b.dataset.open+':'+b.textContent.replace(/\\s+/g,' ').trim())`),
     [':Order a gift box', 'team:Order the Team box', 'client:Order the Client box', 'team:Order gift boxes']);
-  check('wall prints clickable', await ev(`[...document.querySelectorAll('[data-pick]')].map(f=>f.dataset.pick+':'+f.getAttribute('aria-label'))`),
+  check('wall prints clickable', await ev(`[...document.querySelectorAll('[data-pick]')].map(f=>f.dataset.pick+':'+f.querySelector('[role=button]').getAttribute('aria-label'))`),
     ['mokulele:Order a box with Mokulele', 'mokulua:Order a box with Mokulua', 'shoreline:Order a box with Shoreline Cascade', 'leahi:Order a box with Lēʻahi Kahiko', 'kahana:Order a box with Kahana', 'malie:Order a box with Mālie']);
   check('just-cookies and just-prints links', await ev(`[...document.querySelectorAll('.just-card')].map(c=>[c.querySelector('h3').textContent, c.querySelector('a').href])`),
     [['Just looking for cookies?', 'https://touchahearthawaii.org/collections/bh-holiday'], ['Just looking for prints?', BASE + '/store/']]);
@@ -220,7 +221,7 @@ const arrows = `[...document.querySelectorAll('#co-cal [data-mon]')].map(b=>b.di
   await ev(click('[data-pick="leahi"]')); await sleep(200);
   check('wall click opens, highlights Lēʻahi', [await ev(`!document.getElementById('co').hidden`), await ev(`document.querySelector('.tile[data-id="leahi"]').classList.contains('pulse')`)], [true, true]);
   await ev(click('.co-x'));
-  await ev(`(()=>{const f=document.querySelector('[data-pick="kahana"]');f.focus();f.dispatchEvent(new KeyboardEvent('keydown',{key:'Enter',bubbles:true}));})()`); await sleep(200);
+  await ev(`(()=>{const f=document.querySelector('[data-pick="kahana"] [role=button]');f.focus();f.dispatchEvent(new KeyboardEvent('keydown',{key:'Enter',bubbles:true}));})()`); await sleep(200);
   check('Enter on a wall print opens', await ev(`document.querySelector('.tile[data-id="kahana"]').classList.contains('pulse') && !document.getElementById('co').hidden`), true);
   check('no horizontal overflow (desktop)', await ev(`document.documentElement.scrollWidth`), 1440);
 

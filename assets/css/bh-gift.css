@@ -239,7 +239,7 @@
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
   /* ---------- Touch A Heart toolbar (copies touchahearthawaii.org's header) ---------- */
-  .tah-bar { background: #C29D3B; color: #fff; text-align: center; font: 500 0.875rem/1.35 "Open Sans", var(--sans); padding: 9px var(--gutter); margin: 0; }
+  .tah-bar { background: #C29D3B; color: #1b1a18; text-align: center; font: 500 0.875rem/1.35 "Open Sans", var(--sans); padding: 9px var(--gutter); margin: 0; }
   .tah-head { position: sticky; top: 0; z-index: 30; background: #fff; border-bottom: 1px solid #eee; font-family: "Open Sans", var(--sans); color: #2b2b2b; }
   .tah-in { max-width: 1440px; margin-inline: auto; display: flex; align-items: center; gap: 16px; padding: 8px var(--gutter); }
   .tah-logo { display: block; flex: none; }
@@ -277,11 +277,11 @@
   }
 
   /* ---------- landing page tweaks ---------- */
-  .mat-fig[role="button"] { cursor: pointer; }
-  .mat-fig[role="button"]:hover figcaption, .mat-fig[role="button"]:focus-visible figcaption { text-decoration: underline; text-underline-offset: 4px; }
-  .mat-fig[role="button"]:focus-visible { outline: 2px solid #f1ecdd; outline-offset: 8px; }
-  .btn-gold { background: var(--gold); border-color: var(--gold); color: #fff; margin-top: 24px; }
-  .btn-gold:hover { background: var(--gold-2); border-color: var(--gold-2); }
+  .mat-fig[data-pick] { cursor: pointer; }
+  .mat-fig[data-pick]:hover figcaption, .mat-fig[data-pick]:focus-within figcaption { text-decoration: underline; text-underline-offset: 4px; }
+  .mat-fig [role="button"]:focus-visible { outline: 2px solid #f1ecdd; outline-offset: 8px; }
+  .btn-gold { background: var(--gold-2); border-color: var(--gold-2); color: #fff; margin-top: 24px; }
+  .btn-gold:hover { background: #74592a; border-color: #74592a; }
 
   /* ---------- the checkout window ---------- */
   .co[hidden] { display: none; }
@@ -385,3 +385,4 @@
 .co-done .btn { margin-top: 8px; }
 .btn-order:disabled { background: #8c8a82; border-color: #8c8a82; cursor: default; }
 .co-body[hidden] { display: none !important; }
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
