@@ -384,3 +384,4 @@
 .co-done p { margin: 0 0 12px; }
 .co-done .btn { margin-top: 8px; }
 .btn-order:disabled { background: #8c8a82; border-color: #8c8a82; cursor: default; }
+.co-body[hidden] { display: none !important; }
