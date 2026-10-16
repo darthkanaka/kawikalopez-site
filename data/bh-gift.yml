@@ -9,7 +9,7 @@
 publish: false
 mode: test
 indexable: false
-endpoint: ""
+endpoint: "https://script.google.com/macros/s/AKfycbwfSccE9-y0aBCekSYRfA0aU9QothRkjeJxHoHS-md_mhWemVBmX_4xh8NSKwDjq43O/exec"
 
 # Touch A Heart's own header menu, copied from touchahearthawaii.org on 2026-10-15.
 tah_menu:
