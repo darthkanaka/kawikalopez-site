@@ -1,5 +1,7 @@
 // A real sandbox purchase through the gift box page, the dev checkout and Stripe's form.
-// Needs: the preview build served on :8781 and `node tools/bh_checkout_dev.mjs` on :8782.
+// Needs: the preview build served on :8781 (or BASE=<another copy>) and a checkout endpoint built in:
+// the deployed script, or `PORT=8792 node tools/bh_checkout_dev.mjs` with KL_BH_ENDPOINT. Stripe returns
+// to the script's BASE_TEST, so the copy under test must be that address.
 // Run from tools/: node test_bh_purchase.mjs
 import { chromium } from "playwright";
 import { readFileSync } from "fs";
@@ -20,7 +22,7 @@ const b = await chromium.launch();
 const p = await b.newPage({ viewport: { width: 1440, height: 1700 } });
 p.on("pageerror", e => console.log("JS ERROR:", e.message));
 p.on("console", m => { if (/checkout:/.test(m.text())) console.log("CONSOLE:", m.text()); });
-await p.goto("http://localhost:8781/gifts/holiday-gift-boxes", { waitUntil: "networkidle" });
+await p.goto((process.env.BASE || "http://localhost:8781") + "/gifts/holiday-gift-boxes", { waitUntil: "networkidle" });
 await p.click('[data-open="team"]');
 await p.click('.tile[data-id="mokulele"] [data-step="1"]'); await p.click('.tile[data-id="mokulele"] [data-step="1"]');
 await p.click('.co-tabs [data-box="client"]'); await p.click('.tile[data-id="malie"] [data-step="1"]');
