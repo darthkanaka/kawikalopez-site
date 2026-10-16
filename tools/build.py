@@ -537,6 +537,11 @@ class Builder:
         if self.gifts.get("hub"):
             self.available.add(self.gifts["hub"]["path"])
             self.available |= {f"gifts/{g['slug']}" for g in self.gifts.get("pages", [])}
+        # Holiday gift boxes (data/bh-gift.yml): kept out of production builds until it's published.
+        self.bh = load_yaml("bh-gift.yml", {}) or {}
+        self.bh_on = bool(self.bh) and (not production or self.bh.get("publish") or os.environ.get("KL_BH_PREVIEW") == "1")
+        if self.bh_on:
+            self.available.add("gifts/holiday-gift-boxes")
 
     # -- output
     def write(self, rel, text):
@@ -1091,6 +1096,28 @@ class Builder:
                       g=g, room=room, matted=matted, wall=wall, more=[m for m in more if m["key"] != g["slug"]],
                       og_image=f"{self.base}assets/img/og/{og['urlId']}.jpg", preload=preload, **extra, **common)
 
+    def gift_boxes_page(self):
+        """The holiday gift boxes page (Baker's Heart x Kawika Lopez): its own layout with Touch A
+        Heart's toolbar, assets/css/bh-gift.css and assets/js/bh-gift.js, and the gift checkout
+        (gas/gift-checkout.gs). Indexable only once it's live and switched on in data/bh-gift.yml."""
+        if not self.bh_on:
+            return
+        mode = self.bh.get("mode", "test")
+        endpoint = os.environ.get("KL_BH_ENDPOINT") or self.bh.get("endpoint") or ""
+        pk = ((self.site.get("checkout") or {}).get("publishable_key") or {}).get(mode) or ""
+        if not endpoint:
+            WARN.add("gift boxes: no checkout endpoint in data/bh-gift.yml, so the order window can't take payment")
+        if not pk.startswith(f"pk_{mode}_"):
+            WARN.add(f"gift boxes: no {mode} publishable key in data/site.yml (checkout.publishable_key)")
+        indexable = bool(self.bh.get("indexable")) and mode == "live"
+        self.emit("holiday-gift-boxes.html", "gifts/holiday-gift-boxes.html", "gifts/holiday-gift-boxes", "gift-boxes",
+                  "Holiday Gift Boxes: Baker's Heart and Kawika Lopez",
+                  "Baker's Heart cookies and a matted Kawika Lopez print of Oʻahu in one holiday gift box for your "
+                  "clients and team, picked up in Kalihi or Pearl City.",
+                  indexable=indexable, og_image=self.base + "assets/img/bakers-heart/collection.jpg",
+                  og_alt="The Baker's Heart holiday collection in olive green Comfort and Joy wraps",
+                  bh={"endpoint": endpoint, "mode": mode, "pk": pk, "menu": self.bh.get("tah_menu", [])})
+
     def not_found(self):
         self.emit("404.html", "404.html", "404", "404", "Page not found | Kawika Lopez",
                   "That page isn't here. Browse Hawaiʻi prints by Kawika Lopez instead.", indexable=False,
@@ -1211,6 +1238,7 @@ class Builder:
         self.post_pages()
         self.blog_index()
         self.gift_pages()
+        self.gift_boxes_page()
         self.not_found()
         self.redirects()
         self.sitemap_and_robots()

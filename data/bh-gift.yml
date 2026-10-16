@@ -1,0 +1,35 @@
+# Holiday gift boxes (Baker's Heart x Kawika Lopez), /gifts/holiday-gift-boxes.
+# Checkout: gas/gift-checkout.gs. Rules: assets/js/bh-pickup.js. Plan and decisions:
+# ~/Documents/Obsidian/projects/bakers-heart-gift-collab-tasks.md.
+#
+# publish: false keeps the page out of production builds (set KL_BH_PREVIEW=1 to build it locally).
+#   It turns true at launch, after Robin's team approves the page.
+# mode: test until launch. indexable: false until launch (then the page joins the sitemap).
+# endpoint: the Apps Script web app URL. KL_BH_ENDPOINT overrides it for local testing.
+publish: false
+mode: test
+indexable: false
+endpoint: ""
+
+# Touch A Heart's own header menu, copied from touchahearthawaii.org on 2026-10-15.
+tah_menu:
+  - {name: "About", href: "https://touchahearthawaii.org/pages/about", sub: [
+      {name: "About", href: "https://touchahearthawaii.org/pages/about"},
+      {name: "Pickup Information", href: "https://touchahearthawaii.org/pages/pickup-delivery-information"}]}
+  - {name: "Programs", href: "https://touchahearthawaii.org/pages/programs", sub: [
+      {name: "Internship & Apprenticeship", href: "https://touchahearthawaii.org/pages/programs"},
+      {name: "Growth Mindset", href: "https://touchahearthawaii.org/pages/growth-mindset"}]}
+  - {name: "Social Enterprises", href: "https://touchahearthawaii.org/pages/social-enterprises", sub: [
+      {name: "'Ohana Meals", href: "https://touchahearthawaii.org/pages/social/#shopify-section-template--15893091713104__51f6c67c-19a1-4b9e-b352-dfbb10c2f5e6"},
+      {name: "Baker's Heart", href: "https://touchahearthawaii.org/pages/social/#shopify-section-template--15893091713104__2b71388a-4a06-4e6f-ba37-9fb6c47e6716"},
+      {name: "Catering", href: "https://touchahearthawaii.org/pages/social/#shopify-section-template--15893091713104__e6346e4a-a6fa-47eb-8e80-c043bfd8cbbc"}]}
+  - {name: "Our Community", href: "https://touchahearthawaii.org/pages/staying-connected", sub: [
+      {name: "Get Involved", href: "https://touchahearthawaii.org/pages/get-involved"},
+      {name: "Staying Connected", href: "https://touchahearthawaii.org/pages/staying-connected"}]}
+  - {name: "Donate", href: "https://give.touchahearthawaii.org/campaign/748420/donate"}
+  - {name: "Shop", href: "https://touchahearthawaii.org/collections/ohana-meals", sub: [
+      {name: "'Ohana Meals", href: "https://touchahearthawaii.org/collections/ohana-meals"},
+      {name: "🦃 'Ohana Meals Thanksgiving Pre-Order", href: "https://touchahearthawaii.org/collections/thanksgiving-2026"},
+      {name: "Baker's Heart", href: "https://touchahearthawaii.org/collections/bakersheart"},
+      {name: "✴︎ Baker's Heart Holiday Pre-Order ✴︎", href: "https://touchahearthawaii.org/collections/bh-holiday"}]}
+  - {name: "Contact Us", href: "https://touchahearthawaii.org/pages/contact"}

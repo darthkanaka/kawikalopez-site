@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title }}</title>
+<meta name="description" content="{{ description }}">
+<link rel="canonical" href="{{ canonical }}">
+{% if noindex %}<meta name="robots" content="noindex, nofollow">
+{% endif %}
+<meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ title }}">
+<meta property="og:description" content="{{ description }}">
+<meta property="og:url" content="{{ canonical }}">
+<meta property="og:image" content="{{ og_image }}">
+<meta property="og:image:alt" content="{{ og_alt }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f4f2ed">
+<link rel="icon" href="{{ root }}assets/img/site/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="{{ root }}assets/img/site/favicon-180.png">
+<link rel="preload" href="{{ root }}assets/fonts/instrument-serif-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ root }}assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap">
+<link rel="stylesheet" href="{{ asset('assets/css/bh-gift.css') }}">
+<script type="application/ld+json">{{ jsonld }}</script>
+{% if production and site.ga4 %}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.ga4 }}"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","{{ site.ga4 }}");</script>
+{% endif %}
+</head>
+<body class="t-gift-boxes">
+<p class="tah-bar">✴︎ Holiday gift boxes from Baker's Heart and Kawika Lopez. Pickups start November 16. ✴︎</p>
+<div class="tah-head">
+  <div class="tah-in">
+    <details class="tah-menu"><summary aria-label="Menu">☰</summary><nav class="tah-menu-list" aria-label="Touch A Heart">
+      {% for m in bh.menu %}{% if m.get('sub') %}<div class="grp"><p>{{ m.name }}</p>{% for s in m.sub %}<a href="{{ s.href }}">{{ s.name }}</a>{% endfor %}</div>{% else %}<a href="{{ m.href }}">{{ m.name }}</a>{% endif %}{% endfor %}
+    </nav></details>
+    <a class="tah-logo" href="https://touchahearthawaii.org/"><img src="https://touchahearthawaii.org/cdn/shop/files/TAH_logo.jpg?v=1677166552" width="1838" height="914" alt="Touch A Heart home"></a>
+    <ul class="tah-nav" aria-label="Touch A Heart">
+      {% for m in bh.menu %}<li><a href="{{ m.href }}">{{ m.name }}{% if m.get('sub') %}<span class="caret" aria-hidden="true">▾</span>{% endif %}</a>{% if m.get('sub') %}<ul class="tah-sub">{% for s in m.sub %}<li><a href="{{ s.href }}">{{ s.name }}</a></li>{% endfor %}</ul>{% endif %}</li>{% endfor %}
+    </ul>
+    <button class="mine" type="button" data-open="">Order a gift box</button>
+  </div>
+</div>
+
+<header class="wrap">
+  <div class="lockup">
+    <img class="tah" src="https://touchahearthawaii.org/cdn/shop/files/TAH_logo.jpg?v=1677166552" width="1838" height="914" alt="Touch A Heart, transforming lives, one heart at a time">
+    <span class="x" aria-hidden="true">×</span>
+    <img src="{{ root }}assets/img/site/logo.svg" width="2455" height="1183" alt="Kawika Lopez Photography">
+  </div>
+  <hr class="lockup-rule">
+</header>
+
+<main>
+
+  <!-- Opening -->
+  <section class="wrap hero">
+    <h1>Cookies and a photograph, made here on Oʻahu</h1>
+    <p class="lede">Your clients and team get cookies to share now and a photograph that lives on the wall for years. Every box supports Touch A Heart's job training and a local artist.</p>
+  </section>
+
+  <!-- The boxes -->
+  <section class="wrap buy" id="boxes">
+    <div class="offer">
+    <div class="boxes">
+      <article class="box">
+        <img src="{{ root }}assets/img/bakers-heart/team-box.jpg" width="1200" height="801" alt="A Baker's Heart Double Box in the green Comfort and Joy holiday wrap beside a stack of lace cookies and white ornaments" loading="lazy">
+        <div class="box-body">
+          <div class="box-top"><h3>The Team box</h3><span class="price">$80</span></div>
+          <p class="box-for">For thanking a whole team.</p>
+          <ul>
+            <li>A matted print of the photograph you pick</li>
+            <li>A Baker's Heart Double Box, twelve lace cookies in three flavors</li>
+          </ul>
+          <button class="btn btn-order" type="button" data-open="team">Order the Team box</button>
+        </div>
+        <span class="plus" aria-hidden="true">+</span>
+      </article>
+      <article class="box">
+        <img src="{{ root }}assets/img/bakers-heart/client-box.jpg" width="1200" height="801" alt="An open Baker's Heart holiday gift box with two green Comfort and Joy boxes inside, and a plate of cookies and biscotti" loading="lazy">
+        <div class="box-body">
+          <div class="box-top"><h3>The Client box</h3><span class="price">$120</span></div>
+          <p class="box-for">For the clients you want to remember you.</p>
+          <ul>
+            <li>A matted print of the photograph you pick</li>
+            <li>A Baker's Heart gift box of lace cookies and biscotti bites</li>
+          </ul>
+          <button class="btn btn-order" type="button" data-open="client">Order the Client box</button>
+        </div>
+        <span class="plus" aria-hidden="true">+</span>
+      </article>
+    </div>
+
+    <div class="pick">
+      <div class="wall">
+        <div class="wall-in">
+          <div class="mats">
+            <figure class="mat-fig" role="button" tabindex="0" data-pick="mokulele" aria-label="Order a box with Mokulele">
+              <div class="mat v"><div class="photo"><img src="{{ root }}assets/img/prints/mokulele-480.jpg" width="480" height="600" alt="Mokulele, the green Kualoa ridge in gold sunrise light, seen past dark rocks and a small sand cove on an islet off the Kaʻaʻawa coast, matted" loading="lazy"></div></div>
+              <figcaption>Mokulele</figcaption>
+            </figure>
+            <figure class="mat-fig" role="button" tabindex="0" data-pick="mokulua" aria-label="Order a box with Mokulua">
+              <div class="mat h"><div class="photo"><img src="{{ root }}assets/img/prints/mokulua-islands-480.jpg" width="480" height="320" alt="Mokulua, the two islets off Lanikai from the air in warm low light, turquoise water and the Kailua coast behind them, matted" loading="lazy"></div></div>
+              <figcaption>Mokulua</figcaption>
+            </figure>
+            <figure class="mat-fig" role="button" tabindex="0" data-pick="shoreline" aria-label="Order a box with Shoreline Cascade">
+              <div class="mat v"><div class="photo"><img src="{{ root }}assets/img/prints/shorelinecascade-480.jpg" width="480" height="600" alt="Shoreline Cascade, water spilling over a mossy green reef on the North Shore at sunset, matted" loading="lazy"></div></div>
+              <figcaption>Shoreline Cascade</figcaption>
+            </figure>
+            <figure class="mat-fig" role="button" tabindex="0" data-pick="leahi" aria-label="Order a box with Lēʻahi Kahiko">
+              <div class="mat h"><div class="photo"><img src="{{ root }}assets/img/prints/leahikahiko-480.jpg" width="480" height="320" alt="Lēʻahi Kahiko, Diamond Head from the air with sunrise light across its ridges and the city behind, matted" loading="lazy"></div></div>
+              <figcaption>Lēʻahi Kahiko</figcaption>
+            </figure>
+            <figure class="mat-fig" role="button" tabindex="0" data-pick="kahana" aria-label="Order a box with Kahana">
+              <div class="mat v"><div class="photo"><img src="{{ root }}assets/img/prints/kahana-480.jpg" width="480" height="600" alt="Kahana, a sunlit green ridge curving down toward Kahana Bay at sunrise, matted" loading="lazy"></div></div>
+              <figcaption>Kahana</figcaption>
+            </figure>
+            <figure class="mat-fig" role="button" tabindex="0" data-pick="malie" aria-label="Order a box with Mālie">
+              <div class="mat h"><div class="photo"><img src="{{ root }}assets/img/prints/malie-480.jpg" width="480" height="320" alt="Mālie, water over a sharp reef on the North Shore, matted" loading="lazy"></div></div>
+              <figcaption>Mālie</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+      <div class="pick-foot">
+        <h3>Plus the photograph you pick</h3>
+        <p>Every box comes with one matted print. Choose from these six, all of them Oʻahu, shown here to scale in their mats. Each box in your order can have a different one.</p>
+      </div>
+    </div>
+    </div>
+    <p class="prose box-note">Both come with a matted print of the photograph you pick, 8 x 10 or 8 x 12, in a white mat that fits any standard 11 x 14 frame. It's printed here on Oʻahu. This season the cookies come in Baker's Heart's Comfort &amp; Joy holiday wrap. You can order now. Pickups run November 16 to December 22, at Kalihi Union Church on weekdays or Pearl City Community Church on Wednesdays.</p>
+  </section>
+
+  <!-- Both halves of the gift -->
+  <section class="wrap section">
+    <div class="diptych">
+      <figure>
+        <img src="{{ root }}assets/img/bakers-heart/collection.jpg" width="1400" height="934" alt="The Baker's Heart holiday collection in olive green Comfort and Joy wraps, with cookies and biscotti on a plate, holly, pine and white ornaments">
+        <figcaption>Baker's Heart's Comfort &amp; Joy holiday collection</figcaption>
+      </figure>
+      <figure>
+        <div class="room">
+          <div class="room-inner">
+            <img src="{{ root }}assets/img/scenes/nook-light-1536.jpg" width="1536" height="1024" alt="">
+            <div class="room-print" role="img" aria-label="Jumanji as a matted print, the green Kaʻaʻawa Valley ridge from the air at sunrise above turquoise water, hanging above a light-wood side table with a monstera leaf in a white vase">
+              <div class="room-photo"><img src="{{ root }}assets/img/prints/jumanji-960.jpg" width="960" height="640" alt=""></div>
+            </div>
+          </div>
+        </div>
+        <figcaption>Jumanji, matted, by Kawika Lopez</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Touch A Heart's story -->
+  <section class="band">
+    <div class="wrap band-grid">
+      <div>
+        <p class="eyebrow">Touch A Heart's story</p>
+        <h2>People first</h2>
+        <div class="prose">
+          <p>Touch A Heart works with people facing barriers to employment, including incarceration, homelessness and substance abuse. It doesn't try to fix anyone. People aren't projects, and growth is cultivated, not manufactured.</p>
+          <p>So the work starts with the soil, how a person sees themselves and what they believe is still possible. Then come values, then real craft, in paid internships in a working kitchen.</p>
+          <p>Baker's Heart is that kitchen. Every tray out of the oven is practice at being excellent, and every purchase supports Touch A Heart's training programs.</p>
+        </div>
+      </div>
+      <blockquote class="pull">
+        Everyone is growing into someone.
+        <cite>From The Touch A Heart Way</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- The photographs -->
+  <section class="wrap section">
+    <p class="eyebrow">In the photographs</p>
+    <h2>The same story, told in places</h2>
+    <p class="prose">Kawika's photographs carry that story too.</p>
+    <div class="stories">
+      <article class="story">
+        <figure>
+          <img src="{{ root }}assets/img/prints/018-960.jpg" width="960" height="1200" alt="ʻĀlina, a deep valley in the Koʻolau carved by rain, sheer green cliffs and a river bed below" loading="lazy">
+        </figure>
+        <p class="story-title">ʻĀlina</p>
+        <p>ʻĀlina means scar. It's a valley the rain carved into the Koʻolau over thousands of years, and the scars are what make it beautiful. People are the same. Someone's past is part of their story, not the whole of it.</p>
+      </article>
+      <article class="story">
+        <figure>
+          <img src="{{ root }}assets/img/prints/malie-960.jpg" width="960" height="640" alt="Mālie, silky water flowing over a sharp dark reef at Papailoa Beach on the North Shore" loading="lazy">
+        </figure>
+        <p class="story-title">Mālie</p>
+        <p>Mālie is the North Shore after big surf pulled the sand away and uncovered a sharp reef. The water runs over it soft and slow. Something that gentle shouldn't win against rock, and over time it does. That's what steady care does for a person.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Kawika's note -->
+  <section class="wrap section">
+    <div class="note">
+      <p class="eyebrow">From Kawika</p>
+      <blockquote>
+        <p>Nobody picks the soil they grow up in. I try to remember that before I judge anyone. Touch A Heart built a whole kitchen around that idea. I'm proud to be working so closely with them.</p>
+      </blockquote>
+      <p class="sig">Kawika Lopez</p>
+    </div>
+  </section>
+
+  <!-- Made here -->
+  <section class="wrap section">
+    <div class="made">
+      <figure>
+        <img src="https://cdn.shopify.com/s/files/1/0550/3107/0800/files/TouchAHeart-03_5409040e-7305-4a1e-9652-a1014fa93007.jpg?v=1760386365&width=1400" width="1400" height="934" alt="A box of Baker's Heart kiawe pod flour cookies beside a stack of thin lace cookies and a pile of kiawe flour" loading="lazy">
+        <figcaption>Kiawe pod flour cookies</figcaption>
+      </figure>
+      <div>
+        <p class="eyebrow">What goes in the box</p>
+        <h2>Made here, and made slowly</h2>
+        <div class="prose">
+          <p>Baker's Heart bakes with ingredients grown in the islands, like macadamia nuts and flours made from ʻulu and kiawe. Kiawe is the thorny tree most people walk right past. Its pods become the flour in their kiawe cookies.</p>
+          <p>Every lace cookie is made by hand, thin enough to see the light through. Most of Kawika's photographs start with a hike in the dark or a long wait for the right light. Neither one gets rushed, and you can tell.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who's behind it -->
+  <section class="band">
+    <div class="wrap">
+      <p class="eyebrow">Who's behind it</p>
+      <div class="people">
+        <article class="person">
+          <img src="{{ root }}assets/img/bakers-heart/kitchen.jpg" width="666" height="444" alt="A Touch A Heart team member in the kitchen, seen from behind, his shirt reading transforming lives, one heart at a time" loading="lazy" style="aspect-ratio:3/2;object-fit:cover">
+          <div class="mark"><img src="https://touchahearthawaii.org/cdn/shop/files/bh_logo_750px.png" width="750" height="504" alt="Baker's Heart Hawaiʻi" loading="lazy"></div>
+          <p>Baker's Heart is Touch A Heart's social enterprise bakery. It makes original, artisan lace cookies and biscotti bites that celebrate local ingredients, and it's a working kitchen where interns and apprentices learn the trade.</p>
+          <p class="vision">“We envision a world where people recognize their true value and can realize their full potential.”</p>
+        </article>
+        <article class="person">
+          <img class="portrait" src="{{ root }}assets/img/site/portrait-960.jpg" width="960" height="1200" alt="Kawika Lopez, smiling with his arms crossed, in a black and white portrait" loading="lazy">
+          <div class="mark"><img src="{{ root }}assets/img/site/logo.svg" width="2455" height="1183" alt="Kawika Lopez Photography" loading="lazy"></div>
+          <p>Kawika Lopez is a landscape and aerial photographer based on Oʻahu. Most of his photographs start in the dark, on a ridgeline before sunrise or with a drone along the coast. Every print has a name, many of them in Hawaiian, and a short story about what it means.</p>
+          <p>He also shoots Baker's Heart's product photos, so this box grew out of work the two were already doing together.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Just one half of the gift -->
+  <section class="wrap section just">
+    <div class="just-grid">
+      <article class="just-card">
+        <h3>Just looking for cookies?</h3>
+        <p>Baker's Heart's whole holiday collection is on the Touch A Heart store, from single-flavor boxes to gift boxes. You can order now for pickup, delivery, or shipping starting November 16.</p>
+        <a class="btn btn-line" href="https://touchahearthawaii.org/collections/bh-holiday">Shop the Baker's Heart holiday collection</a>
+      </article>
+      <article class="just-card">
+        <h3>Just looking for prints?</h3>
+        <p>Kawika's Hawaiʻi prints are on kawikalopez.com, with matted prints from $55 and metal and canvas from $210.</p>
+        <a class="btn btn-line" href="{{ url('store/') }}">Shop Kawika's prints</a>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot" id="contact">
+  <div class="wrap">
+    <div class="foot-head">
+      <h2>Planning gifts for your company this year?</h2>
+      <p>Tell us how many and who they're for, and we'll help you put it together. Either of us can help.</p>
+      <button class="btn btn-gold" type="button" data-open="team">Order gift boxes</button>
+    </div>
+    <div class="foot-grid">
+      <div class="foot-col">
+        <h3>Baker's Heart</h3>
+        <p class="who">A Touch A Heart social enterprise</p>
+        <ul>
+          <li><a href="mailto:info@touchahearthawaii.org">info@touchahearthawaii.org</a></li>
+          <li><a href="https://touchahearthawaii.org/collections/bakersheart">touchahearthawaii.org</a></li>
+          <li>98-820 Moanalua Rd. Unit 15-1, PMB #224, ʻAiea, HI 96701</li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h3>Kawika Lopez Photography</h3>
+        <p class="who">Landscape and aerial prints of Hawaiʻi</p>
+        <ul>
+          <li><a href="mailto:info@kawikalopez.com">info@kawikalopez.com</a></li>
+          <li><a href="tel:+18082044575">(808) 204-4575</a></li>
+          <li><a href="{{ url('') }}">kawikalopez.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <p>Touch A Heart. Transforming lives, one heart at a time.</p>
+      <p>Photographs © Kawika Lopez.</p>
+    </div>
+  </div>
+</footer>
+
+
+<div class="co" id="co" hidden data-endpoint="{{ bh.endpoint }}" data-mode="{{ bh.mode }}" data-pk="{{ bh.pk }}" data-root="{{ root }}">
+  <div class="co-dim" data-close></div>
+  <section class="co-panel" role="dialog" aria-modal="true" aria-labelledby="co-title">
+    <header class="co-top"><h2 id="co-title">Build your order</h2><button class="co-x" type="button" data-close aria-label="Close">×</button></header>
+    <div class="co-scroll" id="co-scroll">
+      <div class="co-body" id="co-build">
+        <div class="co-main">
+          <div class="co-tabs" role="tablist" aria-label="Box">
+            <button type="button" role="tab" data-box="team" aria-selected="true"><span class="t">Team box, $80<span class="badge" data-badge="team"></span></span><small>A print and a Double Box</small></button>
+            <button type="button" role="tab" data-box="client" aria-selected="false"><span class="t">Client box, $120<span class="badge" data-badge="client"></span></span><small>A print and a gift box</small></button>
+          </div>
+          <p class="co-what" id="co-what"></p>
+          <div class="co-grid" id="co-grid"></div>
+          <p class="co-hint">Pick as many of each photograph as you need. You can mix photographs, and both boxes, in one order.</p>
+        </div>
+        <aside class="co-side" id="co-side" aria-label="Your order">
+          <h3>Your order</h3>
+          <div id="co-lines"></div>
+          <div class="co-tot"><span id="co-count"></span><span id="co-sum"></span></div>
+          <button class="co-clear" type="button" id="co-clear">Clear the order</button>
+          <fieldset class="co-spots">
+            <legend>Pickup spot</legend>
+            <label class="spot"><input type="radio" name="spot" value="kalihi"><b>Kalihi Union Church</b><small>2214 N. King St., Honolulu</small><small>Monday to Friday, 8 am to 1 pm</small></label>
+            <label class="spot"><input type="radio" name="spot" value="pearl"><b>Pearl City Community Church</b><small>933 Lehua Ave., Pearl City</small><small>Wednesdays, 1:30 to 3 pm</small></label>
+          </fieldset>
+          <p class="co-lbl">Pickup date</p>
+          <div class="co-field" id="co-field">Pick a spot first</div>
+          <div class="cal" id="co-cal" hidden></div>
+          <p class="co-note" id="co-note" hidden></p>
+          <label class="co-ack"><input type="checkbox" id="co-ack"><span>Every box is made to order, so all sales are final, except damage or defects. <a href="{{ url('terms') }}" target="_blank" rel="noopener">Terms of sale</a></span></label>
+          {% if bh.mode == 'test' %}<p class="co-test">Test checkout. Use card 4242 4242 4242 4242, any future date and any CVC.</p>{% endif %}
+          <button class="btn btn-wide" type="button" id="co-pay">Continue to payment</button>
+          <p class="co-msg" id="co-msg" role="status" hidden></p>
+        </aside>
+      </div>
+      <div class="co-body" id="co-paying" hidden>
+        <div class="co-main">
+          <div class="co-side co-review" aria-label="Your order">
+            <h3>Your order</h3>
+            <div id="co-review"></div>
+            <button class="co-clear" type="button" id="co-back">Change the order</button>
+          </div>
+        </div>
+        <div class="co-stripe" id="co-stripe"></div>
+      </div>
+      <div class="co-body co-done" id="co-done" hidden><div id="co-done-body" role="status"></div></div>
+    </div>
+    <div class="co-pbar" id="co-pbar"><span id="co-pb"></span><button type="button" id="co-pb-go">Pickup and payment</button></div>
+  </section>
+</div>
+<script src="{{ asset('assets/js/bh-pickup.js') }}" defer></script>
+<script src="{{ asset('assets/js/bh-gift.js') }}" defer></script>
+</body>
+</html>
