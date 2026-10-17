@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% import "partials/gifts.html" as gx with context %}
+{% block main %}
+{% include "partials/crumbs.html" %}
+<section class="wrap g-hero">
+  <div class="g-hero-grid">
+    <div>
+      <p class="eyebrow">For Hawaiʻi realtors</p>
+      <h1>A closing gift they'll hang in their new home</h1>
+    </div>
+    <div>
+      <p class="lede">Give your buyers a print of their new neighborhood. As a Hawaiʻi realtor, you get {{ pct }}% off every print, every time you order.</p>
+      <p class="g-actions"><a class="btn" href="#account">Sign up</a>
+        <span class="g-chip">Pickup on Oʻahu is <strong>free</strong></span></p>
+    </div>
+  </div>
+  <figure class="g-figure">
+    {{ gx.metal_room(room, "g-room-hero", [150, -24.75, -33], "(min-width: 1328px) 1920px, 150vw", eager=True) }}
+    <figcaption>{{ hero_print.title }}, {{ room.w }} x {{ room.h }} metal, to scale above a 10 foot sofa.</figcaption>
+  </figure>
+</section>
+
+<section class="wrap section" aria-labelledby="how-h">
+  <p class="eyebrow">How it works</p>
+  <h2 id="how-h">Sign up once, and every order is {{ pct }}% off</h2>
+  <ol class="g-steps">
+    <li><strong>Sign up with your brokerage email</strong><span>Use the email your brokerage gave you. That's how we know you're in real estate.</span></li>
+    <li><strong>Tap the link we email you</strong><span>Your {{ pct }}% is set up the moment you sign in, so there's nothing to wait for.</span></li>
+    <li><strong>Shop any print</strong><span>Add prints to your cart while you're signed in, and {{ pct }}% comes off at checkout.</span></li>
+    <li><strong>Pick it up or ship it</strong><span>Pick it up free on Oʻahu for the closing, or ship it to their new address with no price in the box.</span></li>
+  </ol>
+</section>
+
+<section class="wrap section rt" id="account" aria-labelledby="account-h" data-realtor-page data-cfg="{{ cfg }}" data-free="{{ free }}" data-root="{{ root }}">
+  <noscript><p>Signing up needs JavaScript. You can also <a href="{{ url('contact') }}">get in touch</a> and Kawika will set you up.</p></noscript>
+
+  <div class="rt-panel" data-state="loading" hidden>
+    <p class="form-status">Checking your account...</p>
+  </div>
+
+  <div class="rt-grid" data-state="out" hidden>
+    <div>
+      <p class="eyebrow">Realtor sign-up</p>
+      <h2 id="account-h">Sign up</h2>
+      <form class="form" data-signup novalidate>
+        <div class="field">
+          <label for="r-name">Your name</label>
+          <input id="r-name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="r-email">Brokerage email</label>
+          <input id="r-email" name="email" type="email" autocomplete="email" required aria-describedby="r-email-hint">
+          <p class="fine" id="r-email-hint">Free addresses like Gmail, Yahoo and Outlook can't be used.</p>
+        </div>
+        <div class="field">
+          <label for="r-brokerage">Brokerage</label>
+          <input id="r-brokerage" name="brokerage" type="text" autocomplete="organization" required>
+        </div>
+        <div class="field">
+          <label for="r-phone">Phone <span class="optional">Optional</span></label>
+          <input id="r-phone" name="phone" type="tel" autocomplete="tel">
+        </div>
+        <div class="field">
+          <label for="r-license">Real estate license number</label>
+          <input id="r-license" name="license" type="text" autocomplete="off" required aria-describedby="r-license-hint">
+          <p class="fine" id="r-license-hint">It starts with RS or RB, like RS-12345.</p>
+        </div>
+        <button class="btn" type="submit">Email me a sign-in link</button>
+        <p class="form-status" data-status role="status" aria-live="polite"></p>
+        <p class="fine">Your {{ pct }}% works only when you're signed in with this email, so it stays yours. We use your details for your account and nothing else. <a href="{{ url('privacy') }}">Privacy policy</a>.</p>
+      </form>
+    </div>
+    <aside class="rt-signin">
+      <h2 class="cart-h">Already signed up?</h2>
+      <form class="form" data-signin novalidate>
+        <div class="field">
+          <label for="r-signin-email">Brokerage email</label>
+          <input id="r-signin-email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <button class="btn btn-quiet" type="submit">Email me a sign-in link</button>
+        <p class="form-status" data-status role="status" aria-live="polite"></p>
+      </form>
+    </aside>
+  </div>
+
+  <div class="rt-panel" data-state="sent" hidden>
+    <p class="eyebrow">Almost there</p>
+    <h2>Check your email</h2>
+    <p class="lede">We sent a sign-in link to <strong data-sent-to></strong>. Open it on the device you'll shop on. It works once and expires in an hour.</p>
+    <p class="actions"><button type="button" class="btn btn-quiet" data-resend>Send it again</button>
+      <button type="button" class="btn btn-quiet" data-restart>Use a different email</button></p>
+    <p class="form-status" data-status role="status" aria-live="polite"></p>
+  </div>
+
+  <div class="rt-panel" data-state="in" hidden>
+    <p class="eyebrow">Your account</p>
+    <h2>You're signed in, <span data-first></span></h2>
+    <p class="lede">Your realtor price is on. {{ pct }}% comes off every print when you check out from your cart while signed in as <strong data-email></strong>.</p>
+    <p class="fine">Your realtor code is <strong data-code></strong>. It's applied for you, so you never need to type it.</p>
+    <p class="actions"><a class="btn" href="{{ url('store/') }}">Shop prints</a>
+      <a class="btn btn-quiet" href="{{ url('gifts/housewarming') }}">Closing gift ideas</a>
+      <button type="button" class="btn btn-quiet" data-signout>Sign out</button></p>
+  </div>
+
+  <div class="rt-panel" data-state="paused" hidden>
+    <p class="eyebrow">Your account</p>
+    <h2>Your realtor pricing is paused</h2>
+    <p class="lede">Get in touch and we'll sort it out. <a href="{{ url('contact') }}">Contact Kawika</a>.</p>
+    <p class="actions"><button type="button" class="btn btn-quiet" data-signout>Sign out</button></p>
+  </div>
+</section>
+
+<section class="wrap section" aria-labelledby="faq-h">
+  <p class="eyebrow">Questions</p>
+  <h2 id="faq-h">Questions realtors ask</h2>
+  {{ gx.faq([
+    ["Who can sign up?", "Hawaiʻi real estate agents and brokers, with the email address their brokerage gave them."],
+    ["Does " ~ pct ~ "% come off everything?", "Yes. Every print, in every size, on canvas, metal or matted, every time you order."],
+    ["Can I use it with another code?", "No. Your " ~ pct ~ "% can't be combined with other codes."],
+    ["How do I get it to the closing?", "Pick it up free on Oʻahu, usually 7 to 10 business days after you order, so order about two weeks ahead. Or ship it straight to the buyers' new address. Nothing in the box shows a price."],
+    ["What do you do with my information?", "It's used for your account and your realtor price, and nothing else. The privacy policy has the details."]
+  ]) }}
+</section>
+{% endblock %}

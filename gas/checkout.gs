@@ -14,8 +14,14 @@
  * assets/data/cart.json (built from data/shipping.yml).
  *
  * Requests (POST, body JSON, sent as text/plain so the browser skips the CORS preflight):
- *   {"action": "create", "mode": "test" | "live", "items": [{"id": "033_36x24_metal", "qty": 1}, ...]}
+ *   {"action": "create", "mode": "test" | "live", "items": [{"id": "033_36x24_metal", "qty": 1}, ...],
+ *    "realtor_token": "..." (optional)}
  *     -> {"client_secret": "..."} or {"error": "..."}
+ *     With realtor_token (a signed-in realtor's Supabase sign-in, sent by the cart page), the
+ *     session opens for their own Stripe customer with their 15% code applied. The code is locked
+ *     to that customer in Stripe, so the checkout email is theirs and the code works nowhere else.
+ *     Their row is read from Supabase with their own sign-in: row level security only returns
+ *     their own row, so this script holds no Supabase secret.
  *   {"action": "shipping", "mode": ..., "session_id": "cs_...", "address": {"state": "HI", "country": "US"}}
  *     -> {"type": "object", "value": {"succeeded": true, "message": ""}} or {"type": "error", "message": "..."}
  *     A state and ZIP that disagree (Hawaiʻi ZIPs start 967 or 968) get pickup only, with a message.
@@ -46,6 +52,10 @@
  */
 
 var STRIPE_VERSION = "2026-03-25.dahlia";
+// The realtor program's database (Supabase project Veex). The publishable key is public on
+// purpose, the same one the /realtors page uses; row level security is the boundary.
+var SUPABASE_URL = "https://pnipcitilwmhmfjulpmd.supabase.co";
+var SUPABASE_PUBLISHABLE_KEY = "sb_publishable_dTTzh4YIes8wAWqNMlBDkw_Gr6Kx6i5";
 var BASE = { test: "https://darthkanaka.github.io/kawikalopez-site/", live: "https://kawikalopez.com/" };
 
 function doGet() {
@@ -79,7 +89,32 @@ function env_(req) {
   var key = props.getProperty(mode === "live" ? "STRIPE_LIVE_KEY" : "STRIPE_TEST_KEY");
   if (!key) throw new Error("no " + mode + " key in Script Properties");
   var base = props.getProperty(mode === "live" ? "BASE_LIVE" : "BASE_TEST") || BASE[mode];
-  return { key: key, base: base, model: siteConfig_(base).model };
+  return { key: key, base: base, model: siteConfig_(base).model, mode: mode };
+}
+
+/* A signed-in realtor's Stripe customer and 15% code for this mode, read from Supabase with
+   their own sign-in. Throws a message for the buyer when the sign-in or account isn't usable. */
+function realtor_(token, mode) {
+  var res = UrlFetchApp.fetch(SUPABASE_URL + "/rest/v1/kl_realtors?select=*", {
+    muteHttpExceptions: true,
+    headers: { apikey: SUPABASE_PUBLISHABLE_KEY, Authorization: "Bearer " + token }
+  });
+  var code = res.getResponseCode();
+  if (code === 401 || code === 403) {
+    throw new Error("CUSTOMER:Your realtor sign-in has expired. Sign in again on the Realtors page, then check out.");
+  }
+  if (code !== 200) throw new Error("realtor lookup: HTTP " + code);
+  var row = JSON.parse(res.getContentText())[0];
+  if (!row) throw new Error("CUSTOMER:We couldn't find your realtor account. Sign in again on the Realtors page.");
+  if (row.status !== "active") {
+    throw new Error("CUSTOMER:Your realtor pricing is paused. Get in touch and we'll sort it out.");
+  }
+  var p = mode === "live" ? "" : "test_";
+  if (!row[p + "stripe_customer_id"] || !row[p + "stripe_promo_id"]) {
+    throw new Error("CUSTOMER:Your realtor pricing is still being set up. Open the Realtors page, then check out again.");
+  }
+  return { customer: row[p + "stripe_customer_id"], promo: row[p + "stripe_promo_id"],
+    code: row[p + "promo_code"], brokerage: row.brokerage };
 }
 
 /* Pickup, plus the one shipping rate that matches the address (zone "hi" or "mainland").
@@ -99,6 +134,7 @@ function shippingOptions_(model, s, zone) {
 
 function createSession_(req) {
   var env = env_(req), key = env.key, base = env.base, model = env.model;
+  var agent = req.realtor_token ? realtor_(String(req.realtor_token), env.mode) : null;
 
   // Cart lines: known ids, whole quantities, merged.
   var want = {}, order = [];
@@ -151,7 +187,7 @@ function createSession_(req) {
   var intent = { description: description };
   if (labPlan) intent.metadata = { lab_orders_mainland: labPlan.slice(0, 500) };
 
-  var session = stripe_(key, "post", "checkout/sessions", {
+  var params = {
     ui_mode: "form",
     mode: "payment",
     line_items: lines,
@@ -164,7 +200,18 @@ function createSession_(req) {
     return_url: base + "thank-you?session_id={CHECKOUT_SESSION_ID}",
     payment_intent_data: intent,
     metadata: { source: "cart", terms_ack: "yes, cart checkbox", ships: s.ships ? "yes" : "pickup only", lab_orders_mainland: labPlan.slice(0, 500) }
-  });
+  };
+  if (agent) {
+    // Their own customer and code: Stripe applies the 15% and fixes the email to theirs. A session
+    // with a customer can't also create one, and an applied code can't sit beside a typed one.
+    params.customer = agent.customer;
+    params.discounts = [{ promotion_code: agent.promo }];
+    params.customer_update = { shipping: "auto", name: "auto" };
+    delete params.allow_promotion_codes;
+    delete params.customer_creation;
+    params.metadata.realtor = (agent.code + ", " + agent.brokerage).slice(0, 500);
+  }
+  var session = stripe_(key, "post", "checkout/sessions", params);
   return session.client_secret;
 }
 

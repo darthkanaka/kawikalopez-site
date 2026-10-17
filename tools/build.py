@@ -537,6 +537,12 @@ class Builder:
         if self.gifts.get("hub"):
             self.available.add(self.gifts["hub"]["path"])
             self.available |= {f"gifts/{g['slug']}" for g in self.gifts.get("pages", [])}
+        # Realtor program (data/site.yml realtors:): staging always has it; production only once
+        # realtors.live is true, after email sending and the live Stripe key are set up.
+        self.realtors = self.site.get("realtors") or {}
+        self.realtors_on = bool(self.realtors) and (bool(self.realtors.get("live")) or not self.production)
+        if self.realtors_on:
+            self.available.add("realtors")
 
     # -- output
     def write(self, rel, text):
@@ -793,7 +799,8 @@ class Builder:
     def privacy_page(self):
         desc = "What kawikalopez.com collects when you buy a print or send a message, why, who sees it, and how to have it deleted."
         self.emit("privacy.html", "privacy.html", "privacy", "page", "Privacy Policy | Kawika Lopez Photography", desc,
-                  crumbs=[("Privacy", "privacy")], updated="September 29, 2026")
+                  crumbs=[("Privacy", "privacy")], realtors_on=self.realtors_on,
+                  updated=self.realtors.get("privacy_updated", "September 29, 2026") if self.realtors_on else "September 29, 2026")
 
     def terms_page(self):
         desc = "How print orders work at kawikalopez.com: made to order on Oʻahu, shipping and pickup, cancellations, damage and returns, and copyright."
@@ -822,9 +829,41 @@ class Builder:
         if not pk.startswith("pk_" + self.cart["mode"] + "_"):
             WARN.add(f"cart: no {self.cart['mode']} publishable key in data/site.yml (checkout.publishable_key)")
         data = {"mode": self.cart["mode"], "endpoint": self.cart["endpoint"], "pk": pk, "model": model, "variants": variants}
+        if self.realtors_on:
+            data["realtors"] = self.realtor_cfg()
         self.write("assets/data/cart.json", json.dumps(data, ensure_ascii=False, separators=(",", ":"), sort_keys=True) + "\n")
         self.emit("cart.html", "cart.html", "cart", "page", "Your cart | Kawika Lopez Photography",
                   "The prints in your cart, shipping to Hawaiʻi or the US mainland, and checkout.", indexable=False)
+
+    def realtor_cfg(self):
+        """What the browser needs to sign a realtor in and set up their account. All public."""
+        r = self.realtors
+        return {"url": r["supabase_url"], "key": r["publishable_key"],
+                "fn": f"{r['supabase_url']}/functions/v1/{r['function']}",
+                "mode": "live" if self.production else "test"}
+
+    def realtors_page(self):
+        """/realtors (sign up, sign in, the realtor's account) and /realtors/verify, the page the
+        sign-in email links to. Verify is a page with a button on purpose: email security scanners
+        open every link in an email, and a link that signed in on its own would be used up before
+        the realtor ever clicked it."""
+        if not self.realtors_on:
+            return
+        r = self.realtors
+        hp = self.gift_print(r["hero"]["print"], "realtors hero")
+        free = [l.strip().lower() for l in (DATA / "free-email-domains.txt").read_text().splitlines()
+                if l.strip() and not l.strip().startswith("#")]
+        ctx = dict(cfg=json.dumps(self.realtor_cfg(), separators=(",", ":")),
+                   free=json.dumps(sorted(set(free)), separators=(",", ":")), pct=r.get("percent_off", 15))
+        desc = "Hawaiʻi realtors get 15% off every Kawika Lopez print for their clients. A closing gift of their new neighborhood, made here on Oʻahu."
+        page = {"@type": "WebPage", "@id": self.base + "realtors", "url": self.base + "realtors",
+                "name": "Closing gifts for Hawaiʻi realtors", "isPartOf": {"@id": self.base + "#site"}}
+        self.emit("realtors.html", "realtors.html", "realtors", "page", "Closing Gifts for Hawaiʻi Realtors | Kawika Lopez", desc,
+                  crumbs=[("Realtors", "realtors")], graph=[page],
+                  room=self.gift_room(hp, *r["hero"]["size"]), hero_print=hp, **ctx)
+        self.emit("realtors-verify.html", "realtors/verify.html", "realtors/verify", "page",
+                  "Sign in | Kawika Lopez Photography", "Finish signing in to your realtor account.",
+                  indexable=False, **ctx)
 
     def thankyou_page(self):
         self.emit("thank-you.html", "thank-you.html", "thank-you", "page", "Thank you | Kawika Lopez Photography",
@@ -1206,6 +1245,7 @@ class Builder:
         self.terms_page()
         self.thankyou_page()
         self.cart_page()
+        self.realtors_page()
         self.place_pages()
         self.places_index()
         self.post_pages()

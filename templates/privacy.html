@@ -13,12 +13,13 @@
     <ul>
       <li><strong>When you order:</strong> your name, email, phone number, shipping address, the prints you bought, and any note you add at checkout.</li>
       <li><strong>When you write to us:</strong> your name, email, the print you ask about, and your message.</li>
+      {% if realtors_on %}<li><strong>When you sign up as a realtor:</strong> your name, brokerage email, brokerage, phone number if you add it, and your real estate license number.</li>{% endif %}
       <li><strong>When you browse:</strong> the pages you visit and basic details about your browser and device{% if site.ga4 %}, through Google Analytics{% endif %}, and your IP address in our host's security logs.</li>
     </ul>
     <p>We never see or store your card number.</p>
 
     <h2>How we use it</h2>
-    <p>To make, check and deliver your print, to answer your questions, to keep records of sales for tax purposes, and to understand which pages are useful. We don't use it for advertising.</p>
+    <p>To make, check and deliver your print, to answer your questions, to keep records of sales for tax purposes, and to understand which pages are useful.{% if realtors_on %} Realtor sign-ups are used to set up your account and your realtor price, and to reach you about your account.{% endif %} We don't use it for advertising.</p>
 
     <h2>Who else sees it</h2>
     <ul>
@@ -30,13 +31,14 @@
       <li><strong>Google Analytics</strong> counts visits and shows which pages lead to a sale. It uses cookies and receives your IP address and browser details. When you buy, it records which prints and the order total, never your name, email, address or card. See <a href="https://www.google.com/policies/privacy/partners/" rel="noopener">how Google uses information from sites that use its services</a>.</li>
       {% endif %}
       <li><strong>Service providers who help make and deliver your order</strong>, like the shipping carrier, receive your name, address and phone number, only as far as they need them.</li>
+      {% if realtors_on %}<li><strong>Supabase</strong> stores realtor accounts and handles signing in, and <strong>Resend</strong> sends the sign-in and welcome emails. Stripe keeps a customer record with each realtor's name and email so the realtor price works at checkout.</li>{% endif %}
       <li><strong>Our email forwarding service</strong> passes mail you send to {{ site.contact.email }} on to Kawika's inbox.</li>
       <li><strong>GitHub Pages</strong> hosts the site and records visitors' IP addresses for security, as most hosts do.</li>
     </ul>
     <p>We don't sell or rent your information, and we don't send marketing email unless you ask for it.</p>
 
     <h2>Cookies and your browser</h2>
-    <p>The prints you add to your cart are saved in your own browser so they're still there when you come back. That list stays on your device until you check out.</p>
+    <p>The prints you add to your cart are saved in your own browser so they're still there when you come back. That list stays on your device until you check out.{% if realtors_on %} If you sign in as a realtor, your sign-in is saved in your browser the same way until you sign out.{% endif %}</p>
     {% if site.ga4 %}
     <p>Google Analytics and Stripe set cookies, and both may collect information about your activity over time and across other websites that use their services. You can block them with any content blocker; the site still works, though Stripe needs its own scripts to take a payment.</p>
     {% else %}
@@ -45,7 +47,7 @@
     <p>Browsers can send a "Do Not Track" signal. There's no agreed standard for it, so this site doesn't currently respond to it.</p>
 
     <h2>How long we keep it</h2>
-    <p>Order records are kept as long as tax law requires, usually about seven years. Messages are kept as long as they're useful for answering you or for a later order.{% if site.ga4 %} Analytics data is kept for 14 months.{% endif %}</p>
+    <p>Order records are kept as long as tax law requires, usually about seven years. Messages are kept as long as they're useful for answering you or for a later order.{% if realtors_on %} Realtor accounts are kept until you ask us to close them.{% endif %}{% if site.ga4 %} Analytics data is kept for 14 months.{% endif %}</p>
 
     <h2>Your choices</h2>
     <p>Want to see what we have, correct it, or have it deleted? Email <a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a> or call {{ site.contact.phone }} and we'll take care of it. We keep only what the law requires, such as tax records of a sale.</p>

@@ -96,8 +96,23 @@ nav:
   - {label: See it on your wall, href: see-it-in-your-space}
   - {label: Places, href: hawaii-prints/}
   - {label: Blog, href: blog/}
+  - {label: Realtors, href: realtors}
   - {label: About, href: about}
   - {label: Contact, href: contact}
+
+# Realtor program (plan: vault projects/realtor-gift-program.md). Hawaiʻi agents sign up at /realtors
+# with a brokerage email and get 15% off every print, locked to that email at checkout. Accounts
+# live in the Veex Supabase project (kl_ tables); the kl-realtor Edge Function creates each
+# realtor's Stripe customer and code. live: false keeps the page, menu item and privacy wording
+# out of the production build until email sending and the live Stripe key are set up; staging
+# builds always include them.
+realtors:
+  live: false
+  supabase_url: https://pnipcitilwmhmfjulpmd.supabase.co
+  publishable_key: "sb_publishable_dTTzh4YIes8wAWqNMlBDkw_Gr6Kx6i5"
+  function: kl-realtor
+  percent_off: 15
+  hero: {print: kaaawasunrise, size: [36, 24]}
 
 # Christmas 2026 order-by dates, confirmed by Kawika 2026-10-06. Shown on the gift pages; a row hides
 # itself (site.js) once its date has passed in Hawaiʻi.

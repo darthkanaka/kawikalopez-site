@@ -659,3 +659,22 @@ html:not(.js) .js-only { display: none; }
   .g-cards-3 { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) { .g-card:hover img { transform: none; } }
+
+/* 22 Realtors ---------------------------------------------------------------- */
+/* /realtors shows one state at a time (signed out, link sent, signed in, paused); site.js block 10
+   picks it. Without JavaScript none of them show and the noscript note does. */
+.rt [data-state][hidden] { display: none; }
+.rt-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 80px); align-items: start; }
+.rt-grid h2, .rt-panel h2 { margin-bottom: 20px; }
+.rt-signin { padding: 24px; background: var(--paper-2); }
+.rt-signin .form { gap: 16px; }
+.rt-panel { max-width: 46rem; }
+.rt-panel .lede { margin-bottom: 8px; }
+.rt-panel .fine strong, .cart-summary .fine strong { color: var(--ink); font-weight: 600; letter-spacing: 0.02em; }
+.field .fine { margin: 0; }
+.field input[aria-invalid="true"] { border-color: #8a1c1c; }
+.realtor-note { margin-top: 8px; }
+.rt-verify [data-state][hidden] { display: none; }
+@media (max-width: 760px) {
+  .rt-grid { grid-template-columns: 1fr; }
+}

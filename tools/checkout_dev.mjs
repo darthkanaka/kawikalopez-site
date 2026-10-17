@@ -18,7 +18,7 @@ const root = new URL("..", import.meta.url).pathname;
 const env = Object.fromEntries(readFileSync(homedir() + "/.claude/credentials/kawikalopez-stripe.env", "utf8")
   .split("\n").filter(l => l.includes("=") && !l.trim().startsWith("#"))
   .map(l => [l.slice(0, l.indexOf("=")).trim(), l.slice(l.indexOf("=") + 1).trim()]));
-const props = { STRIPE_TEST_KEY: env.STRIPE_TEST_KEY, BASE_TEST: "http://localhost:8779/kawikalopez-site/" };
+const props = { STRIPE_TEST_KEY: env.STRIPE_TEST_KEY, BASE_TEST: process.env.KL_BASE_TEST || "http://localhost:8779/kawikalopez-site/" };
 
 // UrlFetchApp is synchronous in Apps Script; curl keeps it synchronous here.
 const UrlFetchApp = {

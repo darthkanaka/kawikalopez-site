@@ -376,6 +376,85 @@ var Cart = (function () {
   return { read: read, write: write, add: add, set: set, clear: clear, count: count };
 })();
 
+/* 05b Realtor sign-in ---------------------------------------------------------- */
+/* Hawaiʻi realtors (data/site.yml realtors:) get their percentage off through the cart, signed in
+   with their brokerage email. The sign-in lives in this browser, like the cart, and is refreshed
+   before it's used. It talks to Supabase Auth directly, so there's no library to load. */
+var Realtor = (function () {
+  "use strict";
+  var KEY = "kl-realtor";
+  function read() {
+    try {
+      var s = JSON.parse(localStorage.getItem(KEY) || "null");
+      return s && s.access_token && s.refresh_token ? s : null;
+    } catch (e) { return null; }
+  }
+  function save(s) {
+    try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) { /* private mode: signed in for this page only */ }
+    return s;
+  }
+  function clear() {
+    try { localStorage.removeItem(KEY); } catch (e) { /* nothing saved */ }
+  }
+  function call(url, key, body, token) {
+    var headers = { apikey: key, "Content-Type": "application/json" };
+    if (token) headers.Authorization = "Bearer " + token;
+    return fetch(url, { method: "POST", headers: headers, body: JSON.stringify(body || {}) }).then(function (r) {
+      return r.text().then(function (t) {
+        var d = {};
+        try { d = t ? JSON.parse(t) : {}; } catch (e) { d = {}; }
+        if (!r.ok) throw { status: r.status, message: d.msg || d.error_description || d.message || d.error || "" };
+        return d;
+      });
+    });
+  }
+  function session(d, keep) {
+    return Object.assign({}, keep || {}, {
+      access_token: d.access_token,
+      refresh_token: d.refresh_token,
+      expires_at: d.expires_at || Math.floor(Date.now() / 1000) + (d.expires_in || 3600),
+      email: (d.user && d.user.email) || (keep && keep.email) || ""
+    });
+  }
+  // Ask Supabase to email a sign-in link. create: true signs a new realtor up with their details.
+  function otp(cfg, email, data, create) {
+    var body = { email: email, create_user: !!create };
+    if (data) body.data = data;
+    return call(cfg.url + "/auth/v1/otp", cfg.key, body);
+  }
+  // The emailed link carries a one-time token; trading it here signs this browser in.
+  function verify(cfg, hash, type) {
+    clear();
+    return call(cfg.url + "/auth/v1/verify", cfg.key, { type: type, token_hash: hash })
+      .then(function (d) { return save(session(d)); });
+  }
+  // A sign-in that's good for at least two more minutes, refreshed if needed.
+  function fresh(cfg) {
+    var s = read();
+    if (!s) return Promise.reject({ expired: true });
+    if (s.expires_at * 1000 - Date.now() > 120000) return Promise.resolve(s);
+    return call(cfg.url + "/auth/v1/token?grant_type=refresh_token", cfg.key, { refresh_token: s.refresh_token })
+      .then(function (d) { return save(session(d, s)); }, function () { clear(); throw { expired: true }; });
+  }
+  // The realtor's account: name, code and status. The first call also creates their code.
+  function account(cfg) {
+    return fresh(cfg).then(function (s) {
+      return call(cfg.fn, cfg.key, { mode: cfg.mode }, s.access_token).then(function (a) {
+        return save(Object.assign(read() || s, { name: a.name, code: a.code, status: a.status, email: a.email || s.email }));
+      }, function (e) {
+        if (e && e.status === 401) { clear(); e.expired = true; }
+        throw e;
+      });
+    });
+  }
+  function signOut(cfg) {
+    var s = read();
+    clear();
+    if (s && cfg) call(cfg.url + "/auth/v1/logout", cfg.key, {}, s.access_token).catch(function () { /* signed out here anyway */ });
+  }
+  return { read: read, otp: otp, verify: verify, fresh: fresh, account: account, signOut: signOut, clear: clear };
+})();
+
 /* 06 Cart: add from a print page -------------------------------------------- */
 (function () {
   "use strict";
@@ -396,6 +475,18 @@ var Cart = (function () {
     a.textContent = "View cart and check out (" + Cart.count() + ")";
     msg.appendChild(a);
   });
+
+  // A signed-in realtor buys through the cart, where their price applies: the single-print
+  // payment link can't take their code, so it's hidden, and a note says why.
+  var agent = Realtor.read();
+  if (agent) {
+    var buy = document.querySelector(".fine [data-buy]");
+    if (buy) buy.parentNode.hidden = true;
+    var note = document.createElement("p");
+    note.className = "fine realtor-note";
+    note.textContent = "You're signed in as a realtor, so your realtor price comes off at checkout in your cart.";
+    msg.parentNode.insertBefore(note, msg.nextSibling);
+  }
 })();
 
 /* 07 Cart page and checkout -------------------------------------------------- */
@@ -471,6 +562,9 @@ var Cart = (function () {
 
     var s = shipQuote(cfg.model, ls.map(function (x) { return { w: x.v.w, h: x.v.h, qty: x.qty, material: x.v.material }; }));
     root.querySelector("[data-subtotal]").textContent = KL.money(subtotal);
+    var agent = cfg.realtors && Realtor.read();
+    [].forEach.call(root.querySelectorAll("[data-realtor]"), function (e) { e.hidden = !agent; });
+    if (agent) root.querySelector("[data-realtor-email]").textContent = agent.email;
     var ship = root.querySelector("[data-ship]");
     ship.innerHTML = "";
     var add = function (label, value) {
@@ -544,8 +638,18 @@ var Cart = (function () {
     KL.beginCheckout(ls.map(function (x) { return KL.item(x.id, x.v.title, x.v.size, x.v.material, x.v.price, x.qty); }));
     status.textContent = "Opening secure checkout...";
     status.classList.remove("is-error");
+    // A signed-in realtor's checkout carries their sign-in, so their code applies (gas/checkout.gs).
+    var who = cfg.realtors && Realtor.read()
+      ? Realtor.fresh(cfg.realtors).then(function (s) { return s.access_token; }, function () {
+          throw { user: "Your realtor sign-in has expired. Sign in again on the Realtors page." };
+        })
+      : Promise.resolve(null);
     Promise.all([
-      post({ action: "create", terms_ack: true, items: ls.map(function (x) { return { id: x.id, qty: x.qty }; }) }),
+      who.then(function (token) {
+        var body = { action: "create", terms_ack: true, items: ls.map(function (x) { return { id: x.id, qty: x.qty }; }) };
+        if (token) body.realtor_token = token;
+        return post(body);
+      }),
       stripeJs()
     ]).then(function (res) {
       var d = res[0];
@@ -682,4 +786,168 @@ var Cart = (function () {
   document.querySelectorAll("[data-deadlines]").forEach(function (sec) {
     if (!sec.querySelector("[data-deadline]:not([hidden])")) sec.hidden = true;
   });
+})();
+
+/* 10 Realtors: sign up, sign in and the account ----------------------------------- */
+/* The /realtors page shows one state at a time: signed out (sign up or sign in), link sent,
+   signed in, or paused. /realtors/verify is where the emailed link lands; the realtor taps a
+   button there to sign in, because email scanners open links on their own and would use up a
+   link that signed in without a tap. */
+(function () {
+  "use strict";
+  var LICENSE = /^(RS|RB)[-\s]?(\d{3,7})$/i;
+  var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  var cfgOf = function (el) { try { return JSON.parse(el.getAttribute("data-cfg")); } catch (e) { return null; } };
+  var shower = function (root) {
+    var states = root.querySelectorAll("[data-state]");
+    return function (name) { [].forEach.call(states, function (el) { el.hidden = el.getAttribute("data-state") !== name; }); };
+  };
+  var why = function (e) {
+    if (e && e.status === 429) return "That's a lot of tries. Please wait a minute, then try again.";
+    if (e && e.status === 403 && e.message) return e.message;
+    return "That didn't go through. Please try again.";
+  };
+
+  var page = document.querySelector("[data-realtor-page]");
+  if (page) {
+    var cfg = cfgOf(page);
+    var free = [];
+    try { free = JSON.parse(page.getAttribute("data-free")) || []; } catch (e) { free = []; }
+    var show = shower(page);
+    var pending = null;
+    var isFree = function (email) {
+      var d = (email.split("@")[1] || "").toLowerCase();
+      return free.some(function (f) { return d === f || d.slice(-(f.length + 1)) === "." + f; });
+    };
+    var fill = function (a) {
+      var first = String(a.name || "").split(" ")[0];
+      page.querySelector("[data-first]").textContent = first || "and welcome";
+      page.querySelector("[data-email]").textContent = a.email || "";
+      page.querySelector("[data-code]").textContent = a.code || "";
+    };
+    var sent = function (email) {
+      page.querySelector("[data-sent-to]").textContent = email;
+      page.querySelector("[data-state=sent] [data-status]").textContent = "";
+      show("sent");
+    };
+    var load = function () {
+      var s = Realtor.read();
+      if (!s) { show("out"); return; }
+      if (s.name) { fill(s); show(s.status === "suspended" ? "paused" : "in"); } else show("loading");
+      Realtor.account(cfg).then(function (a) {
+        fill(a);
+        show(a.status === "active" ? "in" : "paused");
+      }, function (e) {
+        if (!Realtor.read() || !s.name) {
+          show("out");
+          if (e && e.message && !e.expired) page.querySelector("[data-signup] [data-status]").textContent = e.message;
+        }
+      });
+    };
+
+    var signup = page.querySelector("[data-signup]");
+    signup.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var f = signup.elements, msg = signup.querySelector("[data-status]");
+      var v = {
+        name: f.name.value.trim(), email: f.email.value.trim().toLowerCase(), brokerage: f.brokerage.value.trim(),
+        phone: f.phone.value.trim(), license: f.license.value.trim()
+      };
+      var lic = LICENSE.exec(v.license.replace(/\s+/g, " "));
+      var problem = !v.name ? ["name", "Please add your name."]
+        : !EMAIL.test(v.email) ? ["email", "Please check your email address."]
+        : isFree(v.email) ? ["email", "Please use your brokerage email. Free addresses like Gmail and Yahoo can't be used."]
+        : !v.brokerage ? ["brokerage", "Please add your brokerage."]
+        : !lic ? ["license", "Please check your license number. It starts with RS or RB, like RS-12345."]
+        : null;
+      [].forEach.call(signup.querySelectorAll("input"), function (i) { i.removeAttribute("aria-invalid"); });
+      msg.classList.toggle("is-error", !!problem);
+      if (problem) {
+        f[problem[0]].setAttribute("aria-invalid", "true");
+        f[problem[0]].focus();
+        msg.textContent = problem[1];
+        return;
+      }
+      var data = { name: v.name, brokerage: v.brokerage, phone: v.phone, license: lic[1].toUpperCase() + "-" + lic[2] };
+      var btn = signup.querySelector("button");
+      btn.disabled = true;
+      msg.textContent = "Sending your link...";
+      Realtor.otp(cfg, v.email, data, true).then(function () {
+        pending = { email: v.email, data: data, create: true };
+        KL.track("sign_up", { method: "realtor" });
+        msg.textContent = "";
+        sent(v.email);
+      }, function (e) {
+        msg.classList.add("is-error");
+        msg.textContent = why(e);
+      }).then(function () { btn.disabled = false; });
+    });
+
+    var signin = page.querySelector("[data-signin]");
+    signin.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var input = signin.elements.email, msg = signin.querySelector("[data-status]");
+      var email = input.value.trim().toLowerCase();
+      var problem = !EMAIL.test(email) ? "Please check your email address."
+        : isFree(email) ? "Please sign in with your brokerage email." : "";
+      input.toggleAttribute("aria-invalid", !!problem);
+      msg.classList.toggle("is-error", !!problem);
+      msg.textContent = problem;
+      if (problem) { input.focus(); return; }
+      var btn = signin.querySelector("button");
+      btn.disabled = true;
+      msg.textContent = "Sending your link...";
+      Realtor.otp(cfg, email, null, false).then(function () {
+        pending = { email: email, data: null, create: false };
+        msg.textContent = "";
+        sent(email);
+      }, function (e) {
+        msg.classList.add("is-error");
+        msg.textContent = e && (e.status === 400 || e.status === 422) && /signup|not found|not allowed/i.test(e.message || "")
+          ? "We don't have a realtor account for that email yet. Sign up with the form on this page."
+          : why(e);
+      }).then(function () { btn.disabled = false; });
+    });
+
+    page.querySelector("[data-resend]").addEventListener("click", function () {
+      var msg = page.querySelector("[data-state=sent] [data-status]");
+      if (!pending) return;
+      msg.classList.remove("is-error");
+      msg.textContent = "Sending...";
+      Realtor.otp(cfg, pending.email, pending.data, pending.create).then(function () {
+        msg.textContent = "Sent. Check your inbox, and your spam folder just in case.";
+      }, function (e) { msg.classList.add("is-error"); msg.textContent = why(e); });
+    });
+    page.querySelector("[data-restart]").addEventListener("click", function () { show("out"); });
+    [].forEach.call(page.querySelectorAll("[data-signout]"), function (b) {
+      b.addEventListener("click", function () { Realtor.signOut(cfg); show("out"); });
+    });
+    load();
+  }
+
+  var check = document.querySelector("[data-realtor-verify]");
+  if (check) {
+    var vcfg = cfgOf(check);
+    var vshow = shower(check);
+    var q = new URLSearchParams(location.search);
+    var hash = q.get("token_hash"), type = q.get("type");
+    var vmsg = check.querySelector("[data-status]");
+    vshow(hash && ["magiclink", "signup", "email"].indexOf(type) >= 0 ? "ready" : "bad");
+    check.querySelector("[data-go]").addEventListener("click", function () {
+      vshow("working");
+      vmsg.textContent = "";
+      Realtor.verify(vcfg, hash, type).then(function () {
+        KL.track("login", { method: "realtor" });
+        return Realtor.account(vcfg);
+      }).then(function () {
+        location.replace(check.getAttribute("data-root") + "realtors#account");
+      }, function (e) {
+        vshow("bad");
+        if (e && e.message && e.status !== 403 && !/expired|invalid/i.test(e.message)) {
+          vmsg.classList.add("is-error");
+          vmsg.textContent = e.message;
+        }
+      });
+    });
+  }
 })();
