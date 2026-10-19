@@ -107,7 +107,8 @@ nav:
 # out of the production build until email sending and the live Stripe key are set up; staging
 # builds always include them.
 realtors:
-  live: false
+  live: true
+  privacy_updated: October 19, 2026
   supabase_url: https://pnipcitilwmhmfjulpmd.supabase.co
   publishable_key: "sb_publishable_dTTzh4YIes8wAWqNMlBDkw_Gr6Kx6i5"
   function: kl-realtor

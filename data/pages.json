@@ -778,6 +778,22 @@
   "indexable": false
  },
  {
+  "path": "realtors",
+  "file": "realtors.html",
+  "type": "page",
+  "title": "Closing Gifts for Hawaiʻi Realtors | Kawika Lopez",
+  "description": "Hawaiʻi realtors get 15% off every Kawika Lopez print for their clients. A closing gift of their new neighborhood, made here on Oʻahu.",
+  "indexable": true
+ },
+ {
+  "path": "realtors/verify",
+  "file": "realtors/verify.html",
+  "type": "page",
+  "title": "Sign in | Kawika Lopez Photography",
+  "description": "Finish signing in to your realtor account.",
+  "indexable": false
+ },
+ {
   "path": "hawaii-prints/diamond-head",
   "file": "hawaii-prints/diamond-head.html",
   "type": "place",
