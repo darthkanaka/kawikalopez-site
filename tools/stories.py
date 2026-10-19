@@ -4,7 +4,7 @@ so every print shows on a wall at its real size the way the store shows it.
 
   python3 tools/stories.py <out-dir>          writes <out-dir>/<set>/<NN-name>.png, the still of each slide
   python3 tools/stories.py <out-dir> --video  also writes <NN-name>.mp4, the moving version (needs ffmpeg)
-  python3 tools/stories.py <out-dir> --posts  writes the feed carousels in POSTS instead (1080 x 1350 PNGs)
+  python3 tools/stories.py <out-dir> --posts  writes the feed carousels in POSTS instead (1080 x 1440 PNGs)
 
 Needs tools/node_modules/playwright. Every run checks the layout of the stills: words inside the 80 px
 side margins and clear of the top 230 and bottom 320 pixels Instagram covers, words clear of the
@@ -82,24 +82,25 @@ SETS = [
     ]),
 ]
 
-# Feed carousels, 1080 x 1350 (4:5, the tallest a feed post shows). Every slide in a carousel has the
-# same shape as the first. The photographs fill most of each slide; words sit on the ocean blue or on the
-# dark wall above the print. The profile grid shows the first slide cropped to 3:4, which trims about
-# 34 px from each side, so words keep a 64 px margin.
+# Feed carousels, 1080 x 1440 (3:4, the tallest a feed post takes from the app, and the same shape as a
+# profile grid tile). Every slide in a carousel has the same shape as the first. The prints fill most of
+# each slide: `fill` is the print's width as a share of the slide's. Words sit on the ocean blue or on
+# the dark wall above the print, with a 64 px margin.
+POST_H = 1440
 POSTS = [
     ("post-announcement", [
-        {"name": "cover", "kind": "cover", "print": "leahikahiko", "size": [36, 24], "zoom": 260, "at": [0.5, 0.42],
+        {"name": "cover", "kind": "cover", "print": "leahikahiko", "size": [36, 24], "fill": 0.9, "at": [0.5, 0.5],
          "eyebrow": "New on kawikalopez.com", "head": "Hawaiʻi realtors now get 15% off every print", "glint": ["15%", "off"]},
-        {"name": "waikiki", "kind": "feature", "print": "naniwaikiki", "size": [48, 16], "zoom": 330, "at": [0.5, 0.5],
+        {"name": "waikiki", "kind": "feature", "print": "naniwaikiki", "size": [48, 16], "fill": 0.94, "at": [0.5, 0.5],
          "eyebrow": "Their side of the island", "head": "Waikīkī"},
-        {"name": "north-shore", "kind": "feature", "print": "malie", "size": [36, 24], "zoom": 330, "at": [0.5, 0.52],
+        {"name": "north-shore", "kind": "feature", "print": "malie", "size": [36, 24], "fill": 0.9, "at": [0.5, 0.5],
          "eyebrow": "Their side of the island", "head": "The North Shore"},
-        {"name": "windward", "kind": "feature", "print": "kaaawavalley", "size": [48, 16], "zoom": 330, "at": [0.5, 0.5],
+        {"name": "windward", "kind": "feature", "print": "kaaawavalley", "size": [48, 16], "fill": 0.94, "at": [0.5, 0.5],
          "eyebrow": "Their side of the island", "head": "The windward side"},
-        {"name": "prices", "kind": "pprices", "print": "leahikahiko", "zoom": 200, "at": [0.5, 0.5],
+        {"name": "prices", "kind": "pprices", "print": "leahikahiko", "fill": 0.56, "at": [0.5, 0.46],
          "eyebrow": "Realtor price", "head": "15% off every print, every time",
          "rows": [["Matted print", 55, 47], ["24 x 16 metal", 360, 306], ["48 x 16 panorama", 950, 808]]},
-        {"name": "sign-up", "kind": "pcta", "print": "kaimana", "size": [48, 16], "zoom": 300, "at": [0.5, 0.5],
+        {"name": "sign-up", "kind": "pcta", "print": "kaimana", "size": [48, 16], "fill": 0.94, "at": [0.5, 0.5],
          "eyebrow": "How it works", "head": "Sign up with your brokerage email",
          "steps": ["Sign up at kawikalopez.com/realtors", "Tap the link we email you", "Shop signed in, and 15% comes off"],
          "tap": "Link in bio"},
@@ -425,7 +426,7 @@ def render(b, s, root):
 
 POST_CSS = """
 html, body { margin: 0; background: #2f2e2c; }
-.post { width: 1080px; height: 1350px; position: relative; overflow: hidden; background: var(--accent); color: #f4f2ed;
+.post { width: 1080px; height: POST_Hpx; position: relative; overflow: hidden; background: var(--accent); color: #f4f2ed;
   font-family: var(--sans); -webkit-font-smoothing: antialiased; }
 .p-logo { position: absolute; top: 64px; left: 64px; height: 52px; width: auto; filter: brightness(0) invert(1); z-index: 3; }
 .p-text { position: absolute; left: 64px; right: 64px; top: 150px; z-index: 3; }
@@ -451,7 +452,7 @@ html, body { margin: 0; background: #2f2e2c; }
 .p-row dd { margin: 0; }
 .p-was { font-size: 34px; color: #bfdde3; text-decoration: line-through; text-decoration-thickness: 2px; }
 .p-now { font-size: 52px; font-weight: 600; color: #f3e3b5; min-width: 3.4ch; text-align: right; }
-.p-nook { position: absolute; left: 0; right: 0; bottom: 0; height: 520px; overflow: hidden; }
+.p-nook { position: absolute; left: 0; right: 0; bottom: 0; overflow: hidden; }
 .p-nook .g-room { position: absolute; inset: 0; }
 /* Sign-up steps on the blue, a room strip below. */
 .p-steps { position: absolute; left: 64px; right: 64px; top: 440px; margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 16px; }
@@ -485,7 +486,7 @@ POST_PAGE = """<!doctype html><html><head><meta charset="utf-8">
   <dl class="p-rows">
     {% for name, was, now in s.rows %}<div class="p-row"><dt>{{ name }}</dt><dd class="p-was">${{ was }}</dd><dd class="p-now">${{ now }}</dd></div>{% endfor %}
   </dl>
-  <div class="p-nook">
+  <div class="p-nook" style="top:{{ box_top }}px">
     <div class="g-room">
       <div class="g-room-in" style="width:{{ crop[0] }}%;left:{{ crop[1] }}%;top:{{ crop[2] }}%">
         {{ gx.scene_img(mat.scene, "2000px", True) }}
@@ -504,33 +505,36 @@ POST_PAGE = """<!doctype html><html><head><meta charset="utf-8">
 </div></body></html>"""
 
 
-BOX_TOP = {"cover": 470, "feature": 0, "pcta": 900, "pprices": 830}
+BOX_TOP = {"cover": 430, "feature": 0, "pcta": 900, "pprices": 822}   # where each slide's picture starts
 
 
-def post_crop(room, kind, zoom, at):
-    """Place the room scene so the print's center lands at `at` (shares of the room box), at `zoom` percent
-    of the box width, without ever showing an edge of the scene. Works for a metal room or a matted nook."""
-    W, H = 1080, 1350 - BOX_TOP[kind]
+def post_crop(room, kind, fill, at):
+    """Scale the room scene so the print is `fill` of the slide's width and place it so the print's center
+    lands at `at` (shares of the picture box), without ever showing an edge of the scene. Works for a metal
+    room or a matted nook."""
+    W, H = 1080, POST_H - BOX_TOP[kind]
     sw, sh = room["scene"]["image"]["width"], room["scene"]["image"]["height"]
+    zoom = fill / room["rect"]["width"] * 1e4
     iw = W * zoom / 100
     ih = iw * sh / sw
     cx = (room["rect"]["left"] + room["rect"]["width"] / 2) / 100 * iw
     cy = (room["rect"]["top"] + room["rect"]["height"] / 2) / 100 * ih
     left = min(0, max(W - iw, at[0] * W - cx))
     top = min(0, max(H - ih, at[1] * H - cy))
-    return [zoom, round(left / W * 100, 3), round(top / H * 100, 3)]
+    return [round(zoom, 3), round(left / W * 100, 3), round(top / H * 100, 3)]
 
 
 def render_post(b, s, root):
-    ctx = {"s": s, "css": CSS.split("/* Headline pieces")[0] + POST_CSS, "root": root}
+    ctx = {"s": s, "css": CSS.split("/* Headline pieces")[0] + POST_CSS.replace("POST_H", str(POST_H)), "root": root,
+           "box_top": BOX_TOP[s["kind"]]}
     p = b.gift_print(s["print"], s["name"])
     if s["kind"] == "pprices":
         ctx["mat"] = mat = b.gift_matted(p)
-        ctx["crop"] = post_crop(mat, s["kind"], s["zoom"], s["at"])
+        ctx["crop"] = post_crop(mat, s["kind"], s["fill"], s["at"])
     else:
         room = b.gift_room(p, *s["size"])
-        ctx["room"], ctx["box_top"] = room, BOX_TOP[s["kind"]]
-        ctx["crop"] = post_crop(room, s["kind"], s["zoom"], s["at"])
+        ctx["room"] = room
+        ctx["crop"] = post_crop(room, s["kind"], s["fill"], s["at"])
     return b.env.from_string(POST_PAGE).render(**ctx)
 
 
@@ -545,7 +549,7 @@ def posts(out, b, root):
             page.write_text(render_post(b, s, root))
             jobs.append({"html": page.as_uri(), "png": str(out / folder / f"{name}.png"), "label": f"{folder}/{name}"})
     script = ROOT / "tools" / ".stories-post.mjs"
-    script.write_text(POST_SHOT)
+    script.write_text(POST_SHOT.replace("POST_H", str(POST_H)))
     try:
         subprocess.run(["node", str(script), json.dumps(jobs)], cwd=ROOT / "tools", check=True)
     finally:
@@ -557,17 +561,17 @@ POST_SHOT = """
 import { chromium } from "playwright";
 const jobs = JSON.parse(process.argv[2]);
 const b = await chromium.launch();
-const p = await b.newPage({ viewport: { width: 1080, height: 1350 }, deviceScaleFactor: 1 });
+const p = await b.newPage({ viewport: { width: 1080, height: POST_H }, deviceScaleFactor: 1 });
 let problems = 0;
 for (const j of jobs) {
   await p.goto(j.html, { waitUntil: "networkidle" });
   await p.evaluate(() => document.fonts.ready);
-  await p.screenshot({ path: j.png, clip: { x: 0, y: 0, width: 1080, height: 1350 } });
+  await p.screenshot({ path: j.png, clip: { x: 0, y: 0, width: 1080, height: POST_H } });
   const fix = await p.evaluate(() => {
     const out = [], r = el => el.getBoundingClientRect();
     for (const el of document.querySelectorAll(".p-eyebrow, .p-head, .p-cap, .p-row, .p-steps li, .p-tap")) {
       const b = r(el), what = el.className + " '" + el.textContent.trim().slice(0, 24) + "'";
-      if (b.left < 63 || b.right > 1017 || b.top < 40 || b.bottom > 1320) out.push(what + " outside the margins");
+      if (b.left < 63 || b.right > 1017 || b.top < 40 || b.bottom > POST_H - 30) out.push(what + " outside the margins");
     }
     const text = document.querySelector(".p-text"), media = document.querySelector(".cover .p-room, .p-rows, .p-steps");
     if (text && media && r(media).top - r(text).bottom < 24) out.push("words crowd what's below them");
