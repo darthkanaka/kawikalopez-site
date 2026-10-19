@@ -47,7 +47,7 @@ SETS = [
         {"name": "problem", "kind": "room", "print": "kaimana", "size": [48, 16], "crop": [175, -37.5, -36],
          "eyebrow": "For Hawaiʻi realtors", "head": "The wine is gone by the weekend",
          "sub": "A print of their new neighborhood stays on the wall for years.", "caption": "Kaimana, 48 x 16 metal"},
-        {"name": "guide", "kind": "stack", "prints": [["naniwaikiki", "Waikīkī"], ["leahikahiko", "Diamond Head"], ["043", "Pālolo to Waikīkī"]],
+        {"name": "guide", "kind": "stack", "prints": [["naniwaikiki", "Waikīkī"], ["malie", "North Shore"], ["kaaawavalley", "Windward side"]],
          "eyebrow": "Their side of the island", "head": "Their new neighborhood",
          "sub": "You helped them find home. A print of it says the rest."},
         {"name": "success", "kind": "room", "print": "naniwaikiki", "size": [48, 16], "crop": [175, -37.5, -36],
