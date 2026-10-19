@@ -890,6 +890,17 @@
   "indexable": true
  },
  {
+  "path": "blog/realtor-closing-gifts",
+  "file": "blog/realtor-closing-gifts.html",
+  "type": "post",
+  "title": "Realtor Closing Gift Ideas in Hawaiʻi | Kawika Lopez",
+  "description": "A print of their new neighborhood is a closing gift buyers keep. What to spend, how to time it, and 15% off every print for Hawaiʻi realtors.",
+  "indexable": true,
+  "images": [
+   "assets/img/prints/043-1500.jpg"
+  ]
+ },
+ {
   "path": "blog/christmas-gifts-from-hawaii",
   "file": "blog/christmas-gifts-from-hawaii.html",
   "type": "post",
