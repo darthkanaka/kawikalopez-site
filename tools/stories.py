@@ -30,15 +30,15 @@ ROOT = Path(__file__).resolve().parent.parent
 # think of their agent every time they see the print are the success.
 SETS = [
     ("set-1-announcement", [
-        {"name": "announce", "kind": "room", "theme": "dark", "print": "leahikahiko", "size": [36, 24], "crop": [175, -37.5, -36],
+        {"name": "announce", "kind": "room", "theme": "ocean", "print": "leahikahiko", "size": [36, 24], "crop": [175, -37.5, -36],
          "eyebrow": "New on kawikalopez.com", "head": "Hawaiʻi realtors now get 15% off every print",
          "sub": "Give your buyers a closing gift they'll keep, made here on Oʻahu.",
          "caption": "Lēʻahi Kahiko, 36 x 24 metal"},
-        {"name": "prices", "kind": "prices", "theme": "dark",
+        {"name": "prices", "kind": "prices", "theme": "ocean",
          "eyebrow": "Realtor price", "head": "15% off every print, every time you order",
          "rows": [["Matted print", 55, 47], ["24 x 16 metal", 360, 306], ["48 x 16 panorama", 950, 808]],
          "sub": "Pickup on Oʻahu is free, so it's ready for the closing table."},
-        {"name": "sign-up", "kind": "cta", "theme": "dark",
+        {"name": "sign-up", "kind": "cta", "theme": "ocean",
          "eyebrow": "How it works", "head": "Three steps, and your 15% is set up",
          "steps": ["Sign up with your brokerage email", "Tap the link we email you", "Shop signed in, and 15% comes off"],
          "url": "kawikalopez.com/realtors", "tap": "Tap the link to sign up"},
@@ -81,14 +81,15 @@ html, body { margin: 0; background: #2f2e2c; }
 .s-caption { position: absolute; left: 80px; top: 1556px; font-size: 26px; color: var(--ink-2); margin: 0; }
 .s-url { font-size: 44px; font-weight: 600; color: var(--accent); margin: 28px 0 0; }
 
-/* The announcement's dark version. */
-.slide.dark { background: var(--charcoal-2); color: #f4f2ed; }
-.slide.dark .s-logo { filter: invert(1); }
-.slide.dark .s-eyebrow, .slide.dark .s-caption { color: #c9c0b2; }
-.slide.dark .s-url, .slide.dark .s-now, .slide.dark .s-cta-url, .slide.dark .s-steps li::before { color: #9fd0da; }
-.slide.dark .s-row { border-bottom-color: rgba(244, 242, 237, .18); }
-.slide.dark .s-was, .slide.dark .s-tap { color: #b9b3a8; }
-.slide.dark .s-steps li { background: rgba(244, 242, 237, .07); }
+/* The announcement set: the site's deep ocean blue, so the dark living room reads against it. */
+.slide.ocean { background: var(--accent); color: #f4f2ed; }
+.slide.ocean .s-logo { filter: brightness(0) invert(1); }
+.slide.ocean .s-eyebrow, .slide.ocean .s-caption { color: #bfdde3; }
+.slide.ocean .s-url, .slide.ocean .s-now, .slide.ocean .s-cta-url, .slide.ocean .s-steps li::before { color: #f3e3b5; }
+.slide.ocean .s-row { border-bottom-color: rgba(244, 242, 237, .24); }
+.slide.ocean .s-was, .slide.ocean .s-tap { color: #bfdde3; }
+.slide.ocean .s-steps li { background: rgba(244, 242, 237, .1); }
+.slide.ocean .s-room { box-shadow: 0 -1px 0 rgba(244, 242, 237, .14), 0 1px 0 rgba(244, 242, 237, .14); }
 
 /* Three prints stacked on a wall, each with the part of town it shows. */
 .s-wall { position: absolute; left: 0; right: 0; top: 800px; height: 840px; background: linear-gradient(180deg, var(--wall), var(--wall-2));
@@ -123,7 +124,7 @@ html, body { margin: 0; background: #2f2e2c; }
 PAGE = """<!doctype html><html><head><meta charset="utf-8">
 <link rel="stylesheet" href="{{ root }}assets/css/site.css"><style>{{ css }}</style></head><body>
 {% import "partials/gifts.html" as gx with context %}
-<div class="slide{% if s.get('theme') == 'dark' %} dark{% endif %}">
+<div class="slide{% if s.get('theme') %} {{ s.theme }}{% endif %}">
   <img class="s-logo" src="{{ root }}assets/img/site/logo-horizontal.svg" alt="">
   <div class="s-text">
     <p class="s-eyebrow">{{ s.eyebrow }}</p>
