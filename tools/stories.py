@@ -2,7 +2,8 @@
 """Instagram story images (1080 x 1920) for kawikalopez.com, made from the site's own prints and room
 scenes, so every print shows on a wall at its real size the way the store shows it.
 
-  python3 tools/stories.py <out-dir>     writes <out-dir>/<set>/<NN-name>.png (needs tools/node_modules/playwright)
+  python3 tools/stories.py <out-dir>          writes <out-dir>/<set>/<NN-name>.png (needs tools/node_modules/playwright)
+  python3 tools/stories.py <out-dir> --video  writes the VIDEOS as MP4 story videos instead (also needs ffmpeg)
 
 Every run also checks the layout: words inside the 80 px side margins and Instagram's safe area,
 words clear of the pictures, and each print with room around it inside its picture. Problems print
@@ -65,6 +66,17 @@ SETS = [
          "sub": "What to spend, how to time it, and how to give a gift that stays on the wall.",
          "caption": "Mauka i Makai, 48 x 16 metal", "url": "kawikalopez.com/blog"},
     ]),
+]
+
+# Story videos: the room slowly zooms in toward the print, and the print changes every `beat` seconds.
+# The words come in at the start; the caption under the room follows the print.
+VIDEOS = [
+    {"name": "set-1-announcement/01-announce", "theme": "ocean", "beat": 2.3, "fps": 30, "zoom": 1.14,
+     "crop": [175, -37.5, -36],
+     "eyebrow": "New on kawikalopez.com", "head": "Hawaiʻi realtors now get 15% off every print",
+     "sub": "Give your buyers a closing gift they'll keep, made here on Oʻahu.", "highlight": ["15%", "off"],
+     "prints": [["leahikahiko", [36, 24]], ["naniwaikiki", [48, 16]], ["malie", [36, 24]],
+                ["kaaawavalley", [48, 16]], ["makapuubeach-h", [36, 24]]]},
 ]
 
 CSS = """
@@ -178,10 +190,117 @@ def render(b, s, root):
     return b.env.from_string(PAGE).render(**ctx)
 
 
+VIDEO_PAGE = """<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="{{ root }}assets/css/site.css"><style>{{ css }}
+.s-layer { position: absolute; inset: 0; }
+.s-layer .g-room { position: absolute; inset: 0; }
+.s-layer .g-room-in { will-change: transform; }
+.s-caps { position: absolute; left: 80px; right: 80px; top: 1556px; height: 40px; }
+.s-caps .s-caption { left: 0; top: 0; }
+.s-anim, .s-word { will-change: transform, opacity; }
+.s-word { display: inline-block; }
+.s-hl { color: #f3e3b5; }
+</style></head><body>
+{% import "partials/gifts.html" as gx with context %}
+<div class="slide{% if v.get('theme') %} {{ v.theme }}{% endif %}">
+  <img class="s-logo s-anim" data-in="-0.2" src="{{ root }}assets/img/site/logo-horizontal.svg" alt="">
+  <div class="s-text">
+    <p class="s-eyebrow s-anim" data-in="-0.1">{{ v.eyebrow }}</p>
+    <h1 class="s-head">{% for w in v.head.split() %}<span class="s-word{% if w in v.get('highlight', []) %} s-hl{% endif %}">{{ w }}</span> {% endfor %}</h1>
+    <p class="s-sub s-anim" data-in="0.55">{{ v.sub }}</p>
+  </div>
+  <div class="s-room">
+    {% for r in rooms %}<div class="s-layer" data-origin="{{ r.origin }}">{{ gx.metal_room(r, "", v.crop, "1080px", eager=True) }}</div>{% endfor %}
+  </div>
+  <div class="s-caps">{% for r in rooms %}<p class="s-caption">{{ r.p.title }}, {{ r.w }} x {{ r.h }} metal</p>{% endfor %}</div>
+</div>
+<script>
+const BEAT = {{ v.beat }}, ZOOM = {{ v.zoom }};
+const layers = [...document.querySelectorAll(".s-layer")], caps = [...document.querySelectorAll(".s-caps .s-caption")];
+const ease = x => x < 0 ? 0 : x > 1 ? 1 : 1 - Math.pow(1 - x, 3);
+const glide = x => x < 0 ? 0 : x > 1 ? 1 : x * x * (3 - 2 * x);
+layers.forEach(l => { const inner = l.querySelector(".g-room-in"); inner.style.transformOrigin = l.dataset.origin; });
+window.at = t => {
+  // Words rise in once at the start.
+  // The headline punches in word by word from the first frame, then the rest settles in.
+  document.querySelectorAll(".s-word").forEach((el, i) => {
+    const k = ease((t + 0.12 - i * 0.055) / 0.38);
+    el.style.opacity = k; el.style.transform = `translateY(${(1 - k) * 46}px)`;
+  });
+  document.querySelectorAll(".s-anim").forEach(el => {
+    const k = ease((t - Number(el.dataset.in)) / 0.5);
+    el.style.opacity = k; el.style.transform = `translateY(${(1 - k) * 28}px)`;
+  });
+  // Each print gets one beat: a slow zoom toward the print, then a straight cut to the next.
+  const now = Math.min(layers.length - 1, Math.floor(t / BEAT));
+  layers.forEach((l, i) => {
+    const show = i === now ? 1 : 0;
+    l.style.opacity = show; caps[i].style.opacity = show;
+    const z = 1 + (ZOOM - 1) * glide((t - i * BEAT) / BEAT);
+    l.querySelector(".g-room-in").style.transform = `scale(${z})`;
+  });
+};
+window.at(0);
+</script></body></html>"""
+
+
+def render_video(b, v, root):
+    rooms = []
+    for uid, size in v["prints"]:
+        r = b.gift_room(b.gift_print(uid, v["name"]), *size)
+        r["origin"] = f"{r['rect']['left'] + r['rect']['width'] / 2:.3f}% {r['rect']['top'] + r['rect']['height'] / 2:.3f}%"
+        rooms.append(r)
+    return b.env.from_string(VIDEO_PAGE).render(v=v, rooms=rooms, css=CSS, root=root)
+
+
+def videos(out, b, root):
+    tmp = Path(tempfile.mkdtemp(prefix="kl-story-video-"))
+    script = ROOT / "tools" / ".stories-video.mjs"
+    script.write_text(VIDEO_SHOT)
+    try:
+        for v in VIDEOS:
+            page = tmp / (v["name"].replace("/", "-") + ".html")
+            page.write_text(render_video(b, v, root))
+            frames = tmp / (v["name"].replace("/", "-") + "-frames")
+            frames.mkdir()
+            seconds = v["beat"] * len(v["prints"])
+            subprocess.run(["node", str(script), page.as_uri(), str(frames), str(v["fps"]), str(seconds)],
+                           cwd=ROOT / "tools", check=True)
+            mp4 = out / (v["name"] + ".mp4")
+            mp4.parent.mkdir(parents=True, exist_ok=True)
+            subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-framerate", str(v["fps"]), "-i", str(frames / "%04d.png"),
+                            "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "17", "-preset", "slow",
+                            "-movflags", "+faststart", str(mp4)], check=True)
+            print(mp4, f"{seconds:.1f} s")
+    finally:
+        script.unlink()
+
+
+# Steps the page through time with window.at(t) and screenshots every frame.
+VIDEO_SHOT = """
+import { chromium } from "playwright";
+const [url, dir, fps, seconds] = process.argv.slice(2);
+const b = await chromium.launch();
+const p = await b.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
+await p.goto(url, { waitUntil: "networkidle" });
+await p.evaluate(() => document.fonts.ready);
+const n = Math.round(Number(fps) * Number(seconds));
+for (let i = 0; i < n; i++) {
+  await p.evaluate(t => window.at(t), i / Number(fps));
+  await p.screenshot({ path: `${dir}/${String(i).padStart(4, "0")}.png`, clip: { x: 0, y: 0, width: 1080, height: 1920 } });
+}
+await b.close();
+"""
+
+
 def main():
-    out = Path(sys.argv[1] if len(sys.argv) > 1 else "stories").resolve()
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    out = Path(args[0] if args else "stories").resolve()
     b = build.Builder(production=True, check=True)
     root = ROOT.as_uri() + "/"
+    if "--video" in sys.argv:
+        videos(out, b, root)
+        return
     tmp = Path(tempfile.mkdtemp(prefix="kl-stories-"))
     jobs = []
     for folder, slides in SETS:
