@@ -49,7 +49,7 @@ SETS = [
          "sub": "A print of their new neighborhood stays on the wall for years.", "caption": "Kaimana, 48 x 16 metal"},
         {"name": "guide", "kind": "stack", "prints": [["naniwaikiki", "Waikīkī"], ["leahikahiko", "Diamond Head"], ["043", "Pālolo to Waikīkī"]],
          "eyebrow": "Their side of the island", "head": "Their new neighborhood",
-         "sub": "I'm Kawika. I photograph Oʻahu, and realtors already give my prints at closing."},
+         "sub": "You helped them find home. A print of it says the rest."},
         {"name": "success", "kind": "room", "print": "naniwaikiki", "size": [48, 16], "crop": [175, -37.5, -36],
          "eyebrow": "15% off for Hawaiʻi realtors", "head": "They'll think of you every time they see it",
          "sub": "Sign up with your brokerage email and give your buyers a print of home.",
