@@ -4,6 +4,7 @@ so every print shows on a wall at its real size the way the store shows it.
 
   python3 tools/stories.py <out-dir>          writes <out-dir>/<set>/<NN-name>.png, the still of each slide
   python3 tools/stories.py <out-dir> --video  also writes <NN-name>.mp4, the moving version (needs ffmpeg)
+  python3 tools/stories.py <out-dir> --posts  writes the feed carousels in POSTS instead (1080 x 1350 PNGs)
 
 Needs tools/node_modules/playwright. Every run checks the layout of the stills: words inside the 80 px
 side margins and clear of the top 230 and bottom 320 pixels Instagram covers, words clear of the
@@ -78,6 +79,30 @@ SETS = [
          "eyebrow": "New on the blog", "head": "Closing gift ideas for Oʻahu realtors",
          "sub": "What to spend, how to time it, and how to give a gift that stays on the wall.",
          "url": "kawikalopez.com/blog"},
+    ]),
+]
+
+# Feed carousels, 1080 x 1350 (4:5, the tallest a feed post shows). Every slide in a carousel has the
+# same shape as the first. The photographs fill most of each slide; words sit on the ocean blue or on the
+# dark wall above the print. The profile grid shows the first slide cropped to 3:4, which trims about
+# 34 px from each side, so words keep a 64 px margin.
+POSTS = [
+    ("post-announcement", [
+        {"name": "cover", "kind": "cover", "print": "leahikahiko", "size": [36, 24], "zoom": 260, "at": [0.5, 0.42],
+         "eyebrow": "New on kawikalopez.com", "head": "Hawaiʻi realtors now get 15% off every print", "glint": ["15%", "off"]},
+        {"name": "waikiki", "kind": "feature", "print": "naniwaikiki", "size": [48, 16], "zoom": 330, "at": [0.5, 0.5],
+         "eyebrow": "Their side of the island", "head": "Waikīkī"},
+        {"name": "north-shore", "kind": "feature", "print": "malie", "size": [36, 24], "zoom": 330, "at": [0.5, 0.52],
+         "eyebrow": "Their side of the island", "head": "The North Shore"},
+        {"name": "windward", "kind": "feature", "print": "kaaawavalley", "size": [48, 16], "zoom": 330, "at": [0.5, 0.5],
+         "eyebrow": "Their side of the island", "head": "The windward side"},
+        {"name": "prices", "kind": "pprices", "print": "leahikahiko", "zoom": 200, "at": [0.5, 0.5],
+         "eyebrow": "Realtor price", "head": "15% off every print, every time",
+         "rows": [["Matted print", 55, 47], ["24 x 16 metal", 360, 306], ["48 x 16 panorama", 950, 808]]},
+        {"name": "sign-up", "kind": "pcta", "print": "kaimana", "size": [48, 16], "zoom": 300, "at": [0.5, 0.5],
+         "eyebrow": "How it works", "head": "Sign up with your brokerage email",
+         "steps": ["Sign up at kawikalopez.com/realtors", "Tap the link we email you", "Shop signed in, and 15% comes off"],
+         "tap": "Link in bio"},
     ]),
 ]
 
@@ -398,12 +423,175 @@ def render(b, s, root):
     return b.env.from_string(PAGE).render(**ctx)
 
 
+POST_CSS = """
+html, body { margin: 0; background: #2f2e2c; }
+.post { width: 1080px; height: 1350px; position: relative; overflow: hidden; background: var(--accent); color: #f4f2ed;
+  font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+.p-logo { position: absolute; top: 64px; left: 64px; height: 52px; width: auto; filter: brightness(0) invert(1); z-index: 3; }
+.p-text { position: absolute; left: 64px; right: 64px; top: 150px; z-index: 3; }
+.p-eyebrow { font-size: 26px; letter-spacing: 0.16em; text-transform: uppercase; color: #bfdde3; font-weight: 500; margin: 0; }
+.p-head { font-family: var(--serif); font-weight: 400; font-size: 96px; line-height: 1.0; margin: 20px 0 0; text-wrap: balance; }
+.p-hl { color: #f3e3b5; }
+.p-room { position: absolute; left: 0; right: 0; bottom: 0; overflow: hidden; }
+.p-room .g-room { position: absolute; inset: 0; }
+.p-cap { position: absolute; left: 64px; bottom: 44px; font-size: 26px; color: #f4f2ed; margin: 0; z-index: 3;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, .5); }
+.p-shade { position: absolute; left: 0; right: 0; bottom: 0; height: 200px; z-index: 2;
+  background: linear-gradient(180deg, rgba(20, 18, 16, 0), rgba(20, 18, 16, .55)); }
+/* A feature slide is all room: the words sit on the dark wall above the print. */
+.feature .p-room { top: 0; }
+.feature .p-text { top: 140px; }
+.feature .p-eyebrow { color: #d9d2c6; }
+.feature .p-head { font-size: 104px; }
+/* Prices on the blue, the matted print below. */
+.p-rows { position: absolute; left: 64px; right: 64px; top: 440px; margin: 0; }
+.p-row { display: grid; grid-template-columns: 1fr auto auto; align-items: baseline; gap: 30px; padding: 20px 0;
+  border-bottom: 2px solid rgba(244, 242, 237, .24); font-variant-numeric: tabular-nums; }
+.p-row dt { font-family: var(--serif); font-size: 52px; line-height: 1.05; }
+.p-row dd { margin: 0; }
+.p-was { font-size: 34px; color: #bfdde3; text-decoration: line-through; text-decoration-thickness: 2px; }
+.p-now { font-size: 52px; font-weight: 600; color: #f3e3b5; min-width: 3.4ch; text-align: right; }
+.p-nook { position: absolute; left: 0; right: 0; bottom: 0; height: 520px; overflow: hidden; }
+.p-nook .g-room { position: absolute; inset: 0; }
+/* Sign-up steps on the blue, a room strip below. */
+.p-steps { position: absolute; left: 64px; right: 64px; top: 440px; margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 16px; }
+.p-steps li { counter-increment: s; display: grid; grid-template-columns: 60px 1fr; align-items: center; gap: 18px; padding: 20px 26px;
+  background: rgba(244, 242, 237, .1); font-size: 36px; line-height: 1.25; }
+.p-steps li::before { content: counter(s); font-family: var(--serif); font-size: 62px; line-height: 1; color: #f3e3b5; }
+.p-tap { position: absolute; left: 64px; top: 800px; font-size: 40px; font-weight: 600; color: #f3e3b5; margin: 0; }
+"""
+
+POST_PAGE = """<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="{{ root }}assets/css/site.css"><style>{{ css }}</style></head><body>
+{% import "partials/gifts.html" as gx with context %}
+<div class="post {{ s.kind }}">
+  <img class="p-logo" src="{{ root }}assets/img/site/logo-horizontal.svg" alt="">
+  <div class="p-text">
+    <p class="p-eyebrow">{{ s.eyebrow }}</p>
+    <h1 class="p-head">{% for w in s.head.split() %}<span{% if w in s.get('glint', []) %} class="p-hl"{% endif %}>{{ w }}</span> {% endfor %}</h1>
+  </div>
+  {% if s.kind in ("cover", "feature", "pcta") %}
+  <div class="p-room" style="top:{{ box_top }}px">
+    <div class="g-room">
+      <div class="g-room-in" style="width:{{ crop[0] }}%;left:{{ crop[1] }}%;top:{{ crop[2] }}%">
+        {{ gx.scene_img(room.scene, "2000px", True) }}
+        <div class="g-room-print g-metal" style="left:{{ room.rect.left }}%;top:{{ room.rect.top }}%;width:{{ room.rect.width }}%;height:{{ room.rect.height }}%">{{ picture(room.p, "1200px", alt="") }}</div>
+      </div>
+    </div>
+  </div>
+  {% if s.kind != "pcta" %}<div class="p-shade"></div><p class="p-cap">{{ room.p.title }}, {{ room.w }} x {{ room.h }} metal</p>{% endif %}
+  {% endif %}
+  {% if s.kind == "pprices" %}
+  <dl class="p-rows">
+    {% for name, was, now in s.rows %}<div class="p-row"><dt>{{ name }}</dt><dd class="p-was">${{ was }}</dd><dd class="p-now">${{ now }}</dd></div>{% endfor %}
+  </dl>
+  <div class="p-nook">
+    <div class="g-room">
+      <div class="g-room-in" style="width:{{ crop[0] }}%;left:{{ crop[1] }}%;top:{{ crop[2] }}%">
+        {{ gx.scene_img(mat.scene, "2000px", True) }}
+        <div class="g-room-print g-matted" style="left:{{ mat.rect.left }}%;top:{{ mat.rect.top }}%;width:{{ mat.rect.width }}%;height:{{ mat.rect.height }}%">
+          <div class="g-opening" style="left:{{ '%.3f' % mat.opening.left }}%;top:{{ '%.3f' % mat.opening.top }}%;width:{{ '%.3f' % mat.opening.width }}%;height:{{ '%.3f' % mat.opening.height }}%">{{ picture(mat.p, "900px", alt="") }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-shade"></div><p class="p-cap">{{ mat.p.title }}, matted print</p>
+  {% endif %}
+  {% if s.kind == "pcta" %}
+  <ol class="p-steps">{% for t in s.steps %}<li>{{ t }}</li>{% endfor %}</ol>
+  <p class="p-tap">{{ s.tap }}</p>
+  {% endif %}
+</div></body></html>"""
+
+
+BOX_TOP = {"cover": 470, "feature": 0, "pcta": 900, "pprices": 830}
+
+
+def post_crop(room, kind, zoom, at):
+    """Place the room scene so the print's center lands at `at` (shares of the room box), at `zoom` percent
+    of the box width, without ever showing an edge of the scene. Works for a metal room or a matted nook."""
+    W, H = 1080, 1350 - BOX_TOP[kind]
+    sw, sh = room["scene"]["image"]["width"], room["scene"]["image"]["height"]
+    iw = W * zoom / 100
+    ih = iw * sh / sw
+    cx = (room["rect"]["left"] + room["rect"]["width"] / 2) / 100 * iw
+    cy = (room["rect"]["top"] + room["rect"]["height"] / 2) / 100 * ih
+    left = min(0, max(W - iw, at[0] * W - cx))
+    top = min(0, max(H - ih, at[1] * H - cy))
+    return [zoom, round(left / W * 100, 3), round(top / H * 100, 3)]
+
+
+def render_post(b, s, root):
+    ctx = {"s": s, "css": CSS.split("/* Headline pieces")[0] + POST_CSS, "root": root}
+    p = b.gift_print(s["print"], s["name"])
+    if s["kind"] == "pprices":
+        ctx["mat"] = mat = b.gift_matted(p)
+        ctx["crop"] = post_crop(mat, s["kind"], s["zoom"], s["at"])
+    else:
+        room = b.gift_room(p, *s["size"])
+        ctx["room"], ctx["box_top"] = room, BOX_TOP[s["kind"]]
+        ctx["crop"] = post_crop(room, s["kind"], s["zoom"], s["at"])
+    return b.env.from_string(POST_PAGE).render(**ctx)
+
+
+def posts(out, b, root):
+    tmp = Path(tempfile.mkdtemp(prefix="kl-posts-"))
+    jobs = []
+    for folder, slides in POSTS:
+        (out / folder).mkdir(parents=True, exist_ok=True)
+        for n, s in enumerate(slides, 1):
+            name = f"{n:02d}-{s['name']}"
+            page = tmp / f"{folder}-{name}.html"
+            page.write_text(render_post(b, s, root))
+            jobs.append({"html": page.as_uri(), "png": str(out / folder / f"{name}.png"), "label": f"{folder}/{name}"})
+    script = ROOT / "tools" / ".stories-post.mjs"
+    script.write_text(POST_SHOT)
+    try:
+        subprocess.run(["node", str(script), json.dumps(jobs)], cwd=ROOT / "tools", check=True)
+    finally:
+        script.unlink()
+
+
+# Screenshots each carousel slide and checks the words keep their margins.
+POST_SHOT = """
+import { chromium } from "playwright";
+const jobs = JSON.parse(process.argv[2]);
+const b = await chromium.launch();
+const p = await b.newPage({ viewport: { width: 1080, height: 1350 }, deviceScaleFactor: 1 });
+let problems = 0;
+for (const j of jobs) {
+  await p.goto(j.html, { waitUntil: "networkidle" });
+  await p.evaluate(() => document.fonts.ready);
+  await p.screenshot({ path: j.png, clip: { x: 0, y: 0, width: 1080, height: 1350 } });
+  const fix = await p.evaluate(() => {
+    const out = [], r = el => el.getBoundingClientRect();
+    for (const el of document.querySelectorAll(".p-eyebrow, .p-head, .p-cap, .p-row, .p-steps li, .p-tap")) {
+      const b = r(el), what = el.className + " '" + el.textContent.trim().slice(0, 24) + "'";
+      if (b.left < 63 || b.right > 1017 || b.top < 40 || b.bottom > 1320) out.push(what + " outside the margins");
+    }
+    const text = document.querySelector(".p-text"), media = document.querySelector(".cover .p-room, .p-rows, .p-steps");
+    if (text && media && r(media).top - r(text).bottom < 24) out.push("words crowd what's below them");
+    const print = document.querySelector(".feature .g-room-print"), head = document.querySelector(".feature .p-head");
+    if (print && head && r(print).top - r(head).bottom < 40) out.push("the headline crowds the print");
+    return out;
+  });
+  console.log(j.label + (fix.length ? "" : "  ok"));
+  for (const f of fix) { console.log("  FIX " + f); problems++; }
+}
+await b.close();
+console.log(problems ? problems + " layout problem(s)" : "layout ok on every slide");
+"""
+
+
 def main():
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     out = Path(args[0] if args else "stories").resolve()
     video = "--video" in sys.argv
     b = build.Builder(production=True, check=True)
     root = ROOT.as_uri() + "/"
+    if "--posts" in sys.argv:
+        posts(out, b, root)
+        return
     tmp = Path(tempfile.mkdtemp(prefix="kl-stories-"))
     jobs = []
     for folder, slides in SETS:
