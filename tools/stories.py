@@ -622,7 +622,7 @@ def posts(out, b, root, video):
             frames.mkdir()
             jobs.append({"html": page.as_uri(), "png": str(out / folder / f"{name}.png"), "label": f"{folder}/{name}",
                          "folder": folder, "frames": str(frames) if video else "", "fps": FPS, "seconds": s["seconds"],
-                         "start": -POST_LEAD if n > 1 else 0})
+                         "start": -POST_LEAD if n > 1 else 0, "still_first": n == 1})
     script = ROOT / "tools" / ".stories-post.mjs"
     script.write_text(POST_SHOT.replace("POST_H", str(POST_H)))
     try:
@@ -688,9 +688,12 @@ for (const j of jobs) {
   console.log(j.label + (fix.length ? "" : "  ok"));
   for (const f of fix) { console.log("  FIX " + f); problems++; }
   if (j.frames) {
-    const n = Math.round(j.fps * j.seconds);
+    // The video opens on one frame of the finished first slide, since that's the frame Instagram makes the
+    // thumbnail from, then cuts back to its words coming in.
+    const n = Math.round(j.fps * j.seconds), skip = j.still_first ? 1 : 0;
     for (let i = 0; i < n; i++) {
-      await p.evaluate(t => window.at(t), j.start + i / j.fps);
+      if (i < skip) await p.evaluate(() => window.still());
+      else await p.evaluate(t => window.at(t), j.start + (i - skip) / j.fps);
       await p.screenshot({ path: `${j.frames}/${String(i).padStart(4, "0")}.png`, clip: { x: 0, y: 0, width: 1080, height: POST_H } });
     }
   }
