@@ -4,8 +4,8 @@ so every print shows on a wall at its real size the way the store shows it.
 
   python3 tools/stories.py <out-dir>          writes <out-dir>/<set>/<NN-name>.png, the still of each slide
   python3 tools/stories.py <out-dir> --video  also writes <NN-name>.mp4, the moving version (needs ffmpeg)
-  python3 tools/stories.py <out-dir> --posts  writes the feed carousels in POSTS instead (1080 x 1440 PNGs)
-  python3 tools/stories.py <out-dir> --posts --video  also writes each post as one video, <post>/<post>.mp4
+  python3 tools/stories.py <out-dir> --posts  writes the feed posts in POSTS instead (PNG stills, 1080 x 1440 or 1920)
+  python3 tools/stories.py <out-dir> --posts --video  also writes each Reel-shaped post as one video, <post>/<post>.mp4
 
 Needs tools/node_modules/playwright. Every run checks the layout of the stills: words inside the 80 px
 side margins and clear of the top 230 and bottom 320 pixels Instagram covers, words clear of the
@@ -83,40 +83,52 @@ SETS = [
     ]),
 ]
 
-# Feed posts, 1080 x 1440 (3:4, the tallest a feed post takes from the app, and the same shape as a
-# profile grid tile). Each post is a list of slides: the stills post as a carousel, and with --video
-# they also play in order as one video, each slide swiping in from the right like the next card of a carousel. The prints fill most of
-# each slide: `fill` is the print's width as a share of the slide's. Words sit on the ocean blue or on
-# the dark wall above the print, with a 64 px margin. `fx` is the headline motion (as in the stories)
-# and `seconds` how long the slide holds in the video.
-POST_H = 1440
+# Feed posts. Each is one list of slides in two shapes. "post" is 1080 x 1440 (3:4, the tallest a feed
+# post takes from the app, and the same shape as a profile grid tile): its stills post as a carousel.
+# "reel" is 1080 x 1920 for the video, because Instagram posts every single video as a Reel, and a Reel
+# plays full screen with its caption over the bottom and its buttons down the right edge. The grid shows
+# a Reel's cover cropped to the middle 3:4 (from 240 to 1680 down), so the reel shape moves everything
+# down by `y0`, the top of that crop, keeps words and prints above `floor`, where Instagram's caption
+# starts, and keeps the price rows and steps clear of the buttons (`right`). A print's caption sits
+# `cap` px up from the bottom of the slide, or with no `cap`, just under the print. The video opens on one frame
+# of the finished cover, the frame Instagram makes the thumbnail from, then cuts to its words coming in,
+# each later slide swiping in from the right like the next card of a carousel.
+#
+# The prints fill most of each slide: `fill` is the print's width as a share of the slide's, and `at`
+# where its center sits, as shares of the picture's width and of its height down to the floor. Words sit
+# on the ocean blue or on the dark wall above the print, with a 64 px margin. `fx` is the headline motion
+# (as in the stories) and `seconds` how long the slide holds in the video. A slide's "reel" entries
+# replace its own in the reel shape.
+FORMATS = {
+    "post": {"h": 1440, "y0": 0, "floor": 1440, "cap": 72, "right": 64, "video": False},
+    "reel": {"h": 1920, "y0": 240, "floor": 1540, "cap": None, "right": 140, "video": True},
+}
 POST_SWIPE = 0.6   # seconds each slide takes to swipe in over the last in the video
 POST_LEAD = 0.3    # each later slide's motion starts this far into its swipe, so its words land after it does
-POSTS = [
-    ("post-announcement", [
+ANNOUNCE = [
         {"name": "cover", "kind": "cover", "fx": "rise", "seconds": 6,
-         "print": "leahikahiko", "size": [36, 24], "fill": 0.9, "at": [0.5, 0.5],
+         "print": "leahikahiko", "size": [36, 24], "fill": 0.9, "at": [0.5, 0.5], "reel": {"at": [0.5, 0.49]},
          "eyebrow": "New on kawikalopez.com", "head": "Hawaiʻi realtors now get 15% off every print", "glint": ["15%", "off"]},
         {"name": "prices", "kind": "pprices", "fx": "mask", "seconds": 7.5,
-         "print": "leahikahiko", "fill": 0.6, "at": [0.5, 0.5],
+         "print": "leahikahiko", "fill": 0.6, "at": [0.5, 0.5], "reel": {"fill": 0.5},
          "eyebrow": "Realtor price", "head": "15% off every print, every time",
          "rows": [["Matted print", 55, 47], ["24 x 16 metal", 360, 306], ["48 x 16 panorama", 950, 808]]},
         {"name": "sign-up", "kind": "pcta", "fx": "drop", "seconds": 8,
-         "print": "kaimana", "size": [48, 16], "fill": 0.94, "at": [0.5, 0.5],
+         "print": "kaimana", "size": [48, 16], "fill": 0.94, "at": [0.5, 0.5], "reel": {"fill": 0.9},
          "eyebrow": "How it works", "head": "Sign up with your brokerage email",
          "steps": ["Sign up at kawikalopez.com/realtors", "Tap the link we email you", "Shop signed in, and 15% comes off"],
          "tap": "Link in bio"},
         {"name": "waikiki", "kind": "feature", "fx": "chars", "seconds": 4,
-         "print": "naniwaikiki", "size": [48, 16], "fill": 0.94, "at": [0.5, 0.5],
+         "print": "naniwaikiki", "size": [48, 16], "fill": 0.94, "at": [0.5, 0.5], "reel": {"at": [0.5, 0.62]},
          "eyebrow": "Their side of the island", "head": "Waikīkī"},
         {"name": "north-shore", "kind": "feature", "fx": "mask", "seconds": 4,
-         "print": "malie", "size": [36, 24], "fill": 0.9, "at": [0.5, 0.5],
+         "print": "malie", "size": [36, 24], "fill": 0.9, "at": [0.5, 0.5], "reel": {"at": [0.5, 0.62]},
          "eyebrow": "Their side of the island", "head": "The North Shore"},
         {"name": "windward", "kind": "feature", "fx": "rise", "seconds": 4,
-         "print": "kaaawavalley", "size": [48, 16], "fill": 0.94, "at": [0.5, 0.5],
+         "print": "kaaawavalley", "size": [48, 16], "fill": 0.94, "at": [0.5, 0.5], "reel": {"at": [0.5, 0.62]},
          "eyebrow": "Their side of the island", "head": "The windward side"},
-    ]),
 ]
+POSTS = [("post-announcement", "post", ANNOUNCE), ("reel-announcement", "reel", ANNOUNCE)]
 
 BEAT = 2.3     # seconds each photograph shows in a room
 FPS = 30
@@ -444,25 +456,25 @@ def render(b, s, root):
 
 POST_CSS = """
 html, body { margin: 0; background: #2f2e2c; }
-.post { width: 1080px; height: POST_Hpx; position: relative; overflow: hidden; background: var(--accent); color: #f4f2ed;
+.post { width: 1080px; height: {{ f.h }}px; position: relative; overflow: hidden; background: var(--accent); color: #f4f2ed;
   font-family: var(--sans); -webkit-font-smoothing: antialiased; --hl: #f3e3b5; --band: #ffffff; }
-.p-logo { position: absolute; top: 64px; left: 64px; height: 52px; width: auto; filter: brightness(0) invert(1); z-index: 3; }
-.p-text { position: absolute; left: 64px; right: 64px; top: 150px; z-index: 3; }
+.p-logo { position: absolute; top: {{ f.y0 + 64 }}px; left: 64px; height: 52px; width: auto; filter: brightness(0) invert(1); z-index: 3; }
+.p-text { position: absolute; left: 64px; right: 64px; top: {{ f.y0 + 150 }}px; z-index: 3; }
 .p-eyebrow { font-size: 26px; letter-spacing: 0.16em; text-transform: uppercase; color: #bfdde3; font-weight: 500; margin: 0; }
 .p-head { font-family: var(--serif); font-weight: 400; font-size: 96px; line-height: 1.0; margin: 20px 0 0; text-wrap: balance; }
 .p-room { position: absolute; left: 0; right: 0; bottom: 0; overflow: hidden; }
 .p-room .g-room { position: absolute; inset: 0; }
-.p-cap { position: absolute; left: 64px; bottom: 72px; font-size: 26px; color: #f4f2ed; margin: 0; z-index: 3;
+.p-cap { position: absolute; left: 64px; {% if f.cap %}bottom: {{ f.cap }}px{% else %}top: {{ cap_top }}px{% endif %}; font-size: 26px; color: #f4f2ed; margin: 0; z-index: 3;
   text-shadow: 0 1px 8px rgba(0, 0, 0, .5); }
 .p-shade { position: absolute; left: 0; right: 0; bottom: 0; height: 240px; z-index: 2;
   background: linear-gradient(180deg, rgba(20, 18, 16, 0), rgba(20, 18, 16, .55)); }
 /* A feature slide is all room: the words sit on the dark wall above the print. */
 .feature .p-room { top: 0; }
-.feature .p-text { top: 140px; }
+.feature .p-text { top: {{ f.y0 + 140 }}px; }
 .feature .p-eyebrow { color: #d9d2c6; }
 .feature .p-head { font-size: 104px; }
 /* Prices on the blue, the matted print below (the row names it, so no caption): the regular price gets crossed out and the realtor price counts down. */
-.p-rows { position: absolute; left: 64px; right: 64px; top: 440px; margin: 0; }
+.p-rows { position: absolute; left: 64px; right: {{ f.right }}px; top: {{ f.y0 + 440 }}px; margin: 0; }
 .p-row { display: grid; grid-template-columns: 1fr auto auto; align-items: baseline; gap: 30px; padding: 20px 0;
   border-bottom: 2px solid rgba(244, 242, 237, .24); font-variant-numeric: tabular-nums; }
 .p-row dt { font-family: var(--serif); font-size: 52px; line-height: 1.05; }
@@ -473,11 +485,11 @@ html, body { margin: 0; background: #2f2e2c; }
 .p-nook { position: absolute; left: 0; right: 0; bottom: 0; overflow: hidden; }
 .p-nook .g-room { position: absolute; inset: 0; }
 /* Sign-up steps on the blue, a room strip below. */
-.p-steps { position: absolute; left: 64px; right: 64px; top: 440px; margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 16px; }
+.p-steps { position: absolute; left: 64px; right: {{ f.right }}px; top: {{ f.y0 + 440 }}px; margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 16px; }
 .p-steps li { counter-increment: s; display: grid; grid-template-columns: 60px 1fr; align-items: center; gap: 18px; padding: 20px 26px;
   background: rgba(244, 242, 237, .1); font-size: 36px; line-height: 1.25; }
 .p-steps li::before { content: counter(s); font-family: var(--serif); font-size: 62px; line-height: 1; color: #f3e3b5; }
-.p-tap { position: absolute; left: 64px; top: 800px; font-size: 40px; font-weight: 600; color: #f3e3b5; margin: 0; }
+.p-tap { position: absolute; left: 64px; top: {{ f.y0 + 800 }}px; font-size: 40px; font-weight: 600; color: #f3e3b5; margin: 0; }
 """
 
 POST_PAGE = """<!doctype html><html><head><meta charset="utf-8">
@@ -578,14 +590,18 @@ window.still = () => frame(LENGTH + 5, true);
 </script></body></html>"""
 
 
-BOX_TOP = {"cover": 430, "feature": 0, "pcta": 900, "pprices": 822}   # where each slide's picture starts
+BOX_TOP = {"cover": 430, "feature": 0, "pcta": 900, "pprices": 822}   # where each slide's picture starts, below y0
 
 
-def post_crop(room, kind, fill, at):
+def box_top(kind, f):
+    return BOX_TOP[kind] + (f["y0"] if kind != "feature" else 0)
+
+
+def post_crop(room, top_px, f, fill, at):
     """Scale the room scene so the print is `fill` of the slide's width and place it so the print's center
-    lands at `at` (shares of the picture box), without ever showing an edge of the scene. Works for a metal
-    room or a matted nook."""
-    W, H = 1080, POST_H - BOX_TOP[kind]
+    lands at `at` (shares of the picture's width, and of its height down to the floor), without ever showing
+    an edge of the scene. Works for a metal room or a matted nook."""
+    W, H = 1080, f["h"] - top_px
     sw, sh = room["scene"]["image"]["width"], room["scene"]["image"]["height"]
     zoom = fill / room["rect"]["width"] * 1e4
     iw = W * zoom / 100
@@ -593,18 +609,22 @@ def post_crop(room, kind, fill, at):
     cx = (room["rect"]["left"] + room["rect"]["width"] / 2) / 100 * iw
     cy = (room["rect"]["top"] + room["rect"]["height"] / 2) / 100 * ih
     left = min(0, max(W - iw, at[0] * W - cx))
-    top = min(0, max(H - ih, at[1] * H - cy))
-    return [round(zoom, 3), round(left / W * 100, 3), round(top / H * 100, 3)]
+    top = min(0, max(H - ih, at[1] * (f["floor"] - top_px) - cy))
+    edges = [top_px + top + room["rect"]["top"] / 100 * ih, top_px + top + (room["rect"]["top"] + room["rect"]["height"]) / 100 * ih]
+    return [round(zoom, 3), round(left / W * 100, 3), round(top / H * 100, 3)], edges   # and the print's top and bottom on the slide
 
 
-def render_post(b, s, root):
-    head_css = "/* Headline pieces" + CSS.split("/* Headline pieces")[1].split("/* The announcement set")[0]
-    ctx = {"s": s, "css": head_css + POST_CSS.replace("POST_H", str(POST_H)), "root": root, "box_top": BOX_TOP[s["kind"]],
+def render_post(b, s, root, f):
+    s = {**s, **s.get(f["name"], {})}
+    ctx = {"s": s, "root": root, "box_top": box_top(s["kind"], f),
            "push": round(min(1.06, 0.98 / s["fill"]), 4)}   # the slow zoom stops before the print reaches the edges
     p = b.gift_print(s["print"], s["name"])
     room = b.gift_matted(p) if s["kind"] == "pprices" else b.gift_room(p, *s["size"])
     ctx["mat" if s["kind"] == "pprices" else "room"] = room
-    ctx["crop"] = post_crop(room, s["kind"], s["fill"], s["at"])
+    ctx["crop"], (ptop, pbottom) = post_crop(room, ctx["box_top"], f, s["fill"], s["at"])
+    cap_top = round(pbottom + (pbottom - ptop) / 2 * (ctx["push"] - 1) + 28)   # under the print, clear of it at its full zoom
+    head_css = "/* Headline pieces" + CSS.split("/* Headline pieces")[1].split("/* The announcement set")[0]
+    ctx["css"] = head_css + b.env.from_string(POST_CSS).render(f=f, cap_top=cap_top)
     ctx["origin"] = origin(room["rect"])
     return b.env.from_string(POST_PAGE).render(**ctx)
 
@@ -612,25 +632,29 @@ def render_post(b, s, root):
 def posts(out, b, root, video):
     tmp = Path(tempfile.mkdtemp(prefix="kl-posts-"))
     jobs = []
-    for folder, slides in POSTS:
+    for folder, shape, slides in POSTS:
+        f = dict(FORMATS[shape], name=shape)
         (out / folder).mkdir(parents=True, exist_ok=True)
         for n, s in enumerate(slides, 1):
             name = f"{n:02d}-{s['name']}"
             page = tmp / f"{folder}-{name}.html"
-            page.write_text(render_post(b, s, root))
+            page.write_text(render_post(b, s, root, f))
             frames = tmp / f"{folder}-{name}-frames"
             frames.mkdir()
             jobs.append({"html": page.as_uri(), "png": str(out / folder / f"{name}.png"), "label": f"{folder}/{name}",
-                         "folder": folder, "frames": str(frames) if video else "", "fps": FPS, "seconds": s["seconds"],
-                         "start": -POST_LEAD if n > 1 else 0, "still_first": n == 1})
+                         "folder": folder, "frames": str(frames) if video and f["video"] else "", "fps": FPS,
+                         "seconds": s["seconds"], "start": -POST_LEAD if n > 1 else 0, "still_first": n == 1,
+                         "h": f["h"], "top": f["y0"] + 40, "floor": f["floor"]})
     script = ROOT / "tools" / ".stories-post.mjs"
-    script.write_text(POST_SHOT.replace("POST_H", str(POST_H)))
+    script.write_text(POST_SHOT)
     try:
         subprocess.run(["node", str(script), json.dumps(jobs)], cwd=ROOT / "tools", check=True)
     finally:
         script.unlink()
     if video:
-        for folder, _ in POSTS:
+        for folder, shape, _ in POSTS:
+            if not FORMATS[shape]["video"]:
+                continue
             clips = [j for j in jobs if j["folder"] == folder]
             mp4 = out / folder / f"{folder}.mp4"
             join(clips, mp4)
@@ -666,25 +690,29 @@ POST_SHOT = """
 import { chromium } from "playwright";
 const jobs = JSON.parse(process.argv[2]);
 const b = await chromium.launch();
-const p = await b.newPage({ viewport: { width: 1080, height: POST_H }, deviceScaleFactor: 1 });
+const p = await b.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
 let problems = 0;
 for (const j of jobs) {
+  await p.setViewportSize({ width: 1080, height: j.h });
   await p.goto(j.html, { waitUntil: "networkidle" });
   await p.evaluate(() => document.fonts.ready);
   await p.evaluate(() => window.still());
-  await p.screenshot({ path: j.png, clip: { x: 0, y: 0, width: 1080, height: POST_H } });
-  const fix = await p.evaluate(() => {
+  await p.screenshot({ path: j.png, clip: { x: 0, y: 0, width: 1080, height: j.h } });
+  const fix = await p.evaluate(j => {
     const out = [], r = el => el.getBoundingClientRect();
     for (const el of document.querySelectorAll(".p-eyebrow, .p-head, .p-cap, .p-row, .p-steps li, .p-tap")) {
       const b = r(el), what = el.className + " '" + el.textContent.trim().slice(0, 24) + "'";
-      if (b.left < 63 || b.right > 1017 || b.top < 40 || b.bottom > POST_H - 30) out.push(what + " outside the margins");
+      if (b.left < 63 || b.right > 1017 || b.top < j.top || b.bottom > j.floor - 20) out.push(what + " outside the margins");
     }
+    for (const el of document.querySelectorAll(".g-room-print")) if (r(el).bottom > j.floor - 20) out.push("a print runs down into Instagram's caption");
     const text = document.querySelector(".p-text"), media = document.querySelector(".cover .p-room, .p-rows, .p-steps");
     if (text && media && r(media).top - r(text).bottom < 24) out.push("words crowd what's below them");
     const print = document.querySelector(".feature .g-room-print"), head = document.querySelector(".feature .p-head");
     if (print && head && r(print).top - r(head).bottom < 40) out.push("the headline crowds the print");
+    const metal = document.querySelector(".g-metal"), cap = document.querySelector(".p-cap");
+    if (metal && cap && r(cap).top - r(metal).bottom < 24) out.push("the caption crowds the print");
     return out;
-  });
+  }, j);
   console.log(j.label + (fix.length ? "" : "  ok"));
   for (const f of fix) { console.log("  FIX " + f); problems++; }
   if (j.frames) {
@@ -694,7 +722,7 @@ for (const j of jobs) {
     for (let i = 0; i < n; i++) {
       if (i < skip) await p.evaluate(() => window.still());
       else await p.evaluate(t => window.at(t), j.start + (i - skip) / j.fps);
-      await p.screenshot({ path: `${j.frames}/${String(i).padStart(4, "0")}.png`, clip: { x: 0, y: 0, width: 1080, height: POST_H } });
+      await p.screenshot({ path: `${j.frames}/${String(i).padStart(4, "0")}.png`, clip: { x: 0, y: 0, width: 1080, height: j.h } });
     }
   }
 }
