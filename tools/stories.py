@@ -5,6 +5,7 @@ so every print shows on a wall at its real size the way the store shows it.
   python3 tools/stories.py <out-dir>          writes <out-dir>/<set>/<NN-name>.png, the still of each slide
   python3 tools/stories.py <out-dir> --video  also writes <NN-name>.mp4, the moving version (needs ffmpeg)
   python3 tools/stories.py <out-dir> --posts  writes the feed carousels in POSTS instead (1080 x 1440 PNGs)
+  python3 tools/stories.py <out-dir> --posts --video  also writes each post as one video, <post>/<post>.mp4
 
 Needs tools/node_modules/playwright. Every run checks the layout of the stills: words inside the 80 px
 side margins and clear of the top 230 and bottom 320 pixels Instagram covers, words clear of the
@@ -82,33 +83,83 @@ SETS = [
     ]),
 ]
 
-# Feed carousels, 1080 x 1440 (3:4, the tallest a feed post takes from the app, and the same shape as a
-# profile grid tile). Every slide in a carousel has the same shape as the first. The prints fill most of
+# Feed posts, 1080 x 1440 (3:4, the tallest a feed post takes from the app, and the same shape as a
+# profile grid tile). Each post is a list of slides: the stills post as a carousel, and with --video
+# they also play in order as one video, each slide swiping in from the right like the next card of a carousel. The prints fill most of
 # each slide: `fill` is the print's width as a share of the slide's. Words sit on the ocean blue or on
-# the dark wall above the print, with a 64 px margin.
+# the dark wall above the print, with a 64 px margin. `fx` is the headline motion (as in the stories)
+# and `seconds` how long the slide holds in the video.
 POST_H = 1440
+POST_SWIPE = 0.6   # seconds each slide takes to swipe in over the last in the video
+POST_LEAD = 0.3    # each later slide's motion starts this far into its swipe, so its words land after it does
 POSTS = [
     ("post-announcement", [
-        {"name": "cover", "kind": "cover", "print": "leahikahiko", "size": [36, 24], "fill": 0.9, "at": [0.5, 0.5],
+        {"name": "cover", "kind": "cover", "fx": "rise", "seconds": 6,
+         "print": "leahikahiko", "size": [36, 24], "fill": 0.9, "at": [0.5, 0.5],
          "eyebrow": "New on kawikalopez.com", "head": "Hawaiʻi realtors now get 15% off every print", "glint": ["15%", "off"]},
-        {"name": "waikiki", "kind": "feature", "print": "naniwaikiki", "size": [48, 16], "fill": 0.94, "at": [0.5, 0.5],
-         "eyebrow": "Their side of the island", "head": "Waikīkī"},
-        {"name": "north-shore", "kind": "feature", "print": "malie", "size": [36, 24], "fill": 0.9, "at": [0.5, 0.5],
-         "eyebrow": "Their side of the island", "head": "The North Shore"},
-        {"name": "windward", "kind": "feature", "print": "kaaawavalley", "size": [48, 16], "fill": 0.94, "at": [0.5, 0.5],
-         "eyebrow": "Their side of the island", "head": "The windward side"},
-        {"name": "prices", "kind": "pprices", "print": "leahikahiko", "fill": 0.56, "at": [0.5, 0.46],
+        {"name": "prices", "kind": "pprices", "fx": "mask", "seconds": 7.5,
+         "print": "leahikahiko", "fill": 0.6, "at": [0.5, 0.5],
          "eyebrow": "Realtor price", "head": "15% off every print, every time",
          "rows": [["Matted print", 55, 47], ["24 x 16 metal", 360, 306], ["48 x 16 panorama", 950, 808]]},
-        {"name": "sign-up", "kind": "pcta", "print": "kaimana", "size": [48, 16], "fill": 0.94, "at": [0.5, 0.5],
+        {"name": "sign-up", "kind": "pcta", "fx": "drop", "seconds": 8,
+         "print": "kaimana", "size": [48, 16], "fill": 0.94, "at": [0.5, 0.5],
          "eyebrow": "How it works", "head": "Sign up with your brokerage email",
          "steps": ["Sign up at kawikalopez.com/realtors", "Tap the link we email you", "Shop signed in, and 15% comes off"],
          "tap": "Link in bio"},
+        {"name": "waikiki", "kind": "feature", "fx": "chars", "seconds": 4,
+         "print": "naniwaikiki", "size": [48, 16], "fill": 0.94, "at": [0.5, 0.5],
+         "eyebrow": "Their side of the island", "head": "Waikīkī"},
+        {"name": "north-shore", "kind": "feature", "fx": "mask", "seconds": 4,
+         "print": "malie", "size": [36, 24], "fill": 0.9, "at": [0.5, 0.5],
+         "eyebrow": "Their side of the island", "head": "The North Shore"},
+        {"name": "windward", "kind": "feature", "fx": "rise", "seconds": 4,
+         "print": "kaaawavalley", "size": [48, 16], "fill": 0.94, "at": [0.5, 0.5],
+         "eyebrow": "Their side of the island", "head": "The windward side"},
     ]),
 ]
 
 BEAT = 2.3     # seconds each photograph shows in a room
 FPS = 30
+
+# The headline, one span per word, so the timeline can move each word (or each letter, for "chars").
+HEADLINE = """{% macro headline(s) -%}
+{%- for w in s.head.split() -%}
+  {%- set cls = "s-word" ~ (" s-hl" if w in s.get("glint", []) else "") ~ (" s-fade" if w in s.get("fade", []) else "") ~ (" s-under" if w in s.get("underline", []) else "") -%}
+  {%- set inner -%}
+    {%- if w in s.get("tick", {}) -%}{{ w[0] }}<span class="s-num" data-from="{{ s.tick[w][0] }}" data-to="{{ s.tick[w][1] }}" data-at="1.25">{{ s.tick[w][1] }}</span>
+    {%- elif s.fx == "chars" -%}{% for c in w %}<span class="s-ch">{{ c }}</span>{% endfor %}
+    {%- else -%}{{ w }}{%- endif -%}
+  {%- endset -%}
+  {%- if s.fx == "mask" -%}<span class="s-mw"><span class="{{ cls }}">{{ inner }}</span></span>
+  {%- elif s.fx == "chars" -%}<span class="s-wc {{ cls }}">{{ inner }}</span>
+  {%- else -%}<span class="{{ cls }}">{{ inner }}</span>{%- endif %} {% endfor -%}
+{%- endmacro %}
+"""
+
+# Easing, the glint's travel, and the headline motions, shared by the story slides and the feed post.
+MOTION_JS = """const $$ = q => [...document.querySelectorAll(q)];
+const cl = x => x < 0 ? 0 : x > 1 ? 1 : x;
+const out3 = x => 1 - Math.pow(1 - cl(x), 3);
+const glide = x => { x = cl(x); return x * x * (3 - 2 * x); };
+const back = x => { x = cl(x); const c = 1.9; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+// Where the light is, as a share of the words' width from their left edge; -0.45 means no light.
+const pass = (t, start) => { const g = (t - start) % 3; return t < start || g > 1.4 ? -0.45 : -0.4 + glide(g / 1.4) * 1.8; };
+
+function words(t) {
+  if (FX === "chars") {
+    $$(".s-ch").forEach((c, j) => {
+      const k = out3((t + 0.1 - j * 0.045) / 0.75);
+      c.style.opacity = k; c.style.transform = `translateY(${(1 - k) * 34}px)`; c.style.filter = `blur(${(1 - k) * 8}px)`;
+    });
+    return;
+  }
+  $$(".s-word").forEach((w, i) => {
+    if (FX === "rise") { const k = out3((t + 0.18 - i * 0.083) / 0.57); w.style.opacity = k; w.style.transform = `translateY(${(1 - k) * 46}px)`; }
+    if (FX === "drop") { const x = (t + 0.1 - i * 0.09) / 0.6; w.style.opacity = cl(x * 2.5); w.style.transform = `translateY(${-(1 - back(x)) * 80}px)`; }
+    if (FX === "mask") { const k = out3((t + 0.15 - i * 0.075) / 0.7); w.style.transform = `translateY(${(1 - k) * 112}%)`; }
+  });
+}
+"""
 
 CSS = """
 html, body { margin: 0; background: #2f2e2c; }
@@ -183,19 +234,7 @@ html, body { margin: 0; background: #2f2e2c; }
 PAGE = """<!doctype html><html><head><meta charset="utf-8">
 <link rel="stylesheet" href="{{ root }}assets/css/site.css"><style>{{ css }}</style></head><body>
 {% import "partials/gifts.html" as gx with context %}
-{% macro headline(s) -%}
-{%- for w in s.head.split() -%}
-  {%- set cls = "s-word" ~ (" s-hl" if w in s.get("glint", []) else "") ~ (" s-fade" if w in s.get("fade", []) else "") ~ (" s-under" if w in s.get("underline", []) else "") -%}
-  {%- set inner -%}
-    {%- if w in s.get("tick", {}) -%}{{ w[0] }}<span class="s-num" data-from="{{ s.tick[w][0] }}" data-to="{{ s.tick[w][1] }}" data-at="1.25">{{ s.tick[w][1] }}</span>
-    {%- elif s.fx == "chars" -%}{% for c in w %}<span class="s-ch">{{ c }}</span>{% endfor %}
-    {%- else -%}{{ w }}{%- endif -%}
-  {%- endset -%}
-  {%- if s.fx == "mask" -%}<span class="s-mw"><span class="{{ cls }}">{{ inner }}</span></span>
-  {%- elif s.fx == "chars" -%}<span class="s-wc {{ cls }}">{{ inner }}</span>
-  {%- else -%}<span class="{{ cls }}">{{ inner }}</span>{%- endif %} {% endfor -%}
-{%- endmacro %}
-<div class="slide{% if s.get('theme') %} {{ s.theme }}{% endif %}">
+""" + HEADLINE + """<div class="slide{% if s.get('theme') %} {{ s.theme }}{% endif %}">
   <img class="s-logo s-in" data-in="-0.3" src="{{ root }}assets/img/site/logo-horizontal.svg" alt="">
   <div class="s-text">
     <p class="s-eyebrow s-in" data-in="-0.15">{% if s.get("dot") %}<span class="s-dot"></span>{% endif %}<span>{{ s.eyebrow }}</span></p>
@@ -252,12 +291,7 @@ PAGE = """<!doctype html><html><head><meta charset="utf-8">
 </div>
 <script>
 const FX = {{ s.fx | tojson }}, KIND = {{ s.kind | tojson }}, BEAT = {{ beat }}, LENGTH = {{ seconds }};
-const $$ = q => [...document.querySelectorAll(q)];
-const cl = x => x < 0 ? 0 : x > 1 ? 1 : x;
-const out3 = x => 1 - Math.pow(1 - cl(x), 3);
-const glide = x => { x = cl(x); return x * x * (3 - 2 * x); };
-const back = x => { x = cl(x); const c = 1.9; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
-
+""" + MOTION_JS + """
 // Everything measured from the text is laid out once, on the first frame, after the fonts have loaded.
 let hl = [], hlSpan = [0, 0], hlW = 0, gl = [], unders = [];
 function setup() {
@@ -283,27 +317,11 @@ unders = $$(".s-under").map(w => {
   return line;
 });
 }
-// Where the light is, as a share of the words' width from their left edge; -0.45 means no light.
-const pass = (t, start) => { const g = (t - start) % 3; return t < start || g > 1.4 ? -0.45 : -0.4 + glide(g / 1.4) * 1.8; };
 
 const swaps = $$(".s-swap"), caps = $$(".s-caption");
 const zoomer = document.querySelector(".s-room .g-room-in, .s-nook .g-room-in");
 const typer = document.querySelector(".s-type");
 
-function words(t) {
-  if (FX === "chars") {
-    $$(".s-ch").forEach((c, j) => {
-      const k = out3((t + 0.1 - j * 0.045) / 0.75);
-      c.style.opacity = k; c.style.transform = `translateY(${(1 - k) * 34}px)`; c.style.filter = `blur(${(1 - k) * 8}px)`;
-    });
-    return;
-  }
-  $$(".s-word").forEach((w, i) => {
-    if (FX === "rise") { const k = out3((t + 0.18 - i * 0.083) / 0.57); w.style.opacity = k; w.style.transform = `translateY(${(1 - k) * 46}px)`; }
-    if (FX === "drop") { const x = (t + 0.1 - i * 0.09) / 0.6; w.style.opacity = cl(x * 2.5); w.style.transform = `translateY(${-(1 - back(x)) * 80}px)`; }
-    if (FX === "mask") { const k = out3((t + 0.15 - i * 0.075) / 0.7); w.style.transform = `translateY(${(1 - k) * 112}%)`; }
-  });
-}
 
 let measured = false;
 function frame(t, still) {
@@ -427,30 +445,30 @@ def render(b, s, root):
 POST_CSS = """
 html, body { margin: 0; background: #2f2e2c; }
 .post { width: 1080px; height: POST_Hpx; position: relative; overflow: hidden; background: var(--accent); color: #f4f2ed;
-  font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+  font-family: var(--sans); -webkit-font-smoothing: antialiased; --hl: #f3e3b5; --band: #ffffff; }
 .p-logo { position: absolute; top: 64px; left: 64px; height: 52px; width: auto; filter: brightness(0) invert(1); z-index: 3; }
 .p-text { position: absolute; left: 64px; right: 64px; top: 150px; z-index: 3; }
 .p-eyebrow { font-size: 26px; letter-spacing: 0.16em; text-transform: uppercase; color: #bfdde3; font-weight: 500; margin: 0; }
 .p-head { font-family: var(--serif); font-weight: 400; font-size: 96px; line-height: 1.0; margin: 20px 0 0; text-wrap: balance; }
-.p-hl { color: #f3e3b5; }
 .p-room { position: absolute; left: 0; right: 0; bottom: 0; overflow: hidden; }
 .p-room .g-room { position: absolute; inset: 0; }
-.p-cap { position: absolute; left: 64px; bottom: 44px; font-size: 26px; color: #f4f2ed; margin: 0; z-index: 3;
+.p-cap { position: absolute; left: 64px; bottom: 72px; font-size: 26px; color: #f4f2ed; margin: 0; z-index: 3;
   text-shadow: 0 1px 8px rgba(0, 0, 0, .5); }
-.p-shade { position: absolute; left: 0; right: 0; bottom: 0; height: 200px; z-index: 2;
+.p-shade { position: absolute; left: 0; right: 0; bottom: 0; height: 240px; z-index: 2;
   background: linear-gradient(180deg, rgba(20, 18, 16, 0), rgba(20, 18, 16, .55)); }
 /* A feature slide is all room: the words sit on the dark wall above the print. */
 .feature .p-room { top: 0; }
 .feature .p-text { top: 140px; }
 .feature .p-eyebrow { color: #d9d2c6; }
 .feature .p-head { font-size: 104px; }
-/* Prices on the blue, the matted print below. */
+/* Prices on the blue, the matted print below (the row names it, so no caption): the regular price gets crossed out and the realtor price counts down. */
 .p-rows { position: absolute; left: 64px; right: 64px; top: 440px; margin: 0; }
 .p-row { display: grid; grid-template-columns: 1fr auto auto; align-items: baseline; gap: 30px; padding: 20px 0;
   border-bottom: 2px solid rgba(244, 242, 237, .24); font-variant-numeric: tabular-nums; }
 .p-row dt { font-family: var(--serif); font-size: 52px; line-height: 1.05; }
 .p-row dd { margin: 0; }
-.p-was { font-size: 34px; color: #bfdde3; text-decoration: line-through; text-decoration-thickness: 2px; }
+.p-was { font-size: 34px; color: #bfdde3; position: relative; }
+.p-strike { position: absolute; left: -3px; right: -3px; top: 54%; height: 2px; background: currentColor; transform-origin: left center; }
 .p-now { font-size: 52px; font-weight: 600; color: #f3e3b5; min-width: 3.4ch; text-align: right; }
 .p-nook { position: absolute; left: 0; right: 0; bottom: 0; overflow: hidden; }
 .p-nook .g-room { position: absolute; inset: 0; }
@@ -465,30 +483,30 @@ html, body { margin: 0; background: #2f2e2c; }
 POST_PAGE = """<!doctype html><html><head><meta charset="utf-8">
 <link rel="stylesheet" href="{{ root }}assets/css/site.css"><style>{{ css }}</style></head><body>
 {% import "partials/gifts.html" as gx with context %}
-<div class="post {{ s.kind }}">
-  <img class="p-logo" src="{{ root }}assets/img/site/logo-horizontal.svg" alt="">
+""" + HEADLINE + """<div class="post {{ s.kind }}">
+  <img class="p-logo s-in" data-in="-0.3" src="{{ root }}assets/img/site/logo-horizontal.svg" alt="">
   <div class="p-text">
-    <p class="p-eyebrow">{{ s.eyebrow }}</p>
-    <h1 class="p-head">{% for w in s.head.split() %}<span{% if w in s.get('glint', []) %} class="p-hl"{% endif %}>{{ w }}</span> {% endfor %}</h1>
+    <p class="p-eyebrow s-in" data-in="-0.15">{{ s.eyebrow }}</p>
+    <h1 class="p-head">{{ headline(s) }}</h1>
   </div>
   {% if s.kind in ("cover", "feature", "pcta") %}
   <div class="p-room" style="top:{{ box_top }}px">
     <div class="g-room">
-      <div class="g-room-in" style="width:{{ crop[0] }}%;left:{{ crop[1] }}%;top:{{ crop[2] }}%">
+      <div class="g-room-in p-zoom" style="width:{{ crop[0] }}%;left:{{ crop[1] }}%;top:{{ crop[2] }}%;transform-origin:{{ origin }}">
         {{ gx.scene_img(room.scene, "2000px", True) }}
         <div class="g-room-print g-metal" style="left:{{ room.rect.left }}%;top:{{ room.rect.top }}%;width:{{ room.rect.width }}%;height:{{ room.rect.height }}%">{{ picture(room.p, "1200px", alt="") }}</div>
       </div>
     </div>
   </div>
-  {% if s.kind != "pcta" %}<div class="p-shade"></div><p class="p-cap">{{ room.p.title }}, {{ room.w }} x {{ room.h }} metal</p>{% endif %}
+  {% if s.kind != "pcta" %}<div class="p-shade"></div><p class="p-cap s-in" data-in="1.2">{{ room.p.title }}, {{ room.w }} x {{ room.h }} metal</p>{% endif %}
   {% endif %}
   {% if s.kind == "pprices" %}
   <dl class="p-rows">
-    {% for name, was, now in s.rows %}<div class="p-row"><dt>{{ name }}</dt><dd class="p-was">${{ was }}</dd><dd class="p-now">${{ now }}</dd></div>{% endfor %}
+    {% for name, was, now in s.rows %}<div class="p-row"><dt>{{ name }}</dt><dd class="p-was">${{ was }}<span class="p-strike"></span></dd><dd class="p-now"><span class="s-glint">$<span class="s-num" data-from="{{ was }}" data-to="{{ now }}">{{ now }}</span></span></dd></div>{% endfor %}
   </dl>
   <div class="p-nook" style="top:{{ box_top }}px">
     <div class="g-room">
-      <div class="g-room-in" style="width:{{ crop[0] }}%;left:{{ crop[1] }}%;top:{{ crop[2] }}%">
+      <div class="g-room-in p-zoom" style="width:{{ crop[0] }}%;left:{{ crop[1] }}%;top:{{ crop[2] }}%;transform-origin:{{ origin }}">
         {{ gx.scene_img(mat.scene, "2000px", True) }}
         <div class="g-room-print g-matted" style="left:{{ mat.rect.left }}%;top:{{ mat.rect.top }}%;width:{{ mat.rect.width }}%;height:{{ mat.rect.height }}%">
           <div class="g-opening" style="left:{{ '%.3f' % mat.opening.left }}%;top:{{ '%.3f' % mat.opening.top }}%;width:{{ '%.3f' % mat.opening.width }}%;height:{{ '%.3f' % mat.opening.height }}%">{{ picture(mat.p, "900px", alt="") }}</div>
@@ -496,13 +514,68 @@ POST_PAGE = """<!doctype html><html><head><meta charset="utf-8">
       </div>
     </div>
   </div>
-  <div class="p-shade"></div><p class="p-cap">{{ mat.p.title }}, matted print</p>
   {% endif %}
   {% if s.kind == "pcta" %}
   <ol class="p-steps">{% for t in s.steps %}<li>{{ t }}</li>{% endfor %}</ol>
-  <p class="p-tap">{{ s.tap }}</p>
+  <p class="p-tap"><span class="s-glint">{{ s.tap }}</span></p>
   {% endif %}
-</div></body></html>"""
+</div>
+<script>
+const FX = {{ s.fx | tojson }}, KIND = {{ s.kind | tojson }}, LENGTH = {{ s.seconds }}, PUSH = {{ push }};
+""" + MOTION_JS + """
+// The glints are laid out once, on the first frame, after the fonts have loaded.
+let hl = [], hlSpan = [0, 0], hlW = 0, gl = [];
+function setup() {
+hl = $$(".s-hl");
+hlSpan = hl.length ? [Math.min(...hl.map(e => e.offsetLeft)), Math.max(...hl.map(e => e.offsetLeft + e.offsetWidth))] : [0, 0];
+hlW = hlSpan[1] - hlSpan[0];
+hl.forEach(e => { e.style.backgroundSize = (hlW * 3) + "px 100%"; });
+gl = $$(".s-glint");
+gl.forEach(e => {
+  const c = getComputedStyle(e).color, band = getComputedStyle(document.querySelector(".post")).getPropertyValue("--band");
+  e.style.color = "transparent"; e.style.webkitBackgroundClip = "text"; e.style.backgroundClip = "text"; e.style.backgroundRepeat = "no-repeat";
+  e.style.backgroundImage = `linear-gradient(105deg, ${c} 0%, ${c} 38%, ${band} 47%, ${band} 53%, ${c} 62%, ${c} 100%)`;
+  e.style.backgroundSize = (e.offsetWidth * 3) + "px 100%";
+});
+}
+const glints = (t, still, start) => gl.forEach((e, i) => {
+  e.style.backgroundPosition = `${((still ? -0.45 : pass(t, start + i * 0.25)) - 1.5) * e.offsetWidth}px 0`;
+});
+
+let measured = false;
+function frame(t, still) {
+  if (!measured) { measured = true; frame(0, false); setup(); }
+  words(t);
+  $$(".s-in").forEach(el => {
+    const k = out3((t - Number(el.dataset.in)) / 0.75);
+    el.style.opacity = k; el.style.transform = `translateY(${(1 - k) * 28}px)`;
+  });
+  hl.forEach(e => { e.style.backgroundPosition = `${((still ? -0.45 : pass(t, 1.3)) - 1.5) * hlW - (e.offsetLeft - hlSpan[0])}px 0`; });
+  // The room drifts in toward the print the whole time the slide shows.
+  document.querySelector(".p-zoom").style.transform = `scale(${still ? 1 : 1 + (PUSH - 1) * glide(t / LENGTH)})`;
+  if (KIND === "pprices") {
+    $$(".p-row").forEach((r, i) => {
+      const t0 = 1.1 + i * 0.55, k = out3((t - t0) / 0.6);
+      r.style.opacity = k; r.style.transform = `translateY(${(1 - k) * 30}px)`;
+      r.querySelector(".p-strike").style.transform = `scaleX(${glide((t - t0 - 0.45) / 0.35)})`;
+      const n = r.querySelector(".s-num"), m = out3((t - t0 - 0.6) / 0.9);
+      n.textContent = Math.round(Number(n.dataset.from) + (Number(n.dataset.to) - Number(n.dataset.from)) * m);
+    });
+    glints(t, still, 4.2);
+  }
+  if (KIND === "pcta") {
+    $$(".p-steps li").forEach((li, i) => {
+      const k = out3((t - 1.3 - i * 0.45) / 0.6);
+      li.style.opacity = k; li.style.transform = `translateX(${-(1 - k) * 80}px)`;
+    });
+    const tap = document.querySelector(".p-tap"), k = out3((t - 3.0) / 0.6);
+    tap.style.opacity = k; tap.style.transform = `translateY(${(1 - k) * 20}px)`;
+    glints(t, still, 3.8);
+  }
+}
+window.at = t => frame(t, false);
+window.still = () => frame(LENGTH + 5, true);
+</script></body></html>"""
 
 
 BOX_TOP = {"cover": 430, "feature": 0, "pcta": 900, "pprices": 822}   # where each slide's picture starts
@@ -525,20 +598,18 @@ def post_crop(room, kind, fill, at):
 
 
 def render_post(b, s, root):
-    ctx = {"s": s, "css": CSS.split("/* Headline pieces")[0] + POST_CSS.replace("POST_H", str(POST_H)), "root": root,
-           "box_top": BOX_TOP[s["kind"]]}
+    head_css = "/* Headline pieces" + CSS.split("/* Headline pieces")[1].split("/* The announcement set")[0]
+    ctx = {"s": s, "css": head_css + POST_CSS.replace("POST_H", str(POST_H)), "root": root, "box_top": BOX_TOP[s["kind"]],
+           "push": round(min(1.06, 0.98 / s["fill"]), 4)}   # the slow zoom stops before the print reaches the edges
     p = b.gift_print(s["print"], s["name"])
-    if s["kind"] == "pprices":
-        ctx["mat"] = mat = b.gift_matted(p)
-        ctx["crop"] = post_crop(mat, s["kind"], s["fill"], s["at"])
-    else:
-        room = b.gift_room(p, *s["size"])
-        ctx["room"] = room
-        ctx["crop"] = post_crop(room, s["kind"], s["fill"], s["at"])
+    room = b.gift_matted(p) if s["kind"] == "pprices" else b.gift_room(p, *s["size"])
+    ctx["mat" if s["kind"] == "pprices" else "room"] = room
+    ctx["crop"] = post_crop(room, s["kind"], s["fill"], s["at"])
+    ctx["origin"] = origin(room["rect"])
     return b.env.from_string(POST_PAGE).render(**ctx)
 
 
-def posts(out, b, root):
+def posts(out, b, root, video):
     tmp = Path(tempfile.mkdtemp(prefix="kl-posts-"))
     jobs = []
     for folder, slides in POSTS:
@@ -547,16 +618,50 @@ def posts(out, b, root):
             name = f"{n:02d}-{s['name']}"
             page = tmp / f"{folder}-{name}.html"
             page.write_text(render_post(b, s, root))
-            jobs.append({"html": page.as_uri(), "png": str(out / folder / f"{name}.png"), "label": f"{folder}/{name}"})
+            frames = tmp / f"{folder}-{name}-frames"
+            frames.mkdir()
+            jobs.append({"html": page.as_uri(), "png": str(out / folder / f"{name}.png"), "label": f"{folder}/{name}",
+                         "folder": folder, "frames": str(frames) if video else "", "fps": FPS, "seconds": s["seconds"],
+                         "start": -POST_LEAD if n > 1 else 0})
     script = ROOT / "tools" / ".stories-post.mjs"
     script.write_text(POST_SHOT.replace("POST_H", str(POST_H)))
     try:
         subprocess.run(["node", str(script), json.dumps(jobs)], cwd=ROOT / "tools", check=True)
     finally:
         script.unlink()
+    if video:
+        for folder, _ in POSTS:
+            clips = [j for j in jobs if j["folder"] == folder]
+            mp4 = out / folder / f"{folder}.mp4"
+            join(clips, mp4)
+            print(f"{folder}/{mp4.name}  {sum(j['seconds'] for j in clips) - POST_SWIPE * (len(clips) - 1):.1f} s")
 
 
-# Screenshots each carousel slide and checks the words keep their margins.
+def swipe_expr():
+    """An xfade expression for an eased swipe: the slides move left together, the new one pushing the old one
+    out, fast in the middle and gentle at both ends. P runs from 1 to 0 over the swipe; X, Y, W are per plane."""
+    e = "(1-P)"
+    x = f"(X+{e}*{e}*(3-2*{e})*W)"
+    pick = lambda src, at: f"if(eq(PLANE,0),{src}0({at},Y),if(eq(PLANE,1),{src}1({at},Y),{src}2({at},Y)))"
+    return f"if(lt({x},W),{pick('a', x)},{pick('b', f'{x}-W')})"
+
+
+def join(clips, mp4):
+    """One video of the slides in order, each swiping in over the last."""
+    cmd = ["ffmpeg", "-y", "-loglevel", "error"]
+    for j in clips:
+        cmd += ["-framerate", str(j["fps"]), "-i", j["frames"] + "/%04d.png"]
+    chain, last, offset = [], "[0:v]", 0.0
+    for i in range(1, len(clips)):
+        offset += clips[i - 1]["seconds"] - POST_SWIPE
+        chain.append(f"{last}[{i}:v]xfade=transition=custom:duration={POST_SWIPE}:offset={offset:.3f}:expr='{swipe_expr()}'[v{i}]")
+        last = f"[v{i}]"
+    cmd += ["-filter_complex", ";".join(chain), "-map", last, "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "17",
+            "-preset", "slow", "-movflags", "+faststart", str(mp4)]
+    subprocess.run(cmd, check=True)
+
+
+# Screenshots each slide's still, checks the words keep their margins, and steps through every frame for the video.
 POST_SHOT = """
 import { chromium } from "playwright";
 const jobs = JSON.parse(process.argv[2]);
@@ -566,6 +671,7 @@ let problems = 0;
 for (const j of jobs) {
   await p.goto(j.html, { waitUntil: "networkidle" });
   await p.evaluate(() => document.fonts.ready);
+  await p.evaluate(() => window.still());
   await p.screenshot({ path: j.png, clip: { x: 0, y: 0, width: 1080, height: POST_H } });
   const fix = await p.evaluate(() => {
     const out = [], r = el => el.getBoundingClientRect();
@@ -581,6 +687,13 @@ for (const j of jobs) {
   });
   console.log(j.label + (fix.length ? "" : "  ok"));
   for (const f of fix) { console.log("  FIX " + f); problems++; }
+  if (j.frames) {
+    const n = Math.round(j.fps * j.seconds);
+    for (let i = 0; i < n; i++) {
+      await p.evaluate(t => window.at(t), j.start + i / j.fps);
+      await p.screenshot({ path: `${j.frames}/${String(i).padStart(4, "0")}.png`, clip: { x: 0, y: 0, width: 1080, height: POST_H } });
+    }
+  }
 }
 await b.close();
 console.log(problems ? problems + " layout problem(s)" : "layout ok on every slide");
@@ -594,7 +707,7 @@ def main():
     b = build.Builder(production=True, check=True)
     root = ROOT.as_uri() + "/"
     if "--posts" in sys.argv:
-        posts(out, b, root)
+        posts(out, b, root, video)
         return
     tmp = Path(tempfile.mkdtemp(prefix="kl-stories-"))
     jobs = []
