@@ -68,15 +68,17 @@ SETS = [
     ]),
 ]
 
-# Story videos: the room slowly zooms in toward the print, and the print changes every `beat` seconds.
-# The words come in at the start; the caption under the room follows the print.
+# Story videos: one room zooms in slowly toward the print the whole time, and the photograph in the
+# frame changes every `beat` seconds. The words come in at the start, the highlighted words catch a
+# slow glint over and over, and the caption under the room follows the photograph.
 VIDEOS = [
-    {"name": "set-1-announcement/01-announce", "theme": "ocean", "beat": 2.3, "fps": 30, "zoom": 1.14,
-     "crop": [175, -37.5, -36],
+    {"name": "set-1-announcement/01-announce", "theme": "ocean", "beat": 2.3, "fps": 30, "zoom": 1.3,
+     "crop": [175, -37.5, -36], "size": [36, 24],
      "eyebrow": "New on kawikalopez.com", "head": "Hawaiʻi realtors now get 15% off every print",
      "sub": "Give your buyers a closing gift they'll keep, made here on Oʻahu.", "highlight": ["15%", "off"],
-     "prints": [["leahikahiko", [36, 24]], ["naniwaikiki", [48, 16]], ["malie", [36, 24]],
-                ["kaaawavalley", [48, 16]], ["makapuubeach-h", [36, 24]]]},
+     # One room, one 36 x 24 frame: only the photograph in it changes. All horizontal prints, so each
+     # fills the same frame, from five sides of the island.
+     "prints": ["leahikahiko", "malie", "makapuubeach-h", "kaaawasunrise", "hanohanohakipuu"]},
 ]
 
 CSS = """
@@ -192,52 +194,75 @@ def render(b, s, root):
 
 VIDEO_PAGE = """<!doctype html><html><head><meta charset="utf-8">
 <link rel="stylesheet" href="{{ root }}assets/css/site.css"><style>{{ css }}
-.s-layer { position: absolute; inset: 0; }
-.s-layer .g-room { position: absolute; inset: 0; }
-.s-layer .g-room-in { will-change: transform; }
+.s-room .g-room { position: absolute; inset: 0; }
+.s-room .g-room-in { will-change: transform; }
+.s-swap { position: absolute; inset: 0; }
+.s-swap picture, .s-swap img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .s-caps { position: absolute; left: 80px; right: 80px; top: 1556px; height: 40px; }
 .s-caps .s-caption { left: 0; top: 0; }
 .s-anim, .s-word { will-change: transform, opacity; }
 .s-word { display: inline-block; }
-.s-hl { color: #f3e3b5; }
+.s-hl { color: transparent; -webkit-background-clip: text; background-clip: text;
+  background-image: linear-gradient(105deg, #f3e3b5 0%, #f3e3b5 38%, #ffffff 47%, #ffffff 53%, #f3e3b5 62%, #f3e3b5 100%);
+  background-repeat: no-repeat; }
 </style></head><body>
 {% import "partials/gifts.html" as gx with context %}
 <div class="slide{% if v.get('theme') %} {{ v.theme }}{% endif %}">
-  <img class="s-logo s-anim" data-in="-0.2" src="{{ root }}assets/img/site/logo-horizontal.svg" alt="">
+  <img class="s-logo s-anim" data-in="-0.3" src="{{ root }}assets/img/site/logo-horizontal.svg" alt="">
   <div class="s-text">
-    <p class="s-eyebrow s-anim" data-in="-0.1">{{ v.eyebrow }}</p>
+    <p class="s-eyebrow s-anim" data-in="-0.15">{{ v.eyebrow }}</p>
     <h1 class="s-head">{% for w in v.head.split() %}<span class="s-word{% if w in v.get('highlight', []) %} s-hl{% endif %}">{{ w }}</span> {% endfor %}</h1>
-    <p class="s-sub s-anim" data-in="0.55">{{ v.sub }}</p>
+    <p class="s-sub s-anim" data-in="0.83">{{ v.sub }}</p>
   </div>
   <div class="s-room">
-    {% for r in rooms %}<div class="s-layer" data-origin="{{ r.origin }}">{{ gx.metal_room(r, "", v.crop, "1080px", eager=True) }}</div>{% endfor %}
+    <div class="g-room">
+      <div class="g-room-in" style="width:{{ v.crop[0] }}%;left:{{ v.crop[1] }}%;top:{{ v.crop[2] }}%;transform-origin:{{ room.origin }}">
+        {{ gx.scene_img(room.scene, "1080px", True) }}
+        <div class="g-room-print g-metal" style="left:{{ room.rect.left }}%;top:{{ room.rect.top }}%;width:{{ room.rect.width }}%;height:{{ room.rect.height }}%">
+          {% for p in prints %}<div class="s-swap">{{ picture(p, "900px", alt="") }}</div>{% endfor %}
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="s-caps">{% for r in rooms %}<p class="s-caption">{{ r.p.title }}, {{ r.w }} x {{ r.h }} metal</p>{% endfor %}</div>
+  <div class="s-caps">{% for p in prints %}<p class="s-caption">{{ p.title }}, {{ room.w }} x {{ room.h }} metal</p>{% endfor %}</div>
 </div>
 <script>
-const BEAT = {{ v.beat }}, ZOOM = {{ v.zoom }};
-const layers = [...document.querySelectorAll(".s-layer")], caps = [...document.querySelectorAll(".s-caps .s-caption")];
+const BEAT = {{ v.beat }}, ZOOM = {{ v.zoom }}, LENGTH = BEAT * {{ prints | length }}, FADE = 0.35;
+const swaps = [...document.querySelectorAll(".s-swap")], caps = [...document.querySelectorAll(".s-caps .s-caption")];
+const inner = document.querySelector(".s-room .g-room-in");
 const ease = x => x < 0 ? 0 : x > 1 ? 1 : 1 - Math.pow(1 - x, 3);
 const glide = x => x < 0 ? 0 : x > 1 ? 1 : x * x * (3 - 2 * x);
-layers.forEach(l => { const inner = l.querySelector(".g-room-in"); inner.style.transformOrigin = l.dataset.origin; });
+// The glint runs across all the highlighted words together, as one strip of light.
+const hl = [...document.querySelectorAll(".s-hl")];
+const span = hl.length ? [Math.min(...hl.map(e => e.offsetLeft)), Math.max(...hl.map(e => e.offsetLeft + e.offsetWidth))] : [0, 0];
+const strip = (span[1] - span[0]) * 3;
+hl.forEach(e => { e.style.backgroundSize = strip + "px 100%"; });
 window.at = t => {
-  // Words rise in once at the start.
-  // The headline punches in word by word from the first frame, then the rest settles in.
+  // Words, half again slower than a quick cut: the headline rises word by word from the first frame.
   document.querySelectorAll(".s-word").forEach((el, i) => {
-    const k = ease((t + 0.12 - i * 0.055) / 0.38);
+    const k = ease((t + 0.18 - i * 0.083) / 0.57);
     el.style.opacity = k; el.style.transform = `translateY(${(1 - k) * 46}px)`;
   });
   document.querySelectorAll(".s-anim").forEach(el => {
-    const k = ease((t - Number(el.dataset.in)) / 0.5);
+    const k = ease((t - Number(el.dataset.in)) / 0.75);
     el.style.opacity = k; el.style.transform = `translateY(${(1 - k) * 28}px)`;
   });
-  // Each print gets one beat: a slow zoom toward the print, then a straight cut to the next.
-  const now = Math.min(layers.length - 1, Math.floor(t / BEAT));
-  layers.forEach((l, i) => {
-    const show = i === now ? 1 : 0;
-    l.style.opacity = show; caps[i].style.opacity = show;
-    const z = 1 + (ZOOM - 1) * glide((t - i * BEAT) / BEAT);
-    l.querySelector(".g-room-in").style.transform = `scale(${z})`;
+  // A slow glint across the highlighted words: a 1.4 second pass every 3 seconds, after the headline
+  // lands. The light band sits in the middle of a gradient three times the phrase's width; X is where
+  // the band is, measured from the phrase's left edge.
+  const W = span[1] - span[0], g = (t - 1.2) % 3;
+  const X = t < 1.2 || g > 1.4 ? -0.45 * W : -0.4 * W + glide(g / 1.4) * 1.8 * W;
+  hl.forEach(e => { e.style.backgroundPosition = `${X - 1.5 * W - (e.offsetLeft - span[0])}px 0`; });
+  // One room, zooming in toward the print the whole time.
+  inner.style.transform = `scale(${1 + (ZOOM - 1) * glide(t / LENGTH)})`;
+  // The photograph in the frame changes every beat, with a short cross-fade inside the frame.
+  swaps.forEach((s, i) => {
+    const local = t - i * BEAT;
+    const fadeIn = i === 0 ? 1 : glide(local / FADE);
+    const show = local < 0 ? 0 : fadeIn;
+    s.style.opacity = show;
+    s.style.zIndex = i;
+    caps[i].style.opacity = i === Math.min(swaps.length - 1, Math.floor(t / BEAT)) ? 1 : 0;
   });
 };
 window.at(0);
@@ -245,12 +270,12 @@ window.at(0);
 
 
 def render_video(b, v, root):
-    rooms = []
-    for uid, size in v["prints"]:
-        r = b.gift_room(b.gift_print(uid, v["name"]), *size)
-        r["origin"] = f"{r['rect']['left'] + r['rect']['width'] / 2:.3f}% {r['rect']['top'] + r['rect']['height'] / 2:.3f}%"
-        rooms.append(r)
-    return b.env.from_string(VIDEO_PAGE).render(v=v, rooms=rooms, css=CSS, root=root)
+    prints = [b.gift_print(uid, v["name"]) for uid in v["prints"]]
+    if len({p["orientation"] for p in prints}) > 1:
+        raise SystemExit(f"{v['name']}: every print in a video needs the same shape, so each fills the same frame")
+    room = b.gift_room(prints[0], *v["size"])
+    room["origin"] = f"{room['rect']['left'] + room['rect']['width'] / 2:.3f}% {room['rect']['top'] + room['rect']['height'] / 2:.3f}%"
+    return b.env.from_string(VIDEO_PAGE).render(v=v, room=room, prints=prints, css=CSS, root=root)
 
 
 def videos(out, b, root):
