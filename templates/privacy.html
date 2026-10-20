@@ -19,7 +19,7 @@
     <p>We never see or store your card number.</p>
 
     <h2>How we use it</h2>
-    <p>To make, check and deliver your print, to answer your questions, to keep records of sales for tax purposes, and to understand which pages are useful.{% if realtors_on %} Realtor sign-ups are used to set up your account and your realtor price, and to reach you about your account.{% endif %} We don't use it for advertising.</p>
+    <p>To make, check and deliver your print, to answer your questions, to keep records of sales for tax purposes, and to understand which pages are useful.{% if realtors_on %} Realtor sign-ups are used to set up your account and your realtor price, and to reach you about your account.{% endif %} {% if site.google_ads %}We also run ads on Google. Google Analytics tells Google Ads which ads led to a visit or a sale, and Google may show our ads again to people who have visited this site. Google Ads never gets your name, email, address or card from us.{% else %}We don't use it for advertising.{% endif %}</p>
 
     <h2>Who else sees it</h2>
     <ul>
@@ -29,6 +29,7 @@
       {% endif %}
       {% if site.ga4 %}
       <li><strong>Google Analytics</strong> counts visits and shows which pages lead to a sale. It uses cookies and receives your IP address and browser details. When you buy, it records which prints and the order total, never your name, email, address or card. See <a href="https://www.google.com/policies/privacy/partners/" rel="noopener">how Google uses information from sites that use its services</a>.</li>
+      {% if site.google_ads %}<li><strong>Google Ads</strong> shows our ads on Google. It learns from Google Analytics which ads led to visits and purchases, and it can show our ads again to people who visited this site. You can turn off ads based on your activity in <a href="https://myadcenter.google.com/" rel="noopener">Google's My Ad Center</a>.</li>{% endif %}
       {% endif %}
       <li><strong>Service providers who help make and deliver your order</strong>, like the shipping carrier, receive your name, address and phone number, only as far as they need them.</li>
       {% if realtors_on %}<li><strong>Supabase</strong> stores realtor accounts and handles signing in, and <strong>Resend</strong> sends the sign-in and welcome emails. Stripe keeps a customer record with each realtor's name and email so the realtor price works at checkout.</li>{% endif %}
@@ -40,7 +41,7 @@
     <h2>Cookies and your browser</h2>
     <p>The prints you add to your cart are saved in your own browser so they're still there when you come back. That list stays on your device until you check out.{% if realtors_on %} If you sign in as a realtor, your sign-in is saved in your browser the same way until you sign out.{% endif %}</p>
     {% if site.ga4 %}
-    <p>Google Analytics and Stripe set cookies, and both may collect information about your activity over time and across other websites that use their services. You can block them with any content blocker; the site still works, though Stripe needs its own scripts to take a payment.</p>
+    <p>Google Analytics and Stripe set cookies, and both may collect information about your activity over time and across other websites that use their services.{% if site.google_ads %} Google may also use what Google Analytics collects here to show you our ads later, which you can turn off in <a href="https://myadcenter.google.com/" rel="noopener">My Ad Center</a>.{% endif %} You can block these cookies with any content blocker; the site still works, though Stripe needs its own scripts to take a payment.</p>
     {% else %}
     <p>We don't use analytics or advertising cookies. Stripe sets its own cookies on the cart page to process payments and prevent fraud, and may collect information about your activity across other websites that use Stripe.</p>
     {% endif %}

@@ -82,6 +82,15 @@ featured_order: [naniwaikiki, malie, kaaawasunrise, makapuubeach-v, kaimana, mok
 # Analytics are emitted on production builds only.
 ga4: "G-SLYRYDKNHR"
 
+# Google Ads (plan: vault projects/kawikalopez-google-ads-test.md). true adds the advertising lines
+# to the privacy page: Google Analytics tells Google Ads which ads led to visits and sales, and
+# Google keeps lists of past visitors so our ads can reach them again.
+google_ads: true
+
+# The privacy policy's effective date, shown at the top of /privacy. Change it whenever the
+# policy's wording changes.
+privacy_updated: October 20, 2026
+
 # Flags that change links while pages are still being built.
 features:
   visualizer_page: false      # /see-it-in-your-space exists
@@ -108,7 +117,6 @@ nav:
 # builds always include them.
 realtors:
   live: true
-  privacy_updated: October 19, 2026
   supabase_url: https://pnipcitilwmhmfjulpmd.supabase.co
   publishable_key: "sb_publishable_dTTzh4YIes8wAWqNMlBDkw_Gr6Kx6i5"
   function: kl-realtor
