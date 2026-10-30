@@ -12,6 +12,7 @@
     <h2>What we collect</h2>
     <ul>
       <li><strong>When you order:</strong> your name, email, phone number, shipping address, the prints you bought, and any note you add at checkout.</li>
+      {% if gifts_on %}<li><strong>When you order a holiday gift box:</strong> your name, your company if you add one, email, phone number, the boxes and prints you picked, and your pickup day and spot.</li>{% endif %}
       <li><strong>When you write to us:</strong> your name, email, the print you ask about, and your message.</li>
       {% if realtors_on %}<li><strong>When you sign up as a realtor:</strong> your name, brokerage email, brokerage, phone number if you add it, and your real estate license number.</li>{% endif %}
       <li><strong>When you browse:</strong> the pages you visit and basic details about your browser and device{% if site.ga4 %}, through Google Analytics{% endif %}, and your IP address in our host's security logs.</li>
@@ -24,14 +25,15 @@
     <h2>Who else sees it</h2>
     <ul>
       {% if site.features.checkout %}
-      <li><strong>Stripe</strong> processes payments. The payment form on our cart page is Stripe's. Stripe collects transaction details and details about your device, including through cookies, to process your payment and prevent fraud. If you save your details with Link, that account is Stripe's service. See <a href="https://stripe.com/privacy" rel="noopener">Stripe's privacy policy</a>.</li>
-      <li><strong>Google</strong> runs two small services for us: the one that prices shipping from the prints in your cart and the state and ZIP code you enter (it doesn't keep a copy), and the contact form, which saves messages to a private spreadsheet.</li>
+      <li><strong>Stripe</strong> processes payments. The payment form on our cart page{% if gifts_on %} and on the holiday gift boxes page{% endif %} is Stripe's. Stripe collects transaction details and details about your device, including through cookies, to process your payment and prevent fraud. If you save your details with Link, that account is Stripe's service. See <a href="https://stripe.com/privacy" rel="noopener">Stripe's privacy policy</a>.</li>
+      <li><strong>Google</strong> runs two small services for us: the one that prices shipping from the prints in your cart and the state and ZIP code you enter (it doesn't keep a copy), and the contact form, which saves messages to a private spreadsheet.{% if gifts_on %} Google also runs the holiday gift box checkout, which keeps each gift box order in a Google Sheet and emails your order confirmation.{% endif %}</li>
       {% endif %}
       {% if site.ga4 %}
       <li><strong>Google Analytics</strong> counts visits and shows which pages lead to a sale. It uses cookies and receives your IP address and browser details. When you buy, it records which prints and the order total, never your name, email, address or card. See <a href="https://www.google.com/policies/privacy/partners/" rel="noopener">how Google uses information from sites that use its services</a>.</li>
       {% if site.google_ads %}<li><strong>Google Ads</strong> shows our ads on Google. It learns from Google Analytics which ads led to visits and purchases, and it can show our ads again to people who visited this site. You can turn off ads based on your activity in <a href="https://myadcenter.google.com/" rel="noopener">Google's My Ad Center</a>.</li>{% endif %}
       {% endif %}
       <li><strong>Service providers who help make and deliver your order</strong>, like the shipping carrier, receive your name, address and phone number, only as far as they need them.</li>
+      {% if gifts_on %}<li><strong>Touch A Heart</strong>, the Hawaiʻi nonprofit behind Baker's Heart, packs the cookies and hands over holiday gift boxes at pickup. For each gift box order it gets your name, company, email, phone number, pickup day and spot, and what you ordered, in an email and in the gift box order sheet we share with them.</li>{% endif %}
       {% if realtors_on %}<li><strong>Supabase</strong> stores realtor accounts and handles signing in, and <strong>Resend</strong> sends the sign-in and welcome emails. Stripe keeps a customer record with each realtor's name and email so the realtor price works at checkout.</li>{% endif %}
       <li><strong>Our email forwarding service</strong> passes mail you send to {{ site.contact.email }} on to Kawika's inbox.</li>
       <li><strong>GitHub Pages</strong> hosts the site and records visitors' IP addresses for security, as most hosts do.</li>

@@ -804,13 +804,14 @@ class Builder:
     def privacy_page(self):
         desc = "What kawikalopez.com collects when you buy a print or send a message, why, who sees it, and how to have it deleted."
         self.emit("privacy.html", "privacy.html", "privacy", "page", "Privacy Policy | Kawika Lopez Photography", desc,
-                  crumbs=[("Privacy", "privacy")], realtors_on=self.realtors_on,
+                  crumbs=[("Privacy", "privacy")], realtors_on=self.realtors_on, gifts_on=self.bh_on,
                   updated=self.site.get("privacy_updated", "September 29, 2026"))
 
     def terms_page(self):
         desc = "How print orders work at kawikalopez.com: made to order on Oʻahu, shipping and pickup, cancellations, damage and returns, and copyright."
         self.emit("terms.html", "terms.html", "terms", "page", "Terms of Sale | Kawika Lopez Photography", desc,
-                  crumbs=[("Terms", "terms")], updated="September 29, 2026")
+                  crumbs=[("Terms", "terms")], gifts_on=self.bh_on,
+                  updated=self.site.get("terms_updated", "September 29, 2026"))
 
     def cart_page(self):
         """The cart page, and assets/data/cart.json: what the page needs to show each print, plus
