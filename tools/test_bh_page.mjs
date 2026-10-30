@@ -1,9 +1,10 @@
 // Drives every control on the holiday gift boxes page and checks every number on screen.
 // Needs the preview build served (python3 tools/serve.py 8781) and, for the payment step, the dev
-// checkout (node tools/bh_checkout_dev.mjs on :8792, built in with KL_BH_ENDPOINT). Test mode only:
+// checkout (PORT=8798 node tools/bh_checkout_dev.mjs, or any free port, built in with KL_BH_ENDPOINT). Test mode only:
 // ?today= pins the date. Screenshots go to /tmp. Run: node tools/test_bh_page.mjs
 import { spawn } from 'node:child_process';
-import { writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
+import { homedir } from 'node:os';
 
 const CH = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -52,6 +53,11 @@ const state = `(()=>({
   pay: document.getElementById('co-pay').textContent, pbar: document.getElementById('co-pb').textContent,
   mine: document.querySelector('.mine').textContent.replace(/\\s+/g,' ').trim(),
 }))()`;
+// A paid sandbox order (made by test_bh_purchase.mjs) for the thank-you checks.
+const testKey = readFileSync(homedir() + '/.claude/credentials/kawikalopez-stripe.env', 'utf8').split('\n').find(l => l.startsWith('STRIPE_TEST_KEY=')).slice(16).trim();
+const paidSession = (await (await fetch('https://api.stripe.com/v1/checkout/sessions?status=complete&limit=100', { headers: { Authorization: 'Bearer ' + testKey } })).json())
+  .data.find(x => x.metadata?.source === 'bh-gift' && x.payment_status === 'paid' && x.metadata.lines === 'team_mokulele:2,client_malie:1' && x.metadata.pickup_date === '2026-11-30')?.id;
+if (!paidSession) { console.log('FAIL  no paid sandbox order from test_bh_purchase.mjs; run it once'); process.exit(1); }
 const calOpen = `[...document.querySelectorAll('#co-cal [data-day]')].map(b=>b.dataset.day)`;
 const calMonth = `document.querySelector('#co-cal .cal-h b')?.textContent`;
 const arrows = `[...document.querySelectorAll('#co-cal [data-mon]')].map(b=>b.disabled)`;
@@ -224,6 +230,41 @@ const arrows = `[...document.querySelectorAll('#co-cal [data-mon]')].map(b=>b.di
   await ev(`(()=>{const f=document.querySelector('[data-pick="kahana"] [role=button]');f.focus();f.dispatchEvent(new KeyboardEvent('keydown',{key:'Enter',bubbles:true}));})()`); await sleep(200);
   check('Enter on a wall print opens', await ev(`document.querySelector('.tile[data-id="kahana"]').classList.contains('pulse') && !document.getElementById('co').hidden`), true);
   check('no horizontal overflow (desktop)', await ev(`document.documentElement.scrollWidth`), 1440);
+
+  // Back from Stripe: the thank-you screen, then a second order starts clean (the bug Jenn found, 2026-10-29)
+  const thanks = URL + '&session_id=' + paidSession;
+  await send('Page.navigate', { url: thanks }); await sleep(1500);
+  for (let i = 0; i < 40 && !(await ev(`!!document.querySelector('#co-done-body h3') && !document.querySelector('#co-done-body').textContent.includes('Finding')`)); i++) await sleep(500);
+  check('thank-you screen', [await ev(`!document.getElementById('co').hidden`), await ev(text('#co-title')), await ev(text('#co-done-body h3'))], [true, 'Thank you', 'Thank you. Your order is in.']);
+  check('thank-you order number', /^Order TEST-\d{4}$/.test(await ev(text('.co-ono'))), true);
+  check('thank-you lines and pickup', [await ev(`[...document.querySelectorAll('#co-done-body .co-ln')].map(l=>l.textContent.trim())`), await ev(text('#co-done-body .co-pickup-sum'))],
+    [['Team boxes with Mokulele2', 'Client box with Mālie1'], 'Pickup Monday, November 30, 8 am to 1 pmKalihi Union Church, 2214 N. King St., Honolulu']);
+  check('thank-you words', await ev(`[...document.querySelectorAll('#co-done-body p')].map(p=>p.textContent).slice(1)`),
+    ["Give your name or order number at the Touch A Heart table when you pick up. We're emailing your confirmation now.", 'Questions? Write to info@kawikalopez.com or call (808) 204-4575.']);
+  check('thank-you buttons', await ev(`[...document.querySelectorAll('#co-done-body button')].map(b=>b.textContent)`), ['Start a new order', 'Close']);
+  await shot('bh-d6-thanks');
+  await ev(click('[data-rebuild]')); await sleep(200);
+  s = await ev(state);
+  check('Start a new order: empty build pane', [await ev(text('#co-title')), await ev(`document.getElementById('co').getAttribute('data-pane')`), s.count, s.sum, await ev(`[...document.querySelectorAll('input[name=spot]')].some(r=>r.checked)`), await ev(`document.getElementById('co-ack').checked`)],
+    ['Build your order', 'build', '0 boxes', '$0', false, false]);
+  check('Start a new order: session_id gone, test date kept', await ev(`location.search`), '?today=2026-10-15');
+  await ev(`(()=>{const b=document.querySelector('.tile[data-id="kahana"] [data-step="1"]');b.click();b.click();})()`);
+  check('the second order builds', (await ev(state)).count, '2 boxes');
+  await send('Page.navigate', { url: thanks }); await sleep(1500);
+  for (let i = 0; i < 40 && !(await ev(`!!document.querySelector('.co-ono')`)); i++) await sleep(500);
+  const firstNo = await ev(text('.co-ono'));
+  await ev(click('#co-done-body [data-close]')); await sleep(150);
+  check('Close the thank-you', [await ev(`document.getElementById('co').hidden`), await ev(`location.search`)], [true, '?today=2026-10-15']);
+  await ev(click('[data-open="client"]')); await sleep(150);
+  check('Order again after closing: build pane, Client tab, empty', [await ev(text('#co-title')), (await ev(state)).tab, (await ev(state)).count, await ev(`getComputedStyle(document.getElementById('co-done')).display`)],
+    ['Build your order', 'client', '0 boxes', 'none']);
+  await send('Page.navigate', { url: thanks }); await sleep(1500);
+  for (let i = 0; i < 40 && !(await ev(`!!document.querySelector('.co-ono')`)); i++) await sleep(500);
+  check('the same order keeps its number on a reload', await ev(text('.co-ono')), firstNo);
+  await ev(`document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape'}))`); await sleep(100);
+  await ev(click('.mine')); await sleep(150);
+  check('Escape from the thank-you, then the toolbar button: build pane', await ev(text('#co-title')), 'Build your order');
+  await ev(click('.co-x'));
 
   // The season: closed after Dec 15, and big orders only through Dec 1
   for (const [today, closedNow] of [['2026-12-16', true], ['2026-12-15', false]]) {

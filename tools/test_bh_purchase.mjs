@@ -1,6 +1,6 @@
 // A real sandbox purchase through the gift box page, the dev checkout and Stripe's form.
 // Needs: the preview build served on :8781 (or BASE=<another copy>) and a checkout endpoint built in:
-// the deployed script, or `PORT=8792 node tools/bh_checkout_dev.mjs` with KL_BH_ENDPOINT. Stripe returns
+// the deployed script, or `PORT=8798 node tools/bh_checkout_dev.mjs` with KL_BH_ENDPOINT. Stripe returns
 // to the script's BASE_TEST, so the copy under test must be that address.
 // Run from tools/: node test_bh_purchase.mjs
 import { chromium } from "playwright";
@@ -12,11 +12,15 @@ const env = Object.fromEntries(readFileSync(homedir() + "/.claude/credentials/ka
   .split("\n").filter(l => l.includes("=")).map(l => [l.slice(0, l.indexOf("=")).trim(), l.slice(l.indexOf("=") + 1).trim()]));
 const stripe = path => JSON.parse(execFileSync("curl", ["-s", "https://api.stripe.com/v1/" + path, "-u", env.STRIPE_TEST_KEY + ":",
   "-H", "Stripe-Version: 2026-03-25.dahlia"], { encoding: "utf8" }));
+// BUYER_EMAIL=you@... sends the test confirmation somewhere you can read it (deployed script only;
+// the dev checkout fakes mail).
+const BUYER = process.env.BUYER_EMAIL || "giftbox-test@kawikalopez.com";
 let fails = 0, passes = 0;
 const eq = (name, got, want) => { const ok = JSON.stringify(got) === JSON.stringify(want); ok ? passes++ : fails++;
   console.log(`${ok ? "PASS" : "FAIL"}  ${name}${ok ? "" : `\n      got  ${JSON.stringify(got)}\n      want ${JSON.stringify(want)}`}`); };
 
-const b = await chromium.launch();
+// System Chrome, like test_bh_page.mjs, so a Playwright upgrade elsewhere never leaves this without a browser.
+const b = await chromium.launch({ channel: "chrome" });
 // A tall window: in test mode Stripe floats a badge at the bottom right of the screen, and on a
 // 900 px screen it sits over the Pay button, so a click there never reaches it.
 const p = await b.newPage({ viewport: { width: 1440, height: 1700 } });
@@ -38,7 +42,7 @@ await p.waitForTimeout(3000);
 
 // Stripe's form lives in iframes. Choose Card first (the form lists several payment methods),
 // then fill every field by its autocomplete hint.
-const values = { email: "giftbox-test@kawikalopez.com", "cc-number": "4242424242424242", "cc-exp": "1234", "cc-csc": "123",
+const values = { email: BUYER, "cc-number": "4242424242424242", "cc-exp": "1234", "cc-csc": "123",
   name: "Test Buyer", tel: "8085550100", organization: "Test Company", "postal-code": "96813" };
 let card = false;
 for (const f of p.frames()) {
@@ -73,12 +77,13 @@ eq("found Stripe's pay button", clicked, true);
 await p.waitForURL(/session_id=cs_test_/, { timeout: 60000 });
 await p.waitForSelector("#co-done-body h3", { timeout: 30000 });
 eq("thank-you heading", await p.textContent("#co-done-body h3"), "Thank you. Your order is in.");
+eq("thank-you order number (the script's setup has run)", /^Order TEST-\d{4}$/.test(await p.textContent(".co-ono").catch(() => "")), true);
 const id = new URL(p.url()).searchParams.get("session_id");
 const cs = stripe(`checkout/sessions/${id}?expand[]=payment_intent&expand[]=line_items`);
 eq("paid", [cs.status, cs.payment_status, cs.amount_total], ["complete", "paid", 28000]);
 eq("pickup in metadata", [cs.metadata.source, cs.metadata.pickup_spot, cs.metadata.pickup_date], ["bh-gift", "kalihi", day]);
 eq("receipt description starts with the boxes", cs.payment_intent.description.startsWith("2 Team boxes with Mokulele; 1 Client box with Mālie. Pickup "), true);
-eq("buyer details captured", [cs.customer_details.email, !!cs.customer_details.name, cs.customer_details.phone], ["giftbox-test@kawikalopez.com", true, "+18085550100"]);
+eq("buyer details captured", [cs.customer_details.email, !!cs.customer_details.name, cs.customer_details.phone], [BUYER, true, "+18085550100"]);
 await p.screenshot({ path: "/tmp/bh-thanks.png" });
 await b.close();
 console.log(`\n${passes} passed, ${fails} failed  (session ${id})`);

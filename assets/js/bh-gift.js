@@ -146,6 +146,7 @@
   }
   function closeCo() {
     if (co.getAttribute("data-pane") === "pay") backToBuild();
+    if (co.getAttribute("data-pane") === "done") fresh();
     co.hidden = true;
     document.body.style.overflow = "";
     if (lastFocus) lastFocus.focus();
@@ -232,6 +233,24 @@
     showPane("build");
   }
 
+  // After the thank-you screen: an empty order on the build pane, and no session_id in the
+  // address, so the next order starts clean (Jenn found the old order stuck, 2026-10-29).
+  function fresh() {
+    order.team = {}; order.client = {};
+    spot = null; picked = null; month = null;
+    document.querySelectorAll('input[name="spot"]').forEach(function (r) { r.checked = false; });
+    $("co-ack").checked = false;
+    $("co-msg").hidden = true;
+    co.removeAttribute("data-returning");
+    if (params.has("session_id")) {
+      params.delete("session_id");
+      var q = params.toString();
+      history.replaceState(null, "", location.pathname + (q ? "?" + q : "") + location.hash);
+    }
+    showPane("build");
+    render();
+  }
+
   function done(id) {
     co.setAttribute("data-returning", "");
     showPane("done");
@@ -245,15 +264,16 @@
           '<button class="btn" type="button" data-rebuild>Start again</button>';
         return;
       }
-      var html = "<h3>Thank you. Your order is in.</h3>";
+      var html = "<h3>Thank you. Your order is in.</h3>" + (d.order ? '<p class="co-ono">Order ' + esc(d.order) + "</p>" : "");
       d.lines.forEach(function (l) {
         var b = R.boxes[l.box], p = printOf(l.print);
         if (b && p) html += '<div class="co-ln"><img src="' + src(p) + '" alt="">' + esc(l.qty === 1 ? b.name : b.plural) + " with " + esc(p.name) + '<span class="q">' + l.qty + "</span></div>";
       });
       html += pickupHtml(d.spot, d.date);
-      html += "<p>Give your name at the Touch A Heart table when you pick up. Stripe is emailing your receipt now.</p>" +
+      html += "<p>Give your name or order number at the Touch A Heart table when you pick up. We're emailing your confirmation now.</p>" +
         "<p>Questions? Write to info@kawikalopez.com or call (808) 204-4575.</p>" +
-        '<button class="btn" type="button" data-close>Close</button>';
+        '<div class="co-done-act">' + (closed ? "" : '<button class="btn" type="button" data-rebuild>Start a new order</button>') +
+        '<button class="btn btn-line" type="button" data-close>Close</button></div>';
       body.innerHTML = html;
       var seen = [];
       try { seen = JSON.parse(localStorage.getItem("bh_purchased") || "[]"); } catch (e) { /* storage off */ }
@@ -264,7 +284,7 @@
         try { localStorage.setItem("bh_purchased", JSON.stringify(seen.slice(-20))); } catch (e) { /* storage off */ }
       }
     }).catch(function () {
-      body.innerHTML = "<h3>We couldn't load your order</h3><p>If you paid, your receipt from Stripe is in your email, with your pickup day and spot.</p>" +
+      body.innerHTML = "<h3>We couldn't load your order</h3><p>If you paid, your confirmation email has your order number, pickup day and spot.</p>" +
         '<button class="btn" type="button" data-close>Close</button>';
     });
   }
@@ -275,7 +295,10 @@
     var pk = e.target.closest("[data-pick]");
     if (pk) { openCo(null, pk.getAttribute("data-pick")); return; }
     if (e.target.closest("[data-close]")) { closeCo(); return; }
-    if (e.target.closest("[data-rebuild]")) { co.removeAttribute("data-returning"); showPane("build"); render(); return; }
+    if (e.target.closest("[data-rebuild]")) {
+      if (closed) { closeCo(); return; }
+      fresh(); co.querySelector(".co-x").focus(); return;
+    }
     var tb = e.target.closest(".co-tabs [role=tab]");
     if (tb) { tab = tb.getAttribute("data-box"); render(); return; }
     var st = e.target.closest("[data-step]");
