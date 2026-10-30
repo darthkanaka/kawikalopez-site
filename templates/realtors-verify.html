@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block main %}
+<section class="wrap page-head rt-verify" data-realtor-verify data-cfg="{{ cfg }}" data-root="{{ root }}">
+  <p class="eyebrow">Realtor account</p>
+  <h1>Finish signing in</h1>
+  <noscript><p>Signing in needs JavaScript.</p></noscript>
+  <div data-state="ready" hidden>
+    <p class="lede">Tap the button to sign in to your realtor account.</p>
+    <p class="actions"><button type="button" class="btn" data-go>Sign in</button></p>
+    <p class="fine">This extra tap keeps your link safe from the email scanners some offices use, which open links before you do.</p>
+  </div>
+  <div data-state="working" hidden>
+    <p class="lede">Signing you in...</p>
+  </div>
+  <div data-state="bad" hidden>
+    <p class="lede">This link has already been used or has expired.</p>
+    <p class="actions"><a class="btn" href="{{ url('realtors') }}#account">Get a new link</a></p>
+  </div>
+  <p class="form-status" data-status role="status" aria-live="polite"></p>
+</section>
+{% endblock %}

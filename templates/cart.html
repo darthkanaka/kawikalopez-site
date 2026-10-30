@@ -11,7 +11,9 @@
     <div class="cart-summary" data-cart-summary hidden>
       <dl class="cart-totals">
         <dt>Prints</dt><dd data-subtotal></dd>
+        <dt data-realtor hidden>Realtor price</dt><dd data-realtor hidden>{{ site.realtors.percent_off if site.realtors else 15 }}% off at checkout</dd>
       </dl>
+      <p class="fine" data-realtor hidden>Signed in as <strong data-realtor-email></strong>. Checkout uses this email, and your realtor price comes off there.</p>
       <h2 class="cart-h">Pickup or shipping</h2>
       <dl class="cart-totals cart-ship" data-ship></dl>
       <p class="fine" data-ship-note></p>
