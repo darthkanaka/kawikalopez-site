@@ -384,49 +384,59 @@ function esc_(t) {
   return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; });
 }
 
-/* Run once from the editor: the two order sheets and the sweep trigger. Safe to run again. */
+/* Run once from the editor: the two order sheets and the sweep trigger. Safe to run again: it
+   only makes what's missing, and re-applies the totals and formats to sheets that exist. */
 function setup() {
   var props = PropertiesService.getScriptProperties();
   ["test", "live"].forEach(function (mode) {
-    var MODE = mode.toUpperCase();
-    if (props.getProperty("SHEET_" + MODE)) {
-      console.log(mode + " sheet already set up: " + SpreadsheetApp.openById(props.getProperty("SHEET_" + MODE)).getUrl());
-      return;
+    var MODE = mode.toUpperCase(), id = props.getProperty("SHEET_" + MODE), book;
+    if (id) {
+      book = SpreadsheetApp.openById(id);
+    } else {
+      book = SpreadsheetApp.create(mode === "live" ? "Holiday gift box orders" : "Holiday gift box orders (test)");
+      book.setSpreadsheetTimeZone("Pacific/Honolulu");
+      heading_(book.getSheets()[0].setName("Orders"), ORDER_HEAD);
+      heading_(book.insertSheet("Lines"), LINE_HEAD);
+      book.insertSheet("Cookies to pack", 1);
+      book.insertSheet("Prints to bring", 2);
     }
-    var book = SpreadsheetApp.create(mode === "live" ? "Holiday gift box orders" : "Holiday gift box orders (test)");
-    book.setSpreadsheetTimeZone("Pacific/Honolulu");
-    var orders = book.getSheets()[0].setName("Orders");
-    heading_(orders, ORDER_HEAD);
-    orders.getRange("B2:B").setNumberFormat("ddd mmm d");
-    orders.getRange("O2:O").setNumberFormat("$#,##0");
-    orders.getRange("P2:P").setNumberFormat("mmm d, h:mm am/pm");
-    orders.setColumnWidth(10, 260);
-    orders.setColumnWidth(14, 220);
-    var lines = book.insertSheet("Lines");
-    heading_(lines, LINE_HEAD);
-    lines.getRange("B2:B").setNumberFormat("ddd mmm d");
-    // Totals, from formulas, so they follow any edit to the sheet.
-    var cookies = book.insertSheet("Cookies to pack", 1);
-    cookies.getRange("A1").setValue("Season so far").setFontWeight("bold");
-    cookies.getRange("A2").setFormula("=IFERROR(QUERY(Orders!A2:Q, \"select count(A), sum(H), sum(I) where B is not null label count(A) 'Orders', sum(H) 'Double Boxes', sum(I) 'Gift boxes'\", 0), \"No orders yet\")");
-    cookies.getRange("A6").setValue("By pickup day").setFontWeight("bold");
-    cookies.getRange("A7").setFormula("=IFERROR(QUERY(Orders!A2:Q, \"select B, C, count(A), sum(H), sum(I) where B is not null group by B, C order by B label B 'Pickup day', C 'Spot', count(A) 'Orders', sum(H) 'Double Boxes', sum(I) 'Gift boxes' format B 'ddd mmm d'\", 0), \"No orders yet\")");
-    cookies.setColumnWidth(2, 220);
-    var prints = book.insertSheet("Prints to bring", 2);
-    prints.getRange("A1").setValue("Season so far").setFontWeight("bold");
-    prints.getRange("A2").setFormula("=IFERROR(QUERY(Lines!A2:H, \"select F, sum(G) where B is not null group by F label F 'Print', sum(G) 'Prints'\", 0), \"No orders yet\")");
-    prints.getRange("A11").setValue("By pickup day").setFontWeight("bold");
-    prints.getRange("A12").setFormula("=IFERROR(QUERY(Lines!A2:H, \"select B, sum(G) where B is not null group by B pivot F order by B label B 'Pickup day' format B 'ddd mmm d'\", 0), \"No orders yet\")");
-    prints.setColumnWidth(1, 160);
-    lines.hideSheet();
-    book.setActiveSheet(orders);
-    props.setProperty("SHEET_" + MODE, book.getId());
-    props.setProperty("SINCE_" + MODE, String(Math.floor(Date.now() / 1000)));
-    console.log(mode + " sheet made: " + book.getUrl());
+    dress_(book);
+    if (!id) {
+      props.setProperty("SHEET_" + MODE, book.getId());
+      props.setProperty("SINCE_" + MODE, String(Math.floor(Date.now() / 1000)));
+    }
+    console.log(mode + " sheet " + (id ? "updated" : "made") + ": " + book.getUrl());
   });
   var has = ScriptApp.getProjectTriggers().some(function (t) { return t.getHandlerFunction() === "sweepOrders"; });
   if (!has) ScriptApp.newTrigger("sweepOrders").timeBased().everyMinutes(10).create();
   console.log(has ? "sweepOrders trigger already on" : "sweepOrders trigger made, every 10 minutes");
+}
+
+/* Formats and totals. The totals are formulas, so they follow any edit to the sheet. QUERY
+   hands dates back as plain numbers, so the pickup day columns get a date format of their own. */
+function dress_(book) {
+  var orders = book.getSheetByName("Orders"), lines = book.getSheetByName("Lines");
+  var cookies = book.getSheetByName("Cookies to pack"), prints = book.getSheetByName("Prints to bring");
+  orders.getRange("B2:B").setNumberFormat("ddd mmm d");
+  orders.getRange("O2:O").setNumberFormat("$#,##0");
+  orders.getRange("P2:P").setNumberFormat("mmm d, h:mm am/pm");
+  orders.setColumnWidth(10, 260);
+  orders.setColumnWidth(14, 220);
+  lines.getRange("B2:B").setNumberFormat("ddd mmm d");
+  cookies.getRange("A1").setValue("Season so far").setFontWeight("bold");
+  cookies.getRange("A2").setFormula("=IFERROR(QUERY(Orders!A2:Q, \"select count(A), sum(H), sum(I) where B is not null label count(A) 'Orders', sum(H) 'Double Boxes', sum(I) 'Gift boxes'\", 0), \"No orders yet\")");
+  cookies.getRange("A6").setValue("By pickup day").setFontWeight("bold");
+  cookies.getRange("A7").setFormula("=IFERROR(QUERY(Orders!A2:Q, \"select B, C, count(A), sum(H), sum(I) where B is not null group by B, C order by B label B 'Pickup day', C 'Spot', count(A) 'Orders', sum(H) 'Double Boxes', sum(I) 'Gift boxes'\", 0), \"No orders yet\")");
+  cookies.getRange("A8:A").setNumberFormat("ddd mmm d");
+  cookies.setColumnWidth(2, 220);
+  prints.getRange("A1").setValue("Season so far").setFontWeight("bold");
+  prints.getRange("A2").setFormula("=IFERROR(QUERY(Lines!A2:H, \"select F, sum(G) where B is not null group by F label F 'Print', sum(G) 'Prints'\", 0), \"No orders yet\")");
+  prints.getRange("A11").setValue("By pickup day").setFontWeight("bold");
+  prints.getRange("A12").setFormula("=IFERROR(QUERY(Lines!A2:H, \"select B, sum(G) where B is not null group by B pivot F order by B label B 'Pickup day'\", 0), \"No orders yet\")");
+  prints.getRange("A13:A").setNumberFormat("ddd mmm d");
+  prints.setColumnWidth(1, 160);
+  lines.hideSheet();
+  book.setActiveSheet(orders);
 }
 
 function heading_(sheet, head) {
