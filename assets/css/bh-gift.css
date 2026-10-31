@@ -239,7 +239,8 @@
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
   /* ---------- Touch A Heart toolbar (copies touchahearthawaii.org's header) ---------- */
-  .tah-bar { background: #C29D3B; color: #1b1a18; text-align: center; font: 500 0.875rem/1.35 "Open Sans", var(--sans); padding: 9px var(--gutter); margin: 0; }
+  /* White text, as Jenn asked (2026-10-29), on the deeper gold so it stays readable (4.9:1). */
+  .tah-bar { background: var(--gold-2); color: #fff; text-align: center; font: 500 0.875rem/1.35 "Open Sans", var(--sans); padding: 9px var(--gutter); margin: 0; }
   .tah-head { position: sticky; top: 0; z-index: 30; background: #fff; border-bottom: 1px solid #eee; font-family: "Open Sans", var(--sans); color: #2b2b2b; }
   .tah-in { max-width: 1440px; margin-inline: auto; display: flex; align-items: center; gap: 16px; padding: 8px var(--gutter); }
   .tah-logo { display: block; flex: none; }

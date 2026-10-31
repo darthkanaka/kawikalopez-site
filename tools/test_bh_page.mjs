@@ -68,7 +68,7 @@ const arrows = `[...document.querySelectorAll('#co-cal [data-mon]')].map(b=>b.di
   const { ev, shot, send } = b;
 
   // Toolbar
-  check('gold bar text is dark enough to read', await ev(`getComputedStyle(document.querySelector('.tah-bar')).color`), 'rgb(27, 26, 24)');
+  check('gold bar: white text on the deeper gold', await ev(`(s=>[s.color,s.backgroundColor])(getComputedStyle(document.querySelector('.tah-bar')))`), ['rgb(255, 255, 255)', 'rgb(140, 108, 47)']);
   check('gold bar', await ev(text('.tah-bar')), "✴︎ Holiday gift boxes from Baker's Heart and Kawika Lopez. Pickups start November 16. ✴︎");
   check('desktop menu visible, hamburger hidden', await ev(`[getComputedStyle(document.querySelector('.tah-nav')).display, getComputedStyle(document.querySelector('.tah-menu')).display]`), ['flex', 'none']);
   check('top-level menu', await ev(`[...document.querySelectorAll('.tah-nav > li > a')].map(a=>a.firstChild.textContent.trim())`),
