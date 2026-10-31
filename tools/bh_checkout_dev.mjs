@@ -172,9 +172,10 @@ if (process.argv.includes("--check")) {
   eq("Lines rows", lines.cells.slice(1), [
     ["TEST-1001", "=DATE(2026,11,30)", "Kalihi Union Church", "Team box", "Double Box", "Mokulele", 2, buy.id],
     ["TEST-1001", "=DATE(2026,11,30)", "Kalihi Union Church", "Client box", "Gift box", "Mālie", 1, buy.id]]);
-  eq("two emails, slip then confirmation", mail.map(m => [m.to, m.subject, m.name, m.replyTo]), [
-    ["kawika@elevatemediahi.com", "[Test] Gift box order TEST-1001, pickup Mon Nov 30 at Kalihi", "Kawika Lopez Photography", "info@kawikalopez.com"],
-    ["giftbox-test@kawikalopez.com", "[Test] Your holiday gift box order, TEST-1001", "Kawika Lopez Photography", "info@kawikalopez.com"]]);
+  eq("two emails, slip (Jenn on cc in test) then confirmation", mail.map(m => [m.to, m.cc ?? null, m.subject, m.name, m.replyTo]), [
+    ["kawika@elevatemediahi.com", "jennifer@touchahearthawaii.org", "[Test] Gift box order TEST-1001, pickup Mon Nov 30 at Kalihi", "Kawika Lopez Photography", "info@kawikalopez.com"],
+    ["giftbox-test@kawikalopez.com", null, "[Test] Your holiday gift box order, TEST-1001", "Kawika Lopez Photography", "info@kawikalopez.com"]]);
+  eq("live slips have no cc by default", sandbox.SLIP_CC.live, "");
   const hour = placed.getUTCHours();
   eq("packing slip text", mail[0].body, "TEST ORDER. Nothing was charged and nothing needs packing.\n\nPacking slip, order TEST-1001\n\n" +
     "Pickup: Monday, November 30, 8 am to 1 pm, Kalihi Union Church\nCustomer: Test Buyer (Test Company)\nPhone: (808) 555-0100\n" +

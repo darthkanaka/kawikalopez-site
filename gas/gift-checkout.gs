@@ -43,6 +43,8 @@
  *   Share the live sheet with Touch A Heart. Optional Script Properties:
  *     SLIP_TO_LIVE   where live packing slips go (default orders@touchahearthawaii.org)
  *     SLIP_TO_TEST   where test packing slips go (default kawika@elevatemediahi.com)
+ *     SLIP_CC_LIVE, SLIP_CC_TEST   who gets a copy (defaults: nobody live; Jenn on test slips,
+ *                    so she sees what her test orders send, Kawika 2026-10-30)
  *   Test orders get "TEST-" numbers, a [Test] subject, and go to the test sheet.
  *
  * CHANGING IT LATER
@@ -180,6 +182,7 @@ function status_(req) {
 /* ---------- After payment: order number, sheet row, packing slip, buyer's confirmation ---------- */
 
 var SLIP_TO = { test: "kawika@elevatemediahi.com", live: "orders@touchahearthawaii.org" };
+var SLIP_CC = { test: "jennifer@touchahearthawaii.org", live: "" };
 var FROM_NAME = "Kawika Lopez Photography";
 var REPLY_TO = "info@kawikalopez.com";
 var PHONE = "(808) 204-4575";
@@ -283,7 +286,8 @@ function record_(mode, no, o) {
 
 /* The packing slip, to Touch A Heart. */
 function slip_(mode, no, o) {
-  var to = PropertiesService.getScriptProperties().getProperty("SLIP_TO_" + mode.toUpperCase()) || SLIP_TO[mode];
+  var props = PropertiesService.getScriptProperties(), MODE = mode.toUpperCase();
+  var to = props.getProperty("SLIP_TO_" + MODE) || SLIP_TO[mode], cc = props.getProperty("SLIP_CC_" + MODE) || SLIP_CC[mode];
   var test = mode === "test", url = book_(mode).getUrl();
   var who = o.name + (o.company ? " (" + o.company + ")" : "");
   var pickup = bhLong(o.date) + ", " + o.spot.hours + ", " + o.spot.name;
@@ -308,8 +312,10 @@ function slip_(mode, no, o) {
     "Packing slip, order " + no + "\n\n" + rows.map(function (x) { return x[0] + ": " + x[1]; }).join("\n") + "\n\n" +
     o.lines.map(function (l) { return l.qty + " x " + l.boxName + " (" + l.cookies + "), " + l.printName + " print"; }).join("\n") +
     "\n\nCookies for this order: " + cookies + "\n\nKawika brings the matted prints to Kalihi with the weekly print drop. Every order is also in the shared sheet, " + url + "\n";
-  MailApp.sendEmail({ to: to, subject: (test ? "[Test] " : "") + "Gift box order " + no + ", pickup " + shortDay_(o.date) + " at " + (SPOT_SHORT[o.spotId] || o.spot.name),
-    body: text, htmlBody: html, name: FROM_NAME, replyTo: REPLY_TO });
+  var mail = { to: to, subject: (test ? "[Test] " : "") + "Gift box order " + no + ", pickup " + shortDay_(o.date) + " at " + (SPOT_SHORT[o.spotId] || o.spot.name),
+    body: text, htmlBody: html, name: FROM_NAME, replyTo: REPLY_TO };
+  if (cc) mail.cc = cc;
+  MailApp.sendEmail(mail);
 }
 
 /* The buyer's confirmation: order number, pickup, what they ordered. */
