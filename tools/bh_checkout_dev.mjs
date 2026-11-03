@@ -169,9 +169,10 @@ if (process.argv.includes("--check")) {
     "giftbox-test@kawikalopez.com", 2, 1, "2 Mokulele, 1 Mālie", false, false, false, "", 280,
     `=DATE(${placed.getUTCFullYear()},${placed.getUTCMonth() + 1},${placed.getUTCDate()})+TIME(${placed.getUTCHours()},${placed.getUTCMinutes()},0)`, buy.id]);
   eq("checkboxes on the row", orders.checkboxes, [[2, 11], [2, 12], [2, 13]]);
-  eq("Lines rows", lines.cells.slice(1), [
-    ["TEST-1001", "=DATE(2026,11,30)", "Kalihi Union Church", "Team box", "Double Box", "Mokulele", 2, buy.id],
-    ["TEST-1001", "=DATE(2026,11,30)", "Kalihi Union Church", "Client box", "Gift box", "Mālie", 1, buy.id]]);
+  const look = (col, r) => `=IFERROR(INDEX(Orders!${col}:${col}, MATCH($A${r}, Orders!$A:$A, 0)), "")`;
+  eq("Lines rows (pickup day and spot looked up from Orders, so a moved pickup is one edit)", lines.cells.slice(1), [
+    ["TEST-1001", look("B", 2), look("C", 2), "Team box", "Double Box", "Mokulele", 2, buy.id],
+    ["TEST-1001", look("B", 3), look("C", 3), "Client box", "Gift box", "Mālie", 1, buy.id]]);
   eq("two emails, slip (Jenn on cc in test) then confirmation", mail.map(m => [m.to, m.cc ?? null, m.subject, m.name, m.replyTo]), [
     ["kawika@elevatemediahi.com", "jennifer@touchahearthawaii.org", "[Test] Gift box order TEST-1001, pickup Mon Nov 30 at Kalihi", "Kawika Lopez Photography", "info@kawikalopez.com"],
     ["giftbox-test@kawikalopez.com", null, "[Test] Your holiday gift box order, TEST-1001", "Kawika Lopez Photography", "info@kawikalopez.com"]]);

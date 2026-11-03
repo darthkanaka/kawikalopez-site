@@ -270,7 +270,9 @@ function book_(mode) {
   return SpreadsheetApp.openById(id);
 }
 
-/* One row on Orders (Touch A Heart's checklist) and one row per line on Lines (feeds the totals). */
+/* One row on Orders (Touch A Heart's checklist) and one row per line on Lines (feeds the totals).
+   Lines looks up its pickup day and spot from the order's row on Orders, so moving a pickup is one
+   edit on Orders, and an order deleted from Orders drops out of the print totals too. */
 function record_(mode, no, o) {
   var book = book_(mode), orders = book.getSheetByName("Orders"), lines = book.getSheetByName("Lines");
   var day = dateCell_(o.date), placed = placedCell_(o.created);
@@ -279,8 +281,10 @@ function record_(mode, no, o) {
     boxCount_(o, "team"), boxCount_(o, "client"), printList_(o), false, false, false, "", o.total, placed, o.id]]);
   orders.getRange(r, 11, 1, 3).insertCheckboxes();
   if (!o.lines.length) return;
-  lines.getRange(lines.getLastRow() + 1, 1, o.lines.length, LINE_HEAD.length).setValues(o.lines.map(function (l) {
-    return [no, day, o.spot.name, BH_RULES.boxes[l.box] ? BH_RULES.boxes[l.box].name : l.box, l.cookies, l.printName, l.qty, o.id];
+  var lr = lines.getLastRow() + 1;
+  lines.getRange(lr, 1, o.lines.length, LINE_HEAD.length).setValues(o.lines.map(function (l, i) {
+    var look = function (col) { return '=IFERROR(INDEX(Orders!' + col + ':' + col + ', MATCH($A' + (lr + i) + ', Orders!$A:$A, 0)), "")'; };
+    return [no, look("B"), look("C"), BH_RULES.boxes[l.box] ? BH_RULES.boxes[l.box].name : l.box, l.cookies, l.printName, l.qty, o.id];
   }));
 }
 
