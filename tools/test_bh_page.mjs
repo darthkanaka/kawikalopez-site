@@ -240,7 +240,7 @@ const arrows = `[...document.querySelectorAll('#co-cal [data-mon]')].map(b=>b.di
   check('thank-you lines and pickup', [await ev(`[...document.querySelectorAll('#co-done-body .co-ln')].map(l=>l.textContent.trim())`), await ev(text('#co-done-body .co-pickup-sum'))],
     [['Team boxes with Mokulele2', 'Client box with Mālie1'], 'Pickup Monday, November 30, 8 am to 1 pmKalihi Union Church, 2214 N. King St., Honolulu']);
   check('thank-you words', await ev(`[...document.querySelectorAll('#co-done-body p')].map(p=>p.textContent).slice(1)`),
-    ["Give your name or order number at the Touch A Heart table when you pick up. We're emailing your confirmation now.", 'Questions? Write to info@kawikalopez.com or call (808) 204-4575.']);
+    ["On your pickup day, call Jennifer at (808) 970-1633 when you arrive in the Kalihi Union Church parking lot. We're emailing your confirmation now.", 'Questions? Write to info@kawikalopez.com or call (808) 204-4575.']);
   check('thank-you buttons', await ev(`[...document.querySelectorAll('#co-done-body button')].map(b=>b.textContent)`), ['Start a new order', 'Close']);
   await shot('bh-d6-thanks');
   await ev(click('[data-rebuild]')); await sleep(200);

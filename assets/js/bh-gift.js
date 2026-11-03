@@ -270,7 +270,8 @@
         if (b && p) html += '<div class="co-ln"><img src="' + src(p) + '" alt="">' + esc(l.qty === 1 ? b.name : b.plural) + " with " + esc(p.name) + '<span class="q">' + l.qty + "</span></div>";
       });
       html += pickupHtml(d.spot, d.date);
-      html += "<p>Give your name or order number at the Touch A Heart table when you pick up. We're emailing your confirmation now.</p>" +
+      var arrive = R.spots[d.spot.id] ? R.spots[d.spot.id].arrive + " " : "";
+      html += "<p>" + esc(arrive) + "We're emailing your confirmation now.</p>" +
         "<p>Questions? Write to info@kawikalopez.com or call (808) 204-4575.</p>" +
         '<div class="co-done-act">' + (closed ? "" : '<button class="btn" type="button" data-rebuild>Start a new order</button>') +
         '<button class="btn btn-line" type="button" data-close>Close</button></div>';

@@ -325,7 +325,7 @@ function confirm_(mode, no, o) {
   var paras = [
     "Hi " + first + ",",
     "Thank you for your order! Your order number is " + no + ".",
-    "Pick up your gift boxes on " + when + ", at " + o.spot.name + ", " + o.spot.address + ". Go to the Touch A Heart table and give your name or order number. If someone else is picking up for you, they can show this email.",
+    "Pick up your gift boxes on " + when + ", at " + o.spot.name + ", " + o.spot.address + ". " + (o.spot.arrive ? o.spot.arrive + " " : "") + "If someone else is picking up for you, they can show this email.",
     "__LINES__",
     "Questions, or need to change something? Reply to this email or call " + PHONE + ".",
     "Mahalo for supporting Touch A Heart's job training and a local artist.",
@@ -459,8 +459,12 @@ var BH_RULES = {
   bigOrder: 25,              // orders over this many boxes...
   bigLastDay: "2026-12-01",  // ...can be placed through this day only
   spots: {
-    kalihi: { name: "Kalihi Union Church", address: "2214 N. King St., Honolulu", hours: "8 am to 1 pm", days: [1, 2, 3, 4, 5] },
-    pearl: { name: "Pearl City Community Church", address: "933 Lehua Ave., Pearl City", hours: "1:30 to 3 pm", days: [3] }
+    // arrive: what the buyer does at pickup. Kalihi has no table on most days, so buyers call
+    // Jenn from the parking lot (Jenn, 2026-11-03).
+    kalihi: { name: "Kalihi Union Church", address: "2214 N. King St., Honolulu", hours: "8 am to 1 pm", days: [1, 2, 3, 4, 5],
+      arrive: "On your pickup day, call Jennifer at (808) 970-1633 when you arrive in the Kalihi Union Church parking lot." },
+    pearl: { name: "Pearl City Community Church", address: "933 Lehua Ave., Pearl City", hours: "1:30 to 3 pm", days: [3],
+      arrive: "Give your name or order number at the Touch A Heart table when you pick up." }
   },
   boxes: {
     team: { name: "Team box", plural: "Team boxes", price: 80,

@@ -184,7 +184,7 @@ if (process.argv.includes("--check")) {
     `Kawika brings the matted prints to Kalihi with the weekly print drop. Every order is also in the shared sheet, https://docs.google.com/spreadsheets/d/${props.SHEET_TEST}\n`);
   eq("packing slip html has the lines", ["Packing slip, order TEST-1001", "<td style=\"padding:6px 12px 6px 0;vertical-align:top;border-bottom:1px solid #ddd;\">Mālie</td>", "Test order. Nothing was charged"].map(t => mail[0].htmlBody.includes(t)), [true, true, true]);
   eq("confirmation text", mail[1].body, "This is a test order. Nothing was charged.\n\nHi Test,\n\nThank you for your order! Your order number is TEST-1001.\n\n" +
-    "Pick up your gift boxes on Monday, November 30, between 8 am and 1 pm, at Kalihi Union Church, 2214 N. King St., Honolulu. Go to the Touch A Heart table and give your name or order number. If someone else is picking up for you, they can show this email.\n\n" +
+    "Pick up your gift boxes on Monday, November 30, between 8 am and 1 pm, at Kalihi Union Church, 2214 N. King St., Honolulu. On your pickup day, call Jennifer at (808) 970-1633 when you arrive in the Kalihi Union Church parking lot. If someone else is picking up for you, they can show this email.\n\n" +
     "What you ordered\n2 Team boxes with Mokulele\n1 Client box with Mālie\nTotal $280\n\n" +
     "Questions, or need to change something? Reply to this email or call (808) 204-4575.\n\nMahalo for supporting Touch A Heart's job training and a local artist.\n\nKawika Lopez\nKawika Lopez Photography\n");
   eq("the same order again: same number, no new row or email", [call({ action: "status", mode: "test", session_id: buy.id }).order, orders.cells.length, mail.length], ["TEST-1001", 2, 2]);
@@ -207,6 +207,8 @@ if (process.argv.includes("--check")) {
   eq("sweep: numbers run in order, the first kept", [ids.indexOf(buy.id), orders.cells.slice(1).map(r => r[0]).join() === paid.map((_, i) => "TEST-" + (1001 + i)).join()], [0, true]);
   eq("sweep: a slip and a confirmation for each", mail.length, paid.length * 2);
   eq("sweep: Lines match the boxes", lines.cells.slice(1).reduce((a, r) => a + r[6], 0), paid.reduce((a, s) => a + Number(s.metadata.boxes), 0));
+  const pearlMail = mail.find(m => m.body.includes("at Pearl City Community Church, 933 Lehua Ave., Pearl City."));
+  eq("Pearl City confirmation: the table, not the phone call", pearlMail ? [pearlMail.body.includes("Pearl City. Give your name or order number at the Touch A Heart table when you pick up. If someone else"), pearlMail.body.includes("970-1633")] : "no Pearl City order in the sandbox", [true, false]);
   quiet(() => sandbox.sweepOrders());
   eq("sweep again: nothing new", [orders.cells.length - 1, mail.length], [paid.length, paid.length * 2]);
   eq("live sheet untouched, lock released", [live.sheets[0].cells.length, locks], [1, 0]);
