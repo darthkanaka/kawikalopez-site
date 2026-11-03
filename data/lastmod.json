@@ -1,7 +1,7 @@
 {
  "/": {
-  "date": "2026-10-19",
-  "hash": "a039d70a3cd6"
+  "date": "2026-11-03",
+  "hash": "bb4e4d6e3ce8"
  },
  "404": {
   "date": "2026-10-19",
@@ -63,6 +63,10 @@
   "date": "2026-10-19",
   "hash": "aa717ddc69c0"
  },
+ "gifts/holiday-gift-boxes": {
+  "date": "2026-11-03",
+  "hash": "d8f57f199201"
+ },
  "gifts/housewarming": {
   "date": "2026-10-19",
   "hash": "f2feb3689d9c"
@@ -120,8 +124,8 @@
   "hash": "71f98c80930e"
  },
  "privacy": {
-  "date": "2026-10-20",
-  "hash": "3844d0ae3e6e"
+  "date": "2026-11-03",
+  "hash": "19f85f1305e8"
  },
  "realtors": {
   "date": "2026-10-19",
@@ -292,8 +296,8 @@
   "hash": "7ab16b7a4640"
  },
  "terms": {
-  "date": "2026-10-19",
-  "hash": "8460fbc6cb70"
+  "date": "2026-11-03",
+  "hash": "302cf71c1139"
  },
  "thank-you": {
   "date": "2026-10-19",

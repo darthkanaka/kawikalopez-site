@@ -1008,6 +1008,14 @@
   ]
  },
  {
+  "path": "gifts/holiday-gift-boxes",
+  "file": "gifts/holiday-gift-boxes.html",
+  "type": "gift-boxes",
+  "title": "Holiday Gift Boxes: Baker's Heart and Kawika Lopez",
+  "description": "Baker's Heart cookies and a matted Kawika Lopez print of Oʻahu in one holiday gift box for your clients and team, picked up in Kalihi or Pearl City.",
+  "indexable": true
+ },
+ {
   "path": "404",
   "file": "404.html",
   "type": "404",

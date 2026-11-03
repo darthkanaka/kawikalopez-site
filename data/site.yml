@@ -89,7 +89,8 @@ google_ads: true
 
 # The privacy policy's effective date, shown at the top of /privacy. Change it whenever the
 # policy's wording changes.
-privacy_updated: October 20, 2026
+privacy_updated: November 3, 2026
+terms_updated: November 3, 2026
 
 # Flags that change links while pages are still being built.
 features:

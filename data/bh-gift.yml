@@ -6,9 +6,9 @@
 #   It turns true at launch, after Robin's team approves the page.
 # mode: test until launch. indexable: false until launch (then the page joins the sitemap).
 # endpoint: the Apps Script web app URL. KL_BH_ENDPOINT overrides it for local testing.
-publish: false
-mode: test
-indexable: false
+publish: true
+mode: live
+indexable: true
 # banner_until: the home page banner for the boxes shows on builds up to this day (ordering closes
 #   at the end of Dec 15).
 banner_until: "2026-12-15"
