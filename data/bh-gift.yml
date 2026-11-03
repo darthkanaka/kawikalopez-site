@@ -9,6 +9,9 @@
 publish: false
 mode: test
 indexable: false
+# banner_until: the home page banner for the boxes shows on builds up to this day (ordering closes
+#   at the end of Dec 15).
+banner_until: "2026-12-15"
 endpoint: "https://script.google.com/macros/s/AKfycbwfSccE9-y0aBCekSYRfA0aU9QothRkjeJxHoHS-md_mhWemVBmX_4xh8NSKwDjq43O/exec"
 
 # Touch A Heart's own header menu, copied from touchahearthawaii.org on 2026-10-15.

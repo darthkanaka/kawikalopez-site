@@ -22,6 +22,23 @@
   </figure>
 </section>
 
+{% if gift_boxes %}
+<section class="section wrap" aria-labelledby="gb-h">
+  <div class="gb-band">
+    <figure class="gb-media">
+      <img src="{{ root }}assets/img/bakers-heart/collection.jpg" width="1400" height="934" alt="The Baker's Heart holiday collection in olive green Comfort and Joy wraps, with cookies and biscotti on a plate" loading="lazy">
+      <span class="gb-print"><img src="{{ root }}assets/img/prints/mokulua-islands-480.jpg" width="480" height="320" alt="A matted print of Mokulua" loading="lazy"></span>
+    </figure>
+    <div class="gb-text">
+      <p class="eyebrow">New this season, with Baker's Heart</p>
+      <h2 id="gb-h">Holiday gift boxes for your clients and team</h2>
+      <p>Baker's Heart cookies to share now and a matted print of Oʻahu they'll keep on the wall for years. Every box supports Touch A Heart's job training. Boxes start at $80, with pickup in Kalihi or Pearl City from November 16.</p>
+      <p class="actions"><a class="btn" href="{{ url('gifts/holiday-gift-boxes') }}">See the gift boxes</a></p>
+    </div>
+  </div>
+</section>
+
+{% endif %}
 <section class="section wrap" aria-labelledby="featured-h">
   <div class="section-head">
     <h2 id="featured-h">Featured prints</h2>

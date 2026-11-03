@@ -738,6 +738,7 @@ class Builder:
                   featured=featured, total=len([p for p in self.products if not p.get("draft")]),
                   places=list(self.place_docs.values()), tiles=tiles, teaser=teaser, hero_print=self.by_id.get("naniwaikiki"),
                   gifts=self.gift_cards(self.gifts["hub"]) if self.gifts.get("hub") else None,
+                  gift_boxes=self.bh_on and TODAY <= str(self.bh.get("banner_until", "")),
                   preload=("assets/img/site/hero-living", [480, 960, 1600, 2000], "100vw"))
 
     def prints_page(self):

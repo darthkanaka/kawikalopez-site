@@ -544,6 +544,17 @@ html:not(.js) .js-only { display: none; }
 .g-what { font-weight: 600; }
 .g-tier-text p:last-child { color: var(--ink-2); font-size: 0.9375rem; margin: 0; }
 
+/* Home page band for the holiday gift boxes (data/bh-gift.yml banner_until) */
+.gb-band { display: grid; gap: 28px; align-items: center; background: var(--paper-2); border: 1px solid var(--rule); padding: clamp(16px, 3vw, 36px); }
+.gb-media { position: relative; margin: 0 0 18px; }
+.gb-media > img { display: block; width: 100%; height: auto; }
+.gb-print { position: absolute; right: -2%; bottom: -7%; width: 36%; background: #fff; padding: 5%; outline: 1px solid var(--rule); box-shadow: 0 4px 12px rgba(27, 26, 24, .16); }
+.gb-print img { display: block; width: 100%; height: auto; }
+.gb-text h2 { margin: 0 0 14px; }
+.gb-text p { max-width: 46ch; }
+.gb-text .actions { margin: 22px 0 0; }
+@media (min-width: 900px) { .gb-band { grid-template-columns: 1.15fr 1fr; gap: 56px; } .gb-media { margin-bottom: 0; } }
+
 /* Photo cards that lead to a gift page or a place */
 .g-cards { display: grid; gap: 14px; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 8px; }
 .g-card { position: relative; display: block; aspect-ratio: 4 / 5; overflow: hidden; color: #fff; text-decoration: none; background: var(--charcoal); }
