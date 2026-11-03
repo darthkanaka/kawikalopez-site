@@ -188,6 +188,10 @@ if (process.argv.includes("--check")) {
     "Pick up your gift boxes on Monday, November 30, between 8 am and 1 pm, at Kalihi Union Church, 2214 N. King St., Honolulu. On your pickup day, call Jennifer at (808) 970-1633 when you arrive in the Kalihi Union Church parking lot. If someone else is picking up for you, they can show this email.\n\n" +
     "What you ordered\n2 Team boxes with Mokulele\n1 Client box with Mālie\nTotal $280\n\n" +
     "Questions, or need to change something? Reply to this email or call (808) 204-4575.\n\nMahalo for supporting Touch A Heart's job training and a local artist.\n\nKawika Lopez\nKawika Lopez Photography\n");
+  eq("confirmation html: the note, with the order's details", ["Thank you, Test.", "Your order number is <b>TEST-1001</b>", "This is a test order.",
+    "border-top:6px solid #4f5e3f", "border-left:4px solid #4f5e3f", "Monday, November 30", "call Jennifer at (808) 970-1633",
+    "prints/mokulele-480.jpg", "prints/malie-480.jpg", "2 Team boxes with Mokulele", "Each with a Baker&#39;s Heart Double Box", "$160", "$120", "<b>$280</b>"]
+    .filter(t => !mail[1].htmlBody.replace(/'/g, "&#39;").includes(t)), []);
   eq("the same order again: same number, no new row or email", [call({ action: "status", mode: "test", session_id: buy.id }).order, orders.cells.length, mail.length], ["TEST-1001", 2, 2]);
 
   const other = paid.find(s => s.id !== buy.id);

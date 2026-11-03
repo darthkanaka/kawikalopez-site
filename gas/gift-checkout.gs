@@ -337,14 +337,63 @@ function confirm_(mode, no, o) {
   ];
   if (test) paras.unshift("This is a test order. Nothing was charged.");
   var items = o.lines.map(function (l) { return l.qty + " " + l.boxName + " with " + l.printName; });
-  var total = "Total $" + o.total.toFixed(2).replace(/\.00$/, "");
-  var html = '<div style="font-family:Arial,sans-serif;font-size:16px;line-height:1.5;color:#1b1a18;max-width:560px">' + paras.map(function (p) {
-    if (p === "__LINES__") return '<p style="margin:0 0 16px"><b>What you ordered</b><br>' + items.map(esc_).join("<br>") + "<br>" + total + "</p>";
-    return '<p style="margin:0 0 16px">' + esc_(p).replace(/\n/g, "<br>") + "</p>";
-  }).join("") + "</div>";
-  var text = paras.map(function (p) { return p === "__LINES__" ? "What you ordered\n" + items.join("\n") + "\n" + total : p; }).join("\n\n") + "\n";
+  var money = function (n) { return "$" + n.toFixed(2).replace(/\.00$/, ""); };
+  var total = "Total " + money(o.total);
+  var html = noteHtml_(test, no, first, o, money);  var text = paras.map(function (p) { return p === "__LINES__" ? "What you ordered\n" + items.join("\n") + "\n" + total : p; }).join("\n\n") + "\n";
   MailApp.sendEmail({ to: o.email, subject: (test ? "[Test] " : "") + "Your holiday gift box order, " + no,
     body: text, htmlBody: html, name: FROM_NAME, replyTo: REPLY_TO });
+}
+
+/* The confirmation as "the note" (Kawika's pick, 2026-11-03): a short letter on a white card with
+   the two logos, a pickup card, each print as a small matted thumbnail, and a little of the page's
+   green (the band on top and the pickup card's edge). Email HTML: tables and inline styles only. */
+function noteHtml_(test, no, first, o, money) {
+  var IMG = "https://kawikalopez.com/assets/img/", KL_LOGO = IMG + "site/logo-horizontal.png";
+  var TAH_LOGO = "https://touchahearthawaii.org/cdn/shop/files/TAH_logo.jpg?v=1677166552";
+  var GREEN = "#4f5e3f", GOLD = "#a8843f", INK = "#1b1a18", INK2 = "#57534c", RULE = "#d8d3c9";
+  var SERIF = "Georgia,'Times New Roman',serif", SANS = "-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif";
+  var td = function (style, inner) { return '<tr><td style="' + style + '">' + inner + "</td></tr>"; };
+  var label = function (color) { return "font:12px/1 " + SANS + ";letter-spacing:.14em;text-transform:uppercase;color:" + color + ";"; };
+  var lines = o.lines.map(function (l) {
+    var p = printById_(l.print), box = BH_RULES.boxes[l.box];
+    var what = (l.qty === 1 ? "A " : "Each with a ") + "Baker's Heart " + (l.box === "team" ? "Double Box" : "gift box") + " and a matted " + l.printName + " print";
+    return '<tr><td width="84" style="padding:10px 0;"><table role="presentation" cellpadding="0" cellspacing="0"><tr><td style="background:#fff;padding:7px;border:1px solid ' + RULE + ';">' +
+      (p ? '<img src="' + IMG + "prints/" + p.img + '-480.jpg" width="62" alt="" style="display:block;width:62px;height:auto;border:0">' : "") + "</td></tr></table></td>" +
+      '<td style="padding:10px 0 10px 14px;font:15px/1.45 ' + SANS + ";color:" + INK + ';"><b>' + esc_(l.qty + " " + l.boxName + " with " + l.printName) + '</b><br><span style="color:' + INK2 + ';font-size:13px;">' + esc_(what) + "</span></td>" +
+      '<td align="right" style="padding:10px 0;font:15px ' + SANS + ";color:" + INK + ';">' + (box ? money(box.price * l.qty) : "") + "</td></tr>";
+  }).join("");
+  var pre = "Order " + no + ". Pickup " + bhLong(o.date) + ", " + o.spot.hours + ", at " + o.spot.name + ".";
+  var card =
+    (test ? td("background:#fff3cd;padding:10px 36px;font:14px " + SANS + ";color:" + INK + ";", "This is a test order. Nothing was charged.") : "") +
+    td("padding:26px 32px 6px;text-align:center;", '<table role="presentation" cellpadding="0" cellspacing="0" align="center"><tr>' +
+      '<td><img src="' + TAH_LOGO + '" width="104" alt="Touch A Heart" style="display:block;width:104px;height:auto;border:0"></td>' +
+      '<td style="padding:0 12px;font:22px/1 ' + SERIF + ";color:" + GOLD + ';">&times;</td>' +
+      '<td><img src="' + KL_LOGO + '" width="132" alt="Kawika Lopez Photography" style="display:block;width:132px;height:auto;border:0"></td></tr></table>') +
+    td("padding:22px 36px 0;font:34px/1.15 " + SERIF + ";color:" + INK + ";", "Thank you, " + esc_(first) + ".") +
+    td("padding:12px 36px 0;font:16px/1.6 " + SANS + ";color:" + INK + ";", "Your gift boxes are ordered. Here's everything you need for pickup. Your order number is <b>" + esc_(no) + "</b>.") +
+    td("padding:22px 36px 0;", '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#fbfaf7;border:1px solid ' + RULE + ";border-left:4px solid " + GREEN + ';">' +
+      td("padding:18px 20px 4px;" + label(GREEN), "Pickup") +
+      td("padding:6px 20px 0;font:24px/1.2 " + SERIF + ";color:" + INK + ";", esc_(bhLong(o.date))) +
+      td("padding:4px 20px 0;font:15px/1.5 " + SANS + ";color:" + INK + ";", esc_(o.spot.hours) + "<br>" + esc_(o.spot.name + ", " + o.spot.address)) +
+      td("padding:12px 20px 18px;font:15px/1.55 " + SANS + ";color:" + INK + ";", esc_((o.spot.arrive ? o.spot.arrive + " " : "") + "If someone else is picking up for you, they can show this email.")) +
+      "</table>") +
+    td("padding:26px 36px 0;" + label(INK2), "What you ordered") +
+    td("padding:6px 36px 0;", '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid ' + RULE + ';">' + lines + "</table>") +
+    td("padding:12px 36px 0;", '<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td style="font:15px ' + SANS + ";color:" + INK + ';"><b>Total</b></td>' +
+      '<td align="right" style="font:15px ' + SANS + ";color:" + INK + ';"><b>' + money(o.total) + "</b></td></tr></table>") +
+    td("padding:26px 36px 0;font:16px/1.6 " + SANS + ";color:" + INK + ";", "Mahalo for supporting Touch A Heart's job training and a local artist.") +
+    td("padding:14px 36px 32px;", '<img src="' + KL_LOGO + '" width="130" alt="Kawika Lopez" style="display:block;width:130px;height:auto;border:0">');
+  return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">' +
+    '<meta name="color-scheme" content="light"><meta name="supported-color-schemes" content="light"><title>Your holiday gift box order</title></head>' +
+    '<body style="margin:0;padding:0;background:#f4f2ed;"><div style="display:none;max-height:0;overflow:hidden;opacity:0">' + esc_(pre) + "</div>" +
+    '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f4f2ed;"><tr><td align="center" style="padding:28px 12px;">' +
+    '<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:100%;max-width:600px;">' +
+    '<tr><td style="background:#ffffff;border:1px solid ' + RULE + ";border-top:6px solid " + GREEN + ';"><table role="presentation" width="100%" cellpadding="0" cellspacing="0">' + card + "</table></td></tr>" +
+    td("padding:22px 8px 0;font:13px/1.6 " + SANS + ";color:" + INK2 + ";text-align:center;",
+      "Questions, or need to change something? Reply to this email or call " + PHONE + ".<br>" +
+      'Kawika Lopez Photography &middot; <a href="https://kawikalopez.com/" style="color:' + INK2 + ';">kawikalopez.com</a><br>' +
+      "Cookies by Baker's Heart, the bakery of Touch A Heart.") +
+    "</table></td></tr></table></body></html>";
 }
 
 function boxCount_(o, box) {
