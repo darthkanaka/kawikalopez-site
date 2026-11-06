@@ -890,6 +890,17 @@
   "indexable": true
  },
  {
+  "path": "blog/holiday-gift-boxes-for-employees",
+  "file": "blog/holiday-gift-boxes-for-employees.html",
+  "type": "post",
+  "title": "Holiday Gift Box for Employees That Gives Back | Oʻahu",
+  "description": "Baker's Heart cookies and a matted Oʻahu print for your team or clients, from $80. Every box helps to transform lives and support local art.",
+  "indexable": true,
+  "images": [
+   "assets/img/prints/leahikahiko-2000.jpg"
+  ]
+ },
+ {
   "path": "blog/realtor-closing-gifts",
   "file": "blog/realtor-closing-gifts.html",
   "type": "post",
