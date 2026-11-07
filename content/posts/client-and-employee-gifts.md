@@ -1,15 +1,15 @@
 ---
 title: Client and employee gifts that perpetuate the beauty of Hawaiʻi
-seo_title: Corporate Gifts from Hawaiʻi That Last | Kawika Lopez
+seo_title: Employee and Client Gifts in Hawaiʻi | Kawika Lopez
 slug: client-and-employee-gifts
-target: corporate gifts hawaii
+target: employee gifts hawaii
 description: "A print of a real Oʻahu place is a client or employee gift they'll keep. Prints start at $55. Here's how to pick a size, what you can deduct, and how it ships."
 hero: malie
 prints: [leahikahiko, kaimana, mokulua, malie, timespan]
 places: [diamond-head, kailua-waimanalo, north-shore]
 status: published
 date: 2026-10-08
-updated: 2026-10-08
+updated: 2026-11-07
 tags: [kawikalopez-site, post]
 project: kawikalopez-site
 ---

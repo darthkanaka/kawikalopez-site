@@ -125,3 +125,9 @@
   cluster: gift
   queries: [hawaii gifts for dad, gifts for dad from hawaii, gift for dad who has everything]
   priority: 2
+- phrase: Employee and Client Gifts in Hawaiʻi
+  page: blog/client-and-employee-gifts
+  cluster: gift
+  queries: [employee gifts hawaii, client gifts hawaii, corporate gifts hawaii, business gifts honolulu, corporate gifts honolulu, hawaii company gifts for employees]
+  volume: "gsc: 13/mo"
+  priority: 1
