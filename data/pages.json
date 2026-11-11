@@ -770,6 +770,14 @@
   "indexable": false
  },
  {
+  "path": "links",
+  "file": "links.html",
+  "type": "page",
+  "title": "Links | Kawika Lopez Photography",
+  "description": "Holiday gift boxes with Baker's Heart, closing gifts for Hawaiʻi realtors, and prints of Oʻahu by Kawika Lopez.",
+  "indexable": false
+ },
+ {
   "path": "cart",
   "file": "cart.html",
   "type": "page",

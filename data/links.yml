@@ -1,0 +1,31 @@
+# The /links page: the one link in Kawika's Instagram bio (and anywhere else only one link fits).
+# Added 2026-11-10 instead of a Linktree, so the clicks stay on the site and in GA4.
+#
+# Links show in this order. href is a site path and the link only shows when that page is in the
+# build (so the realtor link follows realtors.live). Each link has a print (a urlId from
+# data/products.json) or an img (a site image with its width and height) as its thumbnail.
+# until: the link hides itself in the browser after that day (site.js data-deadline), since the
+# site isn't rebuilt every day.
+
+title: "Links | Kawika Lopez Photography"
+description: "Holiday gift boxes with Baker's Heart, closing gifts for Hawaiʻi realtors, and prints of Oʻahu by Kawika Lopez."
+lede: "Landscape and aerial photographer on Oʻahu."
+
+links:
+  - href: "gifts/holiday-gift-boxes"
+    title: "Holiday gift boxes with Baker's Heart"
+    line: "Cookies and a matted print of Oʻahu for your team and clients. Order by December 15."
+    img: {src: "assets/img/bakers-heart/collection-320.jpg", w: 320, h: 213}
+    until: "2026-12-15"
+  - href: "realtors"
+    title: "Closing gifts for realtors"
+    line: "Hawaiʻi realtors get 15% off every print for their clients."
+    print: "kaaawasunrise"
+  - href: "store/"
+    title: "Shop prints"
+    line: "Landscape and aerial prints of Oʻahu on metal or canvas, made here."
+    print: "naniwaikiki"
+  - href: "gifts/"
+    title: "Hawaiʻi gift ideas"
+    line: "A print of a real place they love, shipped anywhere in the US."
+    print: "kaimana"

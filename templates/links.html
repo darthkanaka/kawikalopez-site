@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block main %}
+<style>
+/* One column of big tap targets. Kept here so site.css (and every page's lastmod) stays put. */
+.links { max-width: 560px; padding-top: clamp(28px, 5vw, 56px); padding-bottom: var(--space); text-align: center; }
+.links .signoff { width: 150px; margin: 0 auto 10px; display: block; }
+.links-lede { margin: 0 0 28px; color: var(--ink-2); }
+.lk-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; text-align: left; }
+.lk-list li[hidden] { display: none; }
+.lk { display: grid; grid-template-columns: 88px minmax(0, 1fr) auto; align-items: center; gap: 16px;
+  padding: 10px 16px 10px 10px; background: #fbfaf7; border: 1px solid var(--rule); border-radius: var(--radius);
+  color: var(--ink); text-decoration: none; transition: border-color .15s ease, background-color .15s ease; }
+.lk:hover { border-color: var(--accent); background: #fff; }
+.lk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.lk-img { width: 88px; height: 88px; overflow: hidden; background: var(--paper-2); }
+.lk-img picture, .lk-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.lk-text { display: grid; gap: 4px; }
+.lk-text strong { font: 400 1.375rem/1.15 var(--serif); }
+.lk-text span { font-size: 0.9375rem; line-height: 1.4; color: var(--ink-2); }
+.lk-go { color: var(--accent); font-size: 1.25rem; }
+.links-more { margin: 28px 0 0; font-size: 0.9375rem; color: var(--ink-2); }
+</style>
+<section class="wrap links">
+  <img class="signoff" src="{{ asset('assets/img/site/logo.svg') }}" width="2455" height="1183" alt="Kawika Lopez Photography" decoding="async">
+  <h1 class="visually-hidden">Kawika Lopez Photography links</h1>
+  <p class="links-lede">{{ lede }}</p>
+  <ul class="lk-list">
+    {% for l in links %}
+    <li{% if l.get('until') %} data-deadline="{{ l.until }}"{% endif %}>
+      <a class="lk" href="{{ url(l.href) }}">
+        <span class="lk-img">{% if l.get('p') %}{{ picture(l.p, "96px", alt="") }}{% else %}<img src="{{ root }}{{ l.img.src }}" width="{{ l.img.w }}" height="{{ l.img.h }}" alt="" loading="lazy" decoding="async">{% endif %}</span>
+        <span class="lk-text"><strong>{{ l.title }}</strong><span>{{ l.line }}</span></span>
+        <span class="lk-go" aria-hidden="true">&rarr;</span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  <p class="links-more">Questions or a custom size? <a href="{{ url('contact') }}">Get in touch</a>.</p>
+</section>
+{% endblock %}

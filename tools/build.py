@@ -548,6 +548,10 @@ class Builder:
         self.realtors_on = bool(self.realtors) and (bool(self.realtors.get("live")) or not self.production)
         if self.realtors_on:
             self.available.add("realtors")
+        # The /links page for the Instagram bio (data/links.yml).
+        self.links = load_yaml("links.yml", {}) or {}
+        if self.links.get("links"):
+            self.available.add("links")
 
     # -- output
     def write(self, rel, text):
@@ -875,6 +879,20 @@ class Builder:
     def thankyou_page(self):
         self.emit("thank-you.html", "thank-you.html", "thank-you", "page", "Thank you | Kawika Lopez Photography",
                   "Your order is in. What happens next.", indexable=False)
+
+    def links_page(self):
+        """/links, the one link in the Instagram bio. A link shows only when its page is in this build."""
+        if "links" not in self.available:
+            return
+        links = []
+        for l in self.links["links"]:
+            if l["href"] not in self.available:
+                continue
+            if l.get("print"):
+                l = dict(l, p=self.gift_print(l["print"], "links"))
+            links.append(l)
+        self.emit("links.html", "links.html", "links", "page", self.links["title"], self.links["description"],
+                  indexable=False, links=links, lede=self.links["lede"])
 
     # -- places and posts
     def md_html(self, body, rel):
@@ -1273,6 +1291,7 @@ class Builder:
         self.privacy_page()
         self.terms_page()
         self.thankyou_page()
+        self.links_page()
         self.cart_page()
         self.realtors_page()
         self.place_pages()
